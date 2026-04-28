@@ -104,32 +104,33 @@ if (error) {
 
 ## Regenerating types
 
-Types are generated from `openapi.json` (a committed snapshot from `peakly-v2-api`). To regenerate after an API update:
+Types are generated from the live Peakly API spec. To pick up new endpoints or fields after an API update:
 
-1. Copy the updated spec:
-   ```bash
-   cp ../peakly-v2-api/openapi.json ./openapi.json
-   # or pull from the live API:
-   # bash scripts/generate.sh https://api.peakly.io/openapi.json
-   ```
-2. Regenerate:
-   ```bash
-   pnpm generate
-   pnpm build
-   ```
+```bash
+pnpm generate   # fetches https://api.peakly.io/openapi.json and regenerates src/schema.d.ts
+pnpm build
+```
+
+For offline development, pass a local file instead:
+
+```bash
+pnpm generate ./openapi.json
+```
+
+The committed `openapi.json` is a bootstrap snapshot only — it may lag behind the live API. The canonical source of truth is always `https://api.peakly.io/openapi.json`.
 
 ## Development
 
 ```bash
 pnpm install
 pnpm build      # compile TypeScript
-pnpm test       # run vitest suite (30 tests)
-pnpm generate   # regenerate src/schema.d.ts from openapi.json
+pnpm test       # run vitest suite (60 tests)
+pnpm generate   # regenerate src/schema.d.ts from live API spec
 ```
 
 ## Known gaps
 
-- `PATCH /v1/customers/{id}` and `PATCH /v1/purchase-receipts/{id}` are missing `requestBody` in the spec — their `update()` methods accept `Record<string, unknown>` for now. Fix tracked in [PEA-118](https://github.com/peakly/peakly-sdk).
+- `PATCH /v1/purchase-receipts/{id}` is missing `requestBody` in the spec — `purchases.receipts.update()` accepts `Record<string, unknown>` for now. Fix tracked in [PEA-125](https://github.com/peakly/peakly-sdk).
 
 ## License
 

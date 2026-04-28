@@ -4,15 +4,51 @@
  */
 
 export interface paths {
-    "/v1/exports/download": {
+    "/v1/accounting-locks": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get signed download URL for an export file */
-        get: operations["ExportsController_getDownloadUrl"];
+        /** List accounting locks */
+        get: operations["AccountingLocksController_list"];
+        put?: never;
+        /** Create an accounting lock */
+        post: operations["AccountingLocksController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting-locks/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete an accounting lock */
+        delete: operations["AccountingLocksController_delete"];
+        options?: never;
+        head?: never;
+        /** Update an accounting lock */
+        patch: operations["AccountingLocksController_update"];
+        trace?: never;
+    };
+    "/v1/accounting/reports/daily-book": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Daily Book (Libro Diario) — chronological journal entries */
+        get: operations["AccountingReportsController_dailyBook"];
         put?: never;
         post?: never;
         delete?: never;
@@ -21,15 +57,15 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/tax-categories": {
+    "/v1/accounting/reports/daily-book/export": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List active tax categories for the current organization */
-        get: operations["TaxCategoriesController_findAllActive"];
+        /** Export Daily Book as CSV */
+        get: operations["AccountingReportsController_dailyBookExport"];
         put?: never;
         post?: never;
         delete?: never;
@@ -38,15 +74,15 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/tax-categories/{id}": {
+    "/v1/accounting/reports/general-ledger": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get tax category by id */
-        get: operations["TaxCategoriesController_findOne"];
+        /** General Ledger (Libro Mayor) — account movements with running balance */
+        get: operations["AccountingReportsController_generalLedger"];
         put?: never;
         post?: never;
         delete?: never;
@@ -55,15 +91,15 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/tax-categories/{id}/exportacion": {
+    "/v1/accounting/reports/general-ledger/export": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Check if tax category is exportación */
-        get: operations["TaxCategoriesController_isExportacion"];
+        /** Export General Ledger as CSV */
+        get: operations["AccountingReportsController_generalLedgerExport"];
         put?: never;
         post?: never;
         delete?: never;
@@ -72,15 +108,268 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/tax-categories/{id}/monotributo": {
+    "/v1/accounting/reports/trial-balance": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Check if tax category is monotributo */
-        get: operations["TaxCategoriesController_isMonotributo"];
+        /** Trial Balance (Balance de Sumas y Saldos) — account totals */
+        get: operations["AccountingReportsController_trialBalance"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/reports/trial-balance/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export Trial Balance as CSV */
+        get: operations["AccountingReportsController_trialBalanceExport"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/branches": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List branches for the current organization */
+        get: operations["BranchesController_findAll"];
+        put?: never;
+        /** Create branch */
+        post: operations["BranchesController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/branches/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get branch by id */
+        get: operations["BranchesController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete branch (soft delete) */
+        delete: operations["BranchesController_remove"];
+        options?: never;
+        head?: never;
+        /** Update branch */
+        patch: operations["BranchesController_update"];
+        trace?: never;
+    };
+    "/v1/certificates": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List certificates for the current organization */
+        get: operations["CertificatesController_findAll"];
+        put?: never;
+        /**
+         * Create certificate
+         * @description With only 'name': generates RSA key and CSR (matches .NET AddCertificado), uploads private key and CSR to storage. With full body (internalKey, privateKeyPath, csrPath, etc.): manual create for migration/admin.
+         */
+        post: operations["CertificatesController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/certificates/active": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get active certificate for the current organization */
+        get: operations["CertificatesController_findActive"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/certificates/expiration-status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get certificate expiration status for the current organization */
+        get: operations["CertificatesController_getExpirationStatus"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/certificates/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get certificate by id */
+        get: operations["CertificatesController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete certificate */
+        delete: operations["CertificatesController_remove"];
+        options?: never;
+        head?: never;
+        /** Update certificate */
+        patch: operations["CertificatesController_update"];
+        trace?: never;
+    };
+    "/v1/certificates/{id}/crt": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Download certificate CRT file */
+        get: operations["CertificatesController_getCrt"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/certificates/{id}/csr": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Download certificate CSR file */
+        get: operations["CertificatesController_getCsr"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/certificates/{id}/upload-crt": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Upload CRT and generate P12
+         * @description Upload a .crt file for a certificate. Converts to P12 using the stored private key and saves both to Supabase storage.
+         */
+        post: operations["CertificatesController_uploadCrt"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/certificates/{id}/validate-connection": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Validate certificate connection with AFIP services
+         * @description Tests this specific certificate against WSFE and WSFEX AFIP services. Returns per-service results.
+         */
+        post: operations["CertificatesController_validateConnection"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/combos": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List combos */
+        get: operations["CombosController_findAll"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/combos/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get combo by id */
+        get: operations["CombosController_findOne"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/combos/{id}/items": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get combo items */
+        get: operations["CombosController_getItems"];
         put?: never;
         post?: never;
         delete?: never;
@@ -174,15 +463,36 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/combos": {
+    "/v1/customers": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List combos */
-        get: operations["CombosController_findAll"];
+        /**
+         * List customers (cursor-paginated)
+         * @description Returns a page of customers. Use cursor from next_cursor for the next page.
+         */
+        get: operations["CustomersController_findAll"];
+        put?: never;
+        /** Create customer */
+        post: operations["CustomersController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/customers/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export customers as CSV (cursor-based, streaming) */
+        get: operations["CustomersController_exportCsv"];
         put?: never;
         post?: never;
         delete?: never;
@@ -191,15 +501,18 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/combos/{id}/items": {
+    "/v1/customers/lookup-cuit": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get combo items */
-        get: operations["CombosController_getItems"];
+        /**
+         * Lookup CUIT for customer auto-fill
+         * @description Validates CUIT and fetches business data from AFIP via system certificate.
+         */
+        get: operations["CustomersController_lookupCuit"];
         put?: never;
         post?: never;
         delete?: never;
@@ -208,15 +521,940 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/combos/{id}": {
+    "/v1/customers/{id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get combo by id */
-        get: operations["CombosController_findOne"];
+        /** Get customer by id */
+        get: operations["CustomersController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete customer */
+        delete: operations["CustomersController_remove"];
+        options?: never;
+        head?: never;
+        /** Update customer */
+        patch: operations["CustomersController_update"];
+        trace?: never;
+    };
+    "/v1/exchange-rates": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get exchange rate */
+        get: operations["ExchangeRatesController_getRate"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/exports/download": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get signed download URL for an export file */
+        get: operations["ExportsController_getDownloadUrl"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/file-imports": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List file imports for the current organization */
+        get: operations["FileImportsController_findAll"];
+        put?: never;
+        /** Create file import */
+        post: operations["FileImportsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/file-imports/download": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get signed download URL for an import result file */
+        get: operations["FileImportsController_getDownloadUrl"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/file-imports/templates/{type}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Download import template
+         * @description Download a pre-built Excel template with headers, example rows, and valid value hints. Type must be one of: customers, products, sales-receipts.
+         */
+        get: operations["FileImportsController_downloadTemplate"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/file-imports/upload": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Upload a file for import
+         * @description Upload an Excel (.xlsx, .xls) or CSV (.csv) file for import processing. Creates a FileImport record and stores the file in Supabase Storage.
+         */
+        post: operations["FileImportsController_upload"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/file-imports/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get file import by id */
+        get: operations["FileImportsController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete file import */
+        delete: operations["FileImportsController_remove"];
+        options?: never;
+        head?: never;
+        /** Update file import */
+        patch: operations["FileImportsController_update"];
+        trace?: never;
+    };
+    "/v1/finance/bank-accounts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List bank accounts (active only) */
+        get: operations["BankAccountsController_findAll"];
+        put?: never;
+        /** Create bank account */
+        post: operations["BankAccountsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/bank-accounts/histories/all": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List bank account histories */
+        get: operations["BankAccountsController_findHistories"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/bank-accounts/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get bank account by id */
+        get: operations["BankAccountsController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete bank account (soft) */
+        delete: operations["BankAccountsController_remove"];
+        options?: never;
+        head?: never;
+        /** Update bank account */
+        patch: operations["BankAccountsController_update"];
+        trace?: never;
+    };
+    "/v1/finance/banks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List banks (active only) */
+        get: operations["BanksController_findAll"];
+        put?: never;
+        /** Create bank */
+        post: operations["BanksController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/banks/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get bank by id */
+        get: operations["BanksController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete bank (soft) */
+        delete: operations["BanksController_remove"];
+        options?: never;
+        head?: never;
+        /** Update bank */
+        patch: operations["BanksController_update"];
+        trace?: never;
+    };
+    "/v1/finance/card-payments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List card payments */
+        get: operations["CardPaymentsController_findAll"];
+        put?: never;
+        /** Create card payment */
+        post: operations["CardPaymentsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/card-payments/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get card payment by id */
+        get: operations["CardPaymentsController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete card payment */
+        delete: operations["CardPaymentsController_remove"];
+        options?: never;
+        head?: never;
+        /** Update card payment */
+        patch: operations["CardPaymentsController_update"];
+        trace?: never;
+    };
+    "/v1/finance/card-payments/{id}/cancellations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List card payment cancellations */
+        get: operations["CardPaymentsController_findCancellations"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/cash-registers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List cash registers (active only) */
+        get: operations["CashRegistersController_findAll"];
+        put?: never;
+        /** Create cash register */
+        post: operations["CashRegistersController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/cash-registers/histories/all": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List cash register histories */
+        get: operations["CashRegistersController_findHistories"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/cash-registers/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get cash register by id */
+        get: operations["CashRegistersController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete cash register (soft) */
+        delete: operations["CashRegistersController_remove"];
+        options?: never;
+        head?: never;
+        /** Update cash register */
+        patch: operations["CashRegistersController_update"];
+        trace?: never;
+    };
+    "/v1/finance/checkbooks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List checkbooks */
+        get: operations["CheckbooksController_findAll"];
+        put?: never;
+        /** Create checkbook */
+        post: operations["CheckbooksController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/checkbooks/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get checkbook by id */
+        get: operations["CheckbooksController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete checkbook */
+        delete: operations["CheckbooksController_remove"];
+        options?: never;
+        head?: never;
+        /** Update checkbook */
+        patch: operations["CheckbooksController_update"];
+        trace?: never;
+    };
+    "/v1/finance/checks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List checks */
+        get: operations["ChecksController_findAll"];
+        put?: never;
+        /** Create check */
+        post: operations["ChecksController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/checks/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get check by id */
+        get: operations["ChecksController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete check */
+        delete: operations["ChecksController_remove"];
+        options?: never;
+        head?: never;
+        /** Update check */
+        patch: operations["ChecksController_update"];
+        trace?: never;
+    };
+    "/v1/finance/credit-cards": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List credit cards */
+        get: operations["CreditCardsController_findAll"];
+        put?: never;
+        /** Create credit card */
+        post: operations["CreditCardsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/credit-cards/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get credit card by id */
+        get: operations["CreditCardsController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete credit card */
+        delete: operations["CreditCardsController_remove"];
+        options?: never;
+        head?: never;
+        /** Update credit card */
+        patch: operations["CreditCardsController_update"];
+        trace?: never;
+    };
+    "/v1/finance/deposits": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List deposits */
+        get: operations["DepositsController_findAll"];
+        put?: never;
+        /** Create deposit */
+        post: operations["DepositsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/deposits/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get deposit by id */
+        get: operations["DepositsController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete deposit */
+        delete: operations["DepositsController_remove"];
+        options?: never;
+        head?: never;
+        /** Update deposit */
+        patch: operations["DepositsController_update"];
+        trace?: never;
+    };
+    "/v1/finance/deposits/{id}/items": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List deposit items */
+        get: operations["DepositsController_findItems"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/fund-movements": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List fund movements */
+        get: operations["FundMovementsController_findAll"];
+        put?: never;
+        /** Create fund movement */
+        post: operations["FundMovementsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/fund-movements/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get fund movement by id */
+        get: operations["FundMovementsController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete fund movement */
+        delete: operations["FundMovementsController_remove"];
+        options?: never;
+        head?: never;
+        /** Update fund movement */
+        patch: operations["FundMovementsController_update"];
+        trace?: never;
+    };
+    "/v1/finance/own-checks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List own checks */
+        get: operations["OwnChecksController_findAll"];
+        put?: never;
+        /** Create own check */
+        post: operations["OwnChecksController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/own-checks/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get own check by id */
+        get: operations["OwnChecksController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete own check */
+        delete: operations["OwnChecksController_remove"];
+        options?: never;
+        head?: never;
+        /** Update own check */
+        patch: operations["OwnChecksController_update"];
+        trace?: never;
+    };
+    "/v1/finance/payment-methods": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List payment methods (active only) */
+        get: operations["PaymentMethodsController_findAll"];
+        put?: never;
+        /** Create payment method */
+        post: operations["PaymentMethodsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/payment-methods/entries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create payment method entry */
+        post: operations["PaymentMethodsController_createEntry"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/payment-methods/entries/all": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List all payment method entries */
+        get: operations["PaymentMethodsController_findAllEntries"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/payment-methods/entries/{entryId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get payment method entry by id */
+        get: operations["PaymentMethodsController_findEntry"];
+        put?: never;
+        post?: never;
+        /** Delete payment method entry */
+        delete: operations["PaymentMethodsController_removeEntry"];
+        options?: never;
+        head?: never;
+        /** Update payment method entry */
+        patch: operations["PaymentMethodsController_updateEntry"];
+        trace?: never;
+    };
+    "/v1/finance/payment-methods/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get payment method by id */
+        get: operations["PaymentMethodsController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete payment method (soft) */
+        delete: operations["PaymentMethodsController_remove"];
+        options?: never;
+        head?: never;
+        /** Update payment method */
+        patch: operations["PaymentMethodsController_update"];
+        trace?: never;
+    };
+    "/v1/finance/retentions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List retentions (active only) */
+        get: operations["RetentionsController_findAll"];
+        put?: never;
+        /** Create retention */
+        post: operations["RetentionsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/retentions/receipts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List retention receipts */
+        get: operations["RetentionsController_findReceipts"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/retentions/receipts/{receiptId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get retention receipt by id */
+        get: operations["RetentionsController_findReceipt"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/retentions/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get retention by id */
+        get: operations["RetentionsController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete retention (soft) */
+        delete: operations["RetentionsController_remove"];
+        options?: never;
+        head?: never;
+        /** Update retention */
+        patch: operations["RetentionsController_update"];
+        trace?: never;
+    };
+    "/v1/finance/transfers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List transfers */
+        get: operations["TransfersController_findAll"];
+        put?: never;
+        /** Create transfer */
+        post: operations["TransfersController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/transfers/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get transfer by id */
+        get: operations["TransfersController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete transfer */
+        delete: operations["TransfersController_remove"];
+        options?: never;
+        head?: never;
+        /** Update transfer */
+        patch: operations["TransfersController_update"];
+        trace?: never;
+    };
+    "/v1/fiscal-years": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List fiscal years */
+        get: operations["FiscalYearsController_list"];
+        put?: never;
+        /** Create a fiscal year */
+        post: operations["FiscalYearsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/fiscal-years/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update a fiscal year */
+        patch: operations["FiscalYearsController_update"];
+        trace?: never;
+    };
+    "/v1/fiscal-years/{id}/close": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Close a fiscal year */
+        post: operations["FiscalYearsController_close"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/journal-accounts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List journal accounts (plan de cuentas) */
+        get: operations["JournalAccountsController_list"];
+        put?: never;
+        /** Create a journal account */
+        post: operations["JournalAccountsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/journal-accounts/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete a journal account */
+        delete: operations["JournalAccountsController_delete"];
+        options?: never;
+        head?: never;
+        /** Update a journal account */
+        patch: operations["JournalAccountsController_update"];
+        trace?: never;
+    };
+    "/v1/journal-entries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List journal entries with pagination */
+        get: operations["JournalEntriesController_list"];
+        put?: never;
+        /** Create a manual journal entry */
+        post: operations["JournalEntriesController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/journal-entries/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a journal entry with its items */
+        get: operations["JournalEntriesController_getById"];
+        put?: never;
+        post?: never;
+        /** Delete a manual journal entry */
+        delete: operations["JournalEntriesController_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/leads": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List all leads */
+        get: operations["LeadsController_findAll"];
+        put?: never;
+        /** Create lead */
+        post: operations["LeadsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/leads/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get lead by id */
+        get: operations["LeadsController_findOne"];
         put?: never;
         post?: never;
         delete?: never;
@@ -296,15 +1534,33 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/exchange-rates": {
+    "/v1/mercado-pago-configs": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get exchange rate */
-        get: operations["ExchangeRatesController_getRate"];
+        /** List Mercado Pago configs for the current organization */
+        get: operations["MercadoPagoConfigsController_findAll"];
+        put?: never;
+        /** Create Mercado Pago config */
+        post: operations["MercadoPagoConfigsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/mercado-pago-configs/by-organization": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get or create config for current org (matches .NET GetByOrganizacion) */
+        get: operations["MercadoPagoConfigsController_getByOrganization"];
         put?: never;
         post?: never;
         delete?: never;
@@ -313,33 +1569,15 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/leads": {
+    "/v1/mercado-pago-configs/to-expire": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List all leads */
-        get: operations["LeadsController_findAll"];
-        put?: never;
-        /** Create lead */
-        post: operations["LeadsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/leads/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get lead by id */
-        get: operations["LeadsController_findOne"];
+        /** Configs expiring within 15 days (matches .NET GetToExpire) */
+        get: operations["MercadoPagoConfigsController_getToExpire"];
         put?: never;
         post?: never;
         delete?: never;
@@ -348,38 +1586,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/taxpayer-registries/{taxId}/fce-receiver": {
+    "/v1/mercado-pago-configs/{id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Check if taxpayer is FCE receiver for given total */
-        get: operations["TaxpayerRegistriesController_isFceReceiver"];
+        /** Get Mercado Pago config by id */
+        get: operations["MercadoPagoConfigsController_findOne"];
         put?: never;
         post?: never;
-        delete?: never;
+        /** Delete Mercado Pago config */
+        delete: operations["MercadoPagoConfigsController_remove"];
         options?: never;
         head?: never;
-        patch?: never;
+        /** Update Mercado Pago config */
+        patch: operations["MercadoPagoConfigsController_update"];
         trace?: never;
     };
-    "/v1/taxpayer-registries/{taxId}": {
+    "/v1/mercado-pago-configs/{id}/reset-auth": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get taxpayer registry by tax ID */
-        get: operations["TaxpayerRegistriesController_findOne"];
+        get?: never;
         put?: never;
         post?: never;
         delete?: never;
         options?: never;
         head?: never;
-        patch?: never;
+        /** Reset auth (clear refresh token). Matches .NET ResetAuth. */
+        patch: operations["MercadoPagoConfigsController_resetAuth"];
         trace?: never;
     };
     "/v1/product-categories": {
@@ -440,40 +1680,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/products/search": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Search products with favorites, recents, and fuzzy matching */
-        get: operations["ProductsController_search"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/products/{id}/favorite": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Toggle product as favorite for the organization */
-        post: operations["ProductsController_toggleFavorite"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/products/export": {
         parameters: {
             query?: never;
@@ -483,6 +1689,23 @@ export interface paths {
         };
         /** Export products as CSV (cursor-based, streaming) */
         get: operations["ProductsController_exportCsv"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/products/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Search products with favorites, recents, and fuzzy matching */
+        get: operations["ProductsController_search"];
         put?: never;
         post?: never;
         delete?: never;
@@ -510,161 +1733,7 @@ export interface paths {
         patch: operations["ProductsController_update"];
         trace?: never;
     };
-    "/v1/customers": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List customers (cursor-paginated)
-         * @description Returns a page of customers. Use cursor from next_cursor for the next page.
-         */
-        get: operations["CustomersController_findAll"];
-        put?: never;
-        /** Create customer */
-        post: operations["CustomersController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/customers/lookup-cuit": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Lookup CUIT for customer auto-fill
-         * @description Validates CUIT and fetches business data from AFIP via system certificate.
-         */
-        get: operations["CustomersController_lookupCuit"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/customers/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export customers as CSV (cursor-based, streaming) */
-        get: operations["CustomersController_exportCsv"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/customers/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get customer by id */
-        get: operations["CustomersController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete customer */
-        delete: operations["CustomersController_remove"];
-        options?: never;
-        head?: never;
-        /** Update customer */
-        patch: operations["CustomersController_update"];
-        trace?: never;
-    };
-    "/v1/suppliers": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List suppliers (cursor-paginated)
-         * @description Returns a page of suppliers. Use cursor from next_cursor for the next page.
-         */
-        get: operations["SuppliersController_findAll"];
-        put?: never;
-        /** Create supplier */
-        post: operations["SuppliersController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/suppliers/lookup-cuit": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Lookup CUIT for supplier auto-fill
-         * @description Validates CUIT and fetches business data from AFIP via system certificate.
-         */
-        get: operations["SuppliersController_lookupCuit"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/suppliers/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export suppliers as CSV (cursor-based, streaming) */
-        get: operations["SuppliersController_exportCsv"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/suppliers/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get supplier by id */
-        get: operations["SuppliersController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete supplier (soft delete) */
-        delete: operations["SuppliersController_remove"];
-        options?: never;
-        head?: never;
-        /** Update supplier */
-        patch: operations["SuppliersController_update"];
-        trace?: never;
-    };
-    "/v1/suppliers/get-or-create": {
+    "/v1/products/{id}/favorite": {
         parameters: {
             query?: never;
             header?: never;
@@ -673,43 +1742,59 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /**
-         * Get existing supplier by CUIT or create with AFIP data
-         * @description Looks up supplier by CUIT. If not found, auto-creates using AFIP padron data.
-         */
-        post: operations["SuppliersController_getOrCreate"];
+        /** Toggle product as favorite for the organization */
+        post: operations["ProductsController_toggleFavorite"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/suppliers/bulk-delete": {
+    "/v1/products/{productId}/stock-changes": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        /** Get stock movement history for a product */
+        get: operations["StockController_getStockHistory"];
         put?: never;
-        /** Bulk delete suppliers (soft delete) */
-        post: operations["SuppliersController_removeBulk"];
+        /** Add a manual stock adjustment */
+        post: operations["StockController_addManualAdjustment"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/provider-configs/status": {
+    "/v1/provider-configs": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get integration status per provider (matches .NET GetStatus) */
-        get: operations["ProviderConfigsController_getStatus"];
+        /** List provider configs for the current organization */
+        get: operations["ProviderConfigsController_findAll"];
+        put?: never;
+        /** Create provider config */
+        post: operations["ProviderConfigsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/provider-configs/by-provider/{provider}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get config by provider (SPARKPOST, TIENDANUBE) */
+        get: operations["ProviderConfigsController_findByProvider"];
         put?: never;
         post?: never;
         delete?: never;
@@ -735,35 +1820,17 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/provider-configs/by-provider/{provider}": {
+    "/v1/provider-configs/status": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get config by provider (SPARKPOST, TIENDANUBE) */
-        get: operations["ProviderConfigsController_findByProvider"];
+        /** Get integration status per provider (matches .NET GetStatus) */
+        get: operations["ProviderConfigsController_getStatus"];
         put?: never;
         post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/provider-configs": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List provider configs for the current organization */
-        get: operations["ProviderConfigsController_findAll"];
-        put?: never;
-        /** Create provider config */
-        post: operations["ProviderConfigsController_create"];
         delete?: never;
         options?: never;
         head?: never;
@@ -787,1471 +1854,6 @@ export interface paths {
         head?: never;
         /** Update provider config */
         patch: operations["ProviderConfigsController_update"];
-        trace?: never;
-    };
-    "/v1/mercado-pago-configs/by-organization": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get or create config for current org (matches .NET GetByOrganizacion) */
-        get: operations["MercadoPagoConfigsController_getByOrganization"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/mercado-pago-configs/to-expire": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Configs expiring within 15 days (matches .NET GetToExpire) */
-        get: operations["MercadoPagoConfigsController_getToExpire"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/mercado-pago-configs": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List Mercado Pago configs for the current organization */
-        get: operations["MercadoPagoConfigsController_findAll"];
-        put?: never;
-        /** Create Mercado Pago config */
-        post: operations["MercadoPagoConfigsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/mercado-pago-configs/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get Mercado Pago config by id */
-        get: operations["MercadoPagoConfigsController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete Mercado Pago config */
-        delete: operations["MercadoPagoConfigsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update Mercado Pago config */
-        patch: operations["MercadoPagoConfigsController_update"];
-        trace?: never;
-    };
-    "/v1/mercado-pago-configs/{id}/reset-auth": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** Reset auth (clear refresh token). Matches .NET ResetAuth. */
-        patch: operations["MercadoPagoConfigsController_resetAuth"];
-        trace?: never;
-    };
-    "/v1/file-imports/upload": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Upload a file for import
-         * @description Upload an Excel (.xlsx, .xls) or CSV (.csv) file for import processing. Creates a FileImport record and stores the file in Supabase Storage.
-         */
-        post: operations["FileImportsController_upload"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/file-imports/download": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get signed download URL for an import result file */
-        get: operations["FileImportsController_getDownloadUrl"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/file-imports/templates/{type}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Download import template
-         * @description Download a pre-built Excel template with headers, example rows, and valid value hints. Type must be one of: customers, products, sales-receipts.
-         */
-        get: operations["FileImportsController_downloadTemplate"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/file-imports": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List file imports for the current organization */
-        get: operations["FileImportsController_findAll"];
-        put?: never;
-        /** Create file import */
-        post: operations["FileImportsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/file-imports/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get file import by id */
-        get: operations["FileImportsController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete file import */
-        delete: operations["FileImportsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update file import */
-        patch: operations["FileImportsController_update"];
-        trace?: never;
-    };
-    "/v1/certificates": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List certificates for the current organization */
-        get: operations["CertificatesController_findAll"];
-        put?: never;
-        /**
-         * Create certificate
-         * @description With only 'name': generates RSA key and CSR (matches .NET AddCertificado), uploads private key and CSR to storage. With full body (internalKey, privateKeyPath, csrPath, etc.): manual create for migration/admin.
-         */
-        post: operations["CertificatesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/certificates/active": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get active certificate for the current organization */
-        get: operations["CertificatesController_findActive"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/certificates/expiration-status": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get certificate expiration status for the current organization */
-        get: operations["CertificatesController_getExpirationStatus"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/certificates/{id}/csr": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Download certificate CSR file */
-        get: operations["CertificatesController_getCsr"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/certificates/{id}/crt": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Download certificate CRT file */
-        get: operations["CertificatesController_getCrt"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/certificates/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get certificate by id */
-        get: operations["CertificatesController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete certificate */
-        delete: operations["CertificatesController_remove"];
-        options?: never;
-        head?: never;
-        /** Update certificate */
-        patch: operations["CertificatesController_update"];
-        trace?: never;
-    };
-    "/v1/certificates/{id}/validate-connection": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Validate certificate connection with AFIP services
-         * @description Tests this specific certificate against WSFE and WSFEX AFIP services. Returns per-service results.
-         */
-        post: operations["CertificatesController_validateConnection"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/certificates/{id}/upload-crt": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Upload CRT and generate P12
-         * @description Upload a .crt file for a certificate. Converts to P12 using the stored private key and saves both to Supabase storage.
-         */
-        post: operations["CertificatesController_uploadCrt"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/branches": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List branches for the current organization */
-        get: operations["BranchesController_findAll"];
-        put?: never;
-        /** Create branch */
-        post: operations["BranchesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/branches/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get branch by id */
-        get: operations["BranchesController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete branch (soft delete) */
-        delete: operations["BranchesController_remove"];
-        options?: never;
-        head?: never;
-        /** Update branch */
-        patch: operations["BranchesController_update"];
-        trace?: never;
-    };
-    "/v1/receipt-books": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List receipt books for the current organization */
-        get: operations["ReceiptBooksController_findAll"];
-        put?: never;
-        /** Create receipt book */
-        post: operations["ReceiptBooksController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/receipt-books/by-point-of-sale/{pointOfSale}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get receipt book by point of sale */
-        get: operations["ReceiptBooksController_findByPointOfSale"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/receipt-books/import-from-arca": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Import puntos de venta from ARCA (AFIP) */
-        post: operations["ReceiptBooksController_importFromArca"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/receipt-books/resync": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Resync receipt book numbering with DB and AFIP
-         * @description For each domestic receipt book, compares the current book numbers, the actual max from sales_receipts in the DB, and the last authorized number from AFIP WSFE. Updates each field to the highest value.
-         */
-        post: operations["ReceiptBooksController_resync"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/receipt-books/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get receipt book by id */
-        get: operations["ReceiptBooksController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete receipt book */
-        delete: operations["ReceiptBooksController_remove"];
-        options?: never;
-        head?: never;
-        /** Update receipt book */
-        patch: operations["ReceiptBooksController_update"];
-        trace?: never;
-    };
-    "/v1/sales-receipts/creators": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List distinct users who created sales receipts for the org */
-        get: operations["SalesReceiptsController_findCreators"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/next-number": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Preview the next receipt number for a receipt book + customer + type */
-        get: operations["SalesReceiptsController_getNextNumber"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/export/columns": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List all available export columns (key + header) */
-        get: operations["SalesReceiptsController_listExportColumns"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export sales receipts as CSV */
-        get: operations["SalesReceiptsController_exportCsv"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List sales receipts (cursor-paginated, optional date filters)
-         * @description Returns a page of sales receipts. Use cursor from next_cursor for the next page. If date_from/date_to are omitted, all dates are included.
-         */
-        get: operations["SalesReceiptsController_findAll"];
-        put?: never;
-        /** Create sales receipt */
-        post: operations["SalesReceiptsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/confirm": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Confirm a draft receipt (Borrador -> Pendiente_Afip)
-         * @description Validates required fields, assigns real receipt number, sets status to Pendiente_Afip, and triggers AFIP authorization.
-         */
-        post: operations["SalesReceiptsController_confirm"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/retry": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Retry AFIP authorization for a pending receipt
-         * @description Clears any previous error and re-triggers AFIP authorization. Only receipts in Pendiente_Afip status can be retried.
-         */
-        post: operations["SalesReceiptsController_retry"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/void": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Void a confirmed receipt (Anulación)
-         * @description Voids a Creada receipt by creating a compensating credit note (NC). For WS receipts: NC must be authorized at AFIP before the original is marked Anulado. For pre-impreso: original is marked Anulado immediately. WS receipts always require a credit note (numbers cannot be reused).
-         */
-        post: operations["SalesReceiptsController_voidReceipt"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/duplicate": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Duplicate a receipt as a new draft (BORRADOR)
-         * @description Creates a new BORRADOR draft by copying customer, items, conditions from the source receipt. Dates are reset to today. Any status receipt can be duplicated.
-         */
-        post: operations["SalesReceiptsController_duplicate"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/authorize": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Authorize receipt with AFIP (get CAE)
-         * @description Called by the authorize-sale trigger task. Also accepts direct calls. Requires X-Organization-Id header. Works with X-API-Key or Bearer token auth.
-         */
-        post: operations["SalesReceiptsController_authorizeAfip"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/pdf/download": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Download invoice PDF via signed URL (public) */
-        get: operations["SalesReceiptsController_downloadPdfPublic"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/pdf": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Download invoice as PDF */
-        get: operations["SalesReceiptsController_downloadPdf"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/send-email": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Send invoice by email (background job) */
-        post: operations["SalesReceiptsController_sendEmail"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/resend-email": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Resend invoice email via expired signed link (public) */
-        post: operations["SalesReceiptsController_resendEmailPublic"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/tracking-events": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get email tracking events for a receipt */
-        get: operations["SalesReceiptsController_getTrackingEvents"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/bulk-email": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Send emails for multiple receipts (background job) */
-        post: operations["SalesReceiptsController_bulkEmail"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/bulk-pdf": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Generate PDFs for multiple receipts as a ZIP file (background job) */
-        post: operations["SalesReceiptsController_bulkPdf"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/bulk-void": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Void multiple receipts as a background job (creates credit notes where required) */
-        post: operations["SalesReceiptsController_bulkVoid"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/bulk-reconcile": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Mark multiple receipts as fully collected (totalCollected = total) */
-        post: operations["SalesReceiptsController_bulkReconcile"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/bulk-actions/{jobId}/status": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get bulk action job progress (email, PDF, or void) */
-        get: operations["SalesReceiptsController_bulkActionStatus"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/details": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List details for a sales receipt */
-        get: operations["SalesReceiptsController_findAllDetails"];
-        put?: never;
-        /** Add a detail line to a sales receipt (draft only) */
-        post: operations["SalesReceiptsController_createDetail"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/details/{detailId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get a sales receipt detail by id */
-        get: operations["SalesReceiptsController_findOneDetail"];
-        put?: never;
-        post?: never;
-        /** Remove a sales receipt detail (draft only) */
-        delete: operations["SalesReceiptsController_removeDetail"];
-        options?: never;
-        head?: never;
-        /** Update a sales receipt detail (draft only) */
-        patch: operations["SalesReceiptsController_updateDetail"];
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/observations": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List observations for a sales receipt */
-        get: operations["SalesReceiptsController_findAllObservations"];
-        put?: never;
-        /** Add an observation to a sales receipt */
-        post: operations["SalesReceiptsController_createObservation"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/observations/{observationId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get a sales receipt observation by id */
-        get: operations["SalesReceiptsController_findOneObservation"];
-        put?: never;
-        post?: never;
-        /** Remove a sales receipt observation */
-        delete: operations["SalesReceiptsController_removeObservation"];
-        options?: never;
-        head?: never;
-        /** Update a sales receipt observation */
-        patch: operations["SalesReceiptsController_updateObservation"];
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get sales receipt by id */
-        get: operations["SalesReceiptsController_findOne"];
-        put?: never;
-        post?: never;
-        /**
-         * Delete a draft or stuck receipt
-         * @description Hard-deletes a receipt and its details/observations. Borrador receipts can be deleted by any user. Pendiente_Afip receipts can only be deleted by root users. Creada receipts from non-WS (pre-impreso) receipt books can be deleted only if they are the last number in the receipt book. Confirmed WS receipts cannot be deleted — use a credit note instead.
-         */
-        delete: operations["SalesReceiptsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update sales receipt (observation, collectionEmail) */
-        patch: operations["SalesReceiptsController_update"];
-        trace?: never;
-    };
-    "/v1/products/{productId}/stock-changes": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get stock movement history for a product */
-        get: operations["StockController_getStockHistory"];
-        put?: never;
-        /** Add a manual stock adjustment */
-        post: operations["StockController_addManualAdjustment"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/journal-accounts": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List journal accounts (plan de cuentas) */
-        get: operations["JournalAccountsController_list"];
-        put?: never;
-        /** Create a journal account */
-        post: operations["JournalAccountsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/journal-accounts/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /** Delete a journal account */
-        delete: operations["JournalAccountsController_delete"];
-        options?: never;
-        head?: never;
-        /** Update a journal account */
-        patch: operations["JournalAccountsController_update"];
-        trace?: never;
-    };
-    "/v1/fiscal-years": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List fiscal years */
-        get: operations["FiscalYearsController_list"];
-        put?: never;
-        /** Create a fiscal year */
-        post: operations["FiscalYearsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/fiscal-years/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** Update a fiscal year */
-        patch: operations["FiscalYearsController_update"];
-        trace?: never;
-    };
-    "/v1/fiscal-years/{id}/close": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Close a fiscal year */
-        post: operations["FiscalYearsController_close"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/journal-entries": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List journal entries with pagination */
-        get: operations["JournalEntriesController_list"];
-        put?: never;
-        /** Create a manual journal entry */
-        post: operations["JournalEntriesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/journal-entries/reports/profit-loss": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get profit and loss report */
-        get: operations["JournalEntriesController_getProfitAndLoss"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/journal-entries/reports/balance-sheet": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get balance sheet report */
-        get: operations["JournalEntriesController_getBalanceSheet"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/journal-entries/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get a journal entry with its items */
-        get: operations["JournalEntriesController_getById"];
-        put?: never;
-        post?: never;
-        /** Delete a manual journal entry */
-        delete: operations["JournalEntriesController_delete"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting-locks": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List accounting locks */
-        get: operations["AccountingLocksController_list"];
-        put?: never;
-        /** Create an accounting lock */
-        post: operations["AccountingLocksController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting-locks/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /** Delete an accounting lock */
-        delete: operations["AccountingLocksController_delete"];
-        options?: never;
-        head?: never;
-        /** Update an accounting lock */
-        patch: operations["AccountingLocksController_update"];
-        trace?: never;
-    };
-    "/v1/accounting/reports/general-ledger": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** General Ledger (Libro Mayor) — account movements with running balance */
-        get: operations["AccountingReportsController_generalLedger"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/reports/general-ledger/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export General Ledger as CSV */
-        get: operations["AccountingReportsController_generalLedgerExport"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/reports/daily-book": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Daily Book (Libro Diario) — chronological journal entries */
-        get: operations["AccountingReportsController_dailyBook"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/reports/daily-book/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export Daily Book as CSV */
-        get: operations["AccountingReportsController_dailyBookExport"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/reports/trial-balance": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Trial Balance (Balance de Sumas y Saldos) — account totals */
-        get: operations["AccountingReportsController_trialBalance"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/reports/trial-balance/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export Trial Balance as CSV */
-        get: operations["AccountingReportsController_trialBalanceExport"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/dashboard-stats": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Dashboard KPIs, charts, and top customers */
-        get: operations["ReportsController_getDashboardStats"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/vat-sales-book": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** VAT Sales Book (Libro IVA Ventas) */
-        get: operations["ReportsController_getVatSalesBook"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/vat-sales-book/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export VAT Sales Book as CSV */
-        get: operations["ReportsController_exportVatSalesBook"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/sales-by-product": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Sales by Product (aggregated by month) */
-        get: operations["ReportsController_getSalesByProduct"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/sales-by-product/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export Sales by Product as CSV */
-        get: operations["ReportsController_exportSalesByProduct"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/sales-by-customer": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Sales by Customer (accumulated) */
-        get: operations["ReportsController_getSalesByCustomer"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/sales-by-customer/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export Sales by Customer as CSV */
-        get: operations["ReportsController_exportSalesByCustomer"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/outstanding-receivables": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Outstanding receivables */
-        get: operations["ReportsController_getOutstandingReceivables"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/outstanding-receivables/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export outstanding receivables as CSV */
-        get: operations["ReportsController_exportOutstandingReceivables"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/iibb": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Gross Income (IIBB) by jurisdiction and month */
-        get: operations["ReportsController_getIIBB"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/iibb/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export IIBB report as CSV */
-        get: operations["ReportsController_exportIIBB"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/trends": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Revenue trends with MoM/YoY comparisons and 3-month forecast */
-        get: operations["ReportsController_getRevenueTrends"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/iva-digital/ventas": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** IVA Digital Ventas Comprobantes (fixed-width text) */
-        get: operations["ReportsController_getIvaDigitalVentas"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/iva-digital/ventas-alicuotas": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** IVA Digital Ventas Alicuotas (fixed-width text) */
-        get: operations["ReportsController_getIvaDigitalVentasAlicuotas"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
         trace?: never;
     };
     "/v1/purchase-categories": {
@@ -2289,642 +1891,6 @@ export interface paths {
         head?: never;
         /** Update purchase category */
         patch: operations["PurchaseCategoriesController_update"];
-        trace?: never;
-    };
-    "/v1/finance/payment-methods": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List payment methods (active only) */
-        get: operations["PaymentMethodsController_findAll"];
-        put?: never;
-        /** Create payment method */
-        post: operations["PaymentMethodsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/payment-methods/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get payment method by id */
-        get: operations["PaymentMethodsController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete payment method (soft) */
-        delete: operations["PaymentMethodsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update payment method */
-        patch: operations["PaymentMethodsController_update"];
-        trace?: never;
-    };
-    "/v1/finance/payment-methods/entries/all": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List all payment method entries */
-        get: operations["PaymentMethodsController_findAllEntries"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/payment-methods/entries/{entryId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get payment method entry by id */
-        get: operations["PaymentMethodsController_findEntry"];
-        put?: never;
-        post?: never;
-        /** Delete payment method entry */
-        delete: operations["PaymentMethodsController_removeEntry"];
-        options?: never;
-        head?: never;
-        /** Update payment method entry */
-        patch: operations["PaymentMethodsController_updateEntry"];
-        trace?: never;
-    };
-    "/v1/finance/payment-methods/entries": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Create payment method entry */
-        post: operations["PaymentMethodsController_createEntry"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/banks": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List banks (active only) */
-        get: operations["BanksController_findAll"];
-        put?: never;
-        /** Create bank */
-        post: operations["BanksController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/banks/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get bank by id */
-        get: operations["BanksController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete bank (soft) */
-        delete: operations["BanksController_remove"];
-        options?: never;
-        head?: never;
-        /** Update bank */
-        patch: operations["BanksController_update"];
-        trace?: never;
-    };
-    "/v1/finance/bank-accounts": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List bank accounts (active only) */
-        get: operations["BankAccountsController_findAll"];
-        put?: never;
-        /** Create bank account */
-        post: operations["BankAccountsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/bank-accounts/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get bank account by id */
-        get: operations["BankAccountsController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete bank account (soft) */
-        delete: operations["BankAccountsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update bank account */
-        patch: operations["BankAccountsController_update"];
-        trace?: never;
-    };
-    "/v1/finance/bank-accounts/histories/all": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List bank account histories */
-        get: operations["BankAccountsController_findHistories"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/cash-registers": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List cash registers (active only) */
-        get: operations["CashRegistersController_findAll"];
-        put?: never;
-        /** Create cash register */
-        post: operations["CashRegistersController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/cash-registers/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get cash register by id */
-        get: operations["CashRegistersController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete cash register (soft) */
-        delete: operations["CashRegistersController_remove"];
-        options?: never;
-        head?: never;
-        /** Update cash register */
-        patch: operations["CashRegistersController_update"];
-        trace?: never;
-    };
-    "/v1/finance/cash-registers/histories/all": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List cash register histories */
-        get: operations["CashRegistersController_findHistories"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/checks": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List checks */
-        get: operations["ChecksController_findAll"];
-        put?: never;
-        /** Create check */
-        post: operations["ChecksController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/checks/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get check by id */
-        get: operations["ChecksController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete check */
-        delete: operations["ChecksController_remove"];
-        options?: never;
-        head?: never;
-        /** Update check */
-        patch: operations["ChecksController_update"];
-        trace?: never;
-    };
-    "/v1/finance/own-checks": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List own checks */
-        get: operations["OwnChecksController_findAll"];
-        put?: never;
-        /** Create own check */
-        post: operations["OwnChecksController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/own-checks/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get own check by id */
-        get: operations["OwnChecksController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete own check */
-        delete: operations["OwnChecksController_remove"];
-        options?: never;
-        head?: never;
-        /** Update own check */
-        patch: operations["OwnChecksController_update"];
-        trace?: never;
-    };
-    "/v1/finance/checkbooks": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List checkbooks */
-        get: operations["CheckbooksController_findAll"];
-        put?: never;
-        /** Create checkbook */
-        post: operations["CheckbooksController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/checkbooks/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get checkbook by id */
-        get: operations["CheckbooksController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete checkbook */
-        delete: operations["CheckbooksController_remove"];
-        options?: never;
-        head?: never;
-        /** Update checkbook */
-        patch: operations["CheckbooksController_update"];
-        trace?: never;
-    };
-    "/v1/finance/deposits": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List deposits */
-        get: operations["DepositsController_findAll"];
-        put?: never;
-        /** Create deposit */
-        post: operations["DepositsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/deposits/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get deposit by id */
-        get: operations["DepositsController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete deposit */
-        delete: operations["DepositsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update deposit */
-        patch: operations["DepositsController_update"];
-        trace?: never;
-    };
-    "/v1/finance/deposits/{id}/items": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List deposit items */
-        get: operations["DepositsController_findItems"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/transfers": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List transfers */
-        get: operations["TransfersController_findAll"];
-        put?: never;
-        /** Create transfer */
-        post: operations["TransfersController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/transfers/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get transfer by id */
-        get: operations["TransfersController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete transfer */
-        delete: operations["TransfersController_remove"];
-        options?: never;
-        head?: never;
-        /** Update transfer */
-        patch: operations["TransfersController_update"];
-        trace?: never;
-    };
-    "/v1/finance/fund-movements": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List fund movements */
-        get: operations["FundMovementsController_findAll"];
-        put?: never;
-        /** Create fund movement */
-        post: operations["FundMovementsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/fund-movements/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get fund movement by id */
-        get: operations["FundMovementsController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete fund movement */
-        delete: operations["FundMovementsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update fund movement */
-        patch: operations["FundMovementsController_update"];
-        trace?: never;
-    };
-    "/v1/finance/credit-cards": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List credit cards */
-        get: operations["CreditCardsController_findAll"];
-        put?: never;
-        /** Create credit card */
-        post: operations["CreditCardsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/credit-cards/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get credit card by id */
-        get: operations["CreditCardsController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete credit card */
-        delete: operations["CreditCardsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update credit card */
-        patch: operations["CreditCardsController_update"];
-        trace?: never;
-    };
-    "/v1/finance/card-payments": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List card payments */
-        get: operations["CardPaymentsController_findAll"];
-        put?: never;
-        /** Create card payment */
-        post: operations["CardPaymentsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/card-payments/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get card payment by id */
-        get: operations["CardPaymentsController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete card payment */
-        delete: operations["CardPaymentsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update card payment */
-        patch: operations["CardPaymentsController_update"];
-        trace?: never;
-    };
-    "/v1/finance/card-payments/{id}/cancellations": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List card payment cancellations */
-        get: operations["CardPaymentsController_findCancellations"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/retentions": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List retentions (active only) */
-        get: operations["RetentionsController_findAll"];
-        put?: never;
-        /** Create retention */
-        post: operations["RetentionsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/retentions/receipts": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List retention receipts */
-        get: operations["RetentionsController_findReceipts"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/retentions/receipts/{receiptId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get retention receipt by id */
-        get: operations["RetentionsController_findReceipt"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/retentions/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get retention by id */
-        get: operations["RetentionsController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete retention (soft) */
-        delete: operations["RetentionsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update retention */
-        patch: operations["RetentionsController_update"];
         trace?: never;
     };
     "/v1/purchase-receipts": {
@@ -3035,126 +2001,981 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/receipt-books": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List receipt books for the current organization */
+        get: operations["ReceiptBooksController_findAll"];
+        put?: never;
+        /** Create receipt book */
+        post: operations["ReceiptBooksController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/receipt-books/by-point-of-sale/{pointOfSale}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get receipt book by point of sale */
+        get: operations["ReceiptBooksController_findByPointOfSale"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/receipt-books/import-from-arca": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Import puntos de venta from ARCA (AFIP) */
+        post: operations["ReceiptBooksController_importFromArca"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/receipt-books/resync": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Resync receipt book numbering with DB and AFIP
+         * @description For each domestic receipt book, compares the current book numbers, the actual max from sales_receipts in the DB, and the last authorized number from AFIP WSFE. Updates each field to the highest value.
+         */
+        post: operations["ReceiptBooksController_resync"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/receipt-books/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get receipt book by id */
+        get: operations["ReceiptBooksController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete receipt book */
+        delete: operations["ReceiptBooksController_remove"];
+        options?: never;
+        head?: never;
+        /** Update receipt book */
+        patch: operations["ReceiptBooksController_update"];
+        trace?: never;
+    };
+    "/v1/sales-receipts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List sales receipts (cursor-paginated, optional date filters)
+         * @description Returns a page of sales receipts. Use cursor from next_cursor for the next page. If date_from/date_to are omitted, all dates are included.
+         */
+        get: operations["SalesReceiptsController_findAll"];
+        put?: never;
+        /** Create sales receipt */
+        post: operations["SalesReceiptsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/bulk-actions/{jobId}/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get bulk action job progress (email or PDF) */
+        get: operations["SalesReceiptsController_bulkActionStatus"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/bulk-email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Send emails for multiple receipts (background job) */
+        post: operations["SalesReceiptsController_bulkEmail"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/bulk-pdf": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Generate PDFs for multiple receipts as a ZIP file (background job) */
+        post: operations["SalesReceiptsController_bulkPdf"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/creators": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List distinct users who created sales receipts for the org */
+        get: operations["SalesReceiptsController_findCreators"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export sales receipts as CSV */
+        get: operations["SalesReceiptsController_exportCsv"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/export/columns": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List all available export columns (key + header) */
+        get: operations["SalesReceiptsController_listExportColumns"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/next-number": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Preview the next receipt number for a receipt book + customer + type */
+        get: operations["SalesReceiptsController_getNextNumber"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get sales receipt by id */
+        get: operations["SalesReceiptsController_findOne"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete a draft or stuck receipt
+         * @description Hard-deletes a receipt and its details/observations. Borrador receipts can be deleted by any user. Pendiente_Afip receipts can only be deleted by root users. Creada receipts from non-WS (pre-impreso) receipt books can be deleted only if they are the last number in the receipt book. Confirmed WS receipts cannot be deleted — use a credit note instead.
+         */
+        delete: operations["SalesReceiptsController_remove"];
+        options?: never;
+        head?: never;
+        /** Update sales receipt (observation, collectionEmail) */
+        patch: operations["SalesReceiptsController_update"];
+        trace?: never;
+    };
+    "/v1/sales-receipts/{id}/authorize": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Authorize receipt with AFIP (get CAE)
+         * @description Called by the authorize-sale trigger task. Also accepts direct calls. Requires X-Organization-Id header. Works with X-API-Key or Bearer token auth.
+         */
+        post: operations["SalesReceiptsController_authorizeAfip"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/{id}/confirm": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Confirm a draft receipt (Borrador -> Pendiente_Afip)
+         * @description Validates required fields, assigns real receipt number, sets status to Pendiente_Afip, and triggers AFIP authorization.
+         */
+        post: operations["SalesReceiptsController_confirm"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/{id}/details": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List details for a sales receipt */
+        get: operations["SalesReceiptsController_findAllDetails"];
+        put?: never;
+        /** Add a detail line to a sales receipt (draft only) */
+        post: operations["SalesReceiptsController_createDetail"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/{id}/details/{detailId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a sales receipt detail by id */
+        get: operations["SalesReceiptsController_findOneDetail"];
+        put?: never;
+        post?: never;
+        /** Remove a sales receipt detail (draft only) */
+        delete: operations["SalesReceiptsController_removeDetail"];
+        options?: never;
+        head?: never;
+        /** Update a sales receipt detail (draft only) */
+        patch: operations["SalesReceiptsController_updateDetail"];
+        trace?: never;
+    };
+    "/v1/sales-receipts/{id}/duplicate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Duplicate a receipt as a new draft (BORRADOR)
+         * @description Creates a new BORRADOR draft by copying customer, items, conditions from the source receipt. Dates are reset to today. Any status receipt can be duplicated.
+         */
+        post: operations["SalesReceiptsController_duplicate"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/{id}/observations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List observations for a sales receipt */
+        get: operations["SalesReceiptsController_findAllObservations"];
+        put?: never;
+        /** Add an observation to a sales receipt */
+        post: operations["SalesReceiptsController_createObservation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/{id}/observations/{observationId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a sales receipt observation by id */
+        get: operations["SalesReceiptsController_findOneObservation"];
+        put?: never;
+        post?: never;
+        /** Remove a sales receipt observation */
+        delete: operations["SalesReceiptsController_removeObservation"];
+        options?: never;
+        head?: never;
+        /** Update a sales receipt observation */
+        patch: operations["SalesReceiptsController_updateObservation"];
+        trace?: never;
+    };
+    "/v1/sales-receipts/{id}/pdf": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Download invoice as PDF */
+        get: operations["SalesReceiptsController_downloadPdf"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/{id}/pdf/download": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Download invoice PDF via signed URL (public) */
+        get: operations["SalesReceiptsController_downloadPdfPublic"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/{id}/resend-email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Resend invoice email via expired signed link (public) */
+        post: operations["SalesReceiptsController_resendEmailPublic"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/{id}/retry": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Retry AFIP authorization for a pending receipt
+         * @description Clears any previous error and re-triggers AFIP authorization. Only receipts in Pendiente_Afip status can be retried.
+         */
+        post: operations["SalesReceiptsController_retry"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/{id}/send-email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Send invoice by email (background job) */
+        post: operations["SalesReceiptsController_sendEmail"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/{id}/tracking-events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get email tracking events for a receipt */
+        get: operations["SalesReceiptsController_getTrackingEvents"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales-receipts/{id}/void": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Void a confirmed receipt (Anulación)
+         * @description Voids a Creada receipt by creating a compensating credit note (NC). For WS receipts: NC must be authorized at AFIP before the original is marked Anulado. For pre-impreso: original is marked Anulado immediately. WS receipts always require a credit note (numbers cannot be reused).
+         */
+        post: operations["SalesReceiptsController_voidReceipt"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/dashboard-stats": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Dashboard KPIs, charts, and top customers */
+        get: operations["ReportsController_getDashboardStats"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/iibb": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Gross Income (IIBB) by jurisdiction and month */
+        get: operations["ReportsController_getIIBB"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/iibb/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export IIBB report as CSV */
+        get: operations["ReportsController_exportIIBB"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/iva-digital/ventas": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** IVA Digital Ventas Comprobantes (fixed-width text) */
+        get: operations["ReportsController_getIvaDigitalVentas"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/iva-digital/ventas-alicuotas": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** IVA Digital Ventas Alicuotas (fixed-width text) */
+        get: operations["ReportsController_getIvaDigitalVentasAlicuotas"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/outstanding-receivables": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Outstanding receivables */
+        get: operations["ReportsController_getOutstandingReceivables"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/outstanding-receivables/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export outstanding receivables as CSV */
+        get: operations["ReportsController_exportOutstandingReceivables"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/sales-by-customer": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Sales by Customer (accumulated) */
+        get: operations["ReportsController_getSalesByCustomer"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/sales-by-customer/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export Sales by Customer as CSV */
+        get: operations["ReportsController_exportSalesByCustomer"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/sales-by-product": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Sales by Product (aggregated by month) */
+        get: operations["ReportsController_getSalesByProduct"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/sales-by-product/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export Sales by Product as CSV */
+        get: operations["ReportsController_exportSalesByProduct"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/trends": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Revenue trends with MoM/YoY comparisons and 3-month forecast */
+        get: operations["ReportsController_getRevenueTrends"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/vat-sales-book": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** VAT Sales Book (Libro IVA Ventas) */
+        get: operations["ReportsController_getVatSalesBook"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/vat-sales-book/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export VAT Sales Book as CSV */
+        get: operations["ReportsController_exportVatSalesBook"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/suppliers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List suppliers (cursor-paginated)
+         * @description Returns a page of suppliers. Use cursor from next_cursor for the next page.
+         */
+        get: operations["SuppliersController_findAll"];
+        put?: never;
+        /** Create supplier */
+        post: operations["SuppliersController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/suppliers/bulk-delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Bulk delete suppliers (soft delete) */
+        post: operations["SuppliersController_removeBulk"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/suppliers/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export suppliers as CSV (cursor-based, streaming) */
+        get: operations["SuppliersController_exportCsv"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/suppliers/get-or-create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Get existing supplier by CUIT or create with AFIP data
+         * @description Looks up supplier by CUIT. If not found, auto-creates using AFIP padron data.
+         */
+        post: operations["SuppliersController_getOrCreate"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/suppliers/lookup-cuit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Lookup CUIT for supplier auto-fill
+         * @description Validates CUIT and fetches business data from AFIP via system certificate.
+         */
+        get: operations["SuppliersController_lookupCuit"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/suppliers/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get supplier by id */
+        get: operations["SuppliersController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete supplier (soft delete) */
+        delete: operations["SuppliersController_remove"];
+        options?: never;
+        head?: never;
+        /** Update supplier */
+        patch: operations["SuppliersController_update"];
+        trace?: never;
+    };
+    "/v1/tax-categories": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List active tax categories for the current organization */
+        get: operations["TaxCategoriesController_findAllActive"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/tax-categories/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get tax category by id */
+        get: operations["TaxCategoriesController_findOne"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/tax-categories/{id}/exportacion": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Check if tax category is exportación */
+        get: operations["TaxCategoriesController_isExportacion"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/tax-categories/{id}/monotributo": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Check if tax category is monotributo */
+        get: operations["TaxCategoriesController_isMonotributo"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/taxpayer-registries/{taxId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get taxpayer registry by tax ID */
+        get: operations["TaxpayerRegistriesController_findOne"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/taxpayer-registries/{taxId}/fce-receiver": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Check if taxpayer is FCE receiver for given total */
+        get: operations["TaxpayerRegistriesController_isFceReceiver"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        CreateProductDto: {
-            /**
-             * @description Product description
-             * @example Widget A
-             */
-            description: string;
-            /**
-             * @description Unit of measure ID
-             * @example 1
-             */
-            unitOfMeasureId: number;
-            /** @example 7890123456789 */
-            barcode?: string | null;
-            /**
-             * @default true
-             * @example true
-             */
-            isActive: boolean;
-            /**
-             * @description VAT rate (combo) ID
-             * @example 2
-             */
-            vatRateId?: number | null;
-            /**
-             * @description Product category ID; null/0 may resolve to Sin Rubro
-             * @example 3
-             */
-            categoryId?: number | null;
-            /** @example Producto */
-            type?: string | null;
-            /** @example 1.5 */
-            quantity?: number | null;
-            /**
-             * @description Default unit price for auto-populating receipt lines
-             * @example 1500.5
-             */
-            unitPrice?: number | null;
-        };
-        UpdateProductDto: {
-            /** @example Widget A */
-            description?: string;
-            /** @example 7890123456789 */
-            barcode?: string | null;
-            /** @example true */
-            isActive?: boolean;
-            /** @example 2 */
-            vatRateId?: number | null;
-            /** @example 1 */
-            unitOfMeasureId?: number;
-            /** @example 3 */
-            categoryId?: number | null;
-            /** @example Producto */
-            type?: string | null;
-            /** @example 1.5 */
-            quantity?: number | null;
-            /**
-             * @description Default unit price for auto-populating receipt lines
-             * @example 1500.5
-             */
-            unitPrice?: number | null;
-        };
-        ErrorResponseDto: {
-            /**
-             * @description HTTP status code.
-             * @example 404
-             */
-            statusCode: number;
-            /**
-             * @description SCREAMING_SNAKE_CASE enum-style error code. Always machine-mappable. Examples: AFIP_PERSONA_NOT_FOUND, AFIP_WSCI_ERROR, INVALID_CUIT, DB_UNIQUE_VIOLATION, NOT_FOUND, BAD_REQUEST, UNAUTHORIZED.
-             * @example AFIP_PERSONA_NOT_FOUND
-             */
-            error: string;
-            /**
-             * @description Developer-friendly English description of the error. Always present.
-             * @example No AFIP taxpayer found for CUIT 20999999999.
-             */
-            message: string;
-            /**
-             * @description Raw message from the upstream provider (AFIP, etc.) with envelope noise stripped. Present on errors that wrap a third-party failure; kept in the provider's original language.
-             * @example No existe persona con ese Id
-             */
-            providerMessage?: string;
-            /**
-             * @description Numeric AFIP error code (e.g. 10016 for already-authorized). Only present on AFIP errors that carry a numeric code.
-             * @example 10016
-             */
-            code?: number;
-            /**
-             * @description Field-level validation reasons. Populated for validation errors and structured business errors.
-             * @example [
-             *       "CUIT must contain 11 digits (received 9)."
-             *     ]
-             */
-            details?: string[];
-            /**
-             * @description ISO-8601 timestamp of when the error occurred.
-             * @example 2026-04-23T14:30:00.000Z
-             */
-            timestamp: string;
-            /**
-             * @description Request path that triggered the error.
-             * @example /v1/customers/lookup-cuit?cuit=20-99999999-9
-             */
-            path: string;
-            /**
-             * @description pino-http request ID for log correlation.
-             * @example req-abc-123
-             */
-            requestId?: string;
-        };
-        VoidSalesReceiptDto: {
-            /**
-             * @description Auto-create a compensating credit note for the full amount (default: true)
-             * @default true
-             */
-            createCreditNote: boolean;
+        AddManualStockChangeDto: {
+            /** @description Quantity adjustment (positive or negative) */
+            quantity: number;
+            /** @description Reason for the adjustment */
+            text?: string;
         };
         BulkEmailDto: {
             /**
@@ -3176,291 +2997,77 @@ export interface components {
              */
             receiptIds: string[];
         };
-        BulkVoidDto: {
-            /**
-             * @description Array of sales receipt UUIDs to void (1–50)
-             * @example [
-             *       "uuid-1",
-             *       "uuid-2"
-             *     ]
-             */
-            receiptIds: string[];
-        };
-        BulkReconcileDto: {
-            /**
-             * @description Array of sales receipt UUIDs to mark as fully collected (1–200)
-             * @example [
-             *       "uuid-1",
-             *       "uuid-2"
-             *     ]
-             */
-            receiptIds: string[];
-        };
-        CreateSalesReceiptDetailDto: {
-            /**
-             * @description Quantity
-             * @example 2
-             */
-            quantity: number;
-            /**
-             * @description Line description
-             * @example Product description
-             */
-            description: string;
-            /**
-             * @description Unit price
-             * @example 100.5
-             */
-            unitPrice: number;
-            /**
-             * @description Product ID
-             * @example 1
-             */
-            productId?: number | null;
-            /**
-             * @description Tax type (combo item) ID
-             * @example 1
-             */
-            taxTypeId?: number | null;
-            /**
-             * @description Discount percent (0–100)
-             * @example 10
-             */
-            discount?: number | null;
-        };
-        UpdateDetailDto: {
-            /**
-             * @description Quantity
-             * @example 2
-             */
-            quantity?: number;
-            /**
-             * @description Line description
-             * @example Product description
-             */
-            description?: string;
-            /**
-             * @description Unit price
-             * @example 100.5
-             */
-            unitPrice?: number;
-            /**
-             * @description Product ID
-             * @example 1
-             */
-            productId?: number | null;
-            /**
-             * @description Tax type (combo item) ID
-             * @example 1
-             */
-            taxTypeId?: number | null;
-            /**
-             * @description Discount percent (0–100)
-             * @example 10
-             */
-            discount?: number | null;
-        };
-        CreateSalesReceiptObservationDto: {
-            /**
-             * @description Observation description
-             * @example Optional observation text
-             */
-            description: string;
-        };
-        UpdateObservationDto: {
-            /**
-             * @description Observation description
-             * @example Updated observation text
-             */
-            description?: string;
-        };
-        CreateSalesReceiptDto: {
-            /**
-             * @description Customer ID
-             * @example 1
-             */
-            customerId: number;
-            /**
-             * @description Receipt book ID
-             * @example 1
-             */
-            receiptBookId: number;
-            /**
-             * @description Sale condition (combo item)
-             * @example 1
-             */
-            saleConditionId: number;
-            /**
-             * @description Receipt date (default: now)
-             * @example 2026-01-15T12:00:00Z
-             */
-            date?: string;
-            /**
-             * @description Due date (default: same as date)
-             * @example 2026-01-30T12:00:00Z
-             */
-            dueDate?: string;
-            /**
-             * @description Service period start date (required for service organizations)
-             * @example 2026-01-01T12:00:00Z
-             */
-            serviceStartDate?: string;
-            /**
-             * @description Service period end date (required for service organizations)
-             * @example 2026-01-31T12:00:00Z
-             */
-            serviceEndDate?: string;
-            /** @example General observation */
-            observation?: string | null;
-            /**
-             * @description Semicolon-separated emails for collection
-             * @example customer@example.com
-             */
-            collectionEmail?: string | null;
-            /**
-             * @description Currency ID
-             * @example 1
-             */
-            currencyId?: number | null;
-            /**
-             * @description Exchange rate
-             * @example 1
-             */
-            exchangeRate?: number | null;
-            /**
-             * @description Receipt type group (default: factura)
-             * @example factura
-             * @enum {string}
-             */
-            receiptType?: "factura" | "nota_credito" | "nota_debito";
-            /**
-             * @description Create as draft (BORRADOR) without triggering AFIP
-             * @example false
-             */
-            isDraft?: boolean;
-            /**
-             * @description Export-specific data for WSFEX invoices (e.g. incoterms)
-             * @example {
-             *       "incotermsCode": "FOB",
-             *       "incotermsDescription": "Free on Board"
-             *     }
-             */
-            exportData?: Record<string, never>;
-            /** @description Receipt detail lines (required for non-draft) */
-            details?: components["schemas"]["CreateSalesReceiptDetailDto"][];
-            /** @description Observations */
-            observations?: components["schemas"]["CreateSalesReceiptObservationDto"][];
-        };
-        UpdateSalesReceiptDto: {
-            /** @example General observation */
-            observation?: string | null;
-            /** @example customer@example.com */
-            collectionEmail?: string | null;
-            /**
-             * @description Customer ID (draft only)
-             * @example 1
-             */
-            customerId?: number;
-            /**
-             * @description Receipt book ID (draft only)
-             * @example 1
-             */
-            receiptBookId?: number;
-            /**
-             * @description Sale condition ID (draft only)
-             * @example 1
-             */
-            saleConditionId?: number;
-            /**
-             * @description Receipt date (draft only)
-             * @example 2026-01-15T12:00:00Z
-             */
-            date?: string;
-            /**
-             * @description Due date (draft only)
-             * @example 2026-01-30T12:00:00Z
-             */
-            dueDate?: string;
-            /**
-             * @description Service period start date (draft only)
-             * @example 2026-01-01T12:00:00Z
-             */
-            serviceStartDate?: string;
-            /**
-             * @description Service period end date (draft only)
-             * @example 2026-01-31T12:00:00Z
-             */
-            serviceEndDate?: string;
-            /**
-             * @description Currency ID (draft only)
-             * @example 1
-             */
-            currencyId?: number | null;
-            /**
-             * @description Exchange rate (draft only)
-             * @example 1
-             */
-            exchangeRate?: number | null;
-            /**
-             * @description Export-specific data for WSFEX invoices (draft only)
-             * @example {
-             *       "incotermsCode": "FOB",
-             *       "incotermsDescription": "Free on Board"
-             *     }
-             */
-            exportData?: Record<string, never>;
-            /** @description Replace all detail lines atomically (draft only) */
-            details?: components["schemas"]["CreateSalesReceiptDetailDto"][];
-            /** @description Replace all observations atomically (draft only) */
-            observations?: components["schemas"]["CreateSalesReceiptObservationDto"][];
-        };
-        AddManualStockChangeDto: {
-            /** @description Quantity adjustment (positive or negative) */
-            quantity: number;
-            /** @description Reason for the adjustment */
-            text?: string;
-        };
-        CreateJournalAccountDto: {
-            /** @description Account code (e.g. 1.1.01.001) */
-            code: string;
-            /** @description Account name */
+        CreateAccountingLockDto: {
+            /** @description End date (ISO string) */
+            endDate: string;
+            /** @description Fiscal year ID */
+            fiscalYearId: number;
+            /** @description Lock name */
             name: string;
-            /** @description Category (1=Activo, 2=Pasivo, 3=PN, 4=Resultado+, 5=Resultado-) */
-            category: number;
-            current: number;
-            subcategory: number;
-            number: number;
-        };
-        UpdateJournalAccountDto: {
-            code?: string;
-            name?: string;
-            category?: number;
-            current?: number;
-            subcategory?: number;
-            number?: number;
-        };
-        CreateFiscalYearDto: {
             /** @description Start date (ISO string) */
             startDate: string;
+        };
+        CreateCustomerDto: {
+            /** @example Av. Corrientes 1234 */
+            address?: string | null;
+            /**
+             * @description Legal business name
+             * @example Acme S.A.
+             */
+            businessName: string;
+            /** @example Buenos Aires */
+            city?: string | null;
+            /**
+             * @description Document type (combo item ID)
+             * @example 1
+             */
+            documentTypeId: number;
+            /** @example contact@acme.com */
+            email?: string | null;
+            /** @example false */
+            ignoresTaxes?: boolean | null;
+            /** @example true */
+            isActive?: boolean;
+            /** @example 1 */
+            locationId?: number | null;
+            /** @example VIP customer */
+            observations?: string | null;
+            /** @example +54 11 4444-5555 */
+            phone?: string | null;
+            /** @example B1001 */
+            postalCode?: string | null;
+            /** @example 1 */
+            saleConditionId?: number | null;
+            /**
+             * @description Tax category ID
+             * @example 1
+             */
+            taxCategoryId: number;
+            /**
+             * @description Tax ID (CUIT/CUIL)
+             * @example 20-12345678-9
+             */
+            taxId?: string | null;
+            /** @example 12345678 */
+            taxIdNumber?: string | null;
+        };
+        CreateFiscalYearDto: {
             /** @description End date (ISO string) */
             endDate: string;
             name: string;
+            /** @description Start date (ISO string) */
+            startDate: string;
         };
-        UpdateFiscalYearDto: {
-            startDate?: string;
-            endDate?: string;
-            name?: string;
-            isActive?: boolean;
-        };
-        JournalEntryItemDto: {
-            /** @description Journal account ID */
-            accountId: number;
-            /** @description Debit amount */
-            debit: number;
-            /** @description Credit amount */
-            credit: number;
-            /** @description Own check ID (optional) */
-            ownCheckId?: number;
+        CreateJournalAccountDto: {
+            /** @description Category (1=Activo, 2=Pasivo, 3=PN, 4=Resultado+, 5=Resultado-) */
+            category: number;
+            /** @description Account code (e.g. 1.1.01.001) */
+            code: string;
+            current: number;
+            /** @description Account name */
+            name: string;
+            number: number;
+            subcategory: number;
         };
         CreateJournalEntryDto: {
             /** @description Entry date (ISO string) */
@@ -3472,136 +3079,382 @@ export interface components {
             /** @description Debit/credit line items */
             items: components["schemas"]["JournalEntryItemDto"][];
         };
-        CreateAccountingLockDto: {
-            /** @description Start date (ISO string) */
-            startDate: string;
-            /** @description End date (ISO string) */
-            endDate: string;
-            /** @description Lock name */
-            name: string;
-            /** @description Fiscal year ID */
-            fiscalYearId: number;
+        CreateProductDto: {
+            /** @example 7890123456789 */
+            barcode?: Record<string, never> | null;
+            /**
+             * @description Product category ID; null/0 may resolve to Sin Rubro
+             * @example 3
+             */
+            categoryId?: Record<string, never> | null;
+            /**
+             * @description Product description
+             * @example Widget A
+             */
+            description: string;
+            /**
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            /** @example 1.5 */
+            quantity?: Record<string, never> | null;
+            /** @example Producto */
+            type?: Record<string, never> | null;
+            /**
+             * @description Unit of measure ID
+             * @example 1
+             */
+            unitOfMeasureId: number;
+            /**
+             * @description VAT rate (combo) ID
+             * @example 2
+             */
+            vatRateId?: Record<string, never> | null;
+        };
+        CreateSalesReceiptDetailDto: {
+            /**
+             * @description Line description
+             * @example Product description
+             */
+            description: string;
+            /**
+             * @description Discount percent (0–100)
+             * @example 10
+             */
+            discount?: Record<string, never> | null;
+            /**
+             * @description Product ID
+             * @example 1
+             */
+            productId?: Record<string, never> | null;
+            /**
+             * @description Quantity
+             * @example 2
+             */
+            quantity: number;
+            /**
+             * @description Tax type (combo item) ID
+             * @example 1
+             */
+            taxTypeId?: Record<string, never> | null;
+            /**
+             * @description Unit price
+             * @example 100.5
+             */
+            unitPrice: number;
+        };
+        CreateSalesReceiptDto: {
+            /**
+             * @description Semicolon-separated emails for collection
+             * @example customer@example.com
+             */
+            collectionEmail?: Record<string, never> | null;
+            /**
+             * @description Currency ID
+             * @example 1
+             */
+            currencyId?: Record<string, never> | null;
+            /**
+             * @description Customer ID
+             * @example 1
+             */
+            customerId: number;
+            /**
+             * @description Receipt date (default: now)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date?: string;
+            /** @description Receipt detail lines (required for non-draft) */
+            details?: components["schemas"]["CreateSalesReceiptDetailDto"][];
+            /**
+             * @description Due date (default: same as date)
+             * @example 2026-01-30T12:00:00Z
+             */
+            dueDate?: string;
+            /**
+             * @description Exchange rate
+             * @example 1
+             */
+            exchangeRate?: Record<string, never> | null;
+            /**
+             * @description Export-specific data for WSFEX invoices (e.g. incoterms)
+             * @example {
+             *       "incotermsCode": "FOB",
+             *       "incotermsDescription": "Free on Board"
+             *     }
+             */
+            exportData?: Record<string, never>;
+            /**
+             * @description Create as draft (BORRADOR) without triggering AFIP
+             * @example false
+             */
+            isDraft?: boolean;
+            /** @example General observation */
+            observation?: Record<string, never> | null;
+            /** @description Observations */
+            observations?: components["schemas"]["CreateSalesReceiptObservationDto"][];
+            /**
+             * @description Receipt book ID
+             * @example 1
+             */
+            receiptBookId: number;
+            /**
+             * @description Receipt type group (default: factura)
+             * @example factura
+             * @enum {string}
+             */
+            receiptType?: "factura" | "nota_credito" | "nota_debito";
+            /**
+             * @description Sale condition (combo item)
+             * @example 1
+             */
+            saleConditionId: number;
+            /**
+             * @description Service period end date (required for service organizations)
+             * @example 2026-01-31T12:00:00Z
+             */
+            serviceEndDate?: string;
+            /**
+             * @description Service period start date (required for service organizations)
+             * @example 2026-01-01T12:00:00Z
+             */
+            serviceStartDate?: string;
+        };
+        CreateSalesReceiptObservationDto: {
+            /**
+             * @description Observation description
+             * @example Optional observation text
+             */
+            description: string;
+        };
+        JournalEntryItemDto: {
+            /** @description Journal account ID */
+            accountId: number;
+            /** @description Credit amount */
+            credit: number;
+            /** @description Debit amount */
+            debit: number;
+            /** @description Own check ID (optional) */
+            ownCheckId?: Record<string, never>;
         };
         UpdateAccountingLockDto: {
-            startDate?: string;
             endDate?: string;
-            name?: string;
             isActive?: boolean;
+            name?: string;
+            startDate?: string;
         };
         UpdateCustomerDto: {
+            /** @example Av. Corrientes 1234 */
+            address?: string | null;
             /**
              * @description Legal business name
              * @example Acme S.A.
              */
             businessName?: string;
-            /**
-             * @description Tax ID (CUIT/CUIL)
-             * @example 20-12345678-9
-             */
-            taxId?: string | null;
-            /** @example B1001 */
-            postalCode?: string | null;
             /** @example Buenos Aires */
             city?: string | null;
-            /** @example +54 11 4444-5555 */
-            phone?: string | null;
-            /** @example contact@acme.com */
-            email?: string | null;
             /**
              * @description Contracted sale condition (combo item ID)
              * @example 1
              */
             contractedSaleCondition?: number | null;
             /**
-             * @description Statistical sale condition (combo item ID)
+             * @description Document type (combo item ID)
              * @example 1
              */
-            statisticalSaleCondition?: number | null;
+            documentTypeId?: number;
+            /** @example contact@acme.com */
+            email?: string | null;
+            /**
+             * @description Skip tax calculations for this customer
+             * @example false
+             */
+            ignoresTaxes?: boolean | null;
             /** @example true */
             isActive?: boolean;
             /**
-             * @description Tax category ID
+             * @description Location ID
              * @example 1
              */
-            taxCategoryId?: number;
+            locationId?: number | null;
             /**
              * @description Master customer ID
              * @example 1
              */
             masterId?: number | null;
+            /** @example VIP customer */
+            observations?: string | null;
+            /** @example +54 11 4444-5555 */
+            phone?: string | null;
+            /** @example B1001 */
+            postalCode?: string | null;
             /**
              * @description Default sale condition (combo item ID)
              * @example 1
              */
             saleConditionId?: number | null;
             /**
-             * @description Location ID
+             * @description Statistical sale condition (combo item ID)
              * @example 1
              */
-            locationId?: number | null;
-            /** @example Av. Corrientes 1234 */
-            address?: string | null;
+            statisticalSaleCondition?: number | null;
             /**
-             * @description Document type (combo item ID)
+             * @description Tax category ID
              * @example 1
              */
-            documentTypeId?: number;
-            /** @example VIP customer */
-            observations?: string | null;
+            taxCategoryId?: number;
             /**
-             * @description Skip tax calculations for this customer
-             * @example false
+             * @description Tax ID (CUIT/CUIL)
+             * @example 20-12345678-9
              */
-            ignoresTaxes?: boolean | null;
+            taxId?: string | null;
             /**
              * @description Tax ID number without formatting
              * @example 12345678
              */
             taxIdNumber?: string | null;
         };
-        CreateCustomerDto: {
+        UpdateDetailDto: {
             /**
-             * @description Legal business name
-             * @example Acme S.A.
+             * @description Line description
+             * @example Product description
              */
-            businessName: string;
+            description?: string;
             /**
-             * @description Tax ID (CUIT/CUIL)
-             * @example 20-12345678-9
+             * @description Discount percent (0–100)
+             * @example 10
              */
-            taxId?: string | null;
-            /** @example B1001 */
-            postalCode?: string | null;
-            /** @example Buenos Aires */
-            city?: string | null;
-            /** @example +54 11 4444-5555 */
-            phone?: string | null;
-            /** @example contact@acme.com */
-            email?: string | null;
+            discount?: Record<string, never> | null;
+            /**
+             * @description Product ID
+             * @example 1
+             */
+            productId?: Record<string, never> | null;
+            /**
+             * @description Quantity
+             * @example 2
+             */
+            quantity?: number;
+            /**
+             * @description Tax type (combo item) ID
+             * @example 1
+             */
+            taxTypeId?: Record<string, never> | null;
+            /**
+             * @description Unit price
+             * @example 100.5
+             */
+            unitPrice?: number;
+        };
+        UpdateFiscalYearDto: {
+            endDate?: string;
+            isActive?: boolean;
+            name?: string;
+            startDate?: string;
+        };
+        UpdateJournalAccountDto: {
+            category?: number;
+            code?: string;
+            current?: number;
+            name?: string;
+            number?: number;
+            subcategory?: number;
+        };
+        UpdateObservationDto: {
+            /**
+             * @description Observation description
+             * @example Updated observation text
+             */
+            description?: string;
+        };
+        UpdateProductDto: {
+            /** @example 7890123456789 */
+            barcode?: Record<string, never> | null;
+            /** @example 3 */
+            categoryId?: Record<string, never> | null;
+            /** @example Widget A */
+            description?: string;
             /** @example true */
             isActive?: boolean;
+            /** @example 1.5 */
+            quantity?: Record<string, never> | null;
+            /** @example Producto */
+            type?: Record<string, never> | null;
+            /** @example 1 */
+            unitOfMeasureId?: number;
+            /** @example 2 */
+            vatRateId?: Record<string, never> | null;
+        };
+        UpdateSalesReceiptDto: {
+            /** @example customer@example.com */
+            collectionEmail?: Record<string, never> | null;
             /**
-             * @description Tax category ID
+             * @description Currency ID (draft only)
              * @example 1
              */
-            taxCategoryId: number;
-            /** @example 1 */
-            saleConditionId?: number | null;
-            /** @example 1 */
-            locationId?: number | null;
-            /** @example Av. Corrientes 1234 */
-            address?: string | null;
+            currencyId?: Record<string, never> | null;
             /**
-             * @description Document type (combo item ID)
+             * @description Customer ID (draft only)
              * @example 1
              */
-            documentTypeId: number;
-            /** @example VIP customer */
-            observations?: string | null;
-            /** @example false */
-            ignoresTaxes?: boolean | null;
-            /** @example 12345678 */
-            taxIdNumber?: string | null;
+            customerId?: number;
+            /**
+             * @description Receipt date (draft only)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date?: string;
+            /** @description Replace all detail lines atomically (draft only) */
+            details?: components["schemas"]["CreateSalesReceiptDetailDto"][];
+            /**
+             * @description Due date (draft only)
+             * @example 2026-01-30T12:00:00Z
+             */
+            dueDate?: string;
+            /**
+             * @description Exchange rate (draft only)
+             * @example 1
+             */
+            exchangeRate?: Record<string, never> | null;
+            /**
+             * @description Export-specific data for WSFEX invoices (draft only)
+             * @example {
+             *       "incotermsCode": "FOB",
+             *       "incotermsDescription": "Free on Board"
+             *     }
+             */
+            exportData?: Record<string, never>;
+            /** @example General observation */
+            observation?: Record<string, never> | null;
+            /** @description Replace all observations atomically (draft only) */
+            observations?: components["schemas"]["CreateSalesReceiptObservationDto"][];
+            /**
+             * @description Receipt book ID (draft only)
+             * @example 1
+             */
+            receiptBookId?: number;
+            /**
+             * @description Sale condition ID (draft only)
+             * @example 1
+             */
+            saleConditionId?: number;
+            /**
+             * @description Service period end date (draft only)
+             * @example 2026-01-31T12:00:00Z
+             */
+            serviceEndDate?: string;
+            /**
+             * @description Service period start date (draft only)
+             * @example 2026-01-01T12:00:00Z
+             */
+            serviceStartDate?: string;
+        };
+        VoidSalesReceiptDto: {
+            /**
+             * @description Auto-create a compensating credit note for the full amount (default: true)
+             * @default true
+             */
+            createCreditNote: boolean;
         };
     };
     responses: never;
@@ -3612,34 +3465,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    ExportsController_getDownloadUrl: {
-        parameters: {
-            query: {
-                key: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Signed download URL */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid key or file not found */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    TaxCategoriesController_findAllActive: {
+    AccountingLocksController_list: {
         parameters: {
             query?: never;
             header?: never;
@@ -3648,7 +3474,6 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description List of active tax categories */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -3657,26 +3482,266 @@ export interface operations {
             };
         };
     };
-    TaxCategoriesController_findOne: {
+    AccountingLocksController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateAccountingLockDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AccountingLocksController_delete: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description Tax category id */
                 id: number;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Tax category */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Tax category not found */
+        };
+    };
+    AccountingLocksController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateAccountingLockDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AccountingReportsController_dailyBook: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AccountingReportsController_dailyBookExport: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AccountingReportsController_generalLedger: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                account_id?: number;
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AccountingReportsController_generalLedgerExport: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                account_id?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AccountingReportsController_trialBalance: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AccountingReportsController_trialBalanceExport: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BranchesController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of branches */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BranchesController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    address: string;
+                    city: string;
+                    email?: string;
+                    locationId: number;
+                    name: string;
+                    phone1?: string;
+                    phone2?: string;
+                    phone3?: string;
+                    postalCode: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Created branch */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BranchesController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Branch */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -3685,19 +3750,70 @@ export interface operations {
             };
         };
     };
-    TaxCategoriesController_isExportacion: {
+    BranchesController_remove: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description Tax category id */
                 id: number;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Object with exportacion boolean */
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BranchesController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated branch */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CertificatesController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of certificates */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -3706,20 +3822,380 @@ export interface operations {
             };
         };
     };
-    TaxCategoriesController_isMonotributo: {
+    CertificatesController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    csrPath?: string;
+                    /** Format: uuid */
+                    internalKey?: string;
+                    isActive?: boolean;
+                    /** @description Certificate name; when only name is sent, key and CSR are generated */
+                    name?: string;
+                    privateKeyPath?: string;
+                    /** Format: date-time */
+                    requestDate?: string;
+                    userId?: number;
+                };
+            };
+        };
+        responses: {
+            /** @description Created certificate */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CertificatesController_findActive: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Active certificate */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description No active certificate */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CertificatesController_getExpirationStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Certificate expiration info */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CertificatesController_findOne: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description Tax category id */
                 id: number;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Object with monotributo boolean */
+            /** @description Certificate */
             200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CertificatesController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CertificatesController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated certificate */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CertificatesController_getCrt: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CRT file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Certificate or CRT file not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Storage not configured */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CertificatesController_getCsr: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSR file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Certificate or CSR file not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Storage not configured */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CertificatesController_uploadCrt: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Certificate id */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": {
+                    /**
+                     * Format: binary
+                     * @description The .crt certificate file
+                     */
+                    crt: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Certificate with crtPath and path updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description No file provided or invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Certificate not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CertificatesController_validateConnection: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Validation results per service */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Certificate missing CRT or P12 file */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Certificate not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CombosController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Empty list (Phase 1: combos exposed by id only) */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CombosController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Combo id */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Combo */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Combo not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CombosController_getItems: {
+        parameters: {
+            query?: {
+                /** @description Set to 'true' to filter for monotributista */
+                organization_is_monotributista?: string;
+            };
+            header?: never;
+            path: {
+                /** @description Combo id */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of combo items */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Combo not found */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -3834,16 +4310,23 @@ export interface operations {
             };
         };
     };
-    CombosController_findAll: {
+    CustomersController_findAll: {
         parameters: {
-            query?: never;
+            query?: {
+                /** @description Opaque cursor for next page */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+                /** @description Filter by business name, tax ID, or email (partial match) */
+                search?: string;
+            };
             header?: never;
             path?: never;
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Empty list (Phase 1: combos exposed by id only) */
+            /** @description Paginated customers (data, next_cursor, has_more) */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -3852,29 +4335,98 @@ export interface operations {
             };
         };
     };
-    CombosController_getItems: {
+    CustomersController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateCustomerDto"];
+            };
+        };
+        responses: {
+            /** @description Created customer */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CustomersController_exportCsv: {
         parameters: {
             query?: {
-                /** @description Set to 'true' to filter for monotributista */
-                organization_is_monotributista?: string;
+                /** @description Filter by business name, tax ID, or email (partial match) */
+                search?: string;
+                /** @description Include only active customers (default true) */
+                is_active?: boolean;
             };
             header?: never;
-            path: {
-                /** @description Combo id */
-                id: number;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description List of combo items */
+            /** @description CSV file download */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Combo not found */
+        };
+    };
+    CustomersController_lookupCuit: {
+        parameters: {
+            query: {
+                /** @description CUIT to look up (11 digits) */
+                cuit: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CUIT lookup result */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid CUIT */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CustomersController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Customer */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -3883,26 +4435,2515 @@ export interface operations {
             };
         };
     };
-    CombosController_findOne: {
+    CustomersController_remove: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description Combo id */
                 id: number;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Combo */
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CustomersController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateCustomerDto"];
+            };
+        };
+        responses: {
+            /** @description Updated customer */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Combo not found */
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ExchangeRatesController_getRate: {
+        parameters: {
+            query: {
+                /** @description Source currency id (default: default currency) */
+                from?: string;
+                /** @description Target currency id */
+                to: string;
+                /** @description Date (ISO string); default: today */
+                date?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Exchange rate or null if not found */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid query (e.g. missing 'to', invalid id or date) */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ExportsController_getDownloadUrl: {
+        parameters: {
+            query: {
+                key: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Signed download URL */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid key or file not found */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FileImportsController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Filter by import type */
+                type?: "COMPROBANTES_VENTA" | "COMPROBANTES_COMPRA" | "CLIENTES" | "PROVEEDORES" | "PRODUCTOS" | "PAYROLL";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of file imports */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FileImportsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    path: string;
+                    type: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Created file import */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FileImportsController_getDownloadUrl: {
+        parameters: {
+            query: {
+                key: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Signed download URL */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid key */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FileImportsController_downloadTemplate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                type: "customers" | "products" | "sales-receipts";
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Excel template file */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid template type */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FileImportsController_upload: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": {
+                    /** Format: binary */
+                    file: string;
+                    /**
+                     * @description Import type
+                     * @enum {string}
+                     */
+                    type: "COMPROBANTES_VENTA" | "COMPROBANTES_COMPRA" | "CLIENTES" | "PROVEEDORES" | "PRODUCTOS" | "PAYROLL";
+                };
+            };
+        };
+        responses: {
+            /** @description File uploaded and import record created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid file or type */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FileImportsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description File import */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FileImportsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FileImportsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated file import */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BankAccountsController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of bank accounts */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BankAccountsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BankAccountsController_findHistories: {
+        parameters: {
+            query?: {
+                /** @description Filter by bank account */
+                bank_account_id?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of bank account histories */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BankAccountsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Bank account */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BankAccountsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BankAccountsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BanksController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of banks */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BanksController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BanksController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Bank */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BanksController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BanksController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CardPaymentsController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Pagination cursor */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated list of card payments */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CardPaymentsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CardPaymentsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Card payment */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CardPaymentsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CardPaymentsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CardPaymentsController_findCancellations: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of cancellations */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CashRegistersController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of cash registers */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CashRegistersController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CashRegistersController_findHistories: {
+        parameters: {
+            query?: {
+                /** @description Filter by cash register */
+                cash_register_id?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of cash register histories */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CashRegistersController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Cash register */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CashRegistersController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CashRegistersController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CheckbooksController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of checkbooks */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CheckbooksController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CheckbooksController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Checkbook */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CheckbooksController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CheckbooksController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ChecksController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Pagination cursor */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated list of checks */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ChecksController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ChecksController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Check */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ChecksController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ChecksController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CreditCardsController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of credit cards */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CreditCardsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CreditCardsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Credit card */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CreditCardsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CreditCardsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    DepositsController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Pagination cursor */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated list of deposits */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    DepositsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    DepositsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deposit */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    DepositsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    DepositsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    DepositsController_findItems: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of deposit items */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FundMovementsController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Pagination cursor */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated list of fund movements */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FundMovementsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FundMovementsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Fund movement */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FundMovementsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FundMovementsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    OwnChecksController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Pagination cursor */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated list of own checks */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    OwnChecksController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    OwnChecksController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Own check */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    OwnChecksController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    OwnChecksController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    PaymentMethodsController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of payment methods */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    PaymentMethodsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    PaymentMethodsController_createEntry: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    PaymentMethodsController_findAllEntries: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of payment method entries */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    PaymentMethodsController_findEntry: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                entryId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Payment method entry */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    PaymentMethodsController_removeEntry: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                entryId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    PaymentMethodsController_updateEntry: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                entryId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    PaymentMethodsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Payment method */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    PaymentMethodsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    PaymentMethodsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    RetentionsController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of retentions */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    RetentionsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    RetentionsController_findReceipts: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of retention receipts */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    RetentionsController_findReceipt: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                receiptId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Retention receipt */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    RetentionsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Retention */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    RetentionsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    RetentionsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    TransfersController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Pagination cursor */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated list of transfers */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    TransfersController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    TransfersController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Transfer */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    TransfersController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    TransfersController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FiscalYearsController_list: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FiscalYearsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateFiscalYearDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FiscalYearsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateFiscalYearDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FiscalYearsController_close: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalAccountsController_list: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalAccountsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateJournalAccountDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalAccountsController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalAccountsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateJournalAccountDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalEntriesController_list: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                /** @description Filter by module (ventas, compras, tesoreria, manual) */
+                module?: string;
+                /** @description Filter from date (ISO string) */
+                date_from?: string;
+                /** @description Filter to date (ISO string) */
+                date_to?: string;
+                /** @description Filter manual entries only */
+                is_manual?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalEntriesController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateJournalEntryDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalEntriesController_getById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalEntriesController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    LeadsController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of leads */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    LeadsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    email: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Created lead */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    LeadsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Lead id */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Lead */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Lead not found */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -4015,39 +7056,7 @@ export interface operations {
             };
         };
     };
-    ExchangeRatesController_getRate: {
-        parameters: {
-            query: {
-                /** @description Source currency id (default: default currency) */
-                from?: string;
-                /** @description Target currency id */
-                to: string;
-                /** @description Date (ISO string); default: today */
-                date?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Exchange rate or null if not found */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid query (e.g. missing 'to', invalid id or date) */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    LeadsController_findAll: {
+    MercadoPagoConfigsController_findAll: {
         parameters: {
             query?: never;
             header?: never;
@@ -4056,7 +7065,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description List of leads */
+            /** @description List of Mercado Pago configs */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -4065,7 +7074,7 @@ export interface operations {
             };
         };
     };
-    LeadsController_create: {
+    MercadoPagoConfigsController_create: {
         parameters: {
             query?: never;
             header?: never;
@@ -4075,12 +7084,13 @@ export interface operations {
         requestBody: {
             content: {
                 "application/json": {
-                    email: string;
+                    createInvoice: boolean;
+                    includePaymentButton: string;
                 };
             };
         };
         responses: {
-            /** @description Created lead */
+            /** @description Created Mercado Pago config */
             201: {
                 headers: {
                     [name: string]: unknown;
@@ -4089,26 +7099,61 @@ export interface operations {
             };
         };
     };
-    LeadsController_findOne: {
+    MercadoPagoConfigsController_getByOrganization: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Mercado Pago config */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    MercadoPagoConfigsController_getToExpire: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Configs needing token refresh */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    MercadoPagoConfigsController_findOne: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description Lead id */
                 id: number;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Lead */
+            /** @description Mercado Pago config */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Lead not found */
+            /** @description Not found */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -4117,57 +7162,79 @@ export interface operations {
             };
         };
     };
-    TaxpayerRegistriesController_isFceReceiver: {
-        parameters: {
-            query?: {
-                /** @description Comprobante total; default 0 */
-                total?: string;
-            };
-            header?: never;
-            path: {
-                /** @description Tax ID (CUIT/CUIL) */
-                taxId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Object with taxId, total, and isFceReceiver */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Taxpayer registry not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    TaxpayerRegistriesController_findOne: {
+    MercadoPagoConfigsController_remove: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description Tax ID (CUIT/CUIL) */
-                taxId: string;
+                id: number;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Taxpayer registry */
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    MercadoPagoConfigsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated Mercado Pago config */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Taxpayer registry not found */
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    MercadoPagoConfigsController_resetAuth: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Auth reset */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -4358,6 +7425,29 @@ export interface operations {
             };
         };
     };
+    ProductsController_exportCsv: {
+        parameters: {
+            query?: {
+                /** @description Filter by description or barcode (partial match) */
+                search?: string;
+                /** @description Include only active products (default true) */
+                is_active?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     ProductsController_search: {
         parameters: {
             query?: {
@@ -4375,49 +7465,6 @@ export interface operations {
         requestBody?: never;
         responses: {
             /** @description Search results with favorites, recents, and matches */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProductsController_toggleFavorite: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Favorite toggled */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProductsController_exportCsv: {
-        parameters: {
-            query?: {
-                /** @description Filter by description or barcode (partial match) */
-                search?: string;
-                /** @description Include only active products (default true) */
-                is_active?: boolean;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -4511,23 +7558,18 @@ export interface operations {
             };
         };
     };
-    CustomersController_findAll: {
+    ProductsController_toggleFavorite: {
         parameters: {
-            query?: {
-                /** @description Opaque cursor for next page */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-                /** @description Filter by business name, tax ID, or email (partial match) */
-                search?: string;
-            };
+            query?: never;
             header?: never;
-            path?: never;
+            path: {
+                id: number;
+            };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Paginated customers (data, next_cursor, has_more) */
+            /** @description Favorite toggled */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -4536,494 +7578,48 @@ export interface operations {
             };
         };
     };
-    CustomersController_create: {
+    StockController_getStockHistory: {
+        parameters: {
+            query?: {
+                /** @description Page number (1-based) */
+                page?: number;
+                /** @description Items per page */
+                limit?: number;
+                /** @description Filter by stock change type (SALE, PURCHASE, MANUAL) */
+                type?: string;
+            };
+            header?: never;
+            path: {
+                productId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    StockController_addManualAdjustment: {
         parameters: {
             query?: never;
             header?: never;
-            path?: never;
+            path: {
+                productId: number;
+            };
             cookie?: never;
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["CreateCustomerDto"];
+                "application/json": components["schemas"]["AddManualStockChangeDto"];
             };
         };
         responses: {
-            /** @description Created customer */
             201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CustomersController_lookupCuit: {
-        parameters: {
-            query: {
-                /** @description CUIT to look up (11 digits, with or without dashes) */
-                cuit: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CUIT lookup result */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description INVALID_CUIT — malformed or bad check digit. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description AFIP_PERSONA_NOT_FOUND — no taxpayer registered in AFIP for this CUIT. */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description AFIP_WSCI_ERROR — upstream AFIP (WSCI) failure. See providerMessage. */
-            502: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-        };
-    };
-    CustomersController_exportCsv: {
-        parameters: {
-            query?: {
-                /** @description Filter by business name, tax ID, or email (partial match) */
-                search?: string;
-                /** @description Include only active customers (default true) */
-                is_active?: boolean;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CustomersController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Customer */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CustomersController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CustomersController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateCustomerDto"];
-            };
-        };
-        responses: {
-            /** @description Updated customer */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SuppliersController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Opaque cursor for next page */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-                /** @description Filter by business name, tax ID, or email (partial match) */
-                search?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated suppliers (data, next_cursor, has_more) */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SuppliersController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created supplier */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SuppliersController_lookupCuit: {
-        parameters: {
-            query: {
-                /** @description CUIT to look up (11 digits, with or without dashes) */
-                cuit: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CUIT lookup result */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description INVALID_CUIT — malformed or bad check digit. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description AFIP_PERSONA_NOT_FOUND — no taxpayer registered in AFIP for this CUIT. */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description AFIP_WSCI_ERROR — upstream AFIP (WSCI) failure. See providerMessage. */
-            502: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-        };
-    };
-    SuppliersController_exportCsv: {
-        parameters: {
-            query?: {
-                /** @description Filter by business name, tax ID, or email (partial match) */
-                search?: string;
-                /** @description Include only active suppliers (default true) */
-                active_only?: boolean;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SuppliersController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Supplier */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SuppliersController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SuppliersController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated supplier */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SuppliersController_getOrCreate: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Existing or newly created supplier */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SuppliersController_removeBulk: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    ids?: number[];
-                };
-            };
-        };
-        responses: {
-            /** @description Number of deleted suppliers */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProviderConfigsController_getStatus: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Integration status */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProviderConfigsController_getOAuthUrl: {
-        parameters: {
-            query: {
-                provider: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OAuth URL for redirect */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Organization has no secret_key or provider invalid */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description OAuth not implemented for this provider */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProviderConfigsController_findByProvider: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                provider: "SPARKPOST" | "TIENDANUBE";
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Provider config or null */
-            200: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -5066,6 +7662,78 @@ export interface operations {
         responses: {
             /** @description Created provider config */
             201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ProviderConfigsController_findByProvider: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                provider: "SPARKPOST" | "TIENDANUBE";
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Provider config or null */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ProviderConfigsController_getOAuthUrl: {
+        parameters: {
+            query: {
+                provider: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OAuth URL for redirect */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Organization has no secret_key or provider invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description OAuth not implemented for this provider */
+            501: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ProviderConfigsController_getStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Integration status */
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -5154,2997 +7822,6 @@ export interface operations {
             };
         };
     };
-    MercadoPagoConfigsController_getByOrganization: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Mercado Pago config */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    MercadoPagoConfigsController_getToExpire: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Configs needing token refresh */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    MercadoPagoConfigsController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of Mercado Pago configs */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    MercadoPagoConfigsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    createInvoice: boolean;
-                    includePaymentButton: string;
-                };
-            };
-        };
-        responses: {
-            /** @description Created Mercado Pago config */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    MercadoPagoConfigsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Mercado Pago config */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    MercadoPagoConfigsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    MercadoPagoConfigsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated Mercado Pago config */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    MercadoPagoConfigsController_resetAuth: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Auth reset */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FileImportsController_upload: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "multipart/form-data": {
-                    /** Format: binary */
-                    file: string;
-                    /**
-                     * @description Import type
-                     * @enum {string}
-                     */
-                    type: "COMPROBANTES_VENTA" | "COMPROBANTES_COMPRA" | "CLIENTES" | "PROVEEDORES" | "PRODUCTOS" | "PAYROLL";
-                };
-            };
-        };
-        responses: {
-            /** @description File uploaded and import record created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid file or type */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FileImportsController_getDownloadUrl: {
-        parameters: {
-            query: {
-                key: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Signed download URL */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid key */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FileImportsController_downloadTemplate: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                type: "customers" | "products" | "sales-receipts";
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Excel template file */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid template type */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FileImportsController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Filter by import type */
-                type?: "COMPROBANTES_VENTA" | "COMPROBANTES_COMPRA" | "CLIENTES" | "PROVEEDORES" | "PRODUCTOS" | "PAYROLL";
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of file imports */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FileImportsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    path: string;
-                    type: string;
-                };
-            };
-        };
-        responses: {
-            /** @description Created file import */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FileImportsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description File import */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FileImportsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FileImportsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated file import */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of certificates */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    /** @description Certificate name; when only name is sent, key and CSR are generated */
-                    name?: string;
-                    /** Format: uuid */
-                    internalKey?: string;
-                    /** Format: date-time */
-                    requestDate?: string;
-                    privateKeyPath?: string;
-                    csrPath?: string;
-                    isActive?: boolean;
-                    userId?: number;
-                };
-            };
-        };
-        responses: {
-            /** @description Created certificate */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_findActive: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Active certificate */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description No active certificate */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_getExpirationStatus: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Certificate expiration info */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_getCsr: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSR file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Certificate or CSR file not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Storage not configured */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_getCrt: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CRT file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Certificate or CRT file not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Storage not configured */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Certificate */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated certificate */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_validateConnection: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Validation results per service */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Certificate missing CRT or P12 file */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Certificate not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_uploadCrt: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Certificate id */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "multipart/form-data": {
-                    /**
-                     * Format: binary
-                     * @description The .crt certificate file
-                     */
-                    crt: string;
-                };
-            };
-        };
-        responses: {
-            /** @description Certificate with crtPath and path updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description No file provided or invalid */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Certificate not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BranchesController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of branches */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BranchesController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    name: string;
-                    address: string;
-                    email?: string;
-                    phone1?: string;
-                    phone2?: string;
-                    phone3?: string;
-                    city: string;
-                    postalCode: string;
-                    locationId: number;
-                };
-            };
-        };
-        responses: {
-            /** @description Created branch */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BranchesController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Branch */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BranchesController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BranchesController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated branch */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReceiptBooksController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of receipt books */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReceiptBooksController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    description: string;
-                    prefix: string;
-                    pointOfSale: number;
-                    /** @enum {string} */
-                    type?: "WS" | "EN_LINEA" | "PRE_IMPRESOS";
-                    isExport?: boolean;
-                    branchId?: number | null;
-                };
-            };
-        };
-        responses: {
-            /** @description Created receipt book */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReceiptBooksController_findByPointOfSale: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                pointOfSale: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Receipt book */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReceiptBooksController_importFromArca: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Import result with created/skipped counts */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReceiptBooksController_resync: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Resync result with updated books */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReceiptBooksController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Receipt book */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReceiptBooksController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReceiptBooksController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated receipt book */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findCreators: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Array of { id, fullName } */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_getNextNumber: {
-        parameters: {
-            query: {
-                receipt_book_id: number;
-                customer_id: number;
-                receipt_type?: "factura" | "nota_credito" | "nota_debito";
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description { letter, number, nextSequential } */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: MISSING_SALES_LETTER. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-        };
-    };
-    SalesReceiptsController_listExportColumns: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Array of { key, header } */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_exportCsv: {
-        parameters: {
-            query?: {
-                date_from?: string;
-                date_to?: string;
-                status?: string;
-                search?: string;
-                customer_id?: number;
-                receipt_type?: "factura" | "nota_credito" | "nota_debito";
-                user_id?: number;
-                receipt_book_id?: number;
-                preset?: "default" | "detailed";
-                /** @description Comma-separated column keys (overrides preset and saved config) */
-                columns?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Async export triggered (high-volume orgs) */
-            202: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Opaque cursor for next page */
-                cursor?: string;
-                /** @description Page size (default 20, max 100) */
-                page_size?: number;
-                /** @description Filter receipts on or after this date (ISO). Omit for all dates. */
-                date_from?: string;
-                /** @description Filter receipts on or before this date (ISO). Omit for all dates. */
-                date_to?: string;
-                /** @description Filter by receipt status */
-                status?: string;
-                /** @description Search by customer name, receipt number, or CAE. Supports prefixes: cae:<value>, cuit:<value>, nro:<value>, id:<value> */
-                search?: string;
-                /** @description Filter by customer ID */
-                customer_id?: number;
-                /** @description Filter by receipt type group */
-                receipt_type?: "factura" | "nota_credito" | "nota_debito";
-                /** @description Filter by creator user ID */
-                user_id?: number;
-                /** @description Filter by receipt book ID */
-                receipt_book_id?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated sales receipts (data, next_cursor, has_more) */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateSalesReceiptDto"];
-            };
-        };
-        responses: {
-            /** @description Created sales receipt */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, DETAILS_REQUIRED, MISSING_SALES_LETTER. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-        };
-    };
-    SalesReceiptsController_confirm: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Confirmed receipt */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_CONFIRM, CUSTOMER_REQUIRED, DETAILS_REQUIRED, RECEIPT_BOOK_REQUIRED, SALE_CONDITION_REQUIRED, RECEIPT_DATE_TOO_OLD, RECEIPT_BOOK_NOT_FOUND. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_retry: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Retry triggered, receipt returned */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: INVALID_RECEIPT_STATUS_FOR_RETRY. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_voidReceipt: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["VoidSalesReceiptDto"];
-            };
-        };
-        responses: {
-            /** @description Voided receipt with optional credit note ID */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, RECEIPT_ALREADY_VOIDED, INVALID_RECEIPT_STATUS_FOR_VOID, RECEIPT_BOOK_NOT_FOUND, WS_VOID_REQUIRES_CREDIT_NOTE, RECEIPT_ALREADY_CREDITED, PARTIAL_CREDIT_EXISTS. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_duplicate: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Source sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description New draft receipt */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Source receipt not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_authorizeAfip: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Authorization result */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed (or AFIP error). Codes: INVALID_RECEIPT_STATUS_FOR_AUTHORIZE. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_downloadPdfPublic: {
-        parameters: {
-            query: {
-                /** @description Signed download token */
-                token: string;
-                /** @description Token expiration (unix seconds) */
-                expires: string;
-            };
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Invoice PDF file */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid or expired token */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_downloadPdf: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Invoice PDF file */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_sendEmail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Email send triggered */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_resendEmailPublic: {
-        parameters: {
-            query: {
-                token: string;
-                expires: string;
-            };
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Email resent */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid token signature */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found or no email */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Rate limited */
-            429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_getTrackingEvents: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Tracking events with tracking enabled flag */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_bulkEmail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["BulkEmailDto"];
-            };
-        };
-        responses: {
-            /** @description Bulk email job created */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid receipt IDs */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_bulkPdf: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["BulkPdfDto"];
-            };
-        };
-        responses: {
-            /** @description Bulk PDF job created */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid receipt IDs */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_bulkVoid: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["BulkVoidDto"];
-            };
-        };
-        responses: {
-            /** @description Bulk void job created */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid receipt IDs */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_bulkReconcile: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["BulkReconcileDto"];
-            };
-        };
-        responses: {
-            /** @description Receipts marked as collected */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid receipt IDs */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_bulkActionStatus: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Bulk action job UUID */
-                jobId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Job status and progress */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Job not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findAllDetails: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of receipt details */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_createDetail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateSalesReceiptDetailDto"];
-            };
-        };
-        responses: {
-            /** @description Created detail */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DETAILS. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Receipt not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findOneDetail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Detail line id (number) */
-                detailId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Receipt detail */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_removeDetail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Detail line id (number) */
-                detailId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Removed */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DETAILS. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_updateDetail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Detail line id (number) */
-                detailId: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateDetailDto"];
-            };
-        };
-        responses: {
-            /** @description Updated detail */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DETAILS. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findAllObservations: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of receipt observations */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_createObservation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateSalesReceiptObservationDto"];
-            };
-        };
-        responses: {
-            /** @description Created observation */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Receipt not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findOneObservation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Observation id (number) */
-                observationId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Receipt observation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_removeObservation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Observation id (number) */
-                observationId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Removed */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_updateObservation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Observation id (number) */
-                observationId: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateObservationDto"];
-            };
-        };
-        responses: {
-            /** @description Updated observation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Sales receipt */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DELETE, NOT_LAST_RECEIPT_NUMBER. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateSalesReceiptDto"];
-            };
-        };
-        responses: {
-            /** @description Updated sales receipt */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, RECEIPT_DATE_TOO_OLD, MISSING_SALES_LETTER. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    StockController_getStockHistory: {
-        parameters: {
-            query?: {
-                /** @description Page number (1-based) */
-                page?: number;
-                /** @description Items per page */
-                limit?: number;
-                /** @description Filter by stock change type (SALE, PURCHASE, MANUAL) */
-                type?: string;
-            };
-            header?: never;
-            path: {
-                productId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    StockController_addManualAdjustment: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                productId: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["AddManualStockChangeDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalAccountsController_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalAccountsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateJournalAccountDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalAccountsController_delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalAccountsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateJournalAccountDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FiscalYearsController_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FiscalYearsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateFiscalYearDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FiscalYearsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateFiscalYearDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FiscalYearsController_close: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalEntriesController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                limit?: number;
-                /** @description Filter by module (ventas, compras, tesoreria, manual) */
-                module?: string;
-                /** @description Filter from date (ISO string) */
-                date_from?: string;
-                /** @description Filter to date (ISO string) */
-                date_to?: string;
-                /** @description Filter manual entries only */
-                is_manual?: boolean;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalEntriesController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateJournalEntryDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalEntriesController_getProfitAndLoss: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalEntriesController_getBalanceSheet: {
-        parameters: {
-            query: {
-                as_of_date: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalEntriesController_getById: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalEntriesController_delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingLocksController_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingLocksController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateAccountingLockDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingLocksController_delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingLocksController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateAccountingLockDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingReportsController_generalLedger: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                account_id?: number;
-                page?: number;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingReportsController_generalLedgerExport: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                account_id?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingReportsController_dailyBook: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                page?: number;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingReportsController_dailyBookExport: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingReportsController_trialBalance: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                page?: number;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingReportsController_trialBalanceExport: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReportsController_getDashboardStats: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                group_by?: "day" | "week" | "month";
-                /** @description Skip expensive per-receipt queries for high-volume orgs */
-                summary_only?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Dashboard statistics */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReportsController_getVatSalesBook: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                cursor?: string;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated VAT book rows */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReportsController_exportVatSalesBook: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReportsController_getSalesByProduct: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                customer_id?: number;
-                cursor?: string;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated sales by product rows */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReportsController_exportSalesByProduct: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                customer_id?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReportsController_getSalesByCustomer: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                cursor?: string;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated sales by customer rows */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReportsController_exportSalesByCustomer: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReportsController_getOutstandingReceivables: {
-        parameters: {
-            query?: {
-                cursor?: string;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated outstanding receivable rows */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReportsController_exportOutstandingReceivables: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReportsController_getIIBB: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                cursor?: string;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated IIBB rows */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReportsController_exportIIBB: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReportsController_getRevenueTrends: {
-        parameters: {
-            query?: {
-                /** @description Number of past months to include (default 24) */
-                months?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Revenue trend data with forecasting */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReportsController_getIvaDigitalVentas: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Fixed-width text file */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReportsController_getIvaDigitalVentasAlicuotas: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Fixed-width text file */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
     PurchaseCategoriesController_findAll: {
         parameters: {
             query?: {
@@ -8176,8 +7853,8 @@ export interface operations {
         requestBody: {
             content: {
                 "application/json": {
-                    description: string;
                     accountId: number;
+                    description: string;
                 };
             };
         };
@@ -8258,1878 +7935,13 @@ export interface operations {
         requestBody: {
             content: {
                 "application/json": {
-                    description?: string;
                     accountId?: number;
+                    description?: string;
                 };
             };
         };
         responses: {
             /** @description Updated purchase category */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of payment methods */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Payment method */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_findAllEntries: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of payment method entries */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_findEntry: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                entryId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Payment method entry */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_removeEntry: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                entryId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_updateEntry: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                entryId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_createEntry: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BanksController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of banks */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BanksController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BanksController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Bank */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BanksController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BanksController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BankAccountsController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of bank accounts */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BankAccountsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BankAccountsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Bank account */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BankAccountsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BankAccountsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BankAccountsController_findHistories: {
-        parameters: {
-            query?: {
-                /** @description Filter by bank account */
-                bank_account_id?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of bank account histories */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CashRegistersController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of cash registers */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CashRegistersController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CashRegistersController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Cash register */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CashRegistersController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CashRegistersController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CashRegistersController_findHistories: {
-        parameters: {
-            query?: {
-                /** @description Filter by cash register */
-                cash_register_id?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of cash register histories */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ChecksController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Pagination cursor */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated list of checks */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ChecksController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ChecksController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Check */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ChecksController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ChecksController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    OwnChecksController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Pagination cursor */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated list of own checks */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    OwnChecksController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    OwnChecksController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Own check */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    OwnChecksController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    OwnChecksController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CheckbooksController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of checkbooks */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CheckbooksController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CheckbooksController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Checkbook */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CheckbooksController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CheckbooksController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    DepositsController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Pagination cursor */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated list of deposits */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    DepositsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    DepositsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deposit */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    DepositsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    DepositsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    DepositsController_findItems: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of deposit items */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    TransfersController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Pagination cursor */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated list of transfers */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    TransfersController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    TransfersController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Transfer */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    TransfersController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    TransfersController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FundMovementsController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Pagination cursor */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated list of fund movements */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FundMovementsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FundMovementsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Fund movement */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FundMovementsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FundMovementsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CreditCardsController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of credit cards */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CreditCardsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CreditCardsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Credit card */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CreditCardsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CreditCardsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CardPaymentsController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Pagination cursor */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated list of card payments */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CardPaymentsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CardPaymentsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Card payment */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CardPaymentsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CardPaymentsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CardPaymentsController_findCancellations: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of cancellations */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    RetentionsController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of retentions */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    RetentionsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    RetentionsController_findReceipts: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of retention receipts */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    RetentionsController_findReceipt: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                receiptId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Retention receipt */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    RetentionsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Retention */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    RetentionsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    RetentionsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -10366,6 +8178,1846 @@ export interface operations {
         responses: {
             /** @description Replaced details */
             200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReceiptBooksController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of receipt books */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReceiptBooksController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    branchId?: number | null;
+                    description: string;
+                    isExport?: boolean;
+                    pointOfSale: number;
+                    prefix: string;
+                    /** @enum {string} */
+                    type?: "WS" | "EN_LINEA" | "PRE_IMPRESOS";
+                };
+            };
+        };
+        responses: {
+            /** @description Created receipt book */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReceiptBooksController_findByPointOfSale: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                pointOfSale: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Receipt book */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReceiptBooksController_importFromArca: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Import result with created/skipped counts */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReceiptBooksController_resync: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Resync result with updated books */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReceiptBooksController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Receipt book */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReceiptBooksController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReceiptBooksController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated receipt book */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Opaque cursor for next page */
+                cursor?: string;
+                /** @description Page size (default 20, max 100) */
+                page_size?: number;
+                /** @description Filter receipts on or after this date (ISO). Omit for all dates. */
+                date_from?: string;
+                /** @description Filter receipts on or before this date (ISO). Omit for all dates. */
+                date_to?: string;
+                /** @description Filter by receipt status */
+                status?: string;
+                /** @description Search by customer name, receipt number, or CAE. Supports prefixes: cae:<value>, cuit:<value>, nro:<value>, id:<value> */
+                search?: string;
+                /** @description Filter by customer ID */
+                customer_id?: number;
+                /** @description Filter by receipt type group */
+                receipt_type?: "factura" | "nota_credito" | "nota_debito";
+                /** @description Filter by creator user ID */
+                user_id?: number;
+                /** @description Filter by receipt book ID */
+                receipt_book_id?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated sales receipts (data, next_cursor, has_more) */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateSalesReceiptDto"];
+            };
+        };
+        responses: {
+            /** @description Created sales receipt */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_bulkActionStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Bulk action job UUID */
+                jobId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Job status and progress */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Job not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_bulkEmail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BulkEmailDto"];
+            };
+        };
+        responses: {
+            /** @description Bulk email job created */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid receipt IDs */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_bulkPdf: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BulkPdfDto"];
+            };
+        };
+        responses: {
+            /** @description Bulk PDF job created */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid receipt IDs */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_findCreators: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Array of { id, fullName } */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_exportCsv: {
+        parameters: {
+            query?: {
+                date_from?: string;
+                date_to?: string;
+                status?: string;
+                search?: string;
+                customer_id?: number;
+                receipt_type?: "factura" | "nota_credito" | "nota_debito";
+                user_id?: number;
+                receipt_book_id?: number;
+                preset?: "default" | "detailed";
+                /** @description Comma-separated column keys (overrides preset and saved config) */
+                columns?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Async export triggered (high-volume orgs) */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_listExportColumns: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Array of { key, header } */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_getNextNumber: {
+        parameters: {
+            query: {
+                receipt_book_id: number;
+                customer_id: number;
+                receipt_type?: "factura" | "nota_credito" | "nota_debito";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description { letter, number, nextSequential } */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Sales receipt */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Receipt is not a draft */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateSalesReceiptDto"];
+            };
+        };
+        responses: {
+            /** @description Updated sales receipt */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_authorizeAfip: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Authorization result */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Receipt not pending or AFIP error */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_confirm: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Confirmed receipt */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid state or missing required fields */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_findAllDetails: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of receipt details */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_createDetail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateSalesReceiptDetailDto"];
+            };
+        };
+        responses: {
+            /** @description Created detail */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Receipt not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_findOneDetail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+                /** @description Detail line id (number) */
+                detailId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Receipt detail */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_removeDetail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+                /** @description Detail line id (number) */
+                detailId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Removed */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_updateDetail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+                /** @description Detail line id (number) */
+                detailId: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateDetailDto"];
+            };
+        };
+        responses: {
+            /** @description Updated detail */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_duplicate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Source sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description New draft receipt */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Source receipt not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_findAllObservations: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of receipt observations */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_createObservation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateSalesReceiptObservationDto"];
+            };
+        };
+        responses: {
+            /** @description Created observation */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Receipt not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_findOneObservation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+                /** @description Observation id (number) */
+                observationId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Receipt observation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_removeObservation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+                /** @description Observation id (number) */
+                observationId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Removed */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_updateObservation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+                /** @description Observation id (number) */
+                observationId: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateObservationDto"];
+            };
+        };
+        responses: {
+            /** @description Updated observation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_downloadPdf: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Invoice PDF file */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_downloadPdfPublic: {
+        parameters: {
+            query: {
+                /** @description Signed download token */
+                token: string;
+                /** @description Token expiration (unix seconds) */
+                expires: string;
+            };
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Invoice PDF file */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid or expired token */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_resendEmailPublic: {
+        parameters: {
+            query: {
+                token: string;
+                expires: string;
+            };
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Email resent */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid token signature */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found or no email */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Rate limited */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_retry: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Retry triggered, receipt returned */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Receipt is not in Pendiente_Afip status */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_sendEmail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Email send triggered */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_getTrackingEvents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Tracking events with tracking enabled flag */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_voidReceipt: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["VoidSalesReceiptDto"];
+            };
+        };
+        responses: {
+            /** @description Voided receipt with optional credit note ID */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid state (not Creada or already Anulado) */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReportsController_getDashboardStats: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                group_by?: "day" | "week" | "month";
+                /** @description Skip expensive per-receipt queries for high-volume orgs */
+                summary_only?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Dashboard statistics */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReportsController_getIIBB: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                cursor?: string;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated IIBB rows */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReportsController_exportIIBB: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReportsController_getIvaDigitalVentas: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Fixed-width text file */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReportsController_getIvaDigitalVentasAlicuotas: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Fixed-width text file */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReportsController_getOutstandingReceivables: {
+        parameters: {
+            query?: {
+                cursor?: string;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated outstanding receivable rows */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReportsController_exportOutstandingReceivables: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReportsController_getSalesByCustomer: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                cursor?: string;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated sales by customer rows */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReportsController_exportSalesByCustomer: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReportsController_getSalesByProduct: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                customer_id?: number;
+                cursor?: string;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated sales by product rows */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReportsController_exportSalesByProduct: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                customer_id?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReportsController_getRevenueTrends: {
+        parameters: {
+            query?: {
+                /** @description Number of past months to include (default 24) */
+                months?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Revenue trend data with forecasting */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReportsController_getVatSalesBook: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                cursor?: string;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated VAT book rows */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ReportsController_exportVatSalesBook: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Opaque cursor for next page */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+                /** @description Filter by business name, tax ID, or email (partial match) */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated suppliers (data, next_cursor, has_more) */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created supplier */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_removeBulk: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    ids?: number[];
+                };
+            };
+        };
+        responses: {
+            /** @description Number of deleted suppliers */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_exportCsv: {
+        parameters: {
+            query?: {
+                /** @description Filter by business name, tax ID, or email (partial match) */
+                search?: string;
+                /** @description Include only active suppliers (default true) */
+                active_only?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_getOrCreate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Existing or newly created supplier */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_lookupCuit: {
+        parameters: {
+            query: {
+                /** @description CUIT to look up (11 digits) */
+                cuit: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CUIT lookup result */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid CUIT */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Supplier */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated supplier */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    TaxCategoriesController_findAllActive: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of active tax categories */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    TaxCategoriesController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Tax category id */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Tax category */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Tax category not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    TaxCategoriesController_isExportacion: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Tax category id */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Object with exportacion boolean */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    TaxCategoriesController_isMonotributo: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Tax category id */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Object with monotributo boolean */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    TaxpayerRegistriesController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Tax ID (CUIT/CUIL) */
+                taxId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Taxpayer registry */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Taxpayer registry not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    TaxpayerRegistriesController_isFceReceiver: {
+        parameters: {
+            query?: {
+                /** @description Comprobante total; default 0 */
+                total?: string;
+            };
+            header?: never;
+            path: {
+                /** @description Tax ID (CUIT/CUIL) */
+                taxId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Object with taxId, total, and isFceReceiver */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Taxpayer registry not found */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
