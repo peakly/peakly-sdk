@@ -1145,8 +1145,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "description": "Customer fields (businessName required)"
+                "$ref": "#/components/schemas/CreateCustomerDto"
               }
             }
           }
@@ -1326,7 +1325,17 @@
         "summary": "Update customer",
         "tags": [
           "Ventas - Clientes"
-        ]
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCustomerDto"
+              }
+            }
+          }
+        }
       },
       "delete": {
         "operationId": "CustomersController_remove",
@@ -9910,6 +9919,193 @@
           },
           "isActive": {
             "type": "boolean"
+          }
+        }
+      },
+      "UpdateCustomerDto": {
+        "type": "object",
+        "properties": {
+          "businessName": {
+            "type": "string",
+            "example": "Acme S.A.",
+            "description": "Legal business name"
+          },
+          "taxId": {
+            "type": "string",
+            "example": "20-12345678-9",
+            "nullable": true,
+            "description": "Tax ID (CUIT/CUIL)"
+          },
+          "postalCode": {
+            "type": "string",
+            "example": "B1001",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "example": "Buenos Aires",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "example": "+54 11 4444-5555",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "example": "contact@acme.com",
+            "nullable": true
+          },
+          "contractedSaleCondition": {
+            "type": "integer",
+            "example": 1,
+            "nullable": true,
+            "description": "Contracted sale condition (combo item ID)"
+          },
+          "statisticalSaleCondition": {
+            "type": "integer",
+            "example": 1,
+            "nullable": true,
+            "description": "Statistical sale condition (combo item ID)"
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true
+          },
+          "taxCategoryId": {
+            "type": "integer",
+            "example": 1,
+            "description": "Tax category ID"
+          },
+          "masterId": {
+            "type": "integer",
+            "example": 1,
+            "nullable": true,
+            "description": "Master customer ID"
+          },
+          "saleConditionId": {
+            "type": "integer",
+            "example": 1,
+            "nullable": true,
+            "description": "Default sale condition (combo item ID)"
+          },
+          "locationId": {
+            "type": "integer",
+            "example": 1,
+            "nullable": true,
+            "description": "Location ID"
+          },
+          "address": {
+            "type": "string",
+            "example": "Av. Corrientes 1234",
+            "nullable": true
+          },
+          "documentTypeId": {
+            "type": "integer",
+            "example": 1,
+            "description": "Document type (combo item ID)"
+          },
+          "observations": {
+            "type": "string",
+            "example": "VIP customer",
+            "nullable": true
+          },
+          "ignoresTaxes": {
+            "type": "boolean",
+            "example": false,
+            "nullable": true,
+            "description": "Skip tax calculations for this customer"
+          },
+          "taxIdNumber": {
+            "type": "string",
+            "example": "12345678",
+            "nullable": true,
+            "description": "Tax ID number without formatting"
+          }
+        }
+      },
+      "CreateCustomerDto": {
+        "type": "object",
+        "required": [
+          "businessName",
+          "taxCategoryId",
+          "documentTypeId"
+        ],
+        "properties": {
+          "businessName": {
+            "type": "string",
+            "example": "Acme S.A.",
+            "description": "Legal business name"
+          },
+          "taxId": {
+            "type": "string",
+            "example": "20-12345678-9",
+            "nullable": true,
+            "description": "Tax ID (CUIT/CUIL)"
+          },
+          "postalCode": {
+            "type": "string",
+            "example": "B1001",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "example": "Buenos Aires",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "example": "+54 11 4444-5555",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "example": "contact@acme.com",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true
+          },
+          "taxCategoryId": {
+            "type": "integer",
+            "example": 1,
+            "description": "Tax category ID"
+          },
+          "saleConditionId": {
+            "type": "integer",
+            "example": 1,
+            "nullable": true
+          },
+          "locationId": {
+            "type": "integer",
+            "example": 1,
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "example": "Av. Corrientes 1234",
+            "nullable": true
+          },
+          "documentTypeId": {
+            "type": "integer",
+            "example": 1,
+            "description": "Document type (combo item ID)"
+          },
+          "observations": {
+            "type": "string",
+            "example": "VIP customer",
+            "nullable": true
+          },
+          "ignoresTaxes": {
+            "type": "boolean",
+            "example": false,
+            "nullable": true
+          },
+          "taxIdNumber": {
+            "type": "string",
+            "example": "12345678",
+            "nullable": true
           }
         }
       }

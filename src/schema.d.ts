@@ -3488,6 +3488,121 @@ export interface components {
             name?: string;
             isActive?: boolean;
         };
+        UpdateCustomerDto: {
+            /**
+             * @description Legal business name
+             * @example Acme S.A.
+             */
+            businessName?: string;
+            /**
+             * @description Tax ID (CUIT/CUIL)
+             * @example 20-12345678-9
+             */
+            taxId?: string | null;
+            /** @example B1001 */
+            postalCode?: string | null;
+            /** @example Buenos Aires */
+            city?: string | null;
+            /** @example +54 11 4444-5555 */
+            phone?: string | null;
+            /** @example contact@acme.com */
+            email?: string | null;
+            /**
+             * @description Contracted sale condition (combo item ID)
+             * @example 1
+             */
+            contractedSaleCondition?: number | null;
+            /**
+             * @description Statistical sale condition (combo item ID)
+             * @example 1
+             */
+            statisticalSaleCondition?: number | null;
+            /** @example true */
+            isActive?: boolean;
+            /**
+             * @description Tax category ID
+             * @example 1
+             */
+            taxCategoryId?: number;
+            /**
+             * @description Master customer ID
+             * @example 1
+             */
+            masterId?: number | null;
+            /**
+             * @description Default sale condition (combo item ID)
+             * @example 1
+             */
+            saleConditionId?: number | null;
+            /**
+             * @description Location ID
+             * @example 1
+             */
+            locationId?: number | null;
+            /** @example Av. Corrientes 1234 */
+            address?: string | null;
+            /**
+             * @description Document type (combo item ID)
+             * @example 1
+             */
+            documentTypeId?: number;
+            /** @example VIP customer */
+            observations?: string | null;
+            /**
+             * @description Skip tax calculations for this customer
+             * @example false
+             */
+            ignoresTaxes?: boolean | null;
+            /**
+             * @description Tax ID number without formatting
+             * @example 12345678
+             */
+            taxIdNumber?: string | null;
+        };
+        CreateCustomerDto: {
+            /**
+             * @description Legal business name
+             * @example Acme S.A.
+             */
+            businessName: string;
+            /**
+             * @description Tax ID (CUIT/CUIL)
+             * @example 20-12345678-9
+             */
+            taxId?: string | null;
+            /** @example B1001 */
+            postalCode?: string | null;
+            /** @example Buenos Aires */
+            city?: string | null;
+            /** @example +54 11 4444-5555 */
+            phone?: string | null;
+            /** @example contact@acme.com */
+            email?: string | null;
+            /** @example true */
+            isActive?: boolean;
+            /**
+             * @description Tax category ID
+             * @example 1
+             */
+            taxCategoryId: number;
+            /** @example 1 */
+            saleConditionId?: number | null;
+            /** @example 1 */
+            locationId?: number | null;
+            /** @example Av. Corrientes 1234 */
+            address?: string | null;
+            /**
+             * @description Document type (combo item ID)
+             * @example 1
+             */
+            documentTypeId: number;
+            /** @example VIP customer */
+            observations?: string | null;
+            /** @example false */
+            ignoresTaxes?: boolean | null;
+            /** @example 12345678 */
+            taxIdNumber?: string | null;
+        };
     };
     responses: never;
     parameters: never;
@@ -4430,7 +4545,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreateCustomerDto"];
             };
         };
         responses: {
@@ -4577,7 +4692,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateCustomerDto"];
+            };
+        };
         responses: {
             /** @description Updated customer */
             200: {

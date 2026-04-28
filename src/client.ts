@@ -144,11 +144,13 @@ class CustomersResource {
     return this.f.POST("/v1/customers", { body });
   }
 
-  // requestBody not yet defined in the spec; tracked in PEA-118
-  update(id: number, body: Record<string, unknown>) {
+  update(
+    id: number,
+    body: paths["/v1/customers/{id}"]["patch"]["requestBody"]["content"]["application/json"]
+  ) {
     return this.f.PATCH("/v1/customers/{id}", {
       params: { path: { id } },
-      body: body as never,
+      body,
     });
   }
 
