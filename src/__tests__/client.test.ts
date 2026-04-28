@@ -65,7 +65,7 @@ describe("PeaklyClient — namespace structure", () => {
 describe("PeaklyClient — auth headers", () => {
   it("sends X-API-Key on every request", async () => {
     const spy = vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(mockOk({ data: [] }));
-    const client = new PeaklyClient({ apiKey: "my-secret", baseUrl: "https://api.peakly.io" });
+    const client = new PeaklyClient({ apiKey: "my-secret", baseUrl: "https://api.peakly.ar" });
     await client.sales.receipts.list();
     const req = lastRequest(spy);
     expect(req.headers.get("x-api-key")).toBe("my-secret");
@@ -76,7 +76,7 @@ describe("PeaklyClient — auth headers", () => {
     const client = new PeaklyClient({
       apiKey: "key",
       organizationId: "org-123",
-      baseUrl: "https://api.peakly.io",
+      baseUrl: "https://api.peakly.ar",
     });
     await client.sales.receipts.list();
     const req = lastRequest(spy);
@@ -90,27 +90,27 @@ describe("sales.receipts", () => {
 
   beforeEach(() => {
     spy = vi.spyOn(globalThis, "fetch");
-    client = new PeaklyClient({ apiKey: "k", baseUrl: "https://api.peakly.io" });
+    client = new PeaklyClient({ apiKey: "k", baseUrl: "https://api.peakly.ar" });
   });
 
-  it("list — GET /v1/sales-receipts", async () => {
+  it("list — GET /v1/sales/sales-receipts", async () => {
     spy.mockResolvedValueOnce(mockOk({ data: [] }));
     await client.sales.receipts.list();
     const req = lastRequest(spy);
-    expect(req.url).toContain("/v1/sales-receipts");
+    expect(req.url).toContain("/v1/sales/sales-receipts");
     expect(req.method).toBe("GET");
   });
 
-  it("get — GET /v1/sales-receipts/{id}", async () => {
+  it("get — GET /v1/sales/sales-receipts/{id}", async () => {
     const id = "550e8400-e29b-41d4-a716-446655440000";
     spy.mockResolvedValueOnce(mockOk({ id }));
     await client.sales.receipts.get(id);
     const req = lastRequest(spy);
-    expect(req.url).toContain(`/v1/sales-receipts/${id}`);
+    expect(req.url).toContain(`/v1/sales/sales-receipts/${id}`);
     expect(req.method).toBe("GET");
   });
 
-  it("create — POST /v1/sales-receipts", async () => {
+  it("create — POST /v1/sales/sales-receipts", async () => {
     spy.mockResolvedValueOnce(mockOk({ id: "new-id" }));
     await client.sales.receipts.create({
       customerId: 1,
@@ -118,11 +118,11 @@ describe("sales.receipts", () => {
       saleConditionId: 3,
     });
     const req = lastRequest(spy);
-    expect(req.url).toContain("/v1/sales-receipts");
+    expect(req.url).toContain("/v1/sales/sales-receipts");
     expect(req.method).toBe("POST");
   });
 
-  it("void — POST /v1/sales-receipts/{id}/void", async () => {
+  it("void — POST /v1/sales/sales-receipts/{id}/void", async () => {
     spy.mockResolvedValueOnce(mockOk({ ok: true }));
     await client.sales.receipts.void("receipt-uuid", { createCreditNote: false });
     const req = lastRequest(spy);
@@ -130,7 +130,7 @@ describe("sales.receipts", () => {
     expect(req.method).toBe("POST");
   });
 
-  it("sendEmail — POST /v1/sales-receipts/{id}/send-email", async () => {
+  it("sendEmail — POST /v1/sales/sales-receipts/{id}/send-email", async () => {
     spy.mockResolvedValueOnce(mockOk({ ok: true }));
     await client.sales.receipts.sendEmail("receipt-uuid");
     const req = lastRequest(spy);
@@ -138,7 +138,7 @@ describe("sales.receipts", () => {
     expect(req.method).toBe("POST");
   });
 
-  it("duplicate — POST /v1/sales-receipts/{id}/duplicate", async () => {
+  it("duplicate — POST /v1/sales/sales-receipts/{id}/duplicate", async () => {
     spy.mockResolvedValueOnce(mockOk({ id: "new-copy-id" }));
     await client.sales.receipts.duplicate("receipt-uuid");
     const req = lastRequest(spy);
@@ -153,7 +153,7 @@ describe("sales.customers", () => {
 
   beforeEach(() => {
     spy = vi.spyOn(globalThis, "fetch");
-    client = new PeaklyClient({ apiKey: "k", baseUrl: "https://api.peakly.io" });
+    client = new PeaklyClient({ apiKey: "k", baseUrl: "https://api.peakly.ar" });
   });
 
   it("list — GET /v1/customers", async () => {
@@ -187,7 +187,7 @@ describe("sales.products", () => {
 
   beforeEach(() => {
     spy = vi.spyOn(globalThis, "fetch");
-    client = new PeaklyClient({ apiKey: "k", baseUrl: "https://api.peakly.io" });
+    client = new PeaklyClient({ apiKey: "k", baseUrl: "https://api.peakly.ar" });
   });
 
   it("get — uses numeric id in path", async () => {
@@ -213,7 +213,7 @@ describe("finance", () => {
 
   beforeEach(() => {
     spy = vi.spyOn(globalThis, "fetch");
-    client = new PeaklyClient({ apiKey: "k", baseUrl: "https://api.peakly.io" });
+    client = new PeaklyClient({ apiKey: "k", baseUrl: "https://api.peakly.ar" });
   });
 
   it("deposits.list — GET /v1/finance/deposits", async () => {
@@ -255,30 +255,30 @@ describe("accounting", () => {
 
   beforeEach(() => {
     spy = vi.spyOn(globalThis, "fetch");
-    client = new PeaklyClient({ apiKey: "k", baseUrl: "https://api.peakly.io" });
+    client = new PeaklyClient({ apiKey: "k", baseUrl: "https://api.peakly.ar" });
   });
 
-  it("entries.list — GET /v1/journal-entries", async () => {
+  it("entries.list — GET /v1/accounting/journal-entries", async () => {
     spy.mockResolvedValueOnce(mockOk({ data: [] }));
     await client.accounting.entries.list();
     const req = lastRequest(spy);
-    expect(req.url).toContain("/v1/journal-entries");
+    expect(req.url).toContain("/v1/accounting/journal-entries");
     expect(req.method).toBe("GET");
   });
 
-  it("entries.get — GET /v1/journal-entries/{id}", async () => {
+  it("entries.get — GET /v1/accounting/journal-entries/{id}", async () => {
     spy.mockResolvedValueOnce(mockOk({ id: 1 }));
     await client.accounting.entries.get(1);
     const req = lastRequest(spy);
-    expect(req.url).toContain("/v1/journal-entries/1");
+    expect(req.url).toContain("/v1/accounting/journal-entries/1");
     expect(req.method).toBe("GET");
   });
 
-  it("accounts.list — GET /v1/journal-accounts", async () => {
+  it("accounts.list — GET /v1/accounting/journal-accounts", async () => {
     spy.mockResolvedValueOnce(mockOk({ data: [] }));
     await client.accounting.accounts.list();
     const req = lastRequest(spy);
-    expect(req.url).toContain("/v1/journal-accounts");
+    expect(req.url).toContain("/v1/accounting/journal-accounts");
     expect(req.method).toBe("GET");
   });
 });
@@ -289,14 +289,14 @@ describe("purchases", () => {
 
   beforeEach(() => {
     spy = vi.spyOn(globalThis, "fetch");
-    client = new PeaklyClient({ apiKey: "k", baseUrl: "https://api.peakly.io" });
+    client = new PeaklyClient({ apiKey: "k", baseUrl: "https://api.peakly.ar" });
   });
 
-  it("receipts.list — GET /v1/purchase-receipts", async () => {
+  it("receipts.list — GET /v1/purchases/purchase-receipts", async () => {
     spy.mockResolvedValueOnce(mockOk({ data: [] }));
     await client.purchases.receipts.list();
     const req = lastRequest(spy);
-    expect(req.url).toContain("/v1/purchase-receipts");
+    expect(req.url).toContain("/v1/purchases/purchase-receipts");
     expect(req.method).toBe("GET");
   });
 
@@ -304,15 +304,15 @@ describe("purchases", () => {
     spy.mockResolvedValueOnce(mockOk({ id: 9 }));
     await client.purchases.receipts.get(9);
     const req = lastRequest(spy);
-    expect(req.url).toContain("/v1/purchase-receipts/9");
+    expect(req.url).toContain("/v1/purchases/purchase-receipts/9");
     expect(req.method).toBe("GET");
   });
 
-  it("suppliers.list — GET /v1/suppliers", async () => {
+  it("suppliers.list — GET /v1/purchases/suppliers", async () => {
     spy.mockResolvedValueOnce(mockOk({ data: [] }));
     await client.purchases.suppliers.list();
     const req = lastRequest(spy);
-    expect(req.url).toContain("/v1/suppliers");
+    expect(req.url).toContain("/v1/purchases/suppliers");
     expect(req.method).toBe("GET");
   });
 
@@ -320,7 +320,7 @@ describe("purchases", () => {
     spy.mockResolvedValueOnce(mockOk({ id: 3 }));
     await client.purchases.suppliers.get(3);
     const req = lastRequest(spy);
-    expect(req.url).toContain("/v1/suppliers/3");
+    expect(req.url).toContain("/v1/purchases/suppliers/3");
     expect(req.method).toBe("GET");
   });
 });

@@ -56,6 +56,44 @@
         ],
         "type": "object"
       },
+      "BulkReconcileDto": {
+        "properties": {
+          "receiptIds": {
+            "description": "Array of sales receipt UUIDs to mark as fully collected (1\u2013200)",
+            "example": [
+              "uuid-1",
+              "uuid-2"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "receiptIds"
+        ],
+        "type": "object"
+      },
+      "BulkVoidDto": {
+        "properties": {
+          "receiptIds": {
+            "description": "Array of sales receipt UUIDs to void (1\u201350)",
+            "example": [
+              "uuid-1",
+              "uuid-2"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "receiptIds"
+        ],
+        "type": "object"
+      },
       "CreateAccountingLockDto": {
         "properties": {
           "endDate": {
@@ -258,13 +296,13 @@
           "barcode": {
             "example": "7890123456789",
             "nullable": true,
-            "type": "object"
+            "type": "string"
           },
           "categoryId": {
             "description": "Product category ID; null/0 may resolve to Sin Rubro",
             "example": 3,
             "nullable": true,
-            "type": "object"
+            "type": "integer"
           },
           "description": {
             "description": "Product description",
@@ -276,26 +314,38 @@
             "example": true,
             "type": "boolean"
           },
+          "providerId": {
+            "description": "External provider identifier. Unique per organization; acts as an idempotency key.",
+            "example": "ext-sku-123",
+            "nullable": true,
+            "type": "object"
+          },
           "quantity": {
             "example": 1.5,
             "nullable": true,
-            "type": "object"
+            "type": "number"
           },
           "type": {
             "example": "Producto",
             "nullable": true,
-            "type": "object"
+            "type": "string"
           },
           "unitOfMeasureId": {
             "description": "Unit of measure ID",
             "example": 1,
             "type": "number"
           },
+          "unitPrice": {
+            "description": "Default unit price for auto-populating receipt lines",
+            "example": 1500.5,
+            "nullable": true,
+            "type": "number"
+          },
           "vatRateId": {
             "description": "VAT rate (combo) ID",
             "example": 2,
             "nullable": true,
-            "type": "object"
+            "type": "integer"
           }
         },
         "required": [
@@ -315,13 +365,13 @@
             "description": "Discount percent (0\u2013100)",
             "example": 10,
             "nullable": true,
-            "type": "object"
+            "type": "number"
           },
           "productId": {
             "description": "Product ID",
             "example": 1,
             "nullable": true,
-            "type": "object"
+            "type": "integer"
           },
           "quantity": {
             "description": "Quantity",
@@ -332,7 +382,7 @@
             "description": "Tax type (combo item) ID",
             "example": 1,
             "nullable": true,
-            "type": "object"
+            "type": "integer"
           },
           "unitPrice": {
             "description": "Unit price",
@@ -353,13 +403,13 @@
             "description": "Semicolon-separated emails for collection",
             "example": "customer@example.com",
             "nullable": true,
-            "type": "object"
+            "type": "string"
           },
           "currencyId": {
             "description": "Currency ID",
             "example": 1,
             "nullable": true,
-            "type": "object"
+            "type": "integer"
           },
           "customerId": {
             "description": "Customer ID",
@@ -387,7 +437,7 @@
             "description": "Exchange rate",
             "example": 1,
             "nullable": true,
-            "type": "object"
+            "type": "number"
           },
           "exportData": {
             "description": "Export-specific data for WSFEX invoices (e.g. incoterms)",
@@ -405,7 +455,7 @@
           "observation": {
             "example": "General observation",
             "nullable": true,
-            "type": "object"
+            "type": "string"
           },
           "observations": {
             "description": "Observations",
@@ -413,6 +463,12 @@
               "$ref": "#/components/schemas/CreateSalesReceiptObservationDto"
             },
             "type": "array"
+          },
+          "providerId": {
+            "description": "External provider identifier. Unique per organization; acts as an idempotency key.",
+            "example": "ext-receipt-123",
+            "nullable": true,
+            "type": "object"
           },
           "receiptBookId": {
             "description": "Receipt book ID",
@@ -465,6 +521,68 @@
         ],
         "type": "object"
       },
+      "ErrorResponseDto": {
+        "properties": {
+          "code": {
+            "description": "Numeric AFIP error code (e.g. 10016 for already-authorized). Only present on AFIP errors that carry a numeric code.",
+            "example": 10016,
+            "type": "number"
+          },
+          "details": {
+            "description": "Field-level validation reasons. Populated for validation errors and structured business errors.",
+            "example": [
+              "CUIT must contain 11 digits (received 9)."
+            ],
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "error": {
+            "description": "SCREAMING_SNAKE_CASE enum-style error code. Always machine-mappable. Examples: AFIP_PERSONA_NOT_FOUND, AFIP_WSCI_ERROR, INVALID_CUIT, DB_UNIQUE_VIOLATION, NOT_FOUND, BAD_REQUEST, UNAUTHORIZED.",
+            "example": "AFIP_PERSONA_NOT_FOUND",
+            "type": "string"
+          },
+          "message": {
+            "description": "Developer-friendly English description of the error. Always present.",
+            "example": "No AFIP taxpayer found for CUIT 20999999999.",
+            "type": "string"
+          },
+          "path": {
+            "description": "Request path that triggered the error.",
+            "example": "/v1/customers/lookup-cuit?cuit=20-99999999-9",
+            "type": "string"
+          },
+          "providerMessage": {
+            "description": "Raw message from the upstream provider (AFIP, etc.) with envelope noise stripped. Present on errors that wrap a third-party failure; kept in the provider's original language.",
+            "example": "No existe persona con ese Id",
+            "type": "string"
+          },
+          "requestId": {
+            "description": "pino-http request ID for log correlation.",
+            "example": "req-abc-123",
+            "type": "string"
+          },
+          "statusCode": {
+            "description": "HTTP status code.",
+            "example": 404,
+            "type": "number"
+          },
+          "timestamp": {
+            "description": "ISO-8601 timestamp of when the error occurred.",
+            "example": "2026-04-23T14:30:00.000Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "statusCode",
+          "error",
+          "message",
+          "timestamp",
+          "path"
+        ],
+        "type": "object"
+      },
       "JournalEntryItemDto": {
         "properties": {
           "accountId": {
@@ -481,7 +599,7 @@
           },
           "ownCheckId": {
             "description": "Own check ID (optional)",
-            "type": "object"
+            "type": "integer"
           }
         },
         "required": [
@@ -621,13 +739,13 @@
             "description": "Discount percent (0\u2013100)",
             "example": 10,
             "nullable": true,
-            "type": "object"
+            "type": "number"
           },
           "productId": {
             "description": "Product ID",
             "example": 1,
             "nullable": true,
-            "type": "object"
+            "type": "integer"
           },
           "quantity": {
             "description": "Quantity",
@@ -638,7 +756,7 @@
             "description": "Tax type (combo item) ID",
             "example": 1,
             "nullable": true,
-            "type": "object"
+            "type": "integer"
           },
           "unitPrice": {
             "description": "Unit price",
@@ -703,12 +821,12 @@
           "barcode": {
             "example": "7890123456789",
             "nullable": true,
-            "type": "object"
+            "type": "string"
           },
           "categoryId": {
             "example": 3,
             "nullable": true,
-            "type": "object"
+            "type": "integer"
           },
           "description": {
             "example": "Widget A",
@@ -718,24 +836,36 @@
             "example": true,
             "type": "boolean"
           },
+          "providerId": {
+            "description": "External provider identifier. Unique per organization; acts as an idempotency key.",
+            "example": "ext-sku-123",
+            "nullable": true,
+            "type": "object"
+          },
           "quantity": {
             "example": 1.5,
             "nullable": true,
-            "type": "object"
+            "type": "number"
           },
           "type": {
             "example": "Producto",
             "nullable": true,
-            "type": "object"
+            "type": "string"
           },
           "unitOfMeasureId": {
             "example": 1,
             "type": "number"
           },
+          "unitPrice": {
+            "description": "Default unit price for auto-populating receipt lines",
+            "example": 1500.5,
+            "nullable": true,
+            "type": "number"
+          },
           "vatRateId": {
             "example": 2,
             "nullable": true,
-            "type": "object"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -745,13 +875,13 @@
           "collectionEmail": {
             "example": "customer@example.com",
             "nullable": true,
-            "type": "object"
+            "type": "string"
           },
           "currencyId": {
             "description": "Currency ID (draft only)",
             "example": 1,
             "nullable": true,
-            "type": "object"
+            "type": "integer"
           },
           "customerId": {
             "description": "Customer ID (draft only)",
@@ -779,7 +909,7 @@
             "description": "Exchange rate (draft only)",
             "example": 1,
             "nullable": true,
-            "type": "object"
+            "type": "number"
           },
           "exportData": {
             "description": "Export-specific data for WSFEX invoices (draft only)",
@@ -792,7 +922,7 @@
           "observation": {
             "example": "General observation",
             "nullable": true,
-            "type": "object"
+            "type": "string"
           },
           "observations": {
             "description": "Replace all observations atomically (draft only)",
@@ -800,6 +930,12 @@
               "$ref": "#/components/schemas/CreateSalesReceiptObservationDto"
             },
             "type": "array"
+          },
+          "providerId": {
+            "description": "External provider identifier. Unique per organization; acts as an idempotency key.",
+            "example": "ext-receipt-123",
+            "nullable": true,
+            "type": "object"
           },
           "receiptBookId": {
             "description": "Receipt book ID (draft only)",
@@ -851,7 +987,7 @@
   },
   "openapi": "3.0.0",
   "paths": {
-    "/v1/accounting-locks": {
+    "/v1/accounting/accounting-locks": {
       "get": {
         "operationId": "AccountingLocksController_list",
         "parameters": [],
@@ -899,7 +1035,7 @@
         ]
       }
     },
-    "/v1/accounting-locks/{id}": {
+    "/v1/accounting/accounting-locks/{id}": {
       "delete": {
         "operationId": "AccountingLocksController_delete",
         "parameters": [
@@ -960,6 +1096,461 @@
           }
         ],
         "summary": "Update an accounting lock",
+        "tags": [
+          "Accounting"
+        ]
+      }
+    },
+    "/v1/accounting/fiscal-years": {
+      "get": {
+        "operationId": "FiscalYearsController_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "List fiscal years",
+        "tags": [
+          "Accounting"
+        ]
+      },
+      "post": {
+        "operationId": "FiscalYearsController_create",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFiscalYearDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Create a fiscal year",
+        "tags": [
+          "Accounting"
+        ]
+      }
+    },
+    "/v1/accounting/fiscal-years/{id}": {
+      "patch": {
+        "operationId": "FiscalYearsController_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFiscalYearDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Update a fiscal year",
+        "tags": [
+          "Accounting"
+        ]
+      }
+    },
+    "/v1/accounting/fiscal-years/{id}/close": {
+      "post": {
+        "operationId": "FiscalYearsController_close",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Close a fiscal year",
+        "tags": [
+          "Accounting"
+        ]
+      }
+    },
+    "/v1/accounting/journal-accounts": {
+      "get": {
+        "operationId": "JournalAccountsController_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "List journal accounts (plan de cuentas)",
+        "tags": [
+          "Accounting"
+        ]
+      },
+      "post": {
+        "operationId": "JournalAccountsController_create",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateJournalAccountDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Create a journal account",
+        "tags": [
+          "Accounting"
+        ]
+      }
+    },
+    "/v1/accounting/journal-accounts/{id}": {
+      "delete": {
+        "operationId": "JournalAccountsController_delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Delete a journal account",
+        "tags": [
+          "Accounting"
+        ]
+      },
+      "patch": {
+        "operationId": "JournalAccountsController_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateJournalAccountDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Update a journal account",
+        "tags": [
+          "Accounting"
+        ]
+      }
+    },
+    "/v1/accounting/journal-entries": {
+      "get": {
+        "operationId": "JournalEntriesController_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "type": "number"
+            }
+          },
+          {
+            "description": "Filter by module (ventas, compras, tesoreria, manual)",
+            "in": "query",
+            "name": "module",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter from date (ISO string)",
+            "in": "query",
+            "name": "date_from",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter to date (ISO string)",
+            "in": "query",
+            "name": "date_to",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter manual entries only",
+            "in": "query",
+            "name": "is_manual",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "List journal entries with pagination",
+        "tags": [
+          "Accounting"
+        ]
+      },
+      "post": {
+        "operationId": "JournalEntriesController_create",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateJournalEntryDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Create a manual journal entry",
+        "tags": [
+          "Accounting"
+        ]
+      }
+    },
+    "/v1/accounting/journal-entries/reports/balance-sheet": {
+      "get": {
+        "operationId": "JournalEntriesController_getBalanceSheet",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "as_of_date",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get balance sheet report",
+        "tags": [
+          "Accounting"
+        ]
+      }
+    },
+    "/v1/accounting/journal-entries/reports/profit-loss": {
+      "get": {
+        "operationId": "JournalEntriesController_getProfitAndLoss",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date_from",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get profit and loss report",
+        "tags": [
+          "Accounting"
+        ]
+      }
+    },
+    "/v1/accounting/journal-entries/{id}": {
+      "delete": {
+        "operationId": "JournalEntriesController_delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Delete a manual journal entry",
+        "tags": [
+          "Accounting"
+        ]
+      },
+      "get": {
+        "operationId": "JournalEntriesController_getById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get a journal entry with its items",
         "tags": [
           "Accounting"
         ]
@@ -1267,7 +1858,7 @@
         ],
         "summary": "List branches for the current organization",
         "tags": [
-          "Common - Sucursales"
+          "Sucursales"
         ]
       },
       "post": {
@@ -1331,7 +1922,7 @@
         ],
         "summary": "Create branch",
         "tags": [
-          "Common - Sucursales"
+          "Sucursales"
         ]
       }
     },
@@ -1363,7 +1954,7 @@
         ],
         "summary": "Delete branch (soft delete)",
         "tags": [
-          "Common - Sucursales"
+          "Sucursales"
         ]
       },
       "get": {
@@ -1393,7 +1984,7 @@
         ],
         "summary": "Get branch by id",
         "tags": [
-          "Common - Sucursales"
+          "Sucursales"
         ]
       },
       "patch": {
@@ -1423,7 +2014,7 @@
         ],
         "summary": "Update branch",
         "tags": [
-          "Common - Sucursales"
+          "Sucursales"
         ]
       }
     },
@@ -1443,7 +2034,7 @@
         ],
         "summary": "List certificates for the current organization",
         "tags": [
-          "Common - Certificados"
+          "Certificados"
         ]
       },
       "post": {
@@ -1498,7 +2089,7 @@
         ],
         "summary": "Create certificate",
         "tags": [
-          "Common - Certificados"
+          "Certificados"
         ]
       }
     },
@@ -1521,7 +2112,7 @@
         ],
         "summary": "Get active certificate for the current organization",
         "tags": [
-          "Common - Certificados"
+          "Certificados"
         ]
       }
     },
@@ -1541,7 +2132,7 @@
         ],
         "summary": "Get certificate expiration status for the current organization",
         "tags": [
-          "Common - Certificados"
+          "Certificados"
         ]
       }
     },
@@ -1573,7 +2164,7 @@
         ],
         "summary": "Delete certificate",
         "tags": [
-          "Common - Certificados"
+          "Certificados"
         ]
       },
       "get": {
@@ -1603,7 +2194,7 @@
         ],
         "summary": "Get certificate by id",
         "tags": [
-          "Common - Certificados"
+          "Certificados"
         ]
       },
       "patch": {
@@ -1633,7 +2224,7 @@
         ],
         "summary": "Update certificate",
         "tags": [
-          "Common - Certificados"
+          "Certificados"
         ]
       }
     },
@@ -1668,7 +2259,7 @@
         ],
         "summary": "Download certificate CRT file",
         "tags": [
-          "Common - Certificados"
+          "Certificados"
         ]
       }
     },
@@ -1703,7 +2294,7 @@
         ],
         "summary": "Download certificate CSR file",
         "tags": [
-          "Common - Certificados"
+          "Certificados"
         ]
       }
     },
@@ -1760,7 +2351,7 @@
         ],
         "summary": "Upload CRT and generate P12",
         "tags": [
-          "Common - Certificados"
+          "Certificados"
         ]
       }
     },
@@ -1796,7 +2387,7 @@
         ],
         "summary": "Validate certificate connection with AFIP services",
         "tags": [
-          "Common - Certificados"
+          "Certificados"
         ]
       }
     },
@@ -1811,7 +2402,7 @@
         },
         "summary": "List combos",
         "tags": [
-          "Common - Combos"
+          "Combos"
         ]
       }
     },
@@ -1839,7 +2430,7 @@
         },
         "summary": "Get combo by id",
         "tags": [
-          "Common - Combos"
+          "Combos"
         ]
       }
     },
@@ -1876,7 +2467,7 @@
         },
         "summary": "Get combo items",
         "tags": [
-          "Common - Combos"
+          "Combos"
         ]
       }
     },
@@ -1973,7 +2564,7 @@
     },
     "/v1/customers": {
       "get": {
-        "description": "Returns a page of customers. Use cursor from next_cursor for the next page.",
+        "description": "Returns a page of customers. Use cursor from nextCursor for the next page.",
         "operationId": "CustomersController_findAll",
         "parameters": [
           {
@@ -2003,11 +2594,20 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "description": "Exact match on the external provider identifier",
+            "in": "query",
+            "name": "provider_id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Paginated customers (data, next_cursor, has_more)"
+            "description": "Paginated customers (data, nextCursor, hasMore)"
           }
         },
         "security": [
@@ -2070,6 +2670,15 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "description": "Exact match on the external provider identifier",
+            "in": "query",
+            "name": "provider_id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2094,7 +2703,7 @@
         "operationId": "CustomersController_lookupCuit",
         "parameters": [
           {
-            "description": "CUIT to look up (11 digits)",
+            "description": "CUIT to look up (11 digits, with or without dashes)",
             "in": "query",
             "name": "cuit",
             "required": true,
@@ -2108,7 +2717,34 @@
             "description": "CUIT lookup result"
           },
           "400": {
-            "description": "Invalid CUIT"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "INVALID_CUIT \u2014 malformed or bad check digit."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "AFIP_PERSONA_NOT_FOUND \u2014 no taxpayer registered in AFIP for this CUIT."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "AFIP_WSCI_ERROR \u2014 upstream AFIP (WSCI) failure. See providerMessage."
           }
         },
         "security": [
@@ -2266,7 +2902,7 @@
         },
         "summary": "Get exchange rate",
         "tags": [
-          "Common - Cotizaciones"
+          "Cotizaciones"
         ]
       }
     },
@@ -2298,7 +2934,7 @@
         ],
         "summary": "Get signed download URL for an export file",
         "tags": [
-          "Ventas - Reportes"
+          "Reportes - Exportaciones"
         ]
       }
     },
@@ -4850,395 +5486,6 @@
         ]
       }
     },
-    "/v1/fiscal-years": {
-      "get": {
-        "operationId": "FiscalYearsController_list",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "List fiscal years",
-        "tags": [
-          "Accounting"
-        ]
-      },
-      "post": {
-        "operationId": "FiscalYearsController_create",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateFiscalYearDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Create a fiscal year",
-        "tags": [
-          "Accounting"
-        ]
-      }
-    },
-    "/v1/fiscal-years/{id}": {
-      "patch": {
-        "operationId": "FiscalYearsController_update",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateFiscalYearDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Update a fiscal year",
-        "tags": [
-          "Accounting"
-        ]
-      }
-    },
-    "/v1/fiscal-years/{id}/close": {
-      "post": {
-        "operationId": "FiscalYearsController_close",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Close a fiscal year",
-        "tags": [
-          "Accounting"
-        ]
-      }
-    },
-    "/v1/journal-accounts": {
-      "get": {
-        "operationId": "JournalAccountsController_list",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "List journal accounts (plan de cuentas)",
-        "tags": [
-          "Accounting"
-        ]
-      },
-      "post": {
-        "operationId": "JournalAccountsController_create",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateJournalAccountDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Create a journal account",
-        "tags": [
-          "Accounting"
-        ]
-      }
-    },
-    "/v1/journal-accounts/{id}": {
-      "delete": {
-        "operationId": "JournalAccountsController_delete",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Delete a journal account",
-        "tags": [
-          "Accounting"
-        ]
-      },
-      "patch": {
-        "operationId": "JournalAccountsController_update",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateJournalAccountDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Update a journal account",
-        "tags": [
-          "Accounting"
-        ]
-      }
-    },
-    "/v1/journal-entries": {
-      "get": {
-        "operationId": "JournalEntriesController_list",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "schema": {
-              "default": 20,
-              "type": "number"
-            }
-          },
-          {
-            "description": "Filter by module (ventas, compras, tesoreria, manual)",
-            "in": "query",
-            "name": "module",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Filter from date (ISO string)",
-            "in": "query",
-            "name": "date_from",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Filter to date (ISO string)",
-            "in": "query",
-            "name": "date_to",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Filter manual entries only",
-            "in": "query",
-            "name": "is_manual",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "List journal entries with pagination",
-        "tags": [
-          "Accounting"
-        ]
-      },
-      "post": {
-        "operationId": "JournalEntriesController_create",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateJournalEntryDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Create a manual journal entry",
-        "tags": [
-          "Accounting"
-        ]
-      }
-    },
-    "/v1/journal-entries/{id}": {
-      "delete": {
-        "operationId": "JournalEntriesController_delete",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Delete a manual journal entry",
-        "tags": [
-          "Accounting"
-        ]
-      },
-      "get": {
-        "operationId": "JournalEntriesController_getById",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Get a journal entry with its items",
-        "tags": [
-          "Accounting"
-        ]
-      }
-    },
     "/v1/leads": {
       "get": {
         "operationId": "LeadsController_findAll",
@@ -5344,7 +5591,7 @@
         },
         "summary": "List locations (default: domestic only, country_id = 40)",
         "tags": [
-          "Common - Localidades"
+          "Localidades"
         ]
       }
     },
@@ -5362,7 +5609,7 @@
         },
         "summary": "Get default location",
         "tags": [
-          "Common - Localidades"
+          "Localidades"
         ]
       }
     },
@@ -5390,7 +5637,7 @@
         },
         "summary": "Set location as default",
         "tags": [
-          "Common - Localidades"
+          "Localidades"
         ]
       }
     },
@@ -5418,7 +5665,7 @@
         },
         "summary": "Get location by id",
         "tags": [
-          "Common - Localidades"
+          "Localidades"
         ]
       }
     },
@@ -5672,7 +5919,7 @@
         ],
         "summary": "List product categories for the current organization",
         "tags": [
-          "Ventas - Categor\u00edas"
+          "Stock - Categor\u00edas"
         ]
       },
       "post": {
@@ -5712,7 +5959,7 @@
         ],
         "summary": "Create product category",
         "tags": [
-          "Ventas - Categor\u00edas"
+          "Stock - Categor\u00edas"
         ]
       }
     },
@@ -5744,7 +5991,7 @@
         ],
         "summary": "Delete product category",
         "tags": [
-          "Ventas - Categor\u00edas"
+          "Stock - Categor\u00edas"
         ]
       },
       "get": {
@@ -5775,7 +6022,7 @@
         ],
         "summary": "Get product category by id",
         "tags": [
-          "Ventas - Categor\u00edas"
+          "Stock - Categor\u00edas"
         ]
       },
       "patch": {
@@ -5823,13 +6070,13 @@
         ],
         "summary": "Update product category",
         "tags": [
-          "Ventas - Categor\u00edas"
+          "Stock - Categor\u00edas"
         ]
       }
     },
     "/v1/products": {
       "get": {
-        "description": "Returns a page of products. Use cursor from next_cursor for the next page.",
+        "description": "Returns a page of products. Use cursor from nextCursor for the next page.",
         "operationId": "ProductsController_findAll",
         "parameters": [
           {
@@ -5859,11 +6106,20 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "description": "Exact match on the external provider identifier",
+            "in": "query",
+            "name": "provider_id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Paginated products (data, next_cursor, has_more)"
+            "description": "Paginated products (data, nextCursor, hasMore)"
           }
         },
         "security": [
@@ -5873,7 +6129,7 @@
         ],
         "summary": "List products (cursor-paginated)",
         "tags": [
-          "Ventas - Productos"
+          "Stock - Productos"
         ]
       },
       "post": {
@@ -5901,7 +6157,7 @@
         ],
         "summary": "Create product",
         "tags": [
-          "Ventas - Productos"
+          "Stock - Productos"
         ]
       }
     },
@@ -5940,7 +6196,7 @@
         ],
         "summary": "Export products as CSV (cursor-based, streaming)",
         "tags": [
-          "Ventas - Productos"
+          "Stock - Productos"
         ]
       }
     },
@@ -5988,7 +6244,7 @@
         ],
         "summary": "Search products with favorites, recents, and fuzzy matching",
         "tags": [
-          "Ventas - Productos"
+          "Stock - Productos"
         ]
       }
     },
@@ -6020,7 +6276,7 @@
         ],
         "summary": "Delete product",
         "tags": [
-          "Ventas - Productos"
+          "Stock - Productos"
         ]
       },
       "get": {
@@ -6050,7 +6306,7 @@
         ],
         "summary": "Get product by id",
         "tags": [
-          "Ventas - Productos"
+          "Stock - Productos"
         ]
       },
       "patch": {
@@ -6090,7 +6346,7 @@
         ],
         "summary": "Update product",
         "tags": [
-          "Ventas - Productos"
+          "Stock - Productos"
         ]
       }
     },
@@ -6119,7 +6375,7 @@
         ],
         "summary": "Toggle product as favorite for the organization",
         "tags": [
-          "Ventas - Productos"
+          "Stock - Productos"
         ]
       }
     },
@@ -6454,7 +6710,7 @@
         ]
       }
     },
-    "/v1/purchase-categories": {
+    "/v1/purchases/purchase-categories": {
       "get": {
         "operationId": "PurchaseCategoriesController_findAll",
         "parameters": [
@@ -6524,7 +6780,7 @@
         ]
       }
     },
-    "/v1/purchase-categories/{id}": {
+    "/v1/purchases/purchase-categories/{id}": {
       "delete": {
         "operationId": "PurchaseCategoriesController_remove",
         "parameters": [
@@ -6635,9 +6891,9 @@
         ]
       }
     },
-    "/v1/purchase-receipts": {
+    "/v1/purchases/purchase-receipts": {
       "get": {
-        "description": "Returns a page of purchase receipts. Use cursor from next_cursor for the next page.",
+        "description": "Returns a page of purchase receipts. Use cursor from nextCursor for the next page.",
         "operationId": "PurchaseReceiptsController_findAll",
         "parameters": [
           {
@@ -6725,7 +6981,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Paginated purchase receipts (data, next_cursor, has_more)"
+            "description": "Paginated purchase receipts (data, nextCursor, hasMore)"
           }
         },
         "security": [
@@ -6768,7 +7024,7 @@
         ]
       }
     },
-    "/v1/purchase-receipts/export": {
+    "/v1/purchases/purchase-receipts/export": {
       "get": {
         "operationId": "PurchaseReceiptsController_exportCsv",
         "parameters": [
@@ -6829,7 +7085,7 @@
         ]
       }
     },
-    "/v1/purchase-receipts/unpaid/{supplierId}": {
+    "/v1/purchases/purchase-receipts/unpaid/{supplierId}": {
       "get": {
         "operationId": "PurchaseReceiptsController_findUnpaidBySupplier",
         "parameters": [
@@ -6858,7 +7114,7 @@
         ]
       }
     },
-    "/v1/purchase-receipts/{id}": {
+    "/v1/purchases/purchase-receipts/{id}": {
       "delete": {
         "operationId": "PurchaseReceiptsController_remove",
         "parameters": [
@@ -6950,7 +7206,7 @@
         ]
       }
     },
-    "/v1/purchase-receipts/{id}/anular": {
+    "/v1/purchases/purchase-receipts/{id}/anular": {
       "post": {
         "operationId": "PurchaseReceiptsController_anular",
         "parameters": [
@@ -6979,7 +7235,7 @@
         ]
       }
     },
-    "/v1/purchase-receipts/{id}/details": {
+    "/v1/purchases/purchase-receipts/{id}/details": {
       "put": {
         "operationId": "PurchaseReceiptsController_replaceDetails",
         "parameters": [
@@ -7016,6 +7272,347 @@
         "summary": "Replace all details for a purchase receipt",
         "tags": [
           "Compras - Comprobantes"
+        ]
+      }
+    },
+    "/v1/purchases/suppliers": {
+      "get": {
+        "description": "Returns a page of suppliers. Use cursor from nextCursor for the next page.",
+        "operationId": "SuppliersController_findAll",
+        "parameters": [
+          {
+            "description": "Opaque cursor for next page",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Page size (default 50, max 100)",
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "example": 50,
+              "type": "number"
+            }
+          },
+          {
+            "description": "Filter by business name, tax ID, or email (partial match)",
+            "in": "query",
+            "name": "search",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated suppliers (data, nextCursor, hasMore)"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "List suppliers (cursor-paginated)",
+        "tags": [
+          "Compras - Proveedores"
+        ]
+      },
+      "post": {
+        "operationId": "SuppliersController_create",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "Supplier fields (businessName required)",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created supplier"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Create supplier",
+        "tags": [
+          "Compras - Proveedores"
+        ]
+      }
+    },
+    "/v1/purchases/suppliers/bulk-delete": {
+      "post": {
+        "operationId": "SuppliersController_removeBulk",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "ids": {
+                    "items": {
+                      "type": "number"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Number of deleted suppliers"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Bulk delete suppliers (soft delete)",
+        "tags": [
+          "Compras - Proveedores"
+        ]
+      }
+    },
+    "/v1/purchases/suppliers/export": {
+      "get": {
+        "operationId": "SuppliersController_exportCsv",
+        "parameters": [
+          {
+            "description": "Filter by business name, tax ID, or email (partial match)",
+            "in": "query",
+            "name": "search",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Include only active suppliers (default true)",
+            "in": "query",
+            "name": "active_only",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CSV file download"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Export suppliers as CSV (cursor-based, streaming)",
+        "tags": [
+          "Compras - Proveedores"
+        ]
+      }
+    },
+    "/v1/purchases/suppliers/get-or-create": {
+      "post": {
+        "description": "Looks up supplier by CUIT. If not found, auto-creates using AFIP padron data.",
+        "operationId": "SuppliersController_getOrCreate",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "{ taxId, businessName?, ... }",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Existing or newly created supplier"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get existing supplier by CUIT or create with AFIP data",
+        "tags": [
+          "Compras - Proveedores"
+        ]
+      }
+    },
+    "/v1/purchases/suppliers/lookup-cuit": {
+      "get": {
+        "description": "Validates CUIT and fetches business data from AFIP via system certificate.",
+        "operationId": "SuppliersController_lookupCuit",
+        "parameters": [
+          {
+            "description": "CUIT to look up (11 digits, with or without dashes)",
+            "in": "query",
+            "name": "cuit",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CUIT lookup result"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "INVALID_CUIT \u2014 malformed or bad check digit."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "AFIP_PERSONA_NOT_FOUND \u2014 no taxpayer registered in AFIP for this CUIT."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "AFIP_WSCI_ERROR \u2014 upstream AFIP (WSCI) failure. See providerMessage."
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Lookup CUIT for supplier auto-fill",
+        "tags": [
+          "Compras - Proveedores"
+        ]
+      }
+    },
+    "/v1/purchases/suppliers/{id}": {
+      "delete": {
+        "operationId": "SuppliersController_remove",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Delete supplier (soft delete)",
+        "tags": [
+          "Compras - Proveedores"
+        ]
+      },
+      "get": {
+        "operationId": "SuppliersController_findOne",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Supplier"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get supplier by id",
+        "tags": [
+          "Compras - Proveedores"
+        ]
+      },
+      "patch": {
+        "operationId": "SuppliersController_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated supplier"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Update supplier",
+        "tags": [
+          "Compras - Proveedores"
         ]
       }
     },
@@ -7065,6 +7662,7 @@
                   "type": {
                     "enum": [
                       "WS",
+                      "WS_MOCK",
                       "EN_LINEA",
                       "PRE_IMPRESOS"
                     ],
@@ -7263,9 +7861,605 @@
         ]
       }
     },
-    "/v1/sales-receipts": {
+    "/v1/sales/reports/dashboard-stats": {
       "get": {
-        "description": "Returns a page of sales receipts. Use cursor from next_cursor for the next page. If date_from/date_to are omitted, all dates are included.",
+        "operationId": "ReportsController_getDashboardStats",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date_from",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "group_by",
+            "required": false,
+            "schema": {
+              "enum": [
+                "day",
+                "week",
+                "month"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Skip expensive per-receipt queries for high-volume orgs",
+            "in": "query",
+            "name": "summary_only",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dashboard statistics"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Dashboard KPIs, charts, and top customers",
+        "tags": [
+          "Reportes - Informes"
+        ]
+      }
+    },
+    "/v1/sales/reports/iibb": {
+      "get": {
+        "operationId": "ReportsController_getIIBB",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date_from",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated IIBB rows"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Gross Income (IIBB) by jurisdiction and month",
+        "tags": [
+          "Reportes - Informes"
+        ]
+      }
+    },
+    "/v1/sales/reports/iibb/export": {
+      "get": {
+        "operationId": "ReportsController_exportIIBB",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date_from",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CSV file download"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Export IIBB report as CSV",
+        "tags": [
+          "Reportes - Informes"
+        ]
+      }
+    },
+    "/v1/sales/reports/iva-digital/ventas": {
+      "get": {
+        "operationId": "ReportsController_getIvaDigitalVentas",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date_from",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fixed-width text file"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "IVA Digital Ventas Comprobantes (fixed-width text)",
+        "tags": [
+          "Reportes - Informes"
+        ]
+      }
+    },
+    "/v1/sales/reports/iva-digital/ventas-alicuotas": {
+      "get": {
+        "operationId": "ReportsController_getIvaDigitalVentasAlicuotas",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date_from",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fixed-width text file"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "IVA Digital Ventas Alicuotas (fixed-width text)",
+        "tags": [
+          "Reportes - Informes"
+        ]
+      }
+    },
+    "/v1/sales/reports/outstanding-receivables": {
+      "get": {
+        "operationId": "ReportsController_getOutstandingReceivables",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated outstanding receivable rows"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Outstanding receivables",
+        "tags": [
+          "Reportes - Informes"
+        ]
+      }
+    },
+    "/v1/sales/reports/outstanding-receivables/export": {
+      "get": {
+        "operationId": "ReportsController_exportOutstandingReceivables",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "CSV file download"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Export outstanding receivables as CSV",
+        "tags": [
+          "Reportes - Informes"
+        ]
+      }
+    },
+    "/v1/sales/reports/sales-by-customer": {
+      "get": {
+        "operationId": "ReportsController_getSalesByCustomer",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date_from",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated sales by customer rows"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Sales by Customer (accumulated)",
+        "tags": [
+          "Reportes - Informes"
+        ]
+      }
+    },
+    "/v1/sales/reports/sales-by-customer/export": {
+      "get": {
+        "operationId": "ReportsController_exportSalesByCustomer",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date_from",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CSV file download"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Export Sales by Customer as CSV",
+        "tags": [
+          "Reportes - Informes"
+        ]
+      }
+    },
+    "/v1/sales/reports/sales-by-product": {
+      "get": {
+        "operationId": "ReportsController_getSalesByProduct",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date_from",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "customer_id",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated sales by product rows"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Sales by Product (aggregated by month)",
+        "tags": [
+          "Reportes - Informes"
+        ]
+      }
+    },
+    "/v1/sales/reports/sales-by-product/export": {
+      "get": {
+        "operationId": "ReportsController_exportSalesByProduct",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date_from",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "customer_id",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CSV file download"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Export Sales by Product as CSV",
+        "tags": [
+          "Reportes - Informes"
+        ]
+      }
+    },
+    "/v1/sales/reports/trends": {
+      "get": {
+        "operationId": "ReportsController_getRevenueTrends",
+        "parameters": [
+          {
+            "description": "Number of past months to include (default 24)",
+            "in": "query",
+            "name": "months",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Revenue trend data with forecasting"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Revenue trends with MoM/YoY comparisons and 3-month forecast",
+        "tags": [
+          "Reportes - Informes"
+        ]
+      }
+    },
+    "/v1/sales/reports/vat-sales-book": {
+      "get": {
+        "operationId": "ReportsController_getVatSalesBook",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date_from",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated VAT book rows"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "VAT Sales Book (Libro IVA Ventas)",
+        "tags": [
+          "Reportes - Informes"
+        ]
+      }
+    },
+    "/v1/sales/reports/vat-sales-book/export": {
+      "get": {
+        "operationId": "ReportsController_exportVatSalesBook",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date_from",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CSV file download"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Export VAT Sales Book as CSV",
+        "tags": [
+          "Reportes - Informes"
+        ]
+      }
+    },
+    "/v1/sales/sales-receipts": {
+      "get": {
+        "description": "Returns a page of sales receipts. Use cursor from nextCursor for the next page. If date_from/date_to are omitted, all dates are included.",
         "operationId": "SalesReceiptsController_findAll",
         "parameters": [
           {
@@ -7363,11 +8557,20 @@
             "schema": {
               "type": "number"
             }
+          },
+          {
+            "description": "Exact match on the external provider identifier",
+            "in": "query",
+            "name": "provider_id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Paginated sales receipts (data, next_cursor, has_more)"
+            "description": "Paginated sales receipts (data, nextCursor, hasMore)"
           }
         },
         "security": [
@@ -7396,6 +8599,16 @@
         "responses": {
           "201": {
             "description": "Created sales receipt"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "Validation failed. Codes: ORGANIZATION_ARCHIVED, DETAILS_REQUIRED, MISSING_SALES_LETTER."
           }
         },
         "security": [
@@ -7409,7 +8622,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/bulk-actions/{jobId}/status": {
+    "/v1/sales/sales-receipts/bulk-actions/{jobId}/status": {
       "get": {
         "operationId": "SalesReceiptsController_bulkActionStatus",
         "parameters": [
@@ -7436,13 +8649,13 @@
             "apiKey": []
           }
         ],
-        "summary": "Get bulk action job progress (email or PDF)",
+        "summary": "Get bulk action job progress (email, PDF, or void)",
         "tags": [
           "Ventas - Comprobantes"
         ]
       }
     },
-    "/v1/sales-receipts/bulk-email": {
+    "/v1/sales/sales-receipts/bulk-email": {
       "post": {
         "operationId": "SalesReceiptsController_bulkEmail",
         "parameters": [],
@@ -7475,7 +8688,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/bulk-pdf": {
+    "/v1/sales/sales-receipts/bulk-pdf": {
       "post": {
         "operationId": "SalesReceiptsController_bulkPdf",
         "parameters": [],
@@ -7508,7 +8721,73 @@
         ]
       }
     },
-    "/v1/sales-receipts/creators": {
+    "/v1/sales/sales-receipts/bulk-reconcile": {
+      "post": {
+        "operationId": "SalesReceiptsController_bulkReconcile",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkReconcileDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Receipts marked as collected"
+          },
+          "400": {
+            "description": "Invalid receipt IDs"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Mark multiple receipts as fully collected (totalCollected = total)",
+        "tags": [
+          "Ventas - Comprobantes"
+        ]
+      }
+    },
+    "/v1/sales/sales-receipts/bulk-void": {
+      "post": {
+        "operationId": "SalesReceiptsController_bulkVoid",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkVoidDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Bulk void job created"
+          },
+          "400": {
+            "description": "Invalid receipt IDs"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Void multiple receipts as a background job (creates credit notes where required)",
+        "tags": [
+          "Ventas - Comprobantes"
+        ]
+      }
+    },
+    "/v1/sales/sales-receipts/creators": {
       "get": {
         "operationId": "SalesReceiptsController_findCreators",
         "parameters": [],
@@ -7528,7 +8807,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/export": {
+    "/v1/sales/sales-receipts/export": {
       "get": {
         "operationId": "SalesReceiptsController_exportCsv",
         "parameters": [
@@ -7642,7 +8921,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/export/columns": {
+    "/v1/sales/sales-receipts/export/columns": {
       "get": {
         "operationId": "SalesReceiptsController_listExportColumns",
         "parameters": [],
@@ -7662,7 +8941,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/next-number": {
+    "/v1/sales/sales-receipts/next-number": {
       "get": {
         "operationId": "SalesReceiptsController_getNextNumber",
         "parameters": [
@@ -7699,6 +8978,16 @@
         "responses": {
           "200": {
             "description": "{ letter, number, nextSequential }"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "Validation failed. Codes: MISSING_SALES_LETTER."
           }
         },
         "security": [
@@ -7712,7 +9001,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/{id}": {
+    "/v1/sales/sales-receipts/{id}": {
       "delete": {
         "description": "Hard-deletes a receipt and its details/observations. Borrador receipts can be deleted by any user. Pendiente_Afip receipts can only be deleted by root users. Creada receipts from non-WS (pre-impreso) receipt books can be deleted only if they are the last number in the receipt book. Confirmed WS receipts cannot be deleted \u2014 use a credit note instead.",
         "operationId": "SalesReceiptsController_remove",
@@ -7732,7 +9021,14 @@
             "description": "Deleted"
           },
           "400": {
-            "description": "Receipt is not a draft"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DELETE, NOT_LAST_RECEIPT_NUMBER."
           },
           "404": {
             "description": "Not found"
@@ -7806,6 +9102,16 @@
           "200": {
             "description": "Updated sales receipt"
           },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "Validation failed. Codes: ORGANIZATION_ARCHIVED, RECEIPT_DATE_TOO_OLD, MISSING_SALES_LETTER."
+          },
           "404": {
             "description": "Not found"
           }
@@ -7821,7 +9127,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/{id}/authorize": {
+    "/v1/sales/sales-receipts/{id}/authorize": {
       "post": {
         "description": "Called by the authorize-sale trigger task. Also accepts direct calls. Requires X-Organization-Id header. Works with X-API-Key or Bearer token auth.",
         "operationId": "SalesReceiptsController_authorizeAfip",
@@ -7841,7 +9147,14 @@
             "description": "Authorization result"
           },
           "400": {
-            "description": "Receipt not pending or AFIP error"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "Validation failed (or AFIP error). Codes: INVALID_RECEIPT_STATUS_FOR_AUTHORIZE."
           },
           "404": {
             "description": "Not found"
@@ -7858,7 +9171,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/{id}/confirm": {
+    "/v1/sales/sales-receipts/{id}/confirm": {
       "post": {
         "description": "Validates required fields, assigns real receipt number, sets status to Pendiente_Afip, and triggers AFIP authorization.",
         "operationId": "SalesReceiptsController_confirm",
@@ -7878,7 +9191,14 @@
             "description": "Confirmed receipt"
           },
           "400": {
-            "description": "Invalid state or missing required fields"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_CONFIRM, CUSTOMER_REQUIRED, DETAILS_REQUIRED, RECEIPT_BOOK_REQUIRED, SALE_CONDITION_REQUIRED, RECEIPT_DATE_TOO_OLD, RECEIPT_BOOK_NOT_FOUND."
           },
           "404": {
             "description": "Not found"
@@ -7895,7 +9215,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/{id}/details": {
+    "/v1/sales/sales-receipts/{id}/details": {
       "get": {
         "operationId": "SalesReceiptsController_findAllDetails",
         "parameters": [
@@ -7951,6 +9271,16 @@
           "201": {
             "description": "Created detail"
           },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DETAILS."
+          },
           "404": {
             "description": "Receipt not found"
           }
@@ -7966,7 +9296,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/{id}/details/{detailId}": {
+    "/v1/sales/sales-receipts/{id}/details/{detailId}": {
       "delete": {
         "operationId": "SalesReceiptsController_removeDetail",
         "parameters": [
@@ -7992,6 +9322,16 @@
         "responses": {
           "204": {
             "description": "Removed"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DETAILS."
           },
           "404": {
             "description": "Not found"
@@ -8083,6 +9423,16 @@
           "200": {
             "description": "Updated detail"
           },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DETAILS."
+          },
           "404": {
             "description": "Not found"
           }
@@ -8098,7 +9448,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/{id}/duplicate": {
+    "/v1/sales/sales-receipts/{id}/duplicate": {
       "post": {
         "description": "Creates a new BORRADOR draft by copying customer, items, conditions from the source receipt. Dates are reset to today. Any status receipt can be duplicated.",
         "operationId": "SalesReceiptsController_duplicate",
@@ -8132,7 +9482,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/{id}/observations": {
+    "/v1/sales/sales-receipts/{id}/observations": {
       "get": {
         "operationId": "SalesReceiptsController_findAllObservations",
         "parameters": [
@@ -8203,7 +9553,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/{id}/observations/{observationId}": {
+    "/v1/sales/sales-receipts/{id}/observations/{observationId}": {
       "delete": {
         "operationId": "SalesReceiptsController_removeObservation",
         "parameters": [
@@ -8335,7 +9685,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/{id}/pdf": {
+    "/v1/sales/sales-receipts/{id}/pdf": {
       "get": {
         "operationId": "SalesReceiptsController_downloadPdf",
         "parameters": [
@@ -8368,7 +9718,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/{id}/pdf/download": {
+    "/v1/sales/sales-receipts/{id}/pdf/download": {
       "get": {
         "operationId": "SalesReceiptsController_downloadPdfPublic",
         "parameters": [
@@ -8422,7 +9772,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/{id}/resend-email": {
+    "/v1/sales/sales-receipts/{id}/resend-email": {
       "post": {
         "operationId": "SalesReceiptsController_resendEmailPublic",
         "parameters": [
@@ -8477,7 +9827,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/{id}/retry": {
+    "/v1/sales/sales-receipts/{id}/retry": {
       "post": {
         "description": "Clears any previous error and re-triggers AFIP authorization. Only receipts in Pendiente_Afip status can be retried.",
         "operationId": "SalesReceiptsController_retry",
@@ -8497,7 +9847,14 @@
             "description": "Retry triggered, receipt returned"
           },
           "400": {
-            "description": "Receipt is not in Pendiente_Afip status"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "Validation failed. Codes: INVALID_RECEIPT_STATUS_FOR_RETRY."
           },
           "404": {
             "description": "Not found"
@@ -8514,7 +9871,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/{id}/send-email": {
+    "/v1/sales/sales-receipts/{id}/send-email": {
       "post": {
         "operationId": "SalesReceiptsController_sendEmail",
         "parameters": [
@@ -8547,7 +9904,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/{id}/tracking-events": {
+    "/v1/sales/sales-receipts/{id}/tracking-events": {
       "get": {
         "operationId": "SalesReceiptsController_getTrackingEvents",
         "parameters": [
@@ -8580,7 +9937,7 @@
         ]
       }
     },
-    "/v1/sales-receipts/{id}/void": {
+    "/v1/sales/sales-receipts/{id}/void": {
       "post": {
         "description": "Voids a Creada receipt by creating a compensating credit note (NC). For WS receipts: NC must be authorized at AFIP before the original is marked Anulado. For pre-impreso: original is marked Anulado immediately. WS receipts always require a credit note (numbers cannot be reused).",
         "operationId": "SalesReceiptsController_voidReceipt",
@@ -8610,7 +9967,14 @@
             "description": "Voided receipt with optional credit note ID"
           },
           "400": {
-            "description": "Invalid state (not Creada or already Anulado)"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            },
+            "description": "Validation failed. Codes: ORGANIZATION_ARCHIVED, RECEIPT_ALREADY_VOIDED, INVALID_RECEIPT_STATUS_FOR_VOID, RECEIPT_BOOK_NOT_FOUND, WS_VOID_REQUIRES_CREDIT_NOTE, RECEIPT_ALREADY_CREDITED, PARTIAL_CREDIT_EXISTS."
           },
           "404": {
             "description": "Not found"
@@ -8624,916 +9988,6 @@
         "summary": "Void a confirmed receipt (Anulaci\u00f3n)",
         "tags": [
           "Ventas - Comprobantes"
-        ]
-      }
-    },
-    "/v1/sales/reports/dashboard-stats": {
-      "get": {
-        "operationId": "ReportsController_getDashboardStats",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "date_from",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date_to",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "group_by",
-            "required": false,
-            "schema": {
-              "enum": [
-                "day",
-                "week",
-                "month"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "description": "Skip expensive per-receipt queries for high-volume orgs",
-            "in": "query",
-            "name": "summary_only",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Dashboard statistics"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Dashboard KPIs, charts, and top customers",
-        "tags": [
-          "Ventas - Reportes"
-        ]
-      }
-    },
-    "/v1/sales/reports/iibb": {
-      "get": {
-        "operationId": "ReportsController_getIIBB",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "date_from",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date_to",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "cursor",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page_size",
-            "required": false,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Paginated IIBB rows"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Gross Income (IIBB) by jurisdiction and month",
-        "tags": [
-          "Ventas - Reportes"
-        ]
-      }
-    },
-    "/v1/sales/reports/iibb/export": {
-      "get": {
-        "operationId": "ReportsController_exportIIBB",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "date_from",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date_to",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "CSV file download"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Export IIBB report as CSV",
-        "tags": [
-          "Ventas - Reportes"
-        ]
-      }
-    },
-    "/v1/sales/reports/iva-digital/ventas": {
-      "get": {
-        "operationId": "ReportsController_getIvaDigitalVentas",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "date_from",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date_to",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Fixed-width text file"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "IVA Digital Ventas Comprobantes (fixed-width text)",
-        "tags": [
-          "Ventas - Reportes"
-        ]
-      }
-    },
-    "/v1/sales/reports/iva-digital/ventas-alicuotas": {
-      "get": {
-        "operationId": "ReportsController_getIvaDigitalVentasAlicuotas",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "date_from",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date_to",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Fixed-width text file"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "IVA Digital Ventas Alicuotas (fixed-width text)",
-        "tags": [
-          "Ventas - Reportes"
-        ]
-      }
-    },
-    "/v1/sales/reports/outstanding-receivables": {
-      "get": {
-        "operationId": "ReportsController_getOutstandingReceivables",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "cursor",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page_size",
-            "required": false,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Paginated outstanding receivable rows"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Outstanding receivables",
-        "tags": [
-          "Ventas - Reportes"
-        ]
-      }
-    },
-    "/v1/sales/reports/outstanding-receivables/export": {
-      "get": {
-        "operationId": "ReportsController_exportOutstandingReceivables",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "CSV file download"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Export outstanding receivables as CSV",
-        "tags": [
-          "Ventas - Reportes"
-        ]
-      }
-    },
-    "/v1/sales/reports/sales-by-customer": {
-      "get": {
-        "operationId": "ReportsController_getSalesByCustomer",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "date_from",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date_to",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "cursor",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page_size",
-            "required": false,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Paginated sales by customer rows"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Sales by Customer (accumulated)",
-        "tags": [
-          "Ventas - Reportes"
-        ]
-      }
-    },
-    "/v1/sales/reports/sales-by-customer/export": {
-      "get": {
-        "operationId": "ReportsController_exportSalesByCustomer",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "date_from",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date_to",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "CSV file download"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Export Sales by Customer as CSV",
-        "tags": [
-          "Ventas - Reportes"
-        ]
-      }
-    },
-    "/v1/sales/reports/sales-by-product": {
-      "get": {
-        "operationId": "ReportsController_getSalesByProduct",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "date_from",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date_to",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "customer_id",
-            "required": false,
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "cursor",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page_size",
-            "required": false,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Paginated sales by product rows"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Sales by Product (aggregated by month)",
-        "tags": [
-          "Ventas - Reportes"
-        ]
-      }
-    },
-    "/v1/sales/reports/sales-by-product/export": {
-      "get": {
-        "operationId": "ReportsController_exportSalesByProduct",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "date_from",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date_to",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "customer_id",
-            "required": false,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "CSV file download"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Export Sales by Product as CSV",
-        "tags": [
-          "Ventas - Reportes"
-        ]
-      }
-    },
-    "/v1/sales/reports/trends": {
-      "get": {
-        "operationId": "ReportsController_getRevenueTrends",
-        "parameters": [
-          {
-            "description": "Number of past months to include (default 24)",
-            "in": "query",
-            "name": "months",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Revenue trend data with forecasting"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Revenue trends with MoM/YoY comparisons and 3-month forecast",
-        "tags": [
-          "Ventas - Reportes"
-        ]
-      }
-    },
-    "/v1/sales/reports/vat-sales-book": {
-      "get": {
-        "operationId": "ReportsController_getVatSalesBook",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "date_from",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date_to",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "cursor",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page_size",
-            "required": false,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Paginated VAT book rows"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "VAT Sales Book (Libro IVA Ventas)",
-        "tags": [
-          "Ventas - Reportes"
-        ]
-      }
-    },
-    "/v1/sales/reports/vat-sales-book/export": {
-      "get": {
-        "operationId": "ReportsController_exportVatSalesBook",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "date_from",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date_to",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "CSV file download"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Export VAT Sales Book as CSV",
-        "tags": [
-          "Ventas - Reportes"
-        ]
-      }
-    },
-    "/v1/suppliers": {
-      "get": {
-        "description": "Returns a page of suppliers. Use cursor from next_cursor for the next page.",
-        "operationId": "SuppliersController_findAll",
-        "parameters": [
-          {
-            "description": "Opaque cursor for next page",
-            "in": "query",
-            "name": "cursor",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Page size (default 50, max 100)",
-            "in": "query",
-            "name": "page_size",
-            "required": false,
-            "schema": {
-              "example": 50,
-              "type": "number"
-            }
-          },
-          {
-            "description": "Filter by business name, tax ID, or email (partial match)",
-            "in": "query",
-            "name": "search",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Paginated suppliers (data, next_cursor, has_more)"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "List suppliers (cursor-paginated)",
-        "tags": [
-          "Compras - Proveedores"
-        ]
-      },
-      "post": {
-        "operationId": "SuppliersController_create",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "description": "Supplier fields (businessName required)",
-                "type": "object"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "Created supplier"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Create supplier",
-        "tags": [
-          "Compras - Proveedores"
-        ]
-      }
-    },
-    "/v1/suppliers/bulk-delete": {
-      "post": {
-        "operationId": "SuppliersController_removeBulk",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "ids": {
-                    "items": {
-                      "type": "number"
-                    },
-                    "type": "array"
-                  }
-                },
-                "type": "object"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Number of deleted suppliers"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Bulk delete suppliers (soft delete)",
-        "tags": [
-          "Compras - Proveedores"
-        ]
-      }
-    },
-    "/v1/suppliers/export": {
-      "get": {
-        "operationId": "SuppliersController_exportCsv",
-        "parameters": [
-          {
-            "description": "Filter by business name, tax ID, or email (partial match)",
-            "in": "query",
-            "name": "search",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Include only active suppliers (default true)",
-            "in": "query",
-            "name": "active_only",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "CSV file download"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Export suppliers as CSV (cursor-based, streaming)",
-        "tags": [
-          "Compras - Proveedores"
-        ]
-      }
-    },
-    "/v1/suppliers/get-or-create": {
-      "post": {
-        "description": "Looks up supplier by CUIT. If not found, auto-creates using AFIP padron data.",
-        "operationId": "SuppliersController_getOrCreate",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "description": "{ taxId, businessName?, ... }",
-                "type": "object"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Existing or newly created supplier"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Get existing supplier by CUIT or create with AFIP data",
-        "tags": [
-          "Compras - Proveedores"
-        ]
-      }
-    },
-    "/v1/suppliers/lookup-cuit": {
-      "get": {
-        "description": "Validates CUIT and fetches business data from AFIP via system certificate.",
-        "operationId": "SuppliersController_lookupCuit",
-        "parameters": [
-          {
-            "description": "CUIT to look up (11 digits)",
-            "in": "query",
-            "name": "cuit",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "CUIT lookup result"
-          },
-          "400": {
-            "description": "Invalid CUIT"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Lookup CUIT for supplier auto-fill",
-        "tags": [
-          "Compras - Proveedores"
-        ]
-      }
-    },
-    "/v1/suppliers/{id}": {
-      "delete": {
-        "operationId": "SuppliersController_remove",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Deleted"
-          },
-          "404": {
-            "description": "Not found"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Delete supplier (soft delete)",
-        "tags": [
-          "Compras - Proveedores"
-        ]
-      },
-      "get": {
-        "operationId": "SuppliersController_findOne",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Supplier"
-          },
-          "404": {
-            "description": "Not found"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Get supplier by id",
-        "tags": [
-          "Compras - Proveedores"
-        ]
-      },
-      "patch": {
-        "operationId": "SuppliersController_update",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Updated supplier"
-          },
-          "404": {
-            "description": "Not found"
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Update supplier",
-        "tags": [
-          "Compras - Proveedores"
         ]
       }
     },
@@ -9674,7 +10128,7 @@
         },
         "summary": "Get taxpayer registry by tax ID",
         "tags": [
-          "Common - Padr\u00f3n"
+          "Padr\u00f3n"
         ]
       }
     },
@@ -9711,7 +10165,7 @@
         },
         "summary": "Check if taxpayer is FCE receiver for given total",
         "tags": [
-          "Common - Padr\u00f3n"
+          "Padr\u00f3n"
         ]
       }
     }

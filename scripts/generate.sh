@@ -5,7 +5,7 @@
 #   bash scripts/generate.sh [spec-source]
 #
 # spec-source can be:
-#   - a URL (default: https://api.peakly.io/openapi.json)
+#   - a URL (default: https://api.peakly.ar/openapi.json)
 #   - a local file path for offline development (e.g. ./openapi.json)
 #
 # The canonical source is always the live API. The committed openapi.json is
@@ -13,7 +13,7 @@
 
 set -euo pipefail
 
-SPEC="${1:-https://api.peakly.io/openapi.json}"
+SPEC="${1:-https://api.peakly.ar/openapi.json}"
 
 if [[ ! -f "$SPEC" && ! "$SPEC" =~ ^https?:// ]]; then
   echo "[generate] ✗ Spec file not found: $SPEC" >&2

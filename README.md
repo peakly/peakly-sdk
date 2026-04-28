@@ -107,7 +107,7 @@ if (error) {
 Types are generated from the live Peakly API spec. To pick up new endpoints or fields after an API update:
 
 ```bash
-pnpm generate   # fetches https://api.peakly.io/openapi.json and regenerates src/schema.d.ts
+pnpm generate   # fetches https://api.peakly.ar/openapi.json and regenerates src/schema.d.ts
 pnpm build
 ```
 
@@ -117,7 +117,7 @@ For offline development, pass a local file instead:
 pnpm generate ./openapi.json
 ```
 
-The committed `openapi.json` is a bootstrap snapshot only — it may lag behind the live API. The canonical source of truth is always `https://api.peakly.io/openapi.json`.
+The committed `openapi.json` is a bootstrap snapshot only — it may lag behind the live API. The canonical source of truth is always `https://api.peakly.ar/openapi.json`.
 
 ## Development
 

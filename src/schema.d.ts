@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-    "/v1/accounting-locks": {
+    "/v1/accounting/accounting-locks": {
         parameters: {
             query?: never;
             header?: never;
@@ -22,7 +22,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/accounting-locks/{id}": {
+    "/v1/accounting/accounting-locks/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -38,6 +38,164 @@ export interface paths {
         head?: never;
         /** Update an accounting lock */
         patch: operations["AccountingLocksController_update"];
+        trace?: never;
+    };
+    "/v1/accounting/fiscal-years": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List fiscal years */
+        get: operations["FiscalYearsController_list"];
+        put?: never;
+        /** Create a fiscal year */
+        post: operations["FiscalYearsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/fiscal-years/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update a fiscal year */
+        patch: operations["FiscalYearsController_update"];
+        trace?: never;
+    };
+    "/v1/accounting/fiscal-years/{id}/close": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Close a fiscal year */
+        post: operations["FiscalYearsController_close"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/journal-accounts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List journal accounts (plan de cuentas) */
+        get: operations["JournalAccountsController_list"];
+        put?: never;
+        /** Create a journal account */
+        post: operations["JournalAccountsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/journal-accounts/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete a journal account */
+        delete: operations["JournalAccountsController_delete"];
+        options?: never;
+        head?: never;
+        /** Update a journal account */
+        patch: operations["JournalAccountsController_update"];
+        trace?: never;
+    };
+    "/v1/accounting/journal-entries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List journal entries with pagination */
+        get: operations["JournalEntriesController_list"];
+        put?: never;
+        /** Create a manual journal entry */
+        post: operations["JournalEntriesController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/journal-entries/reports/balance-sheet": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get balance sheet report */
+        get: operations["JournalEntriesController_getBalanceSheet"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/journal-entries/reports/profit-loss": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get profit and loss report */
+        get: operations["JournalEntriesController_getProfitAndLoss"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/journal-entries/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a journal entry with its items */
+        get: operations["JournalEntriesController_getById"];
+        put?: never;
+        post?: never;
+        /** Delete a manual journal entry */
+        delete: operations["JournalEntriesController_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/v1/accounting/reports/daily-book": {
@@ -472,7 +630,7 @@ export interface paths {
         };
         /**
          * List customers (cursor-paginated)
-         * @description Returns a page of customers. Use cursor from next_cursor for the next page.
+         * @description Returns a page of customers. Use cursor from nextCursor for the next page.
          */
         get: operations["CustomersController_findAll"];
         put?: never;
@@ -1304,130 +1462,6 @@ export interface paths {
         patch: operations["TransfersController_update"];
         trace?: never;
     };
-    "/v1/fiscal-years": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List fiscal years */
-        get: operations["FiscalYearsController_list"];
-        put?: never;
-        /** Create a fiscal year */
-        post: operations["FiscalYearsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/fiscal-years/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** Update a fiscal year */
-        patch: operations["FiscalYearsController_update"];
-        trace?: never;
-    };
-    "/v1/fiscal-years/{id}/close": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Close a fiscal year */
-        post: operations["FiscalYearsController_close"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/journal-accounts": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List journal accounts (plan de cuentas) */
-        get: operations["JournalAccountsController_list"];
-        put?: never;
-        /** Create a journal account */
-        post: operations["JournalAccountsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/journal-accounts/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /** Delete a journal account */
-        delete: operations["JournalAccountsController_delete"];
-        options?: never;
-        head?: never;
-        /** Update a journal account */
-        patch: operations["JournalAccountsController_update"];
-        trace?: never;
-    };
-    "/v1/journal-entries": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List journal entries with pagination */
-        get: operations["JournalEntriesController_list"];
-        put?: never;
-        /** Create a manual journal entry */
-        post: operations["JournalEntriesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/journal-entries/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get a journal entry with its items */
-        get: operations["JournalEntriesController_getById"];
-        put?: never;
-        post?: never;
-        /** Delete a manual journal entry */
-        delete: operations["JournalEntriesController_delete"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/leads": {
         parameters: {
             query?: never;
@@ -1668,7 +1702,7 @@ export interface paths {
         };
         /**
          * List products (cursor-paginated)
-         * @description Returns a page of products. Use cursor from next_cursor for the next page.
+         * @description Returns a page of products. Use cursor from nextCursor for the next page.
          */
         get: operations["ProductsController_findAll"];
         put?: never;
@@ -1856,7 +1890,7 @@ export interface paths {
         patch: operations["ProviderConfigsController_update"];
         trace?: never;
     };
-    "/v1/purchase-categories": {
+    "/v1/purchases/purchase-categories": {
         parameters: {
             query?: never;
             header?: never;
@@ -1874,7 +1908,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/purchase-categories/{id}": {
+    "/v1/purchases/purchase-categories/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -1893,7 +1927,7 @@ export interface paths {
         patch: operations["PurchaseCategoriesController_update"];
         trace?: never;
     };
-    "/v1/purchase-receipts": {
+    "/v1/purchases/purchase-receipts": {
         parameters: {
             query?: never;
             header?: never;
@@ -1902,7 +1936,7 @@ export interface paths {
         };
         /**
          * List purchase receipts (cursor-paginated)
-         * @description Returns a page of purchase receipts. Use cursor from next_cursor for the next page.
+         * @description Returns a page of purchase receipts. Use cursor from nextCursor for the next page.
          */
         get: operations["PurchaseReceiptsController_findAll"];
         put?: never;
@@ -1914,7 +1948,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/purchase-receipts/export": {
+    "/v1/purchases/purchase-receipts/export": {
         parameters: {
             query?: never;
             header?: never;
@@ -1931,7 +1965,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/purchase-receipts/unpaid/{supplierId}": {
+    "/v1/purchases/purchase-receipts/unpaid/{supplierId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -1948,7 +1982,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/purchase-receipts/{id}": {
+    "/v1/purchases/purchase-receipts/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -1967,7 +2001,7 @@ export interface paths {
         patch: operations["PurchaseReceiptsController_update"];
         trace?: never;
     };
-    "/v1/purchase-receipts/{id}/anular": {
+    "/v1/purchases/purchase-receipts/{id}/anular": {
         parameters: {
             query?: never;
             header?: never;
@@ -1984,7 +2018,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/purchase-receipts/{id}/details": {
+    "/v1/purchases/purchase-receipts/{id}/details": {
         parameters: {
             query?: never;
             header?: never;
@@ -1999,6 +2033,120 @@ export interface paths {
         options?: never;
         head?: never;
         patch?: never;
+        trace?: never;
+    };
+    "/v1/purchases/suppliers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List suppliers (cursor-paginated)
+         * @description Returns a page of suppliers. Use cursor from nextCursor for the next page.
+         */
+        get: operations["SuppliersController_findAll"];
+        put?: never;
+        /** Create supplier */
+        post: operations["SuppliersController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/purchases/suppliers/bulk-delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Bulk delete suppliers (soft delete) */
+        post: operations["SuppliersController_removeBulk"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/purchases/suppliers/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export suppliers as CSV (cursor-based, streaming) */
+        get: operations["SuppliersController_exportCsv"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/purchases/suppliers/get-or-create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Get existing supplier by CUIT or create with AFIP data
+         * @description Looks up supplier by CUIT. If not found, auto-creates using AFIP padron data.
+         */
+        post: operations["SuppliersController_getOrCreate"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/purchases/suppliers/lookup-cuit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Lookup CUIT for supplier auto-fill
+         * @description Validates CUIT and fetches business data from AFIP via system certificate.
+         */
+        get: operations["SuppliersController_lookupCuit"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/purchases/suppliers/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get supplier by id */
+        get: operations["SuppliersController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete supplier (soft delete) */
+        delete: operations["SuppliersController_remove"];
+        options?: never;
+        head?: never;
+        /** Update supplier */
+        patch: operations["SuppliersController_update"];
         trace?: never;
     };
     "/v1/receipt-books": {
@@ -2090,427 +2238,6 @@ export interface paths {
         head?: never;
         /** Update receipt book */
         patch: operations["ReceiptBooksController_update"];
-        trace?: never;
-    };
-    "/v1/sales-receipts": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List sales receipts (cursor-paginated, optional date filters)
-         * @description Returns a page of sales receipts. Use cursor from next_cursor for the next page. If date_from/date_to are omitted, all dates are included.
-         */
-        get: operations["SalesReceiptsController_findAll"];
-        put?: never;
-        /** Create sales receipt */
-        post: operations["SalesReceiptsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/bulk-actions/{jobId}/status": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get bulk action job progress (email or PDF) */
-        get: operations["SalesReceiptsController_bulkActionStatus"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/bulk-email": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Send emails for multiple receipts (background job) */
-        post: operations["SalesReceiptsController_bulkEmail"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/bulk-pdf": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Generate PDFs for multiple receipts as a ZIP file (background job) */
-        post: operations["SalesReceiptsController_bulkPdf"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/creators": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List distinct users who created sales receipts for the org */
-        get: operations["SalesReceiptsController_findCreators"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export sales receipts as CSV */
-        get: operations["SalesReceiptsController_exportCsv"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/export/columns": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List all available export columns (key + header) */
-        get: operations["SalesReceiptsController_listExportColumns"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/next-number": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Preview the next receipt number for a receipt book + customer + type */
-        get: operations["SalesReceiptsController_getNextNumber"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get sales receipt by id */
-        get: operations["SalesReceiptsController_findOne"];
-        put?: never;
-        post?: never;
-        /**
-         * Delete a draft or stuck receipt
-         * @description Hard-deletes a receipt and its details/observations. Borrador receipts can be deleted by any user. Pendiente_Afip receipts can only be deleted by root users. Creada receipts from non-WS (pre-impreso) receipt books can be deleted only if they are the last number in the receipt book. Confirmed WS receipts cannot be deleted — use a credit note instead.
-         */
-        delete: operations["SalesReceiptsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update sales receipt (observation, collectionEmail) */
-        patch: operations["SalesReceiptsController_update"];
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/authorize": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Authorize receipt with AFIP (get CAE)
-         * @description Called by the authorize-sale trigger task. Also accepts direct calls. Requires X-Organization-Id header. Works with X-API-Key or Bearer token auth.
-         */
-        post: operations["SalesReceiptsController_authorizeAfip"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/confirm": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Confirm a draft receipt (Borrador -> Pendiente_Afip)
-         * @description Validates required fields, assigns real receipt number, sets status to Pendiente_Afip, and triggers AFIP authorization.
-         */
-        post: operations["SalesReceiptsController_confirm"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/details": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List details for a sales receipt */
-        get: operations["SalesReceiptsController_findAllDetails"];
-        put?: never;
-        /** Add a detail line to a sales receipt (draft only) */
-        post: operations["SalesReceiptsController_createDetail"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/details/{detailId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get a sales receipt detail by id */
-        get: operations["SalesReceiptsController_findOneDetail"];
-        put?: never;
-        post?: never;
-        /** Remove a sales receipt detail (draft only) */
-        delete: operations["SalesReceiptsController_removeDetail"];
-        options?: never;
-        head?: never;
-        /** Update a sales receipt detail (draft only) */
-        patch: operations["SalesReceiptsController_updateDetail"];
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/duplicate": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Duplicate a receipt as a new draft (BORRADOR)
-         * @description Creates a new BORRADOR draft by copying customer, items, conditions from the source receipt. Dates are reset to today. Any status receipt can be duplicated.
-         */
-        post: operations["SalesReceiptsController_duplicate"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/observations": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List observations for a sales receipt */
-        get: operations["SalesReceiptsController_findAllObservations"];
-        put?: never;
-        /** Add an observation to a sales receipt */
-        post: operations["SalesReceiptsController_createObservation"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/observations/{observationId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get a sales receipt observation by id */
-        get: operations["SalesReceiptsController_findOneObservation"];
-        put?: never;
-        post?: never;
-        /** Remove a sales receipt observation */
-        delete: operations["SalesReceiptsController_removeObservation"];
-        options?: never;
-        head?: never;
-        /** Update a sales receipt observation */
-        patch: operations["SalesReceiptsController_updateObservation"];
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/pdf": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Download invoice as PDF */
-        get: operations["SalesReceiptsController_downloadPdf"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/pdf/download": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Download invoice PDF via signed URL (public) */
-        get: operations["SalesReceiptsController_downloadPdfPublic"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/resend-email": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Resend invoice email via expired signed link (public) */
-        post: operations["SalesReceiptsController_resendEmailPublic"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/retry": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Retry AFIP authorization for a pending receipt
-         * @description Clears any previous error and re-triggers AFIP authorization. Only receipts in Pendiente_Afip status can be retried.
-         */
-        post: operations["SalesReceiptsController_retry"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/send-email": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Send invoice by email (background job) */
-        post: operations["SalesReceiptsController_sendEmail"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/tracking-events": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get email tracking events for a receipt */
-        get: operations["SalesReceiptsController_getTrackingEvents"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales-receipts/{id}/void": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Void a confirmed receipt (Anulación)
-         * @description Voids a Creada receipt by creating a compensating credit note (NC). For WS receipts: NC must be authorized at AFIP before the original is marked Anulado. For pre-impreso: original is marked Anulado immediately. WS receipts always require a credit note (numbers cannot be reused).
-         */
-        post: operations["SalesReceiptsController_voidReceipt"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
         trace?: never;
     };
     "/v1/sales/reports/dashboard-stats": {
@@ -2751,7 +2478,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/suppliers": {
+    "/v1/sales/sales-receipts": {
         parameters: {
             query?: never;
             header?: never;
@@ -2759,20 +2486,37 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * List suppliers (cursor-paginated)
-         * @description Returns a page of suppliers. Use cursor from next_cursor for the next page.
+         * List sales receipts (cursor-paginated, optional date filters)
+         * @description Returns a page of sales receipts. Use cursor from nextCursor for the next page. If date_from/date_to are omitted, all dates are included.
          */
-        get: operations["SuppliersController_findAll"];
+        get: operations["SalesReceiptsController_findAll"];
         put?: never;
-        /** Create supplier */
-        post: operations["SuppliersController_create"];
+        /** Create sales receipt */
+        post: operations["SalesReceiptsController_create"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/suppliers/bulk-delete": {
+    "/v1/sales/sales-receipts/bulk-actions/{jobId}/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get bulk action job progress (email, PDF, or void) */
+        get: operations["SalesReceiptsController_bulkActionStatus"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/bulk-email": {
         parameters: {
             query?: never;
             header?: never;
@@ -2781,23 +2525,74 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Bulk delete suppliers (soft delete) */
-        post: operations["SuppliersController_removeBulk"];
+        /** Send emails for multiple receipts (background job) */
+        post: operations["SalesReceiptsController_bulkEmail"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/suppliers/export": {
+    "/v1/sales/sales-receipts/bulk-pdf": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Export suppliers as CSV (cursor-based, streaming) */
-        get: operations["SuppliersController_exportCsv"];
+        get?: never;
+        put?: never;
+        /** Generate PDFs for multiple receipts as a ZIP file (background job) */
+        post: operations["SalesReceiptsController_bulkPdf"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/bulk-reconcile": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Mark multiple receipts as fully collected (totalCollected = total) */
+        post: operations["SalesReceiptsController_bulkReconcile"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/bulk-void": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Void multiple receipts as a background job (creates credit notes where required) */
+        post: operations["SalesReceiptsController_bulkVoid"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/creators": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List distinct users who created sales receipts for the org */
+        get: operations["SalesReceiptsController_findCreators"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2806,7 +2601,80 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/suppliers/get-or-create": {
+    "/v1/sales/sales-receipts/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export sales receipts as CSV */
+        get: operations["SalesReceiptsController_exportCsv"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/export/columns": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List all available export columns (key + header) */
+        get: operations["SalesReceiptsController_listExportColumns"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/next-number": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Preview the next receipt number for a receipt book + customer + type */
+        get: operations["SalesReceiptsController_getNextNumber"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get sales receipt by id */
+        get: operations["SalesReceiptsController_findOne"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete a draft or stuck receipt
+         * @description Hard-deletes a receipt and its details/observations. Borrador receipts can be deleted by any user. Pendiente_Afip receipts can only be deleted by root users. Creada receipts from non-WS (pre-impreso) receipt books can be deleted only if they are the last number in the receipt book. Confirmed WS receipts cannot be deleted — use a credit note instead.
+         */
+        delete: operations["SalesReceiptsController_remove"];
+        options?: never;
+        head?: never;
+        /** Update sales receipt (observation, collectionEmail) */
+        patch: operations["SalesReceiptsController_update"];
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/authorize": {
         parameters: {
             query?: never;
             header?: never;
@@ -2816,28 +2684,139 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * Get existing supplier by CUIT or create with AFIP data
-         * @description Looks up supplier by CUIT. If not found, auto-creates using AFIP padron data.
+         * Authorize receipt with AFIP (get CAE)
+         * @description Called by the authorize-sale trigger task. Also accepts direct calls. Requires X-Organization-Id header. Works with X-API-Key or Bearer token auth.
          */
-        post: operations["SuppliersController_getOrCreate"];
+        post: operations["SalesReceiptsController_authorizeAfip"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/suppliers/lookup-cuit": {
+    "/v1/sales/sales-receipts/{id}/confirm": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
+        get?: never;
+        put?: never;
         /**
-         * Lookup CUIT for supplier auto-fill
-         * @description Validates CUIT and fetches business data from AFIP via system certificate.
+         * Confirm a draft receipt (Borrador -> Pendiente_Afip)
+         * @description Validates required fields, assigns real receipt number, sets status to Pendiente_Afip, and triggers AFIP authorization.
          */
-        get: operations["SuppliersController_lookupCuit"];
+        post: operations["SalesReceiptsController_confirm"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/details": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List details for a sales receipt */
+        get: operations["SalesReceiptsController_findAllDetails"];
+        put?: never;
+        /** Add a detail line to a sales receipt (draft only) */
+        post: operations["SalesReceiptsController_createDetail"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/details/{detailId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a sales receipt detail by id */
+        get: operations["SalesReceiptsController_findOneDetail"];
+        put?: never;
+        post?: never;
+        /** Remove a sales receipt detail (draft only) */
+        delete: operations["SalesReceiptsController_removeDetail"];
+        options?: never;
+        head?: never;
+        /** Update a sales receipt detail (draft only) */
+        patch: operations["SalesReceiptsController_updateDetail"];
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/duplicate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Duplicate a receipt as a new draft (BORRADOR)
+         * @description Creates a new BORRADOR draft by copying customer, items, conditions from the source receipt. Dates are reset to today. Any status receipt can be duplicated.
+         */
+        post: operations["SalesReceiptsController_duplicate"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/observations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List observations for a sales receipt */
+        get: operations["SalesReceiptsController_findAllObservations"];
+        put?: never;
+        /** Add an observation to a sales receipt */
+        post: operations["SalesReceiptsController_createObservation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/observations/{observationId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a sales receipt observation by id */
+        get: operations["SalesReceiptsController_findOneObservation"];
+        put?: never;
+        post?: never;
+        /** Remove a sales receipt observation */
+        delete: operations["SalesReceiptsController_removeObservation"];
+        options?: never;
+        head?: never;
+        /** Update a sales receipt observation */
+        patch: operations["SalesReceiptsController_updateObservation"];
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/pdf": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Download invoice as PDF */
+        get: operations["SalesReceiptsController_downloadPdf"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2846,23 +2825,112 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/suppliers/{id}": {
+    "/v1/sales/sales-receipts/{id}/pdf/download": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get supplier by id */
-        get: operations["SuppliersController_findOne"];
+        /** Download invoice PDF via signed URL (public) */
+        get: operations["SalesReceiptsController_downloadPdfPublic"];
         put?: never;
         post?: never;
-        /** Delete supplier (soft delete) */
-        delete: operations["SuppliersController_remove"];
+        delete?: never;
         options?: never;
         head?: never;
-        /** Update supplier */
-        patch: operations["SuppliersController_update"];
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/resend-email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Resend invoice email via expired signed link (public) */
+        post: operations["SalesReceiptsController_resendEmailPublic"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/retry": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Retry AFIP authorization for a pending receipt
+         * @description Clears any previous error and re-triggers AFIP authorization. Only receipts in Pendiente_Afip status can be retried.
+         */
+        post: operations["SalesReceiptsController_retry"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/send-email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Send invoice by email (background job) */
+        post: operations["SalesReceiptsController_sendEmail"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/tracking-events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get email tracking events for a receipt */
+        get: operations["SalesReceiptsController_getTrackingEvents"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/void": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Void a confirmed receipt (Anulación)
+         * @description Voids a Creada receipt by creating a compensating credit note (NC). For WS receipts: NC must be authorized at AFIP before the original is marked Anulado. For pre-impreso: original is marked Anulado immediately. WS receipts always require a credit note (numbers cannot be reused).
+         */
+        post: operations["SalesReceiptsController_voidReceipt"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/v1/tax-categories": {
@@ -2997,6 +3065,26 @@ export interface components {
              */
             receiptIds: string[];
         };
+        BulkReconcileDto: {
+            /**
+             * @description Array of sales receipt UUIDs to mark as fully collected (1–200)
+             * @example [
+             *       "uuid-1",
+             *       "uuid-2"
+             *     ]
+             */
+            receiptIds: string[];
+        };
+        BulkVoidDto: {
+            /**
+             * @description Array of sales receipt UUIDs to void (1–50)
+             * @example [
+             *       "uuid-1",
+             *       "uuid-2"
+             *     ]
+             */
+            receiptIds: string[];
+        };
         CreateAccountingLockDto: {
             /** @description End date (ISO string) */
             endDate: string;
@@ -3081,12 +3169,12 @@ export interface components {
         };
         CreateProductDto: {
             /** @example 7890123456789 */
-            barcode?: Record<string, never> | null;
+            barcode?: string | null;
             /**
              * @description Product category ID; null/0 may resolve to Sin Rubro
              * @example 3
              */
-            categoryId?: Record<string, never> | null;
+            categoryId?: number | null;
             /**
              * @description Product description
              * @example Widget A
@@ -3097,20 +3185,30 @@ export interface components {
              * @example true
              */
             isActive: boolean;
+            /**
+             * @description External provider identifier. Unique per organization; acts as an idempotency key.
+             * @example ext-sku-123
+             */
+            providerId?: Record<string, never> | null;
             /** @example 1.5 */
-            quantity?: Record<string, never> | null;
+            quantity?: number | null;
             /** @example Producto */
-            type?: Record<string, never> | null;
+            type?: string | null;
             /**
              * @description Unit of measure ID
              * @example 1
              */
             unitOfMeasureId: number;
             /**
+             * @description Default unit price for auto-populating receipt lines
+             * @example 1500.5
+             */
+            unitPrice?: number | null;
+            /**
              * @description VAT rate (combo) ID
              * @example 2
              */
-            vatRateId?: Record<string, never> | null;
+            vatRateId?: number | null;
         };
         CreateSalesReceiptDetailDto: {
             /**
@@ -3122,12 +3220,12 @@ export interface components {
              * @description Discount percent (0–100)
              * @example 10
              */
-            discount?: Record<string, never> | null;
+            discount?: number | null;
             /**
              * @description Product ID
              * @example 1
              */
-            productId?: Record<string, never> | null;
+            productId?: number | null;
             /**
              * @description Quantity
              * @example 2
@@ -3137,7 +3235,7 @@ export interface components {
              * @description Tax type (combo item) ID
              * @example 1
              */
-            taxTypeId?: Record<string, never> | null;
+            taxTypeId?: number | null;
             /**
              * @description Unit price
              * @example 100.5
@@ -3149,12 +3247,12 @@ export interface components {
              * @description Semicolon-separated emails for collection
              * @example customer@example.com
              */
-            collectionEmail?: Record<string, never> | null;
+            collectionEmail?: string | null;
             /**
              * @description Currency ID
              * @example 1
              */
-            currencyId?: Record<string, never> | null;
+            currencyId?: number | null;
             /**
              * @description Customer ID
              * @example 1
@@ -3176,7 +3274,7 @@ export interface components {
              * @description Exchange rate
              * @example 1
              */
-            exchangeRate?: Record<string, never> | null;
+            exchangeRate?: number | null;
             /**
              * @description Export-specific data for WSFEX invoices (e.g. incoterms)
              * @example {
@@ -3191,9 +3289,14 @@ export interface components {
              */
             isDraft?: boolean;
             /** @example General observation */
-            observation?: Record<string, never> | null;
+            observation?: string | null;
             /** @description Observations */
             observations?: components["schemas"]["CreateSalesReceiptObservationDto"][];
+            /**
+             * @description External provider identifier. Unique per organization; acts as an idempotency key.
+             * @example ext-receipt-123
+             */
+            providerId?: Record<string, never> | null;
             /**
              * @description Receipt book ID
              * @example 1
@@ -3228,6 +3331,55 @@ export interface components {
              */
             description: string;
         };
+        ErrorResponseDto: {
+            /**
+             * @description Numeric AFIP error code (e.g. 10016 for already-authorized). Only present on AFIP errors that carry a numeric code.
+             * @example 10016
+             */
+            code?: number;
+            /**
+             * @description Field-level validation reasons. Populated for validation errors and structured business errors.
+             * @example [
+             *       "CUIT must contain 11 digits (received 9)."
+             *     ]
+             */
+            details?: string[];
+            /**
+             * @description SCREAMING_SNAKE_CASE enum-style error code. Always machine-mappable. Examples: AFIP_PERSONA_NOT_FOUND, AFIP_WSCI_ERROR, INVALID_CUIT, DB_UNIQUE_VIOLATION, NOT_FOUND, BAD_REQUEST, UNAUTHORIZED.
+             * @example AFIP_PERSONA_NOT_FOUND
+             */
+            error: string;
+            /**
+             * @description Developer-friendly English description of the error. Always present.
+             * @example No AFIP taxpayer found for CUIT 20999999999.
+             */
+            message: string;
+            /**
+             * @description Request path that triggered the error.
+             * @example /v1/customers/lookup-cuit?cuit=20-99999999-9
+             */
+            path: string;
+            /**
+             * @description Raw message from the upstream provider (AFIP, etc.) with envelope noise stripped. Present on errors that wrap a third-party failure; kept in the provider's original language.
+             * @example No existe persona con ese Id
+             */
+            providerMessage?: string;
+            /**
+             * @description pino-http request ID for log correlation.
+             * @example req-abc-123
+             */
+            requestId?: string;
+            /**
+             * @description HTTP status code.
+             * @example 404
+             */
+            statusCode: number;
+            /**
+             * @description ISO-8601 timestamp of when the error occurred.
+             * @example 2026-04-23T14:30:00.000Z
+             */
+            timestamp: string;
+        };
         JournalEntryItemDto: {
             /** @description Journal account ID */
             accountId: number;
@@ -3236,7 +3388,7 @@ export interface components {
             /** @description Debit amount */
             debit: number;
             /** @description Own check ID (optional) */
-            ownCheckId?: Record<string, never>;
+            ownCheckId?: number;
         };
         UpdateAccountingLockDto: {
             endDate?: string;
@@ -3325,12 +3477,12 @@ export interface components {
              * @description Discount percent (0–100)
              * @example 10
              */
-            discount?: Record<string, never> | null;
+            discount?: number | null;
             /**
              * @description Product ID
              * @example 1
              */
-            productId?: Record<string, never> | null;
+            productId?: number | null;
             /**
              * @description Quantity
              * @example 2
@@ -3340,7 +3492,7 @@ export interface components {
              * @description Tax type (combo item) ID
              * @example 1
              */
-            taxTypeId?: Record<string, never> | null;
+            taxTypeId?: number | null;
             /**
              * @description Unit price
              * @example 100.5
@@ -3370,30 +3522,40 @@ export interface components {
         };
         UpdateProductDto: {
             /** @example 7890123456789 */
-            barcode?: Record<string, never> | null;
+            barcode?: string | null;
             /** @example 3 */
-            categoryId?: Record<string, never> | null;
+            categoryId?: number | null;
             /** @example Widget A */
             description?: string;
             /** @example true */
             isActive?: boolean;
+            /**
+             * @description External provider identifier. Unique per organization; acts as an idempotency key.
+             * @example ext-sku-123
+             */
+            providerId?: Record<string, never> | null;
             /** @example 1.5 */
-            quantity?: Record<string, never> | null;
+            quantity?: number | null;
             /** @example Producto */
-            type?: Record<string, never> | null;
+            type?: string | null;
             /** @example 1 */
             unitOfMeasureId?: number;
+            /**
+             * @description Default unit price for auto-populating receipt lines
+             * @example 1500.5
+             */
+            unitPrice?: number | null;
             /** @example 2 */
-            vatRateId?: Record<string, never> | null;
+            vatRateId?: number | null;
         };
         UpdateSalesReceiptDto: {
             /** @example customer@example.com */
-            collectionEmail?: Record<string, never> | null;
+            collectionEmail?: string | null;
             /**
              * @description Currency ID (draft only)
              * @example 1
              */
-            currencyId?: Record<string, never> | null;
+            currencyId?: number | null;
             /**
              * @description Customer ID (draft only)
              * @example 1
@@ -3415,7 +3577,7 @@ export interface components {
              * @description Exchange rate (draft only)
              * @example 1
              */
-            exchangeRate?: Record<string, never> | null;
+            exchangeRate?: number | null;
             /**
              * @description Export-specific data for WSFEX invoices (draft only)
              * @example {
@@ -3425,9 +3587,14 @@ export interface components {
              */
             exportData?: Record<string, never>;
             /** @example General observation */
-            observation?: Record<string, never> | null;
+            observation?: string | null;
             /** @description Replace all observations atomically (draft only) */
             observations?: components["schemas"]["CreateSalesReceiptObservationDto"][];
+            /**
+             * @description External provider identifier. Unique per organization; acts as an idempotency key.
+             * @example ext-receipt-123
+             */
+            providerId?: Record<string, never> | null;
             /**
              * @description Receipt book ID (draft only)
              * @example 1
@@ -3536,6 +3703,292 @@ export interface operations {
                 "application/json": components["schemas"]["UpdateAccountingLockDto"];
             };
         };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FiscalYearsController_list: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FiscalYearsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateFiscalYearDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FiscalYearsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateFiscalYearDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FiscalYearsController_close: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalAccountsController_list: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalAccountsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateJournalAccountDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalAccountsController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalAccountsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateJournalAccountDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalEntriesController_list: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                /** @description Filter by module (ventas, compras, tesoreria, manual) */
+                module?: string;
+                /** @description Filter from date (ISO string) */
+                date_from?: string;
+                /** @description Filter to date (ISO string) */
+                date_to?: string;
+                /** @description Filter manual entries only */
+                is_manual?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalEntriesController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateJournalEntryDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalEntriesController_getBalanceSheet: {
+        parameters: {
+            query: {
+                as_of_date: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalEntriesController_getProfitAndLoss: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalEntriesController_getById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    JournalEntriesController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
         responses: {
             200: {
                 headers: {
@@ -4319,6 +4772,8 @@ export interface operations {
                 page_size?: number;
                 /** @description Filter by business name, tax ID, or email (partial match) */
                 search?: string;
+                /** @description Exact match on the external provider identifier */
+                provider_id?: string;
             };
             header?: never;
             path?: never;
@@ -4326,7 +4781,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Paginated customers (data, next_cursor, has_more) */
+            /** @description Paginated customers (data, nextCursor, hasMore) */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -4364,6 +4819,8 @@ export interface operations {
                 search?: string;
                 /** @description Include only active customers (default true) */
                 is_active?: boolean;
+                /** @description Exact match on the external provider identifier */
+                provider_id?: string;
             };
             header?: never;
             path?: never;
@@ -4383,7 +4840,7 @@ export interface operations {
     CustomersController_lookupCuit: {
         parameters: {
             query: {
-                /** @description CUIT to look up (11 digits) */
+                /** @description CUIT to look up (11 digits, with or without dashes) */
                 cuit: string;
             };
             header?: never;
@@ -4399,12 +4856,32 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Invalid CUIT */
+            /** @description INVALID_CUIT — malformed or bad check digit. */
             400: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description AFIP_PERSONA_NOT_FOUND — no taxpayer registered in AFIP for this CUIT. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description AFIP_WSCI_ERROR — upstream AFIP (WSCI) failure. See providerMessage. */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
@@ -6635,253 +7112,6 @@ export interface operations {
             };
         };
     };
-    FiscalYearsController_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FiscalYearsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateFiscalYearDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FiscalYearsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateFiscalYearDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FiscalYearsController_close: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalAccountsController_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalAccountsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateJournalAccountDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalAccountsController_delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalAccountsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateJournalAccountDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalEntriesController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                limit?: number;
-                /** @description Filter by module (ventas, compras, tesoreria, manual) */
-                module?: string;
-                /** @description Filter from date (ISO string) */
-                date_from?: string;
-                /** @description Filter to date (ISO string) */
-                date_to?: string;
-                /** @description Filter manual entries only */
-                is_manual?: boolean;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalEntriesController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateJournalEntryDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalEntriesController_getById: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalEntriesController_delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
     LeadsController_findAll: {
         parameters: {
             query?: never;
@@ -7387,6 +7617,8 @@ export interface operations {
                 page_size?: number;
                 /** @description Filter by product name (description, partial match) */
                 name?: string;
+                /** @description Exact match on the external provider identifier */
+                provider_id?: string;
             };
             header?: never;
             path?: never;
@@ -7394,7 +7626,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Paginated products (data, next_cursor, has_more) */
+            /** @description Paginated products (data, nextCursor, hasMore) */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -7985,7 +8217,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Paginated purchase receipts (data, next_cursor, has_more) */
+            /** @description Paginated purchase receipts (data, nextCursor, hasMore) */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -8185,6 +8417,251 @@ export interface operations {
             };
         };
     };
+    SuppliersController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Opaque cursor for next page */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+                /** @description Filter by business name, tax ID, or email (partial match) */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated suppliers (data, nextCursor, hasMore) */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created supplier */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_removeBulk: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    ids?: number[];
+                };
+            };
+        };
+        responses: {
+            /** @description Number of deleted suppliers */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_exportCsv: {
+        parameters: {
+            query?: {
+                /** @description Filter by business name, tax ID, or email (partial match) */
+                search?: string;
+                /** @description Include only active suppliers (default true) */
+                active_only?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_getOrCreate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Existing or newly created supplier */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_lookupCuit: {
+        parameters: {
+            query: {
+                /** @description CUIT to look up (11 digits, with or without dashes) */
+                cuit: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CUIT lookup result */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description INVALID_CUIT — malformed or bad check digit. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description AFIP_PERSONA_NOT_FOUND — no taxpayer registered in AFIP for this CUIT. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description AFIP_WSCI_ERROR — upstream AFIP (WSCI) failure. See providerMessage. */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SuppliersController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Supplier */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SuppliersController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated supplier */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     ReceiptBooksController_findAll: {
         parameters: {
             query?: never;
@@ -8219,7 +8696,7 @@ export interface operations {
                     pointOfSale: number;
                     prefix: string;
                     /** @enum {string} */
-                    type?: "WS" | "EN_LINEA" | "PRE_IMPRESOS";
+                    type?: "WS" | "WS_MOCK" | "EN_LINEA" | "PRE_IMPRESOS";
                 };
             };
         };
@@ -8363,978 +8840,6 @@ export interface operations {
         responses: {
             /** @description Updated receipt book */
             200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Opaque cursor for next page */
-                cursor?: string;
-                /** @description Page size (default 20, max 100) */
-                page_size?: number;
-                /** @description Filter receipts on or after this date (ISO). Omit for all dates. */
-                date_from?: string;
-                /** @description Filter receipts on or before this date (ISO). Omit for all dates. */
-                date_to?: string;
-                /** @description Filter by receipt status */
-                status?: string;
-                /** @description Search by customer name, receipt number, or CAE. Supports prefixes: cae:<value>, cuit:<value>, nro:<value>, id:<value> */
-                search?: string;
-                /** @description Filter by customer ID */
-                customer_id?: number;
-                /** @description Filter by receipt type group */
-                receipt_type?: "factura" | "nota_credito" | "nota_debito";
-                /** @description Filter by creator user ID */
-                user_id?: number;
-                /** @description Filter by receipt book ID */
-                receipt_book_id?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated sales receipts (data, next_cursor, has_more) */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateSalesReceiptDto"];
-            };
-        };
-        responses: {
-            /** @description Created sales receipt */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_bulkActionStatus: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Bulk action job UUID */
-                jobId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Job status and progress */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Job not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_bulkEmail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["BulkEmailDto"];
-            };
-        };
-        responses: {
-            /** @description Bulk email job created */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid receipt IDs */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_bulkPdf: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["BulkPdfDto"];
-            };
-        };
-        responses: {
-            /** @description Bulk PDF job created */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid receipt IDs */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findCreators: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Array of { id, fullName } */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_exportCsv: {
-        parameters: {
-            query?: {
-                date_from?: string;
-                date_to?: string;
-                status?: string;
-                search?: string;
-                customer_id?: number;
-                receipt_type?: "factura" | "nota_credito" | "nota_debito";
-                user_id?: number;
-                receipt_book_id?: number;
-                preset?: "default" | "detailed";
-                /** @description Comma-separated column keys (overrides preset and saved config) */
-                columns?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Async export triggered (high-volume orgs) */
-            202: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_listExportColumns: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Array of { key, header } */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_getNextNumber: {
-        parameters: {
-            query: {
-                receipt_book_id: number;
-                customer_id: number;
-                receipt_type?: "factura" | "nota_credito" | "nota_debito";
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description { letter, number, nextSequential } */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Sales receipt */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Receipt is not a draft */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateSalesReceiptDto"];
-            };
-        };
-        responses: {
-            /** @description Updated sales receipt */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_authorizeAfip: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Authorization result */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Receipt not pending or AFIP error */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_confirm: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Confirmed receipt */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid state or missing required fields */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findAllDetails: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of receipt details */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_createDetail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateSalesReceiptDetailDto"];
-            };
-        };
-        responses: {
-            /** @description Created detail */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Receipt not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findOneDetail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Detail line id (number) */
-                detailId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Receipt detail */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_removeDetail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Detail line id (number) */
-                detailId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Removed */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_updateDetail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Detail line id (number) */
-                detailId: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateDetailDto"];
-            };
-        };
-        responses: {
-            /** @description Updated detail */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_duplicate: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Source sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description New draft receipt */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Source receipt not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findAllObservations: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of receipt observations */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_createObservation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateSalesReceiptObservationDto"];
-            };
-        };
-        responses: {
-            /** @description Created observation */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Receipt not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findOneObservation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Observation id (number) */
-                observationId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Receipt observation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_removeObservation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Observation id (number) */
-                observationId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Removed */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_updateObservation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Observation id (number) */
-                observationId: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateObservationDto"];
-            };
-        };
-        responses: {
-            /** @description Updated observation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_downloadPdf: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Invoice PDF file */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_downloadPdfPublic: {
-        parameters: {
-            query: {
-                /** @description Signed download token */
-                token: string;
-                /** @description Token expiration (unix seconds) */
-                expires: string;
-            };
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Invoice PDF file */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid or expired token */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_resendEmailPublic: {
-        parameters: {
-            query: {
-                token: string;
-                expires: string;
-            };
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Email resent */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid token signature */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found or no email */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Rate limited */
-            429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_retry: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Retry triggered, receipt returned */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Receipt is not in Pendiente_Afip status */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_sendEmail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Email send triggered */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_getTrackingEvents: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Tracking events with tracking enabled flag */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_voidReceipt: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["VoidSalesReceiptDto"];
-            };
-        };
-        responses: {
-            /** @description Voided receipt with optional credit note ID */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid state (not Creada or already Anulado) */
-            400: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -9653,15 +9158,31 @@ export interface operations {
             };
         };
     };
-    SuppliersController_findAll: {
+    SalesReceiptsController_findAll: {
         parameters: {
             query?: {
                 /** @description Opaque cursor for next page */
                 cursor?: string;
-                /** @description Page size (default 50, max 100) */
+                /** @description Page size (default 20, max 100) */
                 page_size?: number;
-                /** @description Filter by business name, tax ID, or email (partial match) */
+                /** @description Filter receipts on or after this date (ISO). Omit for all dates. */
+                date_from?: string;
+                /** @description Filter receipts on or before this date (ISO). Omit for all dates. */
+                date_to?: string;
+                /** @description Filter by receipt status */
+                status?: string;
+                /** @description Search by customer name, receipt number, or CAE. Supports prefixes: cae:<value>, cuit:<value>, nro:<value>, id:<value> */
                 search?: string;
+                /** @description Filter by customer ID */
+                customer_id?: number;
+                /** @description Filter by receipt type group */
+                receipt_type?: "factura" | "nota_credito" | "nota_debito";
+                /** @description Filter by creator user ID */
+                user_id?: number;
+                /** @description Filter by receipt book ID */
+                receipt_book_id?: number;
+                /** @description Exact match on the external provider identifier */
+                provider_id?: string;
             };
             header?: never;
             path?: never;
@@ -9669,7 +9190,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Paginated suppliers (data, next_cursor, has_more) */
+            /** @description Paginated sales receipts (data, nextCursor, hasMore) */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -9678,7 +9199,7 @@ export interface operations {
             };
         };
     };
-    SuppliersController_create: {
+    SalesReceiptsController_create: {
         parameters: {
             query?: never;
             header?: never;
@@ -9687,20 +9208,57 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreateSalesReceiptDto"];
             };
         };
         responses: {
-            /** @description Created supplier */
+            /** @description Created sales receipt */
             201: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
+            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, DETAILS_REQUIRED, MISSING_SALES_LETTER. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
         };
     };
-    SuppliersController_removeBulk: {
+    SalesReceiptsController_bulkActionStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Bulk action job UUID */
+                jobId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Job status and progress */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Job not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_bulkEmail: {
         parameters: {
             query?: never;
             header?: never;
@@ -9709,13 +9267,123 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": {
-                    ids?: number[];
-                };
+                "application/json": components["schemas"]["BulkEmailDto"];
             };
         };
         responses: {
-            /** @description Number of deleted suppliers */
+            /** @description Bulk email job created */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid receipt IDs */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_bulkPdf: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BulkPdfDto"];
+            };
+        };
+        responses: {
+            /** @description Bulk PDF job created */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid receipt IDs */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_bulkReconcile: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BulkReconcileDto"];
+            };
+        };
+        responses: {
+            /** @description Receipts marked as collected */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid receipt IDs */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_bulkVoid: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BulkVoidDto"];
+            };
+        };
+        responses: {
+            /** @description Bulk void job created */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid receipt IDs */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_findCreators: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Array of { id, fullName } */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -9724,13 +9392,20 @@ export interface operations {
             };
         };
     };
-    SuppliersController_exportCsv: {
+    SalesReceiptsController_exportCsv: {
         parameters: {
             query?: {
-                /** @description Filter by business name, tax ID, or email (partial match) */
+                date_from?: string;
+                date_to?: string;
+                status?: string;
                 search?: string;
-                /** @description Include only active suppliers (default true) */
-                active_only?: boolean;
+                customer_id?: number;
+                receipt_type?: "factura" | "nota_credito" | "nota_debito";
+                user_id?: number;
+                receipt_book_id?: number;
+                preset?: "default" | "detailed";
+                /** @description Comma-separated column keys (overrides preset and saved config) */
+                columns?: string;
             };
             header?: never;
             path?: never;
@@ -9745,22 +9420,25 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Async export triggered (high-volume orgs) */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
     };
-    SuppliersController_getOrCreate: {
+    SalesReceiptsController_listExportColumns: {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
+        requestBody?: never;
         responses: {
-            /** @description Existing or newly created supplier */
+            /** @description Array of { key, header } */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -9769,11 +9447,12 @@ export interface operations {
             };
         };
     };
-    SuppliersController_lookupCuit: {
+    SalesReceiptsController_getNextNumber: {
         parameters: {
             query: {
-                /** @description CUIT to look up (11 digits) */
-                cuit: string;
+                receipt_book_id: number;
+                customer_id: number;
+                receipt_type?: "factura" | "nota_credito" | "nota_debito";
             };
             header?: never;
             path?: never;
@@ -9781,34 +9460,37 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description CUIT lookup result */
+            /** @description { letter, number, nextSequential } */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Invalid CUIT */
+            /** @description Validation failed. Codes: MISSING_SALES_LETTER. */
             400: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
-    SuppliersController_findOne: {
+    SalesReceiptsController_findOne: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                id: number;
+                /** @description Sales receipt UUID */
+                id: string;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Supplier */
+            /** @description Sales receipt */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -9824,18 +9506,458 @@ export interface operations {
             };
         };
     };
-    SuppliersController_remove: {
+    SalesReceiptsController_remove: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                id: number;
+                /** @description Sales receipt UUID */
+                id: string;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
             /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DELETE, NOT_LAST_RECEIPT_NUMBER. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateSalesReceiptDto"];
+            };
+        };
+        responses: {
+            /** @description Updated sales receipt */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, RECEIPT_DATE_TOO_OLD, MISSING_SALES_LETTER. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_authorizeAfip: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Authorization result */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation failed (or AFIP error). Codes: INVALID_RECEIPT_STATUS_FOR_AUTHORIZE. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_confirm: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Confirmed receipt */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_CONFIRM, CUSTOMER_REQUIRED, DETAILS_REQUIRED, RECEIPT_BOOK_REQUIRED, SALE_CONDITION_REQUIRED, RECEIPT_DATE_TOO_OLD, RECEIPT_BOOK_NOT_FOUND. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_findAllDetails: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of receipt details */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_createDetail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateSalesReceiptDetailDto"];
+            };
+        };
+        responses: {
+            /** @description Created detail */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DETAILS. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description Receipt not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_findOneDetail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+                /** @description Detail line id (number) */
+                detailId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Receipt detail */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_removeDetail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+                /** @description Detail line id (number) */
+                detailId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Removed */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DETAILS. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_updateDetail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+                /** @description Detail line id (number) */
+                detailId: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateDetailDto"];
+            };
+        };
+        responses: {
+            /** @description Updated detail */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DETAILS. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_duplicate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Source sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description New draft receipt */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Source receipt not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_findAllObservations: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of receipt observations */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_createObservation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateSalesReceiptObservationDto"];
+            };
+        };
+        responses: {
+            /** @description Created observation */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Receipt not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_findOneObservation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+                /** @description Observation id (number) */
+                observationId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Receipt observation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_removeObservation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+                /** @description Observation id (number) */
+                observationId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Removed */
             204: {
                 headers: {
                     [name: string]: unknown;
@@ -9851,23 +9973,277 @@ export interface operations {
             };
         };
     };
-    SuppliersController_update: {
+    SalesReceiptsController_updateObservation: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                id: number;
+                /** @description Sales receipt UUID */
+                id: string;
+                /** @description Observation id (number) */
+                observationId: number;
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateObservationDto"];
+            };
+        };
         responses: {
-            /** @description Updated supplier */
+            /** @description Updated observation */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_downloadPdf: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Invoice PDF file */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_downloadPdfPublic: {
+        parameters: {
+            query: {
+                /** @description Signed download token */
+                token: string;
+                /** @description Token expiration (unix seconds) */
+                expires: string;
+            };
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Invoice PDF file */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid or expired token */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_resendEmailPublic: {
+        parameters: {
+            query: {
+                token: string;
+                expires: string;
+            };
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Email resent */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid token signature */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found or no email */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Rate limited */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_retry: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Retry triggered, receipt returned */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation failed. Codes: INVALID_RECEIPT_STATUS_FOR_RETRY. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_sendEmail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Email send triggered */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_getTrackingEvents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Tracking events with tracking enabled flag */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_voidReceipt: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["VoidSalesReceiptDto"];
+            };
+        };
+        responses: {
+            /** @description Voided receipt with optional credit note ID */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, RECEIPT_ALREADY_VOIDED, INVALID_RECEIPT_STATUS_FOR_VOID, RECEIPT_BOOK_NOT_FOUND, WS_VOID_REQUIRES_CREDIT_NOTE, RECEIPT_ALREADY_CREDITED, PARTIAL_CREDIT_EXISTS. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
             /** @description Not found */
             404: {

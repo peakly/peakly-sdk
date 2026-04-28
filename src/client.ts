@@ -21,7 +21,7 @@ export class PeaklyClient {
     const {
       apiKey,
       organizationId,
-      baseUrl = "https://api.peakly.io",
+      baseUrl = "https://api.peakly.ar",
     } = options;
 
     const headers: Record<string, string> = {
@@ -62,25 +62,25 @@ class SalesNamespace {
 class SalesReceiptsResource {
   constructor(private readonly f: Fetcher) {}
 
-  list(query?: paths["/v1/sales-receipts"]["get"]["parameters"]["query"]) {
-    return this.f.GET("/v1/sales-receipts", { params: { query } });
+  list(query?: paths["/v1/sales/sales-receipts"]["get"]["parameters"]["query"]) {
+    return this.f.GET("/v1/sales/sales-receipts", { params: { query } });
   }
 
   get(id: string) {
-    return this.f.GET("/v1/sales-receipts/{id}", { params: { path: { id } } });
+    return this.f.GET("/v1/sales/sales-receipts/{id}", { params: { path: { id } } });
   }
 
   create(
-    body: paths["/v1/sales-receipts"]["post"]["requestBody"]["content"]["application/json"]
+    body: paths["/v1/sales/sales-receipts"]["post"]["requestBody"]["content"]["application/json"]
   ) {
-    return this.f.POST("/v1/sales-receipts", { body });
+    return this.f.POST("/v1/sales/sales-receipts", { body });
   }
 
   update(
     id: string,
-    body: paths["/v1/sales-receipts/{id}"]["patch"]["requestBody"]["content"]["application/json"]
+    body: paths["/v1/sales/sales-receipts/{id}"]["patch"]["requestBody"]["content"]["application/json"]
   ) {
-    return this.f.PATCH("/v1/sales-receipts/{id}", {
+    return this.f.PATCH("/v1/sales/sales-receipts/{id}", {
       params: { path: { id } },
       body,
     });
@@ -88,40 +88,40 @@ class SalesReceiptsResource {
 
   void(
     id: string,
-    body: paths["/v1/sales-receipts/{id}/void"]["post"]["requestBody"]["content"]["application/json"]
+    body: paths["/v1/sales/sales-receipts/{id}/void"]["post"]["requestBody"]["content"]["application/json"]
   ) {
-    return this.f.POST("/v1/sales-receipts/{id}/void", {
+    return this.f.POST("/v1/sales/sales-receipts/{id}/void", {
       params: { path: { id } },
       body,
     });
   }
 
   authorize(id: string) {
-    return this.f.POST("/v1/sales-receipts/{id}/authorize", {
+    return this.f.POST("/v1/sales/sales-receipts/{id}/authorize", {
       params: { path: { id } },
     });
   }
 
   confirm(id: string) {
-    return this.f.POST("/v1/sales-receipts/{id}/confirm", {
+    return this.f.POST("/v1/sales/sales-receipts/{id}/confirm", {
       params: { path: { id } },
     });
   }
 
   sendEmail(id: string) {
-    return this.f.POST("/v1/sales-receipts/{id}/send-email", {
+    return this.f.POST("/v1/sales/sales-receipts/{id}/send-email", {
       params: { path: { id } },
     });
   }
 
   pdf(id: string) {
-    return this.f.GET("/v1/sales-receipts/{id}/pdf", {
+    return this.f.GET("/v1/sales/sales-receipts/{id}/pdf", {
       params: { path: { id } },
     });
   }
 
   duplicate(id: string) {
-    return this.f.POST("/v1/sales-receipts/{id}/duplicate", {
+    return this.f.POST("/v1/sales/sales-receipts/{id}/duplicate", {
       params: { path: { id } },
     });
   }
@@ -354,20 +354,20 @@ class AccountingNamespace {
 class JournalEntriesResource {
   constructor(private readonly f: Fetcher) {}
 
-  list(query?: paths["/v1/journal-entries"]["get"]["parameters"]["query"]) {
-    return this.f.GET("/v1/journal-entries", { params: { query } });
+  list(query?: paths["/v1/accounting/journal-entries"]["get"]["parameters"]["query"]) {
+    return this.f.GET("/v1/accounting/journal-entries", { params: { query } });
   }
 
   get(id: number) {
-    return this.f.GET("/v1/journal-entries/{id}", {
+    return this.f.GET("/v1/accounting/journal-entries/{id}", {
       params: { path: { id } },
     });
   }
 
   create(
-    body: paths["/v1/journal-entries"]["post"]["requestBody"]["content"]["application/json"]
+    body: paths["/v1/accounting/journal-entries"]["post"]["requestBody"]["content"]["application/json"]
   ) {
-    return this.f.POST("/v1/journal-entries", { body });
+    return this.f.POST("/v1/accounting/journal-entries", { body });
   }
 }
 
@@ -375,9 +375,9 @@ class JournalAccountsResource {
   constructor(private readonly f: Fetcher) {}
 
   list(
-    query?: paths["/v1/journal-accounts"]["get"]["parameters"]["query"]
+    query?: paths["/v1/accounting/journal-accounts"]["get"]["parameters"]["query"]
   ) {
-    return this.f.GET("/v1/journal-accounts", { params: { query } });
+    return this.f.GET("/v1/accounting/journal-accounts", { params: { query } });
   }
 }
 
@@ -397,37 +397,37 @@ class PurchaseReceiptsResource {
   constructor(private readonly f: Fetcher) {}
 
   list(
-    query?: paths["/v1/purchase-receipts"]["get"]["parameters"]["query"]
+    query?: paths["/v1/purchases/purchase-receipts"]["get"]["parameters"]["query"]
   ) {
-    return this.f.GET("/v1/purchase-receipts", { params: { query } });
+    return this.f.GET("/v1/purchases/purchase-receipts", { params: { query } });
   }
 
   get(id: number) {
-    return this.f.GET("/v1/purchase-receipts/{id}", {
+    return this.f.GET("/v1/purchases/purchase-receipts/{id}", {
       params: { path: { id } },
     });
   }
 
-  // requestBody schema not yet detailed in the spec; tracked in PEA-118
+  // requestBody schema not yet detailed in the spec; tracked in PEA-125
   create(body: Record<string, unknown>) {
-    return this.f.POST("/v1/purchase-receipts", { body: body as never });
+    return this.f.POST("/v1/purchases/purchase-receipts", { body: body as never });
   }
 }
 
 class SuppliersResource {
   constructor(private readonly f: Fetcher) {}
 
-  list(query?: paths["/v1/suppliers"]["get"]["parameters"]["query"]) {
-    return this.f.GET("/v1/suppliers", { params: { query } });
+  list(query?: paths["/v1/purchases/suppliers"]["get"]["parameters"]["query"]) {
+    return this.f.GET("/v1/purchases/suppliers", { params: { query } });
   }
 
   get(id: number) {
-    return this.f.GET("/v1/suppliers/{id}", { params: { path: { id } } });
+    return this.f.GET("/v1/purchases/suppliers/{id}", { params: { path: { id } } });
   }
 
   create(
-    body: paths["/v1/suppliers"]["post"]["requestBody"]["content"]["application/json"]
+    body: paths["/v1/purchases/suppliers"]["post"]["requestBody"]["content"]["application/json"]
   ) {
-    return this.f.POST("/v1/suppliers", { body });
+    return this.f.POST("/v1/purchases/suppliers", { body });
   }
 }
