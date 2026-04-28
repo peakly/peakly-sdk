@@ -13,9 +13,8 @@ export class PeaklyClient {
   readonly #fetch: Fetcher;
 
   readonly sales: SalesNamespace;
-  readonly customers: CustomersNamespace;
-  readonly products: ProductsNamespace;
   readonly finance: FinanceNamespace;
+  readonly accounting: AccountingNamespace;
   readonly purchases: PurchasesNamespace;
 
   constructor(options: PeaklyClientOptions) {
@@ -35,9 +34,8 @@ export class PeaklyClient {
     this.#fetch = createClient<paths>({ baseUrl, headers });
 
     this.sales = new SalesNamespace(this.#fetch);
-    this.customers = new CustomersNamespace(this.#fetch);
-    this.products = new ProductsNamespace(this.#fetch);
     this.finance = new FinanceNamespace(this.#fetch);
+    this.accounting = new AccountingNamespace(this.#fetch);
     this.purchases = new PurchasesNamespace(this.#fetch);
   }
 
@@ -47,8 +45,21 @@ export class PeaklyClient {
   }
 }
 
-// Sales receipts use UUID strings as IDs
+// ─── Sales ───────────────────────────────────────────────────────────────────
+
 class SalesNamespace {
+  readonly receipts: SalesReceiptsResource;
+  readonly customers: CustomersResource;
+  readonly products: ProductsResource;
+
+  constructor(f: Fetcher) {
+    this.receipts = new SalesReceiptsResource(f);
+    this.customers = new CustomersResource(f);
+    this.products = new ProductsResource(f);
+  }
+}
+
+class SalesReceiptsResource {
   constructor(private readonly f: Fetcher) {}
 
   list(query?: paths["/v1/sales-receipts"]["get"]["parameters"]["query"]) {
@@ -56,9 +67,7 @@ class SalesNamespace {
   }
 
   get(id: string) {
-    return this.f.GET("/v1/sales-receipts/{id}", {
-      params: { path: { id } },
-    });
+    return this.f.GET("/v1/sales-receipts/{id}", { params: { path: { id } } });
   }
 
   create(
@@ -118,8 +127,7 @@ class SalesNamespace {
   }
 }
 
-// Customers and products use numeric IDs
-class CustomersNamespace {
+class CustomersResource {
   constructor(private readonly f: Fetcher) {}
 
   list(query?: paths["/v1/customers"]["get"]["parameters"]["query"]) {
@@ -127,9 +135,7 @@ class CustomersNamespace {
   }
 
   get(id: number) {
-    return this.f.GET("/v1/customers/{id}", {
-      params: { path: { id } },
-    });
+    return this.f.GET("/v1/customers/{id}", { params: { path: { id } } });
   }
 
   create(
@@ -138,7 +144,7 @@ class CustomersNamespace {
     return this.f.POST("/v1/customers", { body });
   }
 
-  // requestBody is not yet defined in the spec for this endpoint
+  // requestBody not yet defined in the spec; tracked in PEA-118
   update(id: number, body: Record<string, unknown>) {
     return this.f.PATCH("/v1/customers/{id}", {
       params: { path: { id } },
@@ -147,13 +153,11 @@ class CustomersNamespace {
   }
 
   delete(id: number) {
-    return this.f.DELETE("/v1/customers/{id}", {
-      params: { path: { id } },
-    });
+    return this.f.DELETE("/v1/customers/{id}", { params: { path: { id } } });
   }
 }
 
-class ProductsNamespace {
+class ProductsResource {
   constructor(private readonly f: Fetcher) {}
 
   list(query?: paths["/v1/products"]["get"]["parameters"]["query"]) {
@@ -161,9 +165,7 @@ class ProductsNamespace {
   }
 
   get(id: number) {
-    return this.f.GET("/v1/products/{id}", {
-      params: { path: { id } },
-    });
+    return this.f.GET("/v1/products/{id}", { params: { path: { id } } });
   }
 
   create(
@@ -183,9 +185,7 @@ class ProductsNamespace {
   }
 
   delete(id: number) {
-    return this.f.DELETE("/v1/products/{id}", {
-      params: { path: { id } },
-    });
+    return this.f.DELETE("/v1/products/{id}", { params: { path: { id } } });
   }
 
   search(query?: paths["/v1/products/search"]["get"]["parameters"]["query"]) {
@@ -193,52 +193,205 @@ class ProductsNamespace {
   }
 }
 
+// ─── Finance ─────────────────────────────────────────────────────────────────
+
 class FinanceNamespace {
+  readonly deposits: DepositsResource;
+  readonly payments: PaymentMethodsResource;
+  readonly bankAccounts: BankAccountsResource;
+  readonly fundMovements: FundMovementsResource;
+  readonly retentions: RetentionsResource;
+  readonly transfers: TransfersResource;
+  readonly checks: OwnChecksResource;
+
+  constructor(f: Fetcher) {
+    this.deposits = new DepositsResource(f);
+    this.payments = new PaymentMethodsResource(f);
+    this.bankAccounts = new BankAccountsResource(f);
+    this.fundMovements = new FundMovementsResource(f);
+    this.retentions = new RetentionsResource(f);
+    this.transfers = new TransfersResource(f);
+    this.checks = new OwnChecksResource(f);
+  }
+}
+
+class DepositsResource {
   constructor(private readonly f: Fetcher) {}
 
-  // Payment methods (receipts/payments)
-  listPaymentMethods(
+  list(query?: paths["/v1/finance/deposits"]["get"]["parameters"]["query"]) {
+    return this.f.GET("/v1/finance/deposits", { params: { query } });
+  }
+
+  get(id: number) {
+    return this.f.GET("/v1/finance/deposits/{id}", {
+      params: { path: { id } },
+    });
+  }
+
+  create(
+    body: paths["/v1/finance/deposits"]["post"]["requestBody"]["content"]["application/json"]
+  ) {
+    return this.f.POST("/v1/finance/deposits", { body });
+  }
+}
+
+class PaymentMethodsResource {
+  constructor(private readonly f: Fetcher) {}
+
+  list(
     query?: paths["/v1/finance/payment-methods"]["get"]["parameters"]["query"]
   ) {
     return this.f.GET("/v1/finance/payment-methods", { params: { query } });
   }
 
-  // Deposits
-  listDeposits(
-    query?: paths["/v1/finance/deposits"]["get"]["parameters"]["query"]
+  create(
+    body: paths["/v1/finance/payment-methods"]["post"]["requestBody"]["content"]["application/json"]
   ) {
-    return this.f.GET("/v1/finance/deposits", { params: { query } });
+    return this.f.POST("/v1/finance/payment-methods", { body });
   }
+}
 
-  createDeposit(
-    body: paths["/v1/finance/deposits"]["post"]["requestBody"]["content"]["application/json"]
-  ) {
-    return this.f.POST("/v1/finance/deposits", { body });
-  }
+class BankAccountsResource {
+  constructor(private readonly f: Fetcher) {}
 
-  // Fund movements
-  listFundMovements(
-    query?: paths["/v1/finance/fund-movements"]["get"]["parameters"]["query"]
-  ) {
-    return this.f.GET("/v1/finance/fund-movements", { params: { query } });
-  }
-
-  // Bank accounts
-  listBankAccounts(
+  list(
     query?: paths["/v1/finance/bank-accounts"]["get"]["parameters"]["query"]
   ) {
     return this.f.GET("/v1/finance/bank-accounts", { params: { query } });
   }
 
-  // Retentions
-  listRetentions(
+  get(id: number) {
+    return this.f.GET("/v1/finance/bank-accounts/{id}", {
+      params: { path: { id } },
+    });
+  }
+}
+
+class FundMovementsResource {
+  constructor(private readonly f: Fetcher) {}
+
+  list(
+    query?: paths["/v1/finance/fund-movements"]["get"]["parameters"]["query"]
+  ) {
+    return this.f.GET("/v1/finance/fund-movements", { params: { query } });
+  }
+
+  create(
+    body: paths["/v1/finance/fund-movements"]["post"]["requestBody"]["content"]["application/json"]
+  ) {
+    return this.f.POST("/v1/finance/fund-movements", { body });
+  }
+}
+
+class RetentionsResource {
+  constructor(private readonly f: Fetcher) {}
+
+  list(
     query?: paths["/v1/finance/retentions"]["get"]["parameters"]["query"]
   ) {
     return this.f.GET("/v1/finance/retentions", { params: { query } });
   }
+
+  create(
+    body: paths["/v1/finance/retentions"]["post"]["requestBody"]["content"]["application/json"]
+  ) {
+    return this.f.POST("/v1/finance/retentions", { body });
+  }
 }
 
+class TransfersResource {
+  constructor(private readonly f: Fetcher) {}
+
+  list(
+    query?: paths["/v1/finance/transfers"]["get"]["parameters"]["query"]
+  ) {
+    return this.f.GET("/v1/finance/transfers", { params: { query } });
+  }
+
+  create(
+    body: paths["/v1/finance/transfers"]["post"]["requestBody"]["content"]["application/json"]
+  ) {
+    return this.f.POST("/v1/finance/transfers", { body });
+  }
+}
+
+class OwnChecksResource {
+  constructor(private readonly f: Fetcher) {}
+
+  list(
+    query?: paths["/v1/finance/own-checks"]["get"]["parameters"]["query"]
+  ) {
+    return this.f.GET("/v1/finance/own-checks", { params: { query } });
+  }
+
+  get(id: number) {
+    return this.f.GET("/v1/finance/own-checks/{id}", {
+      params: { path: { id } },
+    });
+  }
+
+  create(
+    body: paths["/v1/finance/own-checks"]["post"]["requestBody"]["content"]["application/json"]
+  ) {
+    return this.f.POST("/v1/finance/own-checks", { body });
+  }
+}
+
+// ─── Accounting ───────────────────────────────────────────────────────────────
+
+class AccountingNamespace {
+  readonly entries: JournalEntriesResource;
+  readonly accounts: JournalAccountsResource;
+
+  constructor(f: Fetcher) {
+    this.entries = new JournalEntriesResource(f);
+    this.accounts = new JournalAccountsResource(f);
+  }
+}
+
+class JournalEntriesResource {
+  constructor(private readonly f: Fetcher) {}
+
+  list(query?: paths["/v1/journal-entries"]["get"]["parameters"]["query"]) {
+    return this.f.GET("/v1/journal-entries", { params: { query } });
+  }
+
+  get(id: number) {
+    return this.f.GET("/v1/journal-entries/{id}", {
+      params: { path: { id } },
+    });
+  }
+
+  create(
+    body: paths["/v1/journal-entries"]["post"]["requestBody"]["content"]["application/json"]
+  ) {
+    return this.f.POST("/v1/journal-entries", { body });
+  }
+}
+
+class JournalAccountsResource {
+  constructor(private readonly f: Fetcher) {}
+
+  list(
+    query?: paths["/v1/journal-accounts"]["get"]["parameters"]["query"]
+  ) {
+    return this.f.GET("/v1/journal-accounts", { params: { query } });
+  }
+}
+
+// ─── Purchases ────────────────────────────────────────────────────────────────
+
 class PurchasesNamespace {
+  readonly receipts: PurchaseReceiptsResource;
+  readonly suppliers: SuppliersResource;
+
+  constructor(f: Fetcher) {
+    this.receipts = new PurchaseReceiptsResource(f);
+    this.suppliers = new SuppliersResource(f);
+  }
+}
+
+class PurchaseReceiptsResource {
   constructor(private readonly f: Fetcher) {}
 
   list(
@@ -253,8 +406,26 @@ class PurchasesNamespace {
     });
   }
 
-  // requestBody schema is not yet detailed in the spec
+  // requestBody schema not yet detailed in the spec; tracked in PEA-118
   create(body: Record<string, unknown>) {
     return this.f.POST("/v1/purchase-receipts", { body: body as never });
+  }
+}
+
+class SuppliersResource {
+  constructor(private readonly f: Fetcher) {}
+
+  list(query?: paths["/v1/suppliers"]["get"]["parameters"]["query"]) {
+    return this.f.GET("/v1/suppliers", { params: { query } });
+  }
+
+  get(id: number) {
+    return this.f.GET("/v1/suppliers/{id}", { params: { path: { id } } });
+  }
+
+  create(
+    body: paths["/v1/suppliers"]["post"]["requestBody"]["content"]["application/json"]
+  ) {
+    return this.f.POST("/v1/suppliers", { body });
   }
 }

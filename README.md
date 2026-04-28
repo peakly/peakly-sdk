@@ -22,40 +22,66 @@ const client = new PeaklyClient({
   organizationId: process.env.PEAKLY_ORG_ID, // optional
 });
 
-// List sales receipts
-const { data, error } = await client.sales.list({ status: "confirmed" });
+// Sales receipts
+const { data: receipts } = await client.sales.receipts.list({ status: "confirmed" });
+const { data: receipt } = await client.sales.receipts.get("uuid-here");
+await client.sales.receipts.void("uuid-here", { createCreditNote: false });
 
-// Get a single receipt
-const { data: receipt } = await client.sales.get("uuid-here");
+// Customers
+const { data: customers } = await client.sales.customers.list();
+const { data: customer } = await client.sales.customers.get(42);
 
-// Create a receipt
-const { data: created } = await client.sales.create({
-  customerId: 1,
-  receiptBookId: 1,
-  saleConditionId: 1,
-  details: [
-    { description: "Service", quantity: 1, unitPrice: 1000 },
-  ],
+// Products
+const { data: products } = await client.sales.products.search({ q: "widget" });
+await client.sales.products.create({
+  description: "Widget A",
+  unitOfMeasureId: 1,
 });
 
-// List products
-const { data: products } = await client.products.list({ q: "widget" });
+// Finance
+const { data: deposits } = await client.finance.deposits.list();
+const { data: checks } = await client.finance.checks.list();
 
-// List customers
-const { data: customers } = await client.customers.list();
+// Accounting
+const { data: entries } = await client.accounting.entries.list();
+const { data: accounts } = await client.accounting.accounts.list();
+
+// Purchases
+const { data: purchaseReceipts } = await client.purchases.receipts.list();
+const { data: suppliers } = await client.purchases.suppliers.list();
 ```
 
-## Available namespaces
+## Namespace structure
 
-| Namespace | Methods |
-|-----------|---------|
-| `client.sales` | `list`, `get`, `create`, `update`, `void`, `authorize`, `confirm`, `sendEmail`, `pdf`, `duplicate` |
-| `client.customers` | `list`, `get`, `create`, `update`, `delete` |
-| `client.products` | `list`, `get`, `create`, `update`, `delete`, `search` |
-| `client.finance` | `listPaymentMethods`, `listDeposits`, `createDeposit`, `listFundMovements`, `listBankAccounts`, `listRetentions` |
-| `client.purchases` | `list`, `get`, `create` |
+The client mirrors the Peakly domain model:
 
-For any path not covered by the named namespaces, use the raw fetch client:
+```
+client
+├── sales
+│   ├── receipts      list, get, create, update, void, authorize, confirm,
+│   │                 sendEmail, pdf, duplicate
+│   ├── customers     list, get, create, update, delete
+│   └── products      list, get, create, update, delete, search
+│
+├── finance
+│   ├── deposits      list, get, create
+│   ├── payments      list, create
+│   ├── bankAccounts  list, get
+│   ├── fundMovements list, create
+│   ├── retentions    list, create
+│   ├── transfers     list, create
+│   └── checks        list, get, create
+│
+├── accounting
+│   ├── entries       list, get, create
+│   └── accounts      list
+│
+└── purchases
+    ├── receipts      list, get, create
+    └── suppliers     list, get, create
+```
+
+For any path not covered by named namespaces, use the raw fetch client:
 
 ```typescript
 const { data } = await client.$fetch.GET("/v1/combos/{id}/items", {
@@ -63,37 +89,47 @@ const { data } = await client.$fetch.GET("/v1/combos/{id}/items", {
 });
 ```
 
-## Regenerating types
-
-Types are generated from `openapi.json` (a committed snapshot of the API spec). To regenerate after an API update:
-
-1. Update `openapi.json` from the `peakly-v2-api` repo:
-   ```bash
-   cp ../peakly-v2-api/openapi.json ./openapi.json
-   # or pull from the live API:
-   # bash scripts/generate.sh https://api.peakly.io/openapi.json
-   ```
-2. Regenerate types:
-   ```bash
-   bash scripts/generate.sh
-   ```
-3. Rebuild:
-   ```bash
-   pnpm build
-   ```
-
 ## Error handling
 
 All methods return `{ data, error, response }`. Check `error` before using `data`:
 
 ```typescript
-const { data, error } = await client.sales.list();
+const { data, error } = await client.sales.receipts.list();
 if (error) {
   console.error("API error:", error);
 } else {
   console.log(data);
 }
 ```
+
+## Regenerating types
+
+Types are generated from `openapi.json` (a committed snapshot from `peakly-v2-api`). To regenerate after an API update:
+
+1. Copy the updated spec:
+   ```bash
+   cp ../peakly-v2-api/openapi.json ./openapi.json
+   # or pull from the live API:
+   # bash scripts/generate.sh https://api.peakly.io/openapi.json
+   ```
+2. Regenerate:
+   ```bash
+   pnpm generate
+   pnpm build
+   ```
+
+## Development
+
+```bash
+pnpm install
+pnpm build      # compile TypeScript
+pnpm test       # run vitest suite (30 tests)
+pnpm generate   # regenerate src/schema.d.ts from openapi.json
+```
+
+## Known gaps
+
+- `PATCH /v1/customers/{id}` and `PATCH /v1/purchase-receipts/{id}` are missing `requestBody` in the spec — their `update()` methods accept `Record<string, unknown>` for now. Fix tracked in [PEA-118](https://github.com/peakly/peakly-sdk).
 
 ## License
 
