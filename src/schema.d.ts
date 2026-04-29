@@ -307,10 +307,16 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** List branches for the current organization */
+        /**
+         * List branches
+         * @description Get the list of active branches to populate branch pickers and decide which point of sale to use. Deleted branches are not included.
+         */
         get: operations["BranchesController_findAll"];
         put?: never;
-        /** Create branch */
+        /**
+         * Create branch
+         * @description Create a branch for each physical location your business operates from. Once created, you can reference its id on receipts and assign point-of-sale numbers to it. The name must be different from your other branches.
+         */
         post: operations["BranchesController_create"];
         delete?: never;
         options?: never;
@@ -325,15 +331,24 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get branch by id */
+        /**
+         * Get branch by id
+         * @description Get a branch's details — useful when you've stored an id on a receipt and need to display the branch name and address.
+         */
         get: operations["BranchesController_findOne"];
         put?: never;
         post?: never;
-        /** Delete branch (soft delete) */
+        /**
+         * Delete branch
+         * @description Stop a branch from appearing in pickers and reports when you no longer operate from it. Past receipts that reference the branch keep working.
+         */
         delete: operations["BranchesController_remove"];
         options?: never;
         head?: never;
-        /** Update branch */
+        /**
+         * Update branch
+         * @description Edit the branch — for example to fix the address or update the contact phone. Send only the fields you want to change. If you change `name`, it still has to be different from your other branches.
+         */
         patch: operations["BranchesController_update"];
         trace?: never;
     };
@@ -344,12 +359,15 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** List certificates for the current organization */
+        /**
+         * List certificates
+         * @description Get every certificate associated with your organization, including ones that are still being set up. Use `GET /certificates/active` when you only need the one currently in use for invoicing.
+         */
         get: operations["CertificatesController_findAll"];
         put?: never;
         /**
-         * Create certificate
-         * @description With only 'name': generates RSA key and CSR (matches .NET AddCertificado), uploads private key and CSR to storage. With full body (internalKey, privateKeyPath, csrPath, etc.): manual create for migration/admin.
+         * Start a new certificate
+         * @description Begin the certificate setup flow. POST with a `name` and the API will generate a CSR for you. Next, download the CSR via `GET /certificates/:id/csr`, upload it to AFIP, and post the `.crt` AFIP gives back via `POST /certificates/:id/upload-crt`.
          */
         post: operations["CertificatesController_create"];
         delete?: never;
@@ -365,7 +383,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get active certificate for the current organization */
+        /**
+         * Get the active certificate
+         * @description Get the certificate currently used to authorize receipts with AFIP. A 404 means you don't have a valid certificate set up — receipts will still be created but will stay in `PENDIENTE_AFIP` until you complete the certificate flow (`POST /certificates` → upload CSR to AFIP → `POST /certificates/:id/upload-crt`).
+         */
         get: operations["CertificatesController_findActive"];
         put?: never;
         post?: never;
@@ -382,7 +403,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get certificate expiration status for the current organization */
+        /**
+         * Check expiration for every certificate
+         * @description Use this to drive an expiration banner or renewal reminder in your UI. For each certificate you get back days remaining, whether it's expired, and whether it's ready to use. Plan renewals ahead of time — AFIP issuance can take a few days.
+         */
         get: operations["CertificatesController_getExpirationStatus"];
         put?: never;
         post?: never;
@@ -399,15 +423,24 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get certificate by id */
+        /**
+         * Get certificate by id
+         * @description Get a certificate's name, status, and expiration date. To download the CSR or CRT file, use the `/csr` and `/crt` sub-paths.
+         */
         get: operations["CertificatesController_findOne"];
         put?: never;
         post?: never;
-        /** Delete certificate */
+        /**
+         * Delete certificate
+         * @description Remove a certificate you no longer need (e.g. an expired one you've already replaced). If you delete the active certificate before uploading a replacement, receipts can still be created but will stay in `PENDIENTE_AFIP` — they won't be authorized by AFIP until a new certificate is active.
+         */
         delete: operations["CertificatesController_remove"];
         options?: never;
         head?: never;
-        /** Update certificate */
+        /**
+         * Update certificate
+         * @description Rename a certificate or toggle `isActive` to switch which certificate is used for invoicing. Only one should be active at a time.
+         */
         patch: operations["CertificatesController_update"];
         trace?: never;
     };
@@ -418,7 +451,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Download certificate CRT file */
+        /**
+         * Download CRT
+         * @description Download the AFIP-signed `.crt` for this certificate — useful for backups or to inspect when the certificate expires.
+         */
         get: operations["CertificatesController_getCrt"];
         put?: never;
         post?: never;
@@ -435,7 +471,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Download certificate CSR file */
+        /**
+         * Download CSR
+         * @description Download the CSR file for this certificate so you can upload it to AFIP's certificate portal. Once AFIP gives you back a `.crt`, finish setup by posting it via `POST /certificates/:id/upload-crt`.
+         */
         get: operations["CertificatesController_getCsr"];
         put?: never;
         post?: never;
@@ -455,8 +494,8 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * Upload CRT and generate P12
-         * @description Upload a .crt file for a certificate. Converts to P12 using the stored private key and saves both to Supabase storage.
+         * Upload AFIP-signed CRT
+         * @description Finish setting up the certificate by uploading the `.crt` AFIP gave you when you submitted the CSR. After this call, the certificate is ready to use — run `POST /certificates/:id/validate-connection` to double-check.
          */
         post: operations["CertificatesController_uploadCrt"];
         delete?: never;
@@ -475,8 +514,8 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * Validate certificate connection with AFIP services
-         * @description Tests this specific certificate against WSFE and WSFEX AFIP services. Returns per-service results.
+         * Validate certificate against AFIP
+         * @description Run a quick check against AFIP to confirm the certificate works for both domestic invoicing (WSFE) and export invoicing (WSFEX) before you rely on it for real receipts. The response tells you if each service authenticated, and if not, the error message AFIP returned. Run this right after uploading a CRT.
          */
         post: operations["CertificatesController_validateConnection"];
         delete?: never;
@@ -492,7 +531,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** List combos */
+        /**
+         * List combos
+         * @description Returns an empty list — combos are fetched by id. Use `GET /combos/:id/items` with the id of the list you need (5 for receipt types, 6 for sale conditions, etc.).
+         */
         get: operations["CombosController_findAll"];
         put?: never;
         post?: never;
@@ -509,7 +551,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get combo by id */
+        /**
+         * Get combo by id
+         * @description Get the combo's name and description. To list the items the user can pick from, call `GET /combos/:id/items` instead.
+         */
         get: operations["CombosController_findOne"];
         put?: never;
         post?: never;
@@ -526,7 +571,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get combo items */
+        /**
+         * Get combo items
+         * @description Fetch the items of a combo to populate a dropdown. Show `data` to the user; send the item's `id` when creating a receipt or customer that needs this value. The IVA combo is filtered automatically based on your organization's tax regime — Monotributista organizations only see *Sin IVA*.
+         */
         get: operations["CombosController_getItems"];
         put?: never;
         post?: never;
@@ -705,7 +753,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get exchange rate */
+        /**
+         * Get exchange rate
+         * @description Get the exchange rate to use when invoicing in a foreign currency. Pass the target currency (`to`) and use the rate from the response. The response is `null` when no rate is available for that day — show your user a manual-entry input or block the operation when that happens.
+         */
         get: operations["ExchangeRatesController_getRate"];
         put?: never;
         post?: never;
@@ -722,7 +773,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get signed download URL for an export file */
+        /**
+         * Get a download URL for an exported file
+         * @description Get a signed URL (valid for 1 hour) to download a file the API generated for you — for example, a CSV export or a bulk PDF job. Pass the `key` you received from the export endpoint and download the file from the `url` you get back. You can only download files that belong to your own organization.
+         */
         get: operations["ExportsController_getDownloadUrl"];
         put?: never;
         post?: never;
@@ -798,7 +852,7 @@ export interface paths {
         put?: never;
         /**
          * Upload a file for import
-         * @description Upload an Excel (.xlsx, .xls) or CSV (.csv) file for import processing. Creates a FileImport record and stores the file in Supabase Storage.
+         * @description Upload an Excel (.xlsx, .xls) or CSV (.csv) file for import processing. Creates a FileImport record and stores the file server-side for asynchronous processing.
          */
         post: operations["FileImportsController_upload"];
         delete?: never;
@@ -1462,41 +1516,6 @@ export interface paths {
         patch: operations["TransfersController_update"];
         trace?: never;
     };
-    "/v1/leads": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List all leads */
-        get: operations["LeadsController_findAll"];
-        put?: never;
-        /** Create lead */
-        post: operations["LeadsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/leads/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get lead by id */
-        get: operations["LeadsController_findOne"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/locations": {
         parameters: {
             query?: never;
@@ -1505,8 +1524,8 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * List locations (default: domestic only, country_id = 40)
-         * @description Uses filter by default. Optional nombre and onlyExport (true = export countries, false = domestic).
+         * List locations
+         * @description Get the list of locations to populate the location dropdown when creating a customer, branch, or receipt. Returns Argentine locations by default. Pass `onlyExport=true` when the user is issuing an export invoice and needs to pick a foreign destination. Use `nombre` to narrow the list as the user types.
          */
         get: operations["LocationsController_findAll"];
         put?: never;
@@ -1524,7 +1543,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get default location */
+        /**
+         * Get the default location
+         * @description Get the location to pre-select on new customer/branch forms. Returns 404 when no default has been configured — fall back to letting the user pick from the full list.
+         */
         get: operations["LocationsController_findDefault"];
         put?: never;
         post?: never;
@@ -1547,7 +1569,10 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        /** Set location as default */
+        /**
+         * Set a location as the default
+         * @description Pick the location that should be pre-selected on new customer/branch forms. Only one location is the default at a time — calling this replaces the previous one.
+         */
         patch: operations["LocationsController_setDefault"];
         trace?: never;
     };
@@ -1558,7 +1583,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get location by id */
+        /**
+         * Get location by id
+         * @description Get a single location's details — useful when you have an id stored on a customer/branch/receipt and need to display its name.
+         */
         get: operations["LocationsController_findOne"];
         put?: never;
         post?: never;
@@ -1593,25 +1621,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get or create config for current org (matches .NET GetByOrganizacion) */
+        /** Get or create the Mercado Pago config for the current organization */
         get: operations["MercadoPagoConfigsController_getByOrganization"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/mercado-pago-configs/to-expire": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Configs expiring within 15 days (matches .NET GetToExpire) */
-        get: operations["MercadoPagoConfigsController_getToExpire"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1652,7 +1663,7 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        /** Reset auth (clear refresh token). Matches .NET ResetAuth. */
+        /** Reset auth — clears the stored refresh token so the user must reconnect */
         patch: operations["MercadoPagoConfigsController_resetAuth"];
         trace?: never;
     };
@@ -1827,7 +1838,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get config by provider (SPARKPOST, TIENDANUBE) */
+        /** Get config by provider */
         get: operations["ProviderConfigsController_findByProvider"];
         put?: never;
         post?: never;
@@ -1844,7 +1855,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get OAuth redirect URL for provider (MERCADOPAGO, TIENDANUBE) */
+        /** Get OAuth redirect URL for a provider */
         get: operations["ProviderConfigsController_getOAuthUrl"];
         put?: never;
         post?: never;
@@ -1861,7 +1872,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get integration status per provider (matches .NET GetStatus) */
+        /** Get integration status per provider */
         get: operations["ProviderConfigsController_getStatus"];
         put?: never;
         post?: never;
@@ -2201,26 +2212,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/receipt-books/resync": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Resync receipt book numbering with DB and AFIP
-         * @description For each domestic receipt book, compares the current book numbers, the actual max from sales_receipts in the DB, and the last authorized number from AFIP WSFE. Updates each field to the highest value.
-         */
-        post: operations["ReceiptBooksController_resync"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/receipt-books/{id}": {
         parameters: {
             query?: never;
@@ -2248,7 +2239,7 @@ export interface paths {
             cookie?: never;
         };
         /** Dashboard KPIs, charts, and top customers */
-        get: operations["ReportsController_getDashboardStats"];
+        get: operations["SalesReportsController_getDashboardStats"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2265,7 +2256,7 @@ export interface paths {
             cookie?: never;
         };
         /** Gross Income (IIBB) by jurisdiction and month */
-        get: operations["ReportsController_getIIBB"];
+        get: operations["SalesReportsController_getIIBB"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2282,7 +2273,7 @@ export interface paths {
             cookie?: never;
         };
         /** Export IIBB report as CSV */
-        get: operations["ReportsController_exportIIBB"];
+        get: operations["SalesReportsController_exportIIBB"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2299,7 +2290,7 @@ export interface paths {
             cookie?: never;
         };
         /** IVA Digital Ventas Comprobantes (fixed-width text) */
-        get: operations["ReportsController_getIvaDigitalVentas"];
+        get: operations["SalesReportsController_getIvaDigitalVentas"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2316,7 +2307,7 @@ export interface paths {
             cookie?: never;
         };
         /** IVA Digital Ventas Alicuotas (fixed-width text) */
-        get: operations["ReportsController_getIvaDigitalVentasAlicuotas"];
+        get: operations["SalesReportsController_getIvaDigitalVentasAlicuotas"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2333,7 +2324,7 @@ export interface paths {
             cookie?: never;
         };
         /** Outstanding receivables */
-        get: operations["ReportsController_getOutstandingReceivables"];
+        get: operations["SalesReportsController_getOutstandingReceivables"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2350,7 +2341,7 @@ export interface paths {
             cookie?: never;
         };
         /** Export outstanding receivables as CSV */
-        get: operations["ReportsController_exportOutstandingReceivables"];
+        get: operations["SalesReportsController_exportOutstandingReceivables"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2367,7 +2358,7 @@ export interface paths {
             cookie?: never;
         };
         /** Sales by Customer (accumulated) */
-        get: operations["ReportsController_getSalesByCustomer"];
+        get: operations["SalesReportsController_getSalesByCustomer"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2384,7 +2375,7 @@ export interface paths {
             cookie?: never;
         };
         /** Export Sales by Customer as CSV */
-        get: operations["ReportsController_exportSalesByCustomer"];
+        get: operations["SalesReportsController_exportSalesByCustomer"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2401,7 +2392,7 @@ export interface paths {
             cookie?: never;
         };
         /** Sales by Product (aggregated by month) */
-        get: operations["ReportsController_getSalesByProduct"];
+        get: operations["SalesReportsController_getSalesByProduct"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2418,7 +2409,7 @@ export interface paths {
             cookie?: never;
         };
         /** Export Sales by Product as CSV */
-        get: operations["ReportsController_exportSalesByProduct"];
+        get: operations["SalesReportsController_exportSalesByProduct"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2435,7 +2426,7 @@ export interface paths {
             cookie?: never;
         };
         /** Revenue trends with MoM/YoY comparisons and 3-month forecast */
-        get: operations["ReportsController_getRevenueTrends"];
+        get: operations["SalesReportsController_getRevenueTrends"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2452,7 +2443,7 @@ export interface paths {
             cookie?: never;
         };
         /** VAT Sales Book (Libro IVA Ventas) */
-        get: operations["ReportsController_getVatSalesBook"];
+        get: operations["SalesReportsController_getVatSalesBook"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2469,7 +2460,7 @@ export interface paths {
             cookie?: never;
         };
         /** Export VAT Sales Book as CSV */
-        get: operations["ReportsController_exportVatSalesBook"];
+        get: operations["SalesReportsController_exportVatSalesBook"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2685,7 +2676,7 @@ export interface paths {
         put?: never;
         /**
          * Authorize receipt with AFIP (get CAE)
-         * @description Called by the authorize-sale trigger task. Also accepts direct calls. Requires X-Organization-Id header. Works with X-API-Key or Bearer token auth.
+         * @description Request AFIP authorization for a receipt that's in `PENDIENTE_AFIP`. The API normally drives this automatically when you call `POST /sales-receipts/:id/confirm` — call this endpoint directly only when you want to retry authorization on a receipt that previously failed.
          */
         post: operations["SalesReceiptsController_authorizeAfip"];
         delete?: never;
@@ -2714,43 +2705,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/sales/sales-receipts/{id}/details": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List details for a sales receipt */
-        get: operations["SalesReceiptsController_findAllDetails"];
-        put?: never;
-        /** Add a detail line to a sales receipt (draft only) */
-        post: operations["SalesReceiptsController_createDetail"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/{id}/details/{detailId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get a sales receipt detail by id */
-        get: operations["SalesReceiptsController_findOneDetail"];
-        put?: never;
-        post?: never;
-        /** Remove a sales receipt detail (draft only) */
-        delete: operations["SalesReceiptsController_removeDetail"];
-        options?: never;
-        head?: never;
-        /** Update a sales receipt detail (draft only) */
-        patch: operations["SalesReceiptsController_updateDetail"];
-        trace?: never;
-    };
     "/v1/sales/sales-receipts/{id}/duplicate": {
         parameters: {
             query?: never;
@@ -2769,43 +2723,6 @@ export interface paths {
         options?: never;
         head?: never;
         patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/{id}/observations": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List observations for a sales receipt */
-        get: operations["SalesReceiptsController_findAllObservations"];
-        put?: never;
-        /** Add an observation to a sales receipt */
-        post: operations["SalesReceiptsController_createObservation"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/{id}/observations/{observationId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get a sales receipt observation by id */
-        get: operations["SalesReceiptsController_findOneObservation"];
-        put?: never;
-        post?: never;
-        /** Remove a sales receipt observation */
-        delete: operations["SalesReceiptsController_removeObservation"];
-        options?: never;
-        head?: never;
-        /** Update a sales receipt observation */
-        patch: operations["SalesReceiptsController_updateObservation"];
         trace?: never;
     };
     "/v1/sales/sales-receipts/{id}/pdf": {
@@ -3008,7 +2925,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get taxpayer registry by tax ID */
+        /**
+         * Look up taxpayer by CUIT/CUIL
+         * @description Look up a taxpayer to pre-fill a new customer form (fiscal name, tax category, address) or to verify an existing customer's details before issuing a receipt.
+         */
         get: operations["TaxpayerRegistriesController_findOne"];
         put?: never;
         post?: never;
@@ -3025,7 +2945,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Check if taxpayer is FCE receiver for given total */
+        /**
+         * Check FCE eligibility for a taxpayer
+         * @description Call this before confirming a receipt to know whether you must issue a Factura de Crédito Electrónica (FCE). Pass the receipt's total and the customer's CUIT — when `isFceReceiver` is `true`, switch the receipt type to an FCE class so AFIP doesn't reject it.
+         */
         get: operations["TaxpayerRegistriesController_isFceReceiver"];
         put?: never;
         post?: never;
@@ -3095,49 +3018,397 @@ export interface components {
             /** @description Start date (ISO string) */
             startDate: string;
         };
+        CreateBankAccountDto: {
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId: number;
+            /**
+             * @description Current balance
+             * @example 100000.5
+             */
+            balance?: number | null;
+            /**
+             * @description Bank id
+             * @example 1
+             */
+            bankId: number;
+            /**
+             * @description Currency id
+             * @example 1
+             */
+            currencyId: number;
+            /**
+             * @description Whether the account is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            /** @description Whether this account issues checks */
+            issuesChecks?: boolean | null;
+            /**
+             * @description Friendly name
+             * @example Cuenta Corriente Pesos
+             */
+            name: string;
+            /**
+             * @description Bank account number
+             * @example 0001-12345-6
+             */
+            number: string;
+            /** @description Whether the account is enabled for online payments */
+            onlinePayment?: boolean | null;
+        };
+        CreateBankDto: {
+            /**
+             * @description Whether the bank is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            /**
+             * @description Location id
+             * @example 1
+             */
+            locationId: number;
+            /**
+             * @description Bank name
+             * @example Banco Nacion
+             */
+            name: string;
+        };
+        CreateBranchDto: {
+            /**
+             * @description Street address shown on receipts.
+             * @example Av. Corrientes 1234
+             */
+            address: string;
+            /**
+             * @description City.
+             * @example Buenos Aires
+             */
+            city: string;
+            /** @example sucursal@empresa.com.ar */
+            email?: string | null;
+            /**
+             * @description Province/region id from `GET /locations`.
+             * @example 1
+             */
+            locationId: number;
+            /**
+             * @description Display name for the branch — must not match another branch in your organization.
+             * @example Sucursal Centro
+             */
+            name: string;
+            /** @example +54 11 4444-5555 */
+            phone1?: string | null;
+            /** @example +54 11 4444-6666 */
+            phone2?: string | null;
+            /** @example +54 11 4444-7777 */
+            phone3?: string | null;
+            /**
+             * @description Postal code (CP).
+             * @example C1043AAZ
+             */
+            postalCode: string;
+        };
+        CreateCardPaymentDto: {
+            /**
+             * @description Cancelled date (ISO 8601)
+             * @example 2026-02-15T12:00:00Z
+             */
+            cancelledDate?: string | null;
+            /**
+             * @description Installments already cancelled
+             * @example 0
+             */
+            cancelledInstallments: number;
+            /**
+             * @description Credit card id
+             * @example 1
+             */
+            creditCardId: number;
+            /**
+             * Format: date-time
+             * @description Card payment date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date: string;
+            /** @example Visa Crédito 6 cuotas */
+            detail?: string | null;
+            /**
+             * @description Total number of installments
+             * @example 3
+             */
+            installments: number;
+            /**
+             * @description Authorization / payment number
+             * @example AUTH-987654
+             */
+            number?: string | null;
+            /**
+             * @description Payment status
+             * @example PENDING
+             */
+            status: string;
+            /**
+             * @description Total payment amount
+             * @example 18000.5
+             */
+            total: number;
+            /**
+             * @description Total amount already cancelled
+             * @example 0
+             */
+            totalCancelled: number;
+        };
+        CreateCashRegisterDto: {
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId: number;
+            /**
+             * @description Current funds (decimal)
+             * @example 50000
+             */
+            funds: number;
+            /**
+             * @description Whether the cash register is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            /**
+             * @description Cash register name
+             * @example Caja Central
+             */
+            name: string;
+        };
+        CreateCertificateDto: {
+            /**
+             * @description Display name for the certificate. Defaults to `Certificado {currentYear}` when blank.
+             * @example Certificado 2026
+             */
+            name?: string;
+        };
+        CreateCheckDto: {
+            /**
+             * @description Bank account number
+             * @example 0123-4-56789012-3
+             */
+            accountNumber?: string | null;
+            /**
+             * @description Check amount
+             * @example 50000
+             */
+            amount: number;
+            /**
+             * @description Bank id
+             * @example 1
+             */
+            bankId: number;
+            /**
+             * @description Cleared date (ISO 8601)
+             * @example 2026-02-20T12:00:00Z
+             */
+            clearedDate?: string | null;
+            /**
+             * @description Customer id
+             * @example 12
+             */
+            customerId: number;
+            /**
+             * Format: date-time
+             * @description Check date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date: string;
+            /**
+             * @description Due date (ISO 8601)
+             * @example 2026-02-15T12:00:00Z
+             */
+            dueDate?: string | null;
+            /**
+             * @description True if it is an own check (issued); false for third-party checks
+             * @example false
+             */
+            isOwn: boolean;
+            /**
+             * @description Check number
+             * @example 00012345
+             */
+            number: string;
+            /**
+             * @description Check status
+             * @example PENDING
+             */
+            status: string;
+        };
+        CreateCheckbookDto: {
+            /**
+             * @description Bank account id this checkbook belongs to
+             * @example 1
+             */
+            bankAccountId: number;
+            /**
+             * @description Checkbook friendly name
+             * @example Chequera 001
+             */
+            name: string;
+            /**
+             * @description First check number in the book
+             * @example 1
+             */
+            numberFrom: number;
+            /**
+             * @description Last check number in the book
+             * @example 50
+             */
+            numberTo: number;
+        };
+        CreateCreditCardDto: {
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId: number;
+            /**
+             * @description Bank account id linked to this card
+             * @example 1
+             */
+            bankAccountId: number;
+            /**
+             * @description Credit card number or identifier
+             * @example 4111111111111111
+             */
+            number: string;
+            /**
+             * @description Card status (e.g. active, blocked)
+             * @example active
+             */
+            status: string;
+        };
         CreateCustomerDto: {
             /** @example Av. Corrientes 1234 */
             address?: string | null;
             /**
-             * @description Legal business name
-             * @example Acme S.A.
+             * @description Customer's legal/business name. Required unless a valid `taxId` (CUIT) is provided — in that case it is auto-filled from ARCA's padrón.
+             * @example Distribuidora Norte SRL
              */
-            businessName: string;
+            businessName?: string;
             /** @example Buenos Aires */
             city?: string | null;
+            /** @example 30 */
+            contractedSaleCondition?: number | null;
             /**
-             * @description Document type (combo item ID)
+             * @description Document type id (combo). Fetch valid ids via `GET /combos/2/items`. When omitted, it is inferred from `taxId`: a valid 11-digit CUIT resolves to CUIT, 7–8 numeric digits resolve to DNI, anything else resolves to "Sin identificar".
+             * @example 180
+             */
+            documentTypeId?: number;
+            /** @example contacto@distribuidoranorte.com.ar */
+            email?: string | null;
+            /** @description When true, IVA is ignored on receipts for this customer */
+            ignoresTaxes?: boolean | null;
+            /**
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            /**
+             * @description Location id
              * @example 1
              */
-            documentTypeId: number;
-            /** @example contact@acme.com */
-            email?: string | null;
-            /** @example false */
-            ignoresTaxes?: boolean | null;
-            /** @example true */
-            isActive?: boolean;
-            /** @example 1 */
             locationId?: number | null;
-            /** @example VIP customer */
             observations?: string | null;
             /** @example +54 11 4444-5555 */
             phone?: string | null;
-            /** @example B1001 */
+            /** @example C1043AAZ */
             postalCode?: string | null;
-            /** @example 1 */
-            saleConditionId?: number | null;
             /**
-             * @description Tax category ID
+             * @description External provider identifier. Unique per organization; acts as an idempotency key.
+             * @example ext-customer-123
+             */
+            providerId?: string | null;
+            /**
+             * @description Default sale condition (combo) for this customer
              * @example 1
              */
-            taxCategoryId: number;
+            saleConditionId?: number | null;
+            /** @example 30 */
+            statisticalSaleCondition?: number | null;
             /**
-             * @description Tax ID (CUIT/CUIL)
-             * @example 20-12345678-9
+             * @description Tax category id (combo). Must belong to the organization's regime — fetch valid ids via `GET /tax-categories`. Required unless a valid `taxId` (CUIT) is provided — in that case it is inferred from the customer's IVA condition in ARCA combined with the organization's regime.
+             * @example 8
+             */
+            taxCategoryId?: number;
+            /**
+             * @description Tax ID (CUIT/CUIL/DNI). When 11 digits, validated as CUIT.
+             * @example 30345678901
              */
             taxId?: string | null;
-            /** @example 12345678 */
+            /**
+             * @description Secondary tax id number, when applicable
+             * @example 30345678901
+             */
             taxIdNumber?: string | null;
+        };
+        CreateDepositDto: {
+            /**
+             * @description Bank account id receiving the deposit
+             * @example 1
+             */
+            accountId: number;
+            /** @example Depósito mostrador */
+            concept?: string | null;
+            /**
+             * Format: date-time
+             * @description Credit date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            creditDate: string;
+            /**
+             * Format: date-time
+             * @description Deposit date (ISO 8601)
+             * @example 2026-01-14T12:00:00Z
+             */
+            depositDate: string;
+            /**
+             * @description Linked journal entry id
+             * @example 100
+             */
+            journalEntryId?: number | null;
+            /**
+             * @description Deposit ticket number
+             * @example TKT-00012345
+             */
+            ticketNumber: string;
+            /**
+             * @description Total deposit amount
+             * @example 25000.5
+             */
+            total: number;
+        };
+        CreateFileImportDto: {
+            /** @example customers-2026.xlsx */
+            originalFilename?: string | null;
+            /**
+             * @description Storage path of the file to import (must already exist).
+             * @example 12/imports/customers-2026-04-28.xlsx
+             */
+            path: string;
+            /**
+             * @description Import type. Must match the file's contents.
+             * @example CLIENTES
+             * @enum {string}
+             */
+            type: "COMPROBANTES_VENTA" | "COMPROBANTES_COMPRA" | "CLIENTES" | "PROVEEDORES" | "PRODUCTOS" | "PAYROLL";
+            /**
+             * @description Acting user id
+             * @example 42
+             */
+            userId?: number | null;
         };
         CreateFiscalYearDto: {
             /** @description End date (ISO string) */
@@ -3145,6 +3416,51 @@ export interface components {
             name: string;
             /** @description Start date (ISO string) */
             startDate: string;
+        };
+        CreateFundMovementDto: {
+            /**
+             * @description Movement amount
+             * @example 15000.5
+             */
+            amount: number;
+            /**
+             * @description Bank account id
+             * @example 1
+             */
+            bankAccountId: number;
+            /**
+             * @description Cash register id
+             * @example 3
+             */
+            cashRegisterId?: number | null;
+            /** @example Acreditación cliente */
+            concept?: string | null;
+            /**
+             * @description Credit date (ISO 8601)
+             * @example 2026-01-16T12:00:00Z
+             */
+            creditDate?: string | null;
+            /**
+             * Format: date-time
+             * @description Movement date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date: string;
+            /**
+             * @description Destination bank account id (for transfers)
+             * @example 2
+             */
+            destinationAccountId?: number | null;
+            /**
+             * @description Linked journal entry id
+             * @example 100
+             */
+            journalEntryId?: number | null;
+            /**
+             * @description Movement type id (combo item)
+             * @example 12
+             */
+            movementTypeId: number;
         };
         CreateJournalAccountDto: {
             /** @description Category (1=Activo, 2=Pasivo, 3=PN, 4=Resultado+, 5=Resultado-) */
@@ -3166,6 +3482,145 @@ export interface components {
             fiscalYearId: number;
             /** @description Debit/credit line items */
             items: components["schemas"]["JournalEntryItemDto"][];
+        };
+        CreateMercadoPagoConfigDto: {
+            /** @description Mercado Pago access token (returned by OAuth). */
+            accessToken?: string | null;
+            /**
+             * @description When true, an invoice is automatically created on successful Mercado Pago payments.
+             * @example true
+             */
+            createInvoice: boolean;
+            /** Format: date-time */
+            expiresAt?: string | null;
+            /**
+             * @description Whether to include a Mercado Pago payment button on emailed receipts (e.g. ALWAYS, NEVER, OPTIONAL).
+             * @example ALWAYS
+             */
+            includePaymentButton: string;
+            /**
+             * @description Mercado Pago user id
+             * @example 1234567890
+             */
+            mpUserId?: string | null;
+            /** @description Public key for the MP integration */
+            publicKey?: string | null;
+            /**
+             * @description Receipt book to use for auto-created invoices.
+             * @example 1
+             */
+            receiptBookId?: number | null;
+            /** @description Mercado Pago refresh token (returned by OAuth). */
+            refreshToken?: string | null;
+        };
+        CreateOwnCheckDto: {
+            /**
+             * @description Check amount
+             * @example 50000
+             */
+            amount: number;
+            /**
+             * @description Bank account id
+             * @example 1
+             */
+            bankAccountId: number;
+            /**
+             * Format: date-time
+             * @description Check date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date: string;
+            /**
+             * @description Check number
+             * @example 12345
+             */
+            number: number;
+            /**
+             * @description Payment date (ISO 8601)
+             * @example 2026-02-15T12:00:00Z
+             */
+            paymentDate?: string | null;
+            /**
+             * @description Check status
+             * @example PENDING
+             */
+            status: string;
+            /**
+             * @description Supplier id
+             * @example 5
+             */
+            supplierId?: number | null;
+        };
+        CreatePaymentMethodDto: {
+            /**
+             * @description Currency id
+             * @example 1
+             */
+            currencyId: number;
+            /**
+             * @description Whether the payment method is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            /**
+             * @description Payment method name
+             * @example Efectivo Pesos
+             */
+            name: string;
+            /**
+             * @description Payment method type combo item id
+             * @example 1
+             */
+            paymentMethodTypeId: number;
+        };
+        CreatePaymentMethodEntryDto: {
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId: number;
+            /**
+             * @description Entry amount (decimal)
+             * @example 1500.5
+             */
+            amount: number;
+            /**
+             * Format: date-time
+             * @description Entry date (ISO)
+             * @example 2025-04-28T10:00:00Z
+             */
+            date: string;
+            /**
+             * @description Entry description
+             * @example Pago contado
+             */
+            description: string;
+            /**
+             * @description Entry type (e.g. income, expense)
+             * @example income
+             */
+            entryType: string;
+            /**
+             * @description External entity id (if linked to a receipt or other entity)
+             * @example 42
+             */
+            externalEntityId?: number | null;
+            /**
+             * @description Operation number
+             * @example OP-12345
+             */
+            operationNumber?: string | null;
+            /**
+             * @description Payment method id
+             * @example 1
+             */
+            paymentMethodId: number;
+            /**
+             * @description Reference number
+             * @example 1001
+             */
+            referenceNumber: number;
         };
         CreateProductDto: {
             /** @example 7890123456789 */
@@ -3209,6 +3664,92 @@ export interface components {
              * @example 2
              */
             vatRateId?: number | null;
+        };
+        CreateProviderConfigDto: {
+            /** @description OAuth/API auth key. */
+            authKey?: string | null;
+            /**
+             * @description Provider identifier (e.g. SPARKPOST, TIENDANUBE, MERCADOPAGO).
+             * @example TIENDANUBE
+             */
+            provider: string;
+            /** @description Generic provider field 1 (provider-specific). */
+            string1?: string | null;
+            /** @description Generic provider field 2 (provider-specific). */
+            string2?: string | null;
+            /** @description Generic provider field 3 (provider-specific). */
+            string3?: string | null;
+        };
+        CreateReceiptBookDto: {
+            /**
+             * @description Branch (Sucursal) id
+             * @example 1
+             */
+            branchId?: number | null;
+            /**
+             * @description Display name for the receipt book.
+             * @example Sucursal Centro - WS
+             */
+            description: string;
+            /**
+             * @description When true, routes to WSFEX (export) instead of WSFE (domestic).
+             * @example false
+             */
+            isExport?: Record<string, never> | null;
+            /**
+             * @description AFIP point of sale (Punto de Venta) number. Unique per organization.
+             * @example 1
+             */
+            pointOfSale: number;
+            /**
+             * @description Prefix used to compose receipt numbers (e.g. `0001-00000123`). Unique per organization.
+             * @example 0001
+             */
+            prefix: string;
+            /**
+             * @description Point of sale type (WS = AFIP web service, WS_MOCK = synthetic, EN_LINEA = online, PRE_IMPRESOS = printed).
+             * @example WS
+             * @enum {string|null}
+             */
+            type?: "WS" | "WS_MOCK" | "EN_LINEA" | "PRE_IMPRESOS" | null;
+        };
+        CreateRetentionDto: {
+            /**
+             * @description Short abbreviation
+             * @example RG-IIBB
+             */
+            abbreviation: string;
+            /**
+             * @description Account id used for the retention
+             * @example 100
+             */
+            accountId: number;
+            /**
+             * @description Deposit account id
+             * @example 200
+             */
+            depositAccountId: number;
+            /**
+             * @description Retention description
+             * @example Retención IIBB CABA
+             */
+            description: string;
+            /**
+             * @description Whether the retention is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            /**
+             * @description Whether the retention is treated as a value (vs percentage)
+             * @example false
+             */
+            isValue: boolean;
+            /**
+             * @description Jurisdiction (location) id
+             * @example 1
+             */
+            jurisdictionId: number;
         };
         CreateSalesReceiptDetailDto: {
             /**
@@ -3331,6 +3872,88 @@ export interface components {
              */
             description: string;
         };
+        CreateSupplierDto: {
+            /** @example Banco Galicia */
+            accountBank?: string | null;
+            /** @example 0000123456 */
+            accountCode?: string | null;
+            /** @example CHECKING */
+            accountType?: string | null;
+            /** @example Av. Corrientes 1234 */
+            address?: string | null;
+            /**
+             * @description Supplier's legal/business name. Required unless a valid `taxId` (CUIT) is provided — in that case it is auto-filled from ARCA's padrón.
+             * @example Distribuidora Norte SRL
+             */
+            businessName?: string;
+            /** @example Buenos Aires */
+            city?: string | null;
+            /**
+             * @description Document type id (combo). Fetch valid ids via `GET /combos/2/items`. When omitted, it is inferred from `taxId`: a valid 11-digit CUIT resolves to CUIT, 7–8 numeric digits resolve to DNI, anything else resolves to "Sin identificar".
+             * @example 180
+             */
+            documentTypeId?: number;
+            /** @example contacto@distribuidoranorte.com.ar */
+            email?: string | null;
+            /**
+             * @description Location id
+             * @example 1
+             */
+            locationId?: number | null;
+            observations?: string | null;
+            /** @example +54 11 4444-5555 */
+            phone?: string | null;
+            /** @example C1043AAZ */
+            postalCode?: string | null;
+            /**
+             * @description Purchase condition (combo) id. Fetch valid ids via `GET /combos/CondicionCompraVenta/items`.
+             * @example 1
+             */
+            purchaseConditionId: number;
+            /**
+             * @description Tax category id. Must belong to the organization's regime — fetch valid ids via `GET /tax-categories`. Required unless a valid `taxId` (CUIT) is provided — in that case it is inferred from the supplier's IVA condition in ARCA combined with the organization's regime.
+             * @example 8
+             */
+            taxCategoryId?: number;
+            /**
+             * @description Tax ID (CUIT). When 11 digits, validated as CUIT.
+             * @example 30345678901
+             */
+            taxId?: string | null;
+        };
+        CreateTransferDto: {
+            /**
+             * @description Transfer amount
+             * @example 75000
+             */
+            amount: number;
+            /**
+             * @description Bank account id
+             * @example 1
+             */
+            bankAccountId: number;
+            /**
+             * @description Customer id (for incoming transfers)
+             * @example 12
+             */
+            customerId?: number | null;
+            /**
+             * Format: date-time
+             * @description Transfer date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date: string;
+            /**
+             * @description Transfer status
+             * @example PENDING
+             */
+            status: string;
+            /**
+             * @description Supplier id (for outgoing transfers)
+             * @example 7
+             */
+            supplierId?: number | null;
+        };
         ErrorResponseDto: {
             /**
              * @description Numeric AFIP error code (e.g. 10016 for already-authorized). Only present on AFIP errors that carry a numeric code.
@@ -3396,114 +4019,470 @@ export interface components {
             name?: string;
             startDate?: string;
         };
+        UpdateBankAccountDto: {
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId?: number;
+            /**
+             * @description Current balance
+             * @example 100000.5
+             */
+            balance?: number | null;
+            /**
+             * @description Bank id
+             * @example 1
+             */
+            bankId?: number;
+            /**
+             * @description Currency id
+             * @example 1
+             */
+            currencyId?: number;
+            /**
+             * @description Whether the account is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            /** @description Whether this account issues checks */
+            issuesChecks?: boolean | null;
+            /**
+             * @description Friendly name
+             * @example Cuenta Corriente Pesos
+             */
+            name?: string;
+            /**
+             * @description Bank account number
+             * @example 0001-12345-6
+             */
+            number?: string;
+            /** @description Whether the account is enabled for online payments */
+            onlinePayment?: boolean | null;
+        };
+        UpdateBankDto: {
+            /**
+             * @description Whether the bank is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            /**
+             * @description Location id
+             * @example 1
+             */
+            locationId?: number;
+            /**
+             * @description Bank name
+             * @example Banco Nacion
+             */
+            name?: string;
+        };
+        UpdateBranchDto: {
+            /**
+             * @description Street address shown on receipts.
+             * @example Av. Corrientes 1234
+             */
+            address?: string;
+            /**
+             * @description City.
+             * @example Buenos Aires
+             */
+            city?: string;
+            /** @example sucursal@empresa.com.ar */
+            email?: string | null;
+            /**
+             * @description Province/region id from `GET /locations`.
+             * @example 1
+             */
+            locationId?: number;
+            /**
+             * @description Display name for the branch — must not match another branch in your organization.
+             * @example Sucursal Centro
+             */
+            name?: string;
+            /** @example +54 11 4444-5555 */
+            phone1?: string | null;
+            /** @example +54 11 4444-6666 */
+            phone2?: string | null;
+            /** @example +54 11 4444-7777 */
+            phone3?: string | null;
+            /**
+             * @description Postal code (CP).
+             * @example C1043AAZ
+             */
+            postalCode?: string;
+        };
+        UpdateCardPaymentDto: {
+            /**
+             * @description Cancelled date (ISO 8601)
+             * @example 2026-02-15T12:00:00Z
+             */
+            cancelledDate?: string | null;
+            /**
+             * @description Installments already cancelled
+             * @example 0
+             */
+            cancelledInstallments?: number;
+            /**
+             * @description Credit card id
+             * @example 1
+             */
+            creditCardId?: number;
+            /**
+             * Format: date-time
+             * @description Card payment date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date?: string;
+            /** @example Visa Crédito 6 cuotas */
+            detail?: string | null;
+            /**
+             * @description Total number of installments
+             * @example 3
+             */
+            installments?: number;
+            /**
+             * @description Authorization / payment number
+             * @example AUTH-987654
+             */
+            number?: string | null;
+            /**
+             * @description Payment status
+             * @example PENDING
+             */
+            status?: string;
+            /**
+             * @description Total payment amount
+             * @example 18000.5
+             */
+            total?: number;
+            /**
+             * @description Total amount already cancelled
+             * @example 0
+             */
+            totalCancelled?: number;
+        };
+        UpdateCashRegisterDto: {
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId?: number;
+            /**
+             * @description Current funds (decimal)
+             * @example 50000
+             */
+            funds?: number;
+            /**
+             * @description Whether the cash register is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            /**
+             * @description Cash register name
+             * @example Caja Central
+             */
+            name?: string;
+        };
+        UpdateCertificateDto: {
+            /**
+             * @description Toggle which certificate is used for invoicing. Only one should be active at a time.
+             * @example true
+             */
+            isActive?: boolean;
+            /** @example Certificado 2026 */
+            name?: string;
+        };
+        UpdateCheckDto: {
+            /**
+             * @description Bank account number
+             * @example 0123-4-56789012-3
+             */
+            accountNumber?: string | null;
+            /**
+             * @description Check amount
+             * @example 50000
+             */
+            amount?: number;
+            /**
+             * @description Bank id
+             * @example 1
+             */
+            bankId?: number;
+            /**
+             * @description Cleared date (ISO 8601)
+             * @example 2026-02-20T12:00:00Z
+             */
+            clearedDate?: string | null;
+            /**
+             * @description Customer id
+             * @example 12
+             */
+            customerId?: number;
+            /**
+             * Format: date-time
+             * @description Check date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date?: string;
+            /**
+             * @description Due date (ISO 8601)
+             * @example 2026-02-15T12:00:00Z
+             */
+            dueDate?: string | null;
+            /**
+             * @description True if it is an own check (issued); false for third-party checks
+             * @example false
+             */
+            isOwn?: boolean;
+            /**
+             * @description Check number
+             * @example 00012345
+             */
+            number?: string;
+            /**
+             * @description Check status
+             * @example PENDING
+             */
+            status?: string;
+        };
+        UpdateCheckbookDto: {
+            /**
+             * @description Bank account id this checkbook belongs to
+             * @example 1
+             */
+            bankAccountId?: number;
+            /**
+             * @description Checkbook friendly name
+             * @example Chequera 001
+             */
+            name?: string;
+            /**
+             * @description First check number in the book
+             * @example 1
+             */
+            numberFrom?: number;
+            /**
+             * @description Last check number in the book
+             * @example 50
+             */
+            numberTo?: number;
+        };
+        UpdateCreditCardDto: {
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId?: number;
+            /**
+             * @description Bank account id linked to this card
+             * @example 1
+             */
+            bankAccountId?: number;
+            /**
+             * @description Credit card number or identifier
+             * @example 4111111111111111
+             */
+            number?: string;
+            /**
+             * @description Card status (e.g. active, blocked)
+             * @example active
+             */
+            status?: string;
+        };
         UpdateCustomerDto: {
             /** @example Av. Corrientes 1234 */
             address?: string | null;
             /**
-             * @description Legal business name
-             * @example Acme S.A.
+             * @description Customer's legal/business name. Required unless a valid `taxId` (CUIT) is provided — in that case it is auto-filled from ARCA's padrón.
+             * @example Distribuidora Norte SRL
              */
             businessName?: string;
             /** @example Buenos Aires */
             city?: string | null;
-            /**
-             * @description Contracted sale condition (combo item ID)
-             * @example 1
-             */
+            /** @example 30 */
             contractedSaleCondition?: number | null;
             /**
-             * @description Document type (combo item ID)
-             * @example 1
+             * @description Document type id (combo). Fetch valid ids via `GET /combos/2/items`. When omitted, it is inferred from `taxId`: a valid 11-digit CUIT resolves to CUIT, 7–8 numeric digits resolve to DNI, anything else resolves to "Sin identificar".
+             * @example 180
              */
             documentTypeId?: number;
-            /** @example contact@acme.com */
+            /** @example contacto@distribuidoranorte.com.ar */
             email?: string | null;
-            /**
-             * @description Skip tax calculations for this customer
-             * @example false
-             */
+            /** @description When true, IVA is ignored on receipts for this customer */
             ignoresTaxes?: boolean | null;
-            /** @example true */
-            isActive?: boolean;
             /**
-             * @description Location ID
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            /**
+             * @description Location id
              * @example 1
              */
             locationId?: number | null;
-            /**
-             * @description Master customer ID
-             * @example 1
-             */
-            masterId?: number | null;
-            /** @example VIP customer */
             observations?: string | null;
             /** @example +54 11 4444-5555 */
             phone?: string | null;
-            /** @example B1001 */
+            /** @example C1043AAZ */
             postalCode?: string | null;
             /**
-             * @description Default sale condition (combo item ID)
+             * @description External provider identifier. Unique per organization; acts as an idempotency key.
+             * @example ext-customer-123
+             */
+            providerId?: string | null;
+            /**
+             * @description Default sale condition (combo) for this customer
              * @example 1
              */
             saleConditionId?: number | null;
-            /**
-             * @description Statistical sale condition (combo item ID)
-             * @example 1
-             */
+            /** @example 30 */
             statisticalSaleCondition?: number | null;
             /**
-             * @description Tax category ID
-             * @example 1
+             * @description Tax category id (combo). Must belong to the organization's regime — fetch valid ids via `GET /tax-categories`. Required unless a valid `taxId` (CUIT) is provided — in that case it is inferred from the customer's IVA condition in ARCA combined with the organization's regime.
+             * @example 8
              */
             taxCategoryId?: number;
             /**
-             * @description Tax ID (CUIT/CUIL)
-             * @example 20-12345678-9
+             * @description Tax ID (CUIT/CUIL/DNI). When 11 digits, validated as CUIT.
+             * @example 30345678901
              */
             taxId?: string | null;
             /**
-             * @description Tax ID number without formatting
-             * @example 12345678
+             * @description Secondary tax id number, when applicable
+             * @example 30345678901
              */
             taxIdNumber?: string | null;
         };
-        UpdateDetailDto: {
+        UpdateDepositDto: {
             /**
-             * @description Line description
-             * @example Product description
-             */
-            description?: string;
-            /**
-             * @description Discount percent (0–100)
-             * @example 10
-             */
-            discount?: number | null;
-            /**
-             * @description Product ID
+             * @description Bank account id receiving the deposit
              * @example 1
              */
-            productId?: number | null;
+            accountId?: number;
+            /** @example Depósito mostrador */
+            concept?: string | null;
             /**
-             * @description Quantity
-             * @example 2
+             * Format: date-time
+             * @description Credit date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
              */
-            quantity?: number;
+            creditDate?: string;
             /**
-             * @description Tax type (combo item) ID
-             * @example 1
+             * Format: date-time
+             * @description Deposit date (ISO 8601)
+             * @example 2026-01-14T12:00:00Z
              */
-            taxTypeId?: number | null;
+            depositDate?: string;
             /**
-             * @description Unit price
-             * @example 100.5
+             * @description Linked journal entry id
+             * @example 100
              */
-            unitPrice?: number;
+            journalEntryId?: number | null;
+            /**
+             * @description Deposit ticket number
+             * @example TKT-00012345
+             */
+            ticketNumber?: string;
+            /**
+             * @description Total deposit amount
+             * @example 25000.5
+             */
+            total?: number;
+        };
+        UpdateFileImportDto: {
+            /** @example 5 */
+            errorCount?: number | null;
+            /** @example 95 */
+            importedCount?: number | null;
+            /** @example customers-2026.xlsx */
+            originalFilename?: string | null;
+            /**
+             * @description Storage path of the file to import (must already exist).
+             * @example 12/imports/customers-2026-04-28.xlsx
+             */
+            path?: string;
+            /** Format: date-time */
+            processedDate?: string | null;
+            /** Format: date-time */
+            readDate?: string | null;
+            /**
+             * @description Storage path for the result file produced by the import job.
+             * @example 12/imports/results/customers-2026-04-28.xlsx
+             */
+            resultPath?: string | null;
+            /**
+             * @description Import status (PENDING, PROCESSED, FAILED, etc.).
+             * @example PROCESSED
+             */
+            status?: string;
+            /** @example 100 */
+            totalCount?: number | null;
+            /**
+             * @description Import type. Must match the file's contents.
+             * @example CLIENTES
+             * @enum {string}
+             */
+            type?: "COMPROBANTES_VENTA" | "COMPROBANTES_COMPRA" | "CLIENTES" | "PROVEEDORES" | "PRODUCTOS" | "PAYROLL";
+            /**
+             * @description Acting user id
+             * @example 42
+             */
+            userId?: number | null;
         };
         UpdateFiscalYearDto: {
             endDate?: string;
             isActive?: boolean;
             name?: string;
             startDate?: string;
+        };
+        UpdateFundMovementDto: {
+            /**
+             * @description Movement amount
+             * @example 15000.5
+             */
+            amount?: number;
+            /**
+             * @description Bank account id
+             * @example 1
+             */
+            bankAccountId?: number;
+            /**
+             * @description Cash register id
+             * @example 3
+             */
+            cashRegisterId?: number | null;
+            /** @example Acreditación cliente */
+            concept?: string | null;
+            /**
+             * @description Credit date (ISO 8601)
+             * @example 2026-01-16T12:00:00Z
+             */
+            creditDate?: string | null;
+            /**
+             * Format: date-time
+             * @description Movement date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date?: string;
+            /**
+             * @description Destination bank account id (for transfers)
+             * @example 2
+             */
+            destinationAccountId?: number | null;
+            /**
+             * @description Linked journal entry id
+             * @example 100
+             */
+            journalEntryId?: number | null;
+            /**
+             * @description Movement type id (combo item)
+             * @example 12
+             */
+            movementTypeId?: number;
         };
         UpdateJournalAccountDto: {
             category?: number;
@@ -3513,22 +4492,163 @@ export interface components {
             number?: number;
             subcategory?: number;
         };
-        UpdateObservationDto: {
+        UpdateMercadoPagoConfigDto: {
+            /** @description Mercado Pago access token (returned by OAuth). */
+            accessToken?: string | null;
             /**
-             * @description Observation description
-             * @example Updated observation text
+             * @description When true, an invoice is automatically created on successful Mercado Pago payments.
+             * @example true
+             */
+            createInvoice?: boolean;
+            /** Format: date-time */
+            expiresAt?: string | null;
+            /**
+             * @description Whether to include a Mercado Pago payment button on emailed receipts (e.g. ALWAYS, NEVER, OPTIONAL).
+             * @example ALWAYS
+             */
+            includePaymentButton?: string;
+            /**
+             * @description Mercado Pago user id
+             * @example 1234567890
+             */
+            mpUserId?: string | null;
+            /** @description Public key for the MP integration */
+            publicKey?: string | null;
+            /**
+             * @description Receipt book to use for auto-created invoices.
+             * @example 1
+             */
+            receiptBookId?: number | null;
+            /** @description Mercado Pago refresh token (returned by OAuth). */
+            refreshToken?: string | null;
+        };
+        UpdateOwnCheckDto: {
+            /**
+             * @description Check amount
+             * @example 50000
+             */
+            amount?: number;
+            /**
+             * @description Bank account id
+             * @example 1
+             */
+            bankAccountId?: number;
+            /**
+             * Format: date-time
+             * @description Check date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date?: string;
+            /**
+             * @description Check number
+             * @example 12345
+             */
+            number?: number;
+            /**
+             * @description Payment date (ISO 8601)
+             * @example 2026-02-15T12:00:00Z
+             */
+            paymentDate?: string | null;
+            /**
+             * @description Check status
+             * @example PENDING
+             */
+            status?: string;
+            /**
+             * @description Supplier id
+             * @example 5
+             */
+            supplierId?: number | null;
+        };
+        UpdatePaymentMethodDto: {
+            /**
+             * @description Currency id
+             * @example 1
+             */
+            currencyId?: number;
+            /**
+             * @description Whether the payment method is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            /**
+             * @description Payment method name
+             * @example Efectivo Pesos
+             */
+            name?: string;
+            /**
+             * @description Payment method type combo item id
+             * @example 1
+             */
+            paymentMethodTypeId?: number;
+        };
+        UpdatePaymentMethodEntryDto: {
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId?: number;
+            /**
+             * @description Entry amount (decimal)
+             * @example 1500.5
+             */
+            amount?: number;
+            /**
+             * Format: date-time
+             * @description Entry date (ISO)
+             * @example 2025-04-28T10:00:00Z
+             */
+            date?: string;
+            /**
+             * @description Entry description
+             * @example Pago contado
              */
             description?: string;
+            /**
+             * @description Entry type (e.g. income, expense)
+             * @example income
+             */
+            entryType?: string;
+            /**
+             * @description External entity id (if linked to a receipt or other entity)
+             * @example 42
+             */
+            externalEntityId?: number | null;
+            /**
+             * @description Operation number
+             * @example OP-12345
+             */
+            operationNumber?: string | null;
+            /**
+             * @description Payment method id
+             * @example 1
+             */
+            paymentMethodId?: number;
+            /**
+             * @description Reference number
+             * @example 1001
+             */
+            referenceNumber?: number;
         };
         UpdateProductDto: {
             /** @example 7890123456789 */
             barcode?: string | null;
-            /** @example 3 */
+            /**
+             * @description Product category ID; null/0 may resolve to Sin Rubro
+             * @example 3
+             */
             categoryId?: number | null;
-            /** @example Widget A */
+            /**
+             * @description Product description
+             * @example Widget A
+             */
             description?: string;
-            /** @example true */
-            isActive?: boolean;
+            /**
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
             /**
              * @description External provider identifier. Unique per organization; acts as an idempotency key.
              * @example ext-sku-123
@@ -3538,15 +4658,142 @@ export interface components {
             quantity?: number | null;
             /** @example Producto */
             type?: string | null;
-            /** @example 1 */
+            /**
+             * @description Unit of measure ID
+             * @example 1
+             */
             unitOfMeasureId?: number;
             /**
              * @description Default unit price for auto-populating receipt lines
              * @example 1500.5
              */
             unitPrice?: number | null;
-            /** @example 2 */
+            /**
+             * @description VAT rate (combo) ID
+             * @example 2
+             */
             vatRateId?: number | null;
+        };
+        UpdateProviderConfigDto: {
+            /** @description OAuth/API auth key. */
+            authKey?: string | null;
+            /**
+             * @description Provider identifier (e.g. SPARKPOST, TIENDANUBE, MERCADOPAGO).
+             * @example TIENDANUBE
+             */
+            provider?: string;
+            /** @description Generic provider field 1 (provider-specific). */
+            string1?: string | null;
+            /** @description Generic provider field 2 (provider-specific). */
+            string2?: string | null;
+            /** @description Generic provider field 3 (provider-specific). */
+            string3?: string | null;
+        };
+        UpdateReceiptBookDto: {
+            /** @description Comma-separated backoffice ids for cross-system reconciliation */
+            backofficeIds?: string | null;
+            /**
+             * @description Branch (Sucursal) id
+             * @example 1
+             */
+            branchId?: number | null;
+            /**
+             * @description Display name for the receipt book.
+             * @example Sucursal Centro - WS
+             */
+            description?: string;
+            /**
+             * @description When true, routes to WSFEX (export) instead of WSFE (domestic).
+             * @example false
+             */
+            isExport?: Record<string, never> | null;
+            /**
+             * @description Last issued Nota de Crédito A number
+             * @example 10
+             */
+            lastCreditNoteA?: number | null;
+            /** @example 10 */
+            lastCreditNoteB?: number | null;
+            /** @example 10 */
+            lastCreditNoteC?: number | null;
+            /**
+             * @description Last issued Nota de Débito A number
+             * @example 5
+             */
+            lastDebitNoteA?: number | null;
+            /** @example 5 */
+            lastDebitNoteB?: number | null;
+            /** @example 5 */
+            lastDebitNoteC?: number | null;
+            /**
+             * @description Last issued Factura A number
+             * @example 100
+             */
+            lastInvoiceA?: number | null;
+            /**
+             * @description Last issued Factura B number
+             * @example 100
+             */
+            lastInvoiceB?: number | null;
+            /**
+             * @description Last issued Factura C number
+             * @example 100
+             */
+            lastInvoiceC?: number | null;
+            /**
+             * @description AFIP point of sale (Punto de Venta) number. Unique per organization.
+             * @example 1
+             */
+            pointOfSale?: number;
+            /**
+             * @description Prefix used to compose receipt numbers (e.g. `0001-00000123`). Unique per organization.
+             * @example 0001
+             */
+            prefix?: string;
+            /**
+             * @description Point of sale type (WS = AFIP web service, WS_MOCK = synthetic, EN_LINEA = online, PRE_IMPRESOS = printed).
+             * @example WS
+             * @enum {string|null}
+             */
+            type?: "WS" | "WS_MOCK" | "EN_LINEA" | "PRE_IMPRESOS" | null;
+        };
+        UpdateRetentionDto: {
+            /**
+             * @description Short abbreviation
+             * @example RG-IIBB
+             */
+            abbreviation?: string;
+            /**
+             * @description Account id used for the retention
+             * @example 100
+             */
+            accountId?: number;
+            /**
+             * @description Deposit account id
+             * @example 200
+             */
+            depositAccountId?: number;
+            /**
+             * @description Retention description
+             * @example Retención IIBB CABA
+             */
+            description?: string;
+            /**
+             * @description Whether the retention is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            /**
+             * @description Whether the retention is treated as a value (vs percentage)
+             * @example false
+             */
+            isValue?: boolean;
+            /**
+             * @description Jurisdiction (location) id
+             * @example 1
+             */
+            jurisdictionId?: number;
         };
         UpdateSalesReceiptDto: {
             /** @example customer@example.com */
@@ -3615,6 +4862,88 @@ export interface components {
              * @example 2026-01-01T12:00:00Z
              */
             serviceStartDate?: string;
+        };
+        UpdateSupplierDto: {
+            /** @example Banco Galicia */
+            accountBank?: string | null;
+            /** @example 0000123456 */
+            accountCode?: string | null;
+            /** @example CHECKING */
+            accountType?: string | null;
+            /** @example Av. Corrientes 1234 */
+            address?: string | null;
+            /**
+             * @description Supplier's legal/business name. Required unless a valid `taxId` (CUIT) is provided — in that case it is auto-filled from ARCA's padrón.
+             * @example Distribuidora Norte SRL
+             */
+            businessName?: string;
+            /** @example Buenos Aires */
+            city?: string | null;
+            /**
+             * @description Document type id (combo). Fetch valid ids via `GET /combos/2/items`. When omitted, it is inferred from `taxId`: a valid 11-digit CUIT resolves to CUIT, 7–8 numeric digits resolve to DNI, anything else resolves to "Sin identificar".
+             * @example 180
+             */
+            documentTypeId?: number;
+            /** @example contacto@distribuidoranorte.com.ar */
+            email?: string | null;
+            /**
+             * @description Location id
+             * @example 1
+             */
+            locationId?: number | null;
+            observations?: string | null;
+            /** @example +54 11 4444-5555 */
+            phone?: string | null;
+            /** @example C1043AAZ */
+            postalCode?: string | null;
+            /**
+             * @description Purchase condition (combo) id. Fetch valid ids via `GET /combos/CondicionCompraVenta/items`.
+             * @example 1
+             */
+            purchaseConditionId?: number;
+            /**
+             * @description Tax category id. Must belong to the organization's regime — fetch valid ids via `GET /tax-categories`. Required unless a valid `taxId` (CUIT) is provided — in that case it is inferred from the supplier's IVA condition in ARCA combined with the organization's regime.
+             * @example 8
+             */
+            taxCategoryId?: number;
+            /**
+             * @description Tax ID (CUIT). When 11 digits, validated as CUIT.
+             * @example 30345678901
+             */
+            taxId?: string | null;
+        };
+        UpdateTransferDto: {
+            /**
+             * @description Transfer amount
+             * @example 75000
+             */
+            amount?: number;
+            /**
+             * @description Bank account id
+             * @example 1
+             */
+            bankAccountId?: number;
+            /**
+             * @description Customer id (for incoming transfers)
+             * @example 12
+             */
+            customerId?: number | null;
+            /**
+             * Format: date-time
+             * @description Transfer date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date?: string;
+            /**
+             * @description Transfer status
+             * @example PENDING
+             */
+            status?: string;
+            /**
+             * @description Supplier id (for outgoing transfers)
+             * @example 7
+             */
+            supplierId?: number | null;
         };
         VoidSalesReceiptDto: {
             /**
@@ -4153,17 +5482,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": {
-                    address: string;
-                    city: string;
-                    email?: string;
-                    locationId: number;
-                    name: string;
-                    phone1?: string;
-                    phone2?: string;
-                    phone3?: string;
-                    postalCode: string;
-                };
+                "application/json": components["schemas"]["CreateBranchDto"];
             };
         };
         responses: {
@@ -4239,7 +5558,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateBranchDto"];
+            };
+        };
         responses: {
             /** @description Updated branch */
             200: {
@@ -4284,22 +5607,11 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": {
-                    csrPath?: string;
-                    /** Format: uuid */
-                    internalKey?: string;
-                    isActive?: boolean;
-                    /** @description Certificate name; when only name is sent, key and CSR are generated */
-                    name?: string;
-                    privateKeyPath?: string;
-                    /** Format: date-time */
-                    requestDate?: string;
-                    userId?: number;
-                };
+                "application/json": components["schemas"]["CreateCertificateDto"];
             };
         };
         responses: {
-            /** @description Created certificate */
+            /** @description Certificate created — download the CSR next */
             201: {
                 headers: {
                     [name: string]: unknown;
@@ -4342,7 +5654,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Certificate expiration info */
+            /** @description Per-certificate expiration info */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -4414,7 +5726,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateCertificateDto"];
+            };
+        };
         responses: {
             /** @description Updated certificate */
             200: {
@@ -4457,13 +5773,6 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Storage not configured */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
         };
     };
     CertificatesController_getCsr: {
@@ -4491,13 +5800,6 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Storage not configured */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
         };
     };
     CertificatesController_uploadCrt: {
@@ -4515,21 +5817,21 @@ export interface operations {
                 "multipart/form-data": {
                     /**
                      * Format: binary
-                     * @description The .crt certificate file
+                     * @description The `.crt` file you downloaded from AFIP.
                      */
                     crt: string;
                 };
             };
         };
         responses: {
-            /** @description Certificate with crtPath and path updated */
+            /** @description Certificate is now ready to use */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description No file provided or invalid */
+            /** @description No file provided, or the file isn't a valid certificate */
             400: {
                 headers: {
                     [name: string]: unknown;
@@ -4556,14 +5858,14 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Validation results per service */
+            /** @description `{ success, environment, services: { wsfe, wsfex } }`. `success` is `true` only when both services pass. */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Certificate missing CRT or P12 file */
+            /** @description You need to upload the CRT first */
             400: {
                 headers: {
                     [name: string]: unknown;
@@ -4588,7 +5890,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Empty list (Phase 1: combos exposed by id only) */
+            /** @description Empty list */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -4627,13 +5929,10 @@ export interface operations {
     };
     CombosController_getItems: {
         parameters: {
-            query?: {
-                /** @description Set to 'true' to filter for monotributista */
-                organization_is_monotributista?: string;
-            };
+            query?: never;
             header?: never;
             path: {
-                /** @description Combo id */
+                /** @description Combo id (e.g. 5 = receipt types, 6 = sale conditions) */
                 id: number;
             };
             cookie?: never;
@@ -4973,11 +6272,11 @@ export interface operations {
     ExchangeRatesController_getRate: {
         parameters: {
             query: {
-                /** @description Source currency id (default: default currency) */
+                /** @description Source currency id. Omit to use your organization's default currency. */
                 from?: string;
-                /** @description Target currency id */
+                /** @description Target currency id. */
                 to: string;
-                /** @description Date (ISO string); default: today */
+                /** @description ISO date — defaults to today. Use the date the receipt is issued on. */
                 date?: string;
             };
             header?: never;
@@ -4986,14 +6285,14 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Exchange rate or null if not found */
+            /** @description Exchange rate, or `null` when none is available */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Invalid query (e.g. missing 'to', invalid id or date) */
+            /** @description Missing `to`, or `to`/`from`/`date` is invalid */
             400: {
                 headers: {
                     [name: string]: unknown;
@@ -5005,6 +6304,7 @@ export interface operations {
     ExportsController_getDownloadUrl: {
         parameters: {
             query: {
+                /** @description The export key returned by whichever endpoint generated the file. */
                 key: string;
             };
             header?: never;
@@ -5013,14 +6313,14 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Signed download URL */
+            /** @description `{ url }` — fetch this within 1 hour to download the file */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Invalid key or file not found */
+            /** @description Missing or invalid key, or the file has expired */
             400: {
                 headers: {
                     [name: string]: unknown;
@@ -5059,10 +6359,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": {
-                    path: string;
-                    type: string;
-                };
+                "application/json": components["schemas"]["CreateFileImportDto"];
             };
         };
         responses: {
@@ -5229,7 +6526,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateFileImportDto"];
+            };
+        };
         responses: {
             /** @description Updated file import */
             200: {
@@ -5274,7 +6575,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreateBankAccountDto"];
             };
         };
         responses: {
@@ -5371,7 +6672,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateBankAccountDto"];
+            };
+        };
         responses: {
             /** @description Updated */
             200: {
@@ -5416,7 +6721,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreateBankDto"];
             };
         };
         responses: {
@@ -5492,7 +6797,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateBankDto"];
+            };
+        };
         responses: {
             /** @description Updated */
             200: {
@@ -5542,7 +6851,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreateCardPaymentDto"];
             };
         };
         responses: {
@@ -5618,7 +6927,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateCardPaymentDto"];
+            };
+        };
         responses: {
             /** @description Updated */
             200: {
@@ -5690,7 +7003,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreateCashRegisterDto"];
             };
         };
         responses: {
@@ -5787,7 +7100,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateCashRegisterDto"];
+            };
+        };
         responses: {
             /** @description Updated */
             200: {
@@ -5832,7 +7149,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreateCheckbookDto"];
             };
         };
         responses: {
@@ -5908,7 +7225,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateCheckbookDto"];
+            };
+        };
         responses: {
             /** @description Updated */
             200: {
@@ -5958,7 +7279,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreateCheckDto"];
             };
         };
         responses: {
@@ -6034,7 +7355,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateCheckDto"];
+            };
+        };
         responses: {
             /** @description Updated */
             200: {
@@ -6079,7 +7404,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreateCreditCardDto"];
             };
         };
         responses: {
@@ -6155,7 +7480,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateCreditCardDto"];
+            };
+        };
         responses: {
             /** @description Updated */
             200: {
@@ -6205,7 +7534,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreateDepositDto"];
             };
         };
         responses: {
@@ -6281,7 +7610,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateDepositDto"];
+            };
+        };
         responses: {
             /** @description Updated */
             200: {
@@ -6358,7 +7691,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreateFundMovementDto"];
             };
         };
         responses: {
@@ -6434,7 +7767,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateFundMovementDto"];
+            };
+        };
         responses: {
             /** @description Updated */
             200: {
@@ -6484,7 +7821,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreateOwnCheckDto"];
             };
         };
         responses: {
@@ -6560,7 +7897,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateOwnCheckDto"];
+            };
+        };
         responses: {
             /** @description Updated */
             200: {
@@ -6605,7 +7946,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreatePaymentMethodDto"];
             };
         };
         responses: {
@@ -6627,7 +7968,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreatePaymentMethodEntryDto"];
             };
         };
         responses: {
@@ -6721,7 +8062,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdatePaymentMethodEntryDto"];
+            };
+        };
         responses: {
             /** @description Updated */
             200: {
@@ -6802,7 +8147,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdatePaymentMethodDto"];
+            };
+        };
         responses: {
             /** @description Updated */
             200: {
@@ -6847,7 +8196,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreateRetentionDto"];
             };
         };
         responses: {
@@ -6968,7 +8317,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateRetentionDto"];
+            };
+        };
         responses: {
             /** @description Updated */
             200: {
@@ -7018,7 +8371,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreateTransferDto"];
             };
         };
         responses: {
@@ -7094,7 +8447,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateTransferDto"];
+            };
+        };
         responses: {
             /** @description Updated */
             200: {
@@ -7112,82 +8469,12 @@ export interface operations {
             };
         };
     };
-    LeadsController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of leads */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    LeadsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    email: string;
-                };
-            };
-        };
-        responses: {
-            /** @description Created lead */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    LeadsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Lead id */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Lead */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Lead not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
     LocationsController_findAll: {
         parameters: {
             query?: {
-                /** @description Filter by name */
+                /** @description Filter by name (case-insensitive partial match) — pair with the user's search input */
                 nombre?: string;
-                /** @description true = export countries (country_id != 40), false = domestic (country_id = 40). Default: false. */
+                /** @description Pass `true` to get foreign destinations for export invoicing. Omit (or `false`) for Argentine locations. */
                 onlyExport?: boolean;
             };
             header?: never;
@@ -7313,10 +8600,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": {
-                    createInvoice: boolean;
-                    includePaymentButton: string;
-                };
+                "application/json": components["schemas"]["CreateMercadoPagoConfigDto"];
             };
         };
         responses: {
@@ -7339,24 +8623,6 @@ export interface operations {
         requestBody?: never;
         responses: {
             /** @description Mercado Pago config */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    MercadoPagoConfigsController_getToExpire: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Configs needing token refresh */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -7428,7 +8694,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateMercadoPagoConfigDto"];
+            };
+        };
         responses: {
             /** @description Updated Mercado Pago config */
             200: {
@@ -7886,9 +9156,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": {
-                    provider: string;
-                };
+                "application/json": components["schemas"]["CreateProviderConfigDto"];
             };
         };
         responses: {
@@ -8036,7 +9304,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateProviderConfigDto"];
+            };
+        };
         responses: {
             /** @description Updated provider config */
             200: {
@@ -8451,7 +9723,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": Record<string, never>;
+                "application/json": components["schemas"]["CreateSupplierDto"];
             };
         };
         responses: {
@@ -8644,7 +9916,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateSupplierDto"];
+            };
+        };
         responses: {
             /** @description Updated supplier */
             200: {
@@ -8689,15 +9965,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": {
-                    branchId?: number | null;
-                    description: string;
-                    isExport?: boolean;
-                    pointOfSale: number;
-                    prefix: string;
-                    /** @enum {string} */
-                    type?: "WS" | "WS_MOCK" | "EN_LINEA" | "PRE_IMPRESOS";
-                };
+                "application/json": components["schemas"]["CreateReceiptBookDto"];
             };
         };
         responses: {
@@ -8747,24 +10015,6 @@ export interface operations {
         requestBody?: never;
         responses: {
             /** @description Import result with created/skipped counts */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ReceiptBooksController_resync: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Resync result with updated books */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -8836,7 +10086,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateReceiptBookDto"];
+            };
+        };
         responses: {
             /** @description Updated receipt book */
             200: {
@@ -8854,7 +10108,7 @@ export interface operations {
             };
         };
     };
-    ReportsController_getDashboardStats: {
+    SalesReportsController_getDashboardStats: {
         parameters: {
             query: {
                 date_from: string;
@@ -8878,7 +10132,7 @@ export interface operations {
             };
         };
     };
-    ReportsController_getIIBB: {
+    SalesReportsController_getIIBB: {
         parameters: {
             query: {
                 date_from: string;
@@ -8901,7 +10155,7 @@ export interface operations {
             };
         };
     };
-    ReportsController_exportIIBB: {
+    SalesReportsController_exportIIBB: {
         parameters: {
             query: {
                 date_from: string;
@@ -8922,7 +10176,7 @@ export interface operations {
             };
         };
     };
-    ReportsController_getIvaDigitalVentas: {
+    SalesReportsController_getIvaDigitalVentas: {
         parameters: {
             query: {
                 date_from: string;
@@ -8943,7 +10197,7 @@ export interface operations {
             };
         };
     };
-    ReportsController_getIvaDigitalVentasAlicuotas: {
+    SalesReportsController_getIvaDigitalVentasAlicuotas: {
         parameters: {
             query: {
                 date_from: string;
@@ -8964,7 +10218,7 @@ export interface operations {
             };
         };
     };
-    ReportsController_getOutstandingReceivables: {
+    SalesReportsController_getOutstandingReceivables: {
         parameters: {
             query?: {
                 cursor?: string;
@@ -8985,7 +10239,7 @@ export interface operations {
             };
         };
     };
-    ReportsController_exportOutstandingReceivables: {
+    SalesReportsController_exportOutstandingReceivables: {
         parameters: {
             query?: never;
             header?: never;
@@ -9003,7 +10257,7 @@ export interface operations {
             };
         };
     };
-    ReportsController_getSalesByCustomer: {
+    SalesReportsController_getSalesByCustomer: {
         parameters: {
             query: {
                 date_from: string;
@@ -9026,7 +10280,7 @@ export interface operations {
             };
         };
     };
-    ReportsController_exportSalesByCustomer: {
+    SalesReportsController_exportSalesByCustomer: {
         parameters: {
             query: {
                 date_from: string;
@@ -9047,7 +10301,7 @@ export interface operations {
             };
         };
     };
-    ReportsController_getSalesByProduct: {
+    SalesReportsController_getSalesByProduct: {
         parameters: {
             query: {
                 date_from: string;
@@ -9071,7 +10325,7 @@ export interface operations {
             };
         };
     };
-    ReportsController_exportSalesByProduct: {
+    SalesReportsController_exportSalesByProduct: {
         parameters: {
             query: {
                 date_from: string;
@@ -9093,7 +10347,7 @@ export interface operations {
             };
         };
     };
-    ReportsController_getRevenueTrends: {
+    SalesReportsController_getRevenueTrends: {
         parameters: {
             query?: {
                 /** @description Number of past months to include (default 24) */
@@ -9114,7 +10368,7 @@ export interface operations {
             };
         };
     };
-    ReportsController_getVatSalesBook: {
+    SalesReportsController_getVatSalesBook: {
         parameters: {
             query: {
                 date_from: string;
@@ -9137,7 +10391,7 @@ export interface operations {
             };
         };
     };
-    ReportsController_exportVatSalesBook: {
+    SalesReportsController_exportVatSalesBook: {
         parameters: {
             query: {
                 date_from: string;
@@ -9658,180 +10912,6 @@ export interface operations {
             };
         };
     };
-    SalesReceiptsController_findAllDetails: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of receipt details */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_createDetail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateSalesReceiptDetailDto"];
-            };
-        };
-        responses: {
-            /** @description Created detail */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DETAILS. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Receipt not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findOneDetail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Detail line id (number) */
-                detailId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Receipt detail */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_removeDetail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Detail line id (number) */
-                detailId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Removed */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DETAILS. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_updateDetail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Detail line id (number) */
-                detailId: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateDetailDto"];
-            };
-        };
-        responses: {
-            /** @description Updated detail */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DETAILS. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
     SalesReceiptsController_duplicate: {
         parameters: {
             query?: never;
@@ -9852,153 +10932,6 @@ export interface operations {
                 content?: never;
             };
             /** @description Source receipt not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findAllObservations: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of receipt observations */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_createObservation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateSalesReceiptObservationDto"];
-            };
-        };
-        responses: {
-            /** @description Created observation */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Receipt not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findOneObservation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Observation id (number) */
-                observationId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Receipt observation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_removeObservation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Observation id (number) */
-                observationId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Removed */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_updateObservation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-                /** @description Observation id (number) */
-                observationId: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateObservationDto"];
-            };
-        };
-        responses: {
-            /** @description Updated observation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -10347,21 +11280,21 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                /** @description Tax ID (CUIT/CUIL) */
+                /** @description CUIT (companies) or CUIL (individuals) — 11 digits, no dashes */
                 taxId: string;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Taxpayer registry */
+            /** @description Taxpayer details */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Taxpayer registry not found */
+            /** @description No taxpayer registered for this CUIT/CUIL */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -10373,26 +11306,26 @@ export interface operations {
     TaxpayerRegistriesController_isFceReceiver: {
         parameters: {
             query?: {
-                /** @description Comprobante total; default 0 */
+                /** @description The receipt's total in ARS. Omit (or `0`) to check whether the taxpayer can ever receive FCE, ignoring the amount. */
                 total?: string;
             };
             header?: never;
             path: {
-                /** @description Tax ID (CUIT/CUIL) */
+                /** @description Customer's CUIT (companies) or CUIL (individuals) — 11 digits, no dashes */
                 taxId: string;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Object with taxId, total, and isFceReceiver */
+            /** @description `{ taxId, total, isFceReceiver }` — use `isFceReceiver` to decide the receipt type */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Taxpayer registry not found */
+            /** @description No registry entry for this CUIT/CUIL */
             404: {
                 headers: {
                     [name: string]: unknown;

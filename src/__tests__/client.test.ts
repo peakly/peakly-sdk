@@ -174,7 +174,7 @@ describe("sales.customers", () => {
 
   it("create — POST /v1/customers", async () => {
     spy.mockResolvedValueOnce(mockOk({ id: 1 }));
-    await client.sales.customers.create({ businessName: "Acme", taxCategoryId: 1, documentTypeId: 1 });
+    await client.sales.customers.create({ businessName: "Acme", taxCategoryId: 1, documentTypeId: 1, isActive: true });
     const req = lastRequest(spy);
     expect(req.url).toContain("/v1/customers");
     expect(req.method).toBe("POST");
