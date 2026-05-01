@@ -111,13 +111,14 @@ pnpm generate   # fetches https://api.peakly.ar/openapi.json and regenerates src
 pnpm build
 ```
 
-For offline development, pass a local file instead:
+For offline development, save the spec locally first and pass it as an argument:
 
 ```bash
+curl -o openapi.json https://api.peakly.ar/openapi.json
 pnpm generate ./openapi.json
 ```
 
-The committed `openapi.json` is a bootstrap snapshot only — it may lag behind the live API. The canonical source of truth is always `https://api.peakly.ar/openapi.json`.
+`openapi.json` is not committed — the canonical source of truth is always the live endpoint `https://api.peakly.ar/openapi.json`. The `sync-schema` CI workflow opens a PR automatically every Monday when the spec changes.
 
 ## Development
 
