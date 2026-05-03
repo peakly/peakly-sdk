@@ -1,0 +1,6 @@
+node_modules/
+dist/
+*.tgz
+.env
+# Local spec snapshot — not committed; use `pnpm generate` to fetch from live API
+openapi.json
