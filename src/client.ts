@@ -408,7 +408,7 @@ class PurchaseReceiptsResource {
     });
   }
 
-  // requestBody schema not yet detailed in the spec; tracked in PEA-125
+  // The spec declares an empty requestBody (Record<string, never>); using Record<string, unknown> until the API spec is fleshed out.
   create(body: Record<string, unknown>) {
     return this.f.POST("/v1/purchases/purchase-receipts", { body: body as never });
   }
