@@ -131,7 +131,7 @@ pnpm generate   # regenerate src/schema.d.ts from live API spec
 
 ## Known gaps
 
-- `PATCH /v1/purchase-receipts/{id}` is missing `requestBody` in the spec — `purchases.receipts.update()` accepts `Record<string, unknown>` for now. Fix tracked in [PEA-125](https://github.com/peakly/peakly-sdk).
+- `PATCH /v1/purchase-receipts/{id}` is missing `requestBody` in the spec — `purchases.receipts.update()` accepts `Record<string, unknown>` until the spec is fleshed out.
 
 ## License
 
