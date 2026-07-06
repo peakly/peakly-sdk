@@ -21,5 +21,9 @@ if [[ ! -f "$SPEC" && ! "$SPEC" =~ ^https?:// ]]; then
 fi
 
 echo "[generate] Generating src/schema.d.ts from $SPEC..."
-npx openapi-typescript "$SPEC" -o src/schema.d.ts
+TMP_SPEC="$(mktemp -t peakly-openapi.XXXXXX.json)"
+trap 'rm -f "$TMP_SPEC"' EXIT
+
+node scripts/prepare-openapi.mjs "$SPEC" "$TMP_SPEC"
+pnpm exec openapi-typescript "$TMP_SPEC" -o src/schema.d.ts
 echo "[generate] ✓ Done"

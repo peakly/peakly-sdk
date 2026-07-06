@@ -138,6 +138,21 @@ describe("sales.receipts", () => {
     expect(req.method).toBe("POST");
   });
 
+  it("sendEmail — accepts optional email and subject overrides", async () => {
+    spy.mockResolvedValueOnce(mockOk({ ok: true }));
+    await client.sales.receipts.sendEmail("receipt-uuid", {
+      email: "billing@example.com",
+      subject: "Receipt ready",
+    });
+    const req = lastRequest(spy);
+    expect(req.url).toContain("/send-email");
+    expect(req.method).toBe("POST");
+    await expect(req.json()).resolves.toEqual({
+      email: "billing@example.com",
+      subject: "Receipt ready",
+    });
+  });
+
   it("duplicate — POST /v1/sales/sales-receipts/{id}/duplicate", async () => {
     spy.mockResolvedValueOnce(mockOk({ id: "new-copy-id" }));
     await client.sales.receipts.duplicate("receipt-uuid");

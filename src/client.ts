@@ -108,9 +108,13 @@ class SalesReceiptsResource {
     });
   }
 
-  sendEmail(id: string) {
+  sendEmail(
+    id: string,
+    body: paths["/v1/sales/sales-receipts/{id}/send-email"]["post"]["requestBody"]["content"]["application/json"] = {}
+  ) {
     return this.f.POST("/v1/sales/sales-receipts/{id}/send-email", {
       params: { path: { id } },
+      body,
     });
   }
 
