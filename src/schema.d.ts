@@ -4,303 +4,7 @@
  */
 
 export interface paths {
-    "/v1/accounting/accounting-locks": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List accounting locks */
-        get: operations["AccountingLocksController_list"];
-        put?: never;
-        /** Create an accounting lock */
-        post: operations["AccountingLocksController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/accounting-locks/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /** Delete an accounting lock */
-        delete: operations["AccountingLocksController_delete"];
-        options?: never;
-        head?: never;
-        /** Update an accounting lock */
-        patch: operations["AccountingLocksController_update"];
-        trace?: never;
-    };
-    "/v1/accounting/fiscal-years": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List fiscal years */
-        get: operations["FiscalYearsController_list"];
-        put?: never;
-        /** Create a fiscal year */
-        post: operations["FiscalYearsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/fiscal-years/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** Update a fiscal year */
-        patch: operations["FiscalYearsController_update"];
-        trace?: never;
-    };
-    "/v1/accounting/fiscal-years/{id}/close": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Close a fiscal year */
-        post: operations["FiscalYearsController_close"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/journal-accounts": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List journal accounts (plan de cuentas) */
-        get: operations["JournalAccountsController_list"];
-        put?: never;
-        /** Create a journal account */
-        post: operations["JournalAccountsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/journal-accounts/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /** Delete a journal account */
-        delete: operations["JournalAccountsController_delete"];
-        options?: never;
-        head?: never;
-        /** Update a journal account */
-        patch: operations["JournalAccountsController_update"];
-        trace?: never;
-    };
-    "/v1/accounting/journal-entries": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List journal entries with pagination */
-        get: operations["JournalEntriesController_list"];
-        put?: never;
-        /** Create a manual journal entry */
-        post: operations["JournalEntriesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/journal-entries/reports/balance-sheet": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get balance sheet report */
-        get: operations["JournalEntriesController_getBalanceSheet"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/journal-entries/reports/profit-loss": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get profit and loss report */
-        get: operations["JournalEntriesController_getProfitAndLoss"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/journal-entries/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get a journal entry with its items */
-        get: operations["JournalEntriesController_getById"];
-        put?: never;
-        post?: never;
-        /** Delete a manual journal entry */
-        delete: operations["JournalEntriesController_delete"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/reports/daily-book": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Daily Book (Libro Diario) — chronological journal entries */
-        get: operations["AccountingReportsController_dailyBook"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/reports/daily-book/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export Daily Book as CSV */
-        get: operations["AccountingReportsController_dailyBookExport"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/reports/general-ledger": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** General Ledger (Libro Mayor) — account movements with running balance */
-        get: operations["AccountingReportsController_generalLedger"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/reports/general-ledger/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export General Ledger as CSV */
-        get: operations["AccountingReportsController_generalLedgerExport"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/reports/trial-balance": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Trial Balance (Balance de Sumas y Saldos) — account totals */
-        get: operations["AccountingReportsController_trialBalance"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/accounting/reports/trial-balance/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export Trial Balance as CSV */
-        get: operations["AccountingReportsController_trialBalanceExport"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/branches": {
+    "/v1/exports/download": {
         parameters: {
             query?: never;
             header?: never;
@@ -308,86 +12,10 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * List branches
-         * @description Get the list of active branches to populate branch pickers and decide which point of sale to use. Deleted branches are not included.
+         * Get a download URL for an exported file
+         * @description Get a signed URL (valid for 48 hours) to download a file the API generated for you — for example, a CSV export or a bulk PDF job. Pass the `key` you received from the export endpoint and download the file from the `url` you get back. You can only download files that belong to your own organization. If the link expires, just call this endpoint again with the same key to get a fresh URL.
          */
-        get: operations["BranchesController_findAll"];
-        put?: never;
-        /**
-         * Create branch
-         * @description Create a branch for each physical location your business operates from. Once created, you can reference its id on receipts and assign point-of-sale numbers to it. The name must be different from your other branches.
-         */
-        post: operations["BranchesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/branches/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get branch by id
-         * @description Get a branch's details — useful when you've stored an id on a receipt and need to display the branch name and address.
-         */
-        get: operations["BranchesController_findOne"];
-        put?: never;
-        post?: never;
-        /**
-         * Delete branch
-         * @description Stop a branch from appearing in pickers and reports when you no longer operate from it. Past receipts that reference the branch keep working.
-         */
-        delete: operations["BranchesController_remove"];
-        options?: never;
-        head?: never;
-        /**
-         * Update branch
-         * @description Edit the branch — for example to fix the address or update the contact phone. Send only the fields you want to change. If you change `name`, it still has to be different from your other branches.
-         */
-        patch: operations["BranchesController_update"];
-        trace?: never;
-    };
-    "/v1/certificates": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List certificates
-         * @description Get every certificate associated with your organization, including ones that are still being set up. Use `GET /certificates/active` when you only need the one currently in use for invoicing.
-         */
-        get: operations["CertificatesController_findAll"];
-        put?: never;
-        /**
-         * Start a new certificate
-         * @description Begin the certificate setup flow. POST with a `name` and the API will generate a CSR for you. Next, download the CSR via `GET /certificates/:id/csr`, upload it to AFIP, and post the `.crt` AFIP gives back via `POST /certificates/:id/upload-crt`.
-         */
-        post: operations["CertificatesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/certificates/active": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get the active certificate
-         * @description Get the certificate currently used to authorize receipts with AFIP. A 404 means you don't have a valid certificate set up — receipts will still be created but will stay in `PENDIENTE_AFIP` until you complete the certificate flow (`POST /certificates` → upload CSR to AFIP → `POST /certificates/:id/upload-crt`).
-         */
-        get: operations["CertificatesController_findActive"];
+        get: operations["ExportsController_getDownloadUrl"];
         put?: never;
         post?: never;
         delete?: never;
@@ -396,95 +24,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/certificates/expiration-status": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Check expiration for every certificate
-         * @description Use this to drive an expiration banner or renewal reminder in your UI. For each certificate you get back days remaining, whether it's expired, and whether it's ready to use. Plan renewals ahead of time — AFIP issuance can take a few days.
-         */
-        get: operations["CertificatesController_getExpirationStatus"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/certificates/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get certificate by id
-         * @description Get a certificate's name, status, and expiration date. To download the CSR or CRT file, use the `/csr` and `/crt` sub-paths.
-         */
-        get: operations["CertificatesController_findOne"];
-        put?: never;
-        post?: never;
-        /**
-         * Delete certificate
-         * @description Remove a certificate you no longer need (e.g. an expired one you've already replaced). If you delete the active certificate before uploading a replacement, receipts can still be created but will stay in `PENDIENTE_AFIP` — they won't be authorized by AFIP until a new certificate is active.
-         */
-        delete: operations["CertificatesController_remove"];
-        options?: never;
-        head?: never;
-        /**
-         * Update certificate
-         * @description Rename a certificate or toggle `isActive` to switch which certificate is used for invoicing. Only one should be active at a time.
-         */
-        patch: operations["CertificatesController_update"];
-        trace?: never;
-    };
-    "/v1/certificates/{id}/crt": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Download CRT
-         * @description Download the AFIP-signed `.crt` for this certificate — useful for backups or to inspect when the certificate expires.
-         */
-        get: operations["CertificatesController_getCrt"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/certificates/{id}/csr": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Download CSR
-         * @description Download the CSR file for this certificate so you can upload it to AFIP's certificate portal. Once AFIP gives you back a `.crt`, finish setup by posting it via `POST /certificates/:id/upload-crt`.
-         */
-        get: operations["CertificatesController_getCsr"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/certificates/{id}/upload-crt": {
+    "/v1/exports/sales/range": {
         parameters: {
             query?: never;
             header?: never;
@@ -494,48 +34,25 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * Upload AFIP-signed CRT
-         * @description Finish setting up the certificate by uploading the `.crt` AFIP gave you when you submitted the CSR. After this call, the certificate is ready to use — run `POST /certificates/:id/validate-connection` to double-check.
+         * Generate a multi-day sales export to Google Drive
+         * @description Kick off a sales export covering a date range (both dates inclusive) and upload it to the organization's shared Google Drive folder. The range is split into weekly files (up to 7 days each), so a whole month arrives as several CSVs — this keeps each background job fast and reliable. The jobs run in the background; the response returns one entry per weekly file with its `runId` and the `fileName` that will appear in Drive once it finishes (a few minutes each). Files are named per-range so they never overwrite the per-day exports. This endpoint is currently enabled for a single organization.
          */
-        post: operations["CertificatesController_uploadCrt"];
+        post: operations["ExportsController_createRangeExport"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/certificates/{id}/validate-connection": {
+    "/v1/tax-categories": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
-        put?: never;
-        /**
-         * Validate certificate against AFIP
-         * @description Run a quick check against AFIP to confirm the certificate works for both domestic invoicing (WSFE) and export invoicing (WSFEX) before you rely on it for real receipts. The response tells you if each service authenticated, and if not, the error message AFIP returned. Run this right after uploading a CRT.
-         */
-        post: operations["CertificatesController_validateConnection"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/combos": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List combos
-         * @description Returns an empty list — combos are fetched by id. Use `GET /combos/:id/items` with the id of the list you need (5 for receipt types, 6 for sale conditions, etc.).
-         */
-        get: operations["CombosController_findAll"];
+        /** List active tax categories for the current organization */
+        get: operations["TaxCategoriesController_findAllActive"];
         put?: never;
         post?: never;
         delete?: never;
@@ -544,18 +61,15 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/combos/{id}": {
+    "/v1/tax-categories/{id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /**
-         * Get combo by id
-         * @description Get the combo's name and description. To list the items the user can pick from, call `GET /combos/:id/items` instead.
-         */
-        get: operations["CombosController_findOne"];
+        /** Get tax category by id */
+        get: operations["TaxCategoriesController_findOne"];
         put?: never;
         post?: never;
         delete?: never;
@@ -564,18 +78,32 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/combos/{id}/items": {
+    "/v1/tax-categories/{id}/exportacion": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /**
-         * Get combo items
-         * @description Fetch the items of a combo to populate a dropdown. Show `data` to the user; send the item's `id` when creating a receipt or customer that needs this value. The IVA combo is filtered automatically based on your organization's tax regime — Monotributista organizations only see *Sin IVA*.
-         */
-        get: operations["CombosController_getItems"];
+        /** Check if tax category is exportación */
+        get: operations["TaxCategoriesController_isExportacion"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/tax-categories/{id}/monotributo": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Check if tax category is monotributo */
+        get: operations["TaxCategoriesController_isMonotributo"];
         put?: never;
         post?: never;
         delete?: never;
@@ -669,6 +197,317 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/combos": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List combos
+         * @description Returns an empty list — combos are fetched by id. Use `GET /combos/:id/items` with the id of the list you need (5 for receipt types, 6 for sale conditions, etc.).
+         */
+        get: operations["CombosController_findAll"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/combos/{id}/items": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get combo items
+         * @description Fetch the items of a combo to populate a dropdown. Show `data` to the user; send the item's `id` when creating a receipt or customer that needs this value. The IVA combo is filtered automatically based on your organization's tax regime — Monotributista organizations only see *Sin IVA*.
+         */
+        get: operations["CombosController_getItems"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/combos/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get combo by id
+         * @description Get the combo's name and description. To list the items the user can pick from, call `GET /combos/:id/items` instead.
+         */
+        get: operations["CombosController_findOne"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/locations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List locations
+         * @description Get the list of locations to populate the location dropdown when creating a customer, branch, or receipt. Returns Argentine locations by default. Pass `onlyExport=true` when the user is issuing an export invoice and needs to pick a foreign destination. Use `nombre` to narrow the list as the user types.
+         */
+        get: operations["LocationsController_findAll"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/locations/default": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get the default location
+         * @description Get the location to pre-select on new customer/branch forms. Returns 404 when no default has been configured — fall back to letting the user pick from the full list.
+         */
+        get: operations["LocationsController_findDefault"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/locations/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get location by id
+         * @description Get a single location's details — useful when you have an id stored on a customer/branch/receipt and need to display its name.
+         */
+        get: operations["LocationsController_findOne"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/exchange-rates": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get exchange rate
+         * @description Get the exchange rate to use when invoicing in a foreign currency. Pass the target currency (`to`) and use the rate from the response. The response is `null` when no rate is available for that day — show your user a manual-entry input or block the operation when that happens.
+         */
+        get: operations["ExchangeRatesController_getRate"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/taxpayer-registries/{taxId}/fce-receiver": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Check FCE eligibility for a taxpayer
+         * @description Call this before confirming a receipt to know whether you must issue a Factura de Crédito Electrónica (FCE). Pass the receipt's total and the customer's CUIT — when `isFceReceiver` is `true`, switch the receipt type to an FCE class so AFIP doesn't reject it.
+         */
+        get: operations["TaxpayerRegistriesController_isFceReceiver"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/taxpayer-registries/{taxId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Look up taxpayer by CUIT/CUIL
+         * @description Look up a taxpayer to pre-fill a new customer form (fiscal name, tax category, address) or to verify an existing customer's details before issuing a receipt.
+         */
+        get: operations["TaxpayerRegistriesController_findOne"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/product-categories": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List product categories for the current organization */
+        get: operations["ProductCategoriesController_findAll"];
+        put?: never;
+        /** Create product category */
+        post: operations["ProductCategoriesController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/product-categories/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get product category by id */
+        get: operations["ProductCategoriesController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete product category */
+        delete: operations["ProductCategoriesController_remove"];
+        options?: never;
+        head?: never;
+        /** Update product category */
+        patch: operations["ProductCategoriesController_update"];
+        trace?: never;
+    };
+    "/v1/products": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List products (cursor-paginated)
+         * @description Returns a page of products. Use cursor from nextCursor for the next page.
+         */
+        get: operations["ProductsController_findAll"];
+        put?: never;
+        /**
+         * Create product
+         * @description Send the `Idempotency-Key` header to make retries safe: a second request with the same key returns the original product with status 200 and an `Idempotent-Replayed: true` response header. The header value is stored as the product's `providerId`, so it must be unique per organization. Sending both the header and a body `providerId` is rejected with IDEMPOTENCY_KEY_AND_PROVIDER_ID_CONFLICT.
+         */
+        post: operations["ProductsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/products/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Search products with favorites, recents, and fuzzy matching */
+        get: operations["ProductsController_search"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/products/{id}/favorite": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Toggle product as favorite for the organization */
+        post: operations["ProductsController_toggleFavorite"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/products/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export products as CSV (cursor-based, streaming) */
+        get: operations["ProductsController_exportCsv"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/products/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get product by id */
+        get: operations["ProductsController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete product */
+        delete: operations["ProductsController_remove"];
+        options?: never;
+        head?: never;
+        /** Update product */
+        patch: operations["ProductsController_update"];
+        trace?: never;
+    };
     "/v1/customers": {
         parameters: {
             query?: never;
@@ -682,25 +521,11 @@ export interface paths {
          */
         get: operations["CustomersController_findAll"];
         put?: never;
-        /** Create customer */
+        /**
+         * Create customer
+         * @description Send the `Idempotency-Key` header to make retries safe: a second request with the same key returns the original customer with status 200 and an `Idempotent-Replayed: true` response header. The header value is stored as the customer's `providerId`, so it must be unique per organization. Sending both the header and a body `providerId` is rejected with IDEMPOTENCY_KEY_AND_PROVIDER_ID_CONFLICT.
+         */
         post: operations["CustomersController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/customers/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export customers as CSV (cursor-based, streaming) */
-        get: operations["CustomersController_exportCsv"];
-        put?: never;
-        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -719,6 +544,23 @@ export interface paths {
          * @description Validates CUIT and fetches business data from AFIP via system certificate.
          */
         get: operations["CustomersController_lookupCuit"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/customers/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export customers as CSV (cursor-based, streaming) */
+        get: operations["CustomersController_exportCsv"];
         put?: never;
         post?: never;
         delete?: never;
@@ -746,7 +588,7 @@ export interface paths {
         patch: operations["CustomersController_update"];
         trace?: never;
     };
-    "/v1/exchange-rates": {
+    "/v1/purchases/suppliers": {
         parameters: {
             query?: never;
             header?: never;
@@ -754,10 +596,31 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Get exchange rate
-         * @description Get the exchange rate to use when invoicing in a foreign currency. Pass the target currency (`to`) and use the rate from the response. The response is `null` when no rate is available for that day — show your user a manual-entry input or block the operation when that happens.
+         * List suppliers (cursor-paginated)
+         * @description Returns a page of suppliers. Use cursor from nextCursor for the next page.
          */
-        get: operations["ExchangeRatesController_getRate"];
+        get: operations["SuppliersController_findAll"];
+        put?: never;
+        /** Create supplier */
+        post: operations["SuppliersController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/purchases/suppliers/lookup-cuit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Lookup CUIT for supplier auto-fill
+         * @description Validates CUIT and fetches business data from AFIP via system certificate.
+         */
+        get: operations["SuppliersController_lookupCuit"];
         put?: never;
         post?: never;
         delete?: never;
@@ -766,18 +629,15 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/exports/download": {
+    "/v1/purchases/suppliers/export": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /**
-         * Get a download URL for an exported file
-         * @description Get a signed URL (valid for 1 hour) to download a file the API generated for you — for example, a CSV export or a bulk PDF job. Pass the `key` you received from the export endpoint and download the file from the `url` you get back. You can only download files that belong to your own organization.
-         */
-        get: operations["ExportsController_getDownloadUrl"];
+        /** Export suppliers as CSV (cursor-based, streaming) */
+        get: operations["SuppliersController_exportCsv"];
         put?: never;
         post?: never;
         delete?: never;
@@ -786,18 +646,235 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/file-imports": {
+    "/v1/purchases/suppliers/{id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List file imports for the current organization */
-        get: operations["FileImportsController_findAll"];
+        /** Get supplier by id */
+        get: operations["SuppliersController_findOne"];
         put?: never;
-        /** Create file import */
-        post: operations["FileImportsController_create"];
+        post?: never;
+        /** Delete supplier (soft delete) */
+        delete: operations["SuppliersController_remove"];
+        options?: never;
+        head?: never;
+        /** Update supplier */
+        patch: operations["SuppliersController_update"];
+        trace?: never;
+    };
+    "/v1/purchases/suppliers/get-or-create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Get existing supplier by CUIT or create with AFIP data
+         * @description Looks up supplier by CUIT. If not found, auto-creates using AFIP padron data.
+         */
+        post: operations["SuppliersController_getOrCreate"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/purchases/suppliers/bulk-delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Bulk delete suppliers (soft delete) */
+        post: operations["SuppliersController_removeBulk"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/provider-configs/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get integration status per provider */
+        get: operations["ProviderConfigsController_getStatus"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/provider-configs/oauth": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get OAuth redirect URL for a provider */
+        get: operations["ProviderConfigsController_getOAuthUrl"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/provider-configs/by-provider/{provider}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get config by provider */
+        get: operations["ProviderConfigsController_findByProvider"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/provider-configs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List provider configs for the current organization */
+        get: operations["ProviderConfigsController_findAll"];
+        put?: never;
+        /** Create provider config */
+        post: operations["ProviderConfigsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/provider-configs/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get provider config by id */
+        get: operations["ProviderConfigsController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete provider config */
+        delete: operations["ProviderConfigsController_remove"];
+        options?: never;
+        head?: never;
+        /** Update provider config */
+        patch: operations["ProviderConfigsController_update"];
+        trace?: never;
+    };
+    "/v1/mercado-pago-configs/by-organization": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get or create the Mercado Pago config for the current organization */
+        get: operations["MercadoPagoConfigsController_getByOrganization"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/mercado-pago-configs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Mercado Pago configs for the current organization */
+        get: operations["MercadoPagoConfigsController_findAll"];
+        put?: never;
+        /** Create Mercado Pago config */
+        post: operations["MercadoPagoConfigsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/mercado-pago-configs/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Mercado Pago config by id */
+        get: operations["MercadoPagoConfigsController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete Mercado Pago config */
+        delete: operations["MercadoPagoConfigsController_remove"];
+        options?: never;
+        head?: never;
+        /** Update Mercado Pago config */
+        patch: operations["MercadoPagoConfigsController_update"];
+        trace?: never;
+    };
+    "/v1/mercado-pago-configs/{id}/reset-auth": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Reset auth — clears the stored refresh token so the user must reconnect */
+        patch: operations["MercadoPagoConfigsController_resetAuth"];
+        trace?: never;
+    };
+    "/v1/file-imports/upload": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Upload a file for import
+         * @description Upload an Excel (.xlsx, .xls) or CSV (.csv) file for import processing. Creates a FileImport record and stores the file server-side for asynchronous processing.
+         */
+        post: operations["FileImportsController_upload"];
         delete?: never;
         options?: never;
         head?: never;
@@ -841,20 +918,18 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/file-imports/upload": {
+    "/v1/file-imports": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        /** List file imports for the current organization */
+        get: operations["FileImportsController_findAll"];
         put?: never;
-        /**
-         * Upload a file for import
-         * @description Upload an Excel (.xlsx, .xls) or CSV (.csv) file for import processing. Creates a FileImport record and stores the file server-side for asynchronous processing.
-         */
-        post: operations["FileImportsController_upload"];
+        /** Create file import */
+        post: operations["FileImportsController_create"];
         delete?: never;
         options?: never;
         head?: never;
@@ -880,33 +955,42 @@ export interface paths {
         patch: operations["FileImportsController_update"];
         trace?: never;
     };
-    "/v1/finance/bank-accounts": {
+    "/v1/certificates": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List bank accounts (active only) */
-        get: operations["BankAccountsController_findAll"];
+        /**
+         * List certificates
+         * @description Get every certificate associated with your organization, including ones that are still being set up. Use `GET /certificates/active` when you only need the one currently in use for invoicing.
+         */
+        get: operations["CertificatesController_findAll"];
         put?: never;
-        /** Create bank account */
-        post: operations["BankAccountsController_create"];
+        /**
+         * Start a new certificate
+         * @description Begin the certificate setup flow. POST with a `name` and the API will generate a CSR for you. Next, download the CSR via `GET /certificates/:id/csr`, upload it to AFIP, and post the `.crt` AFIP gives back via `POST /certificates/:id/upload-crt`.
+         */
+        post: operations["CertificatesController_create"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/finance/bank-accounts/histories/all": {
+    "/v1/certificates/active": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List bank account histories */
-        get: operations["BankAccountsController_findHistories"];
+        /**
+         * Get the active certificate
+         * @description Get the certificate currently used to authorize receipts with AFIP. A 404 means you don't have a valid certificate set up — receipts will still be created but will stay in `PENDIENTE_AFIP` until you complete the certificate flow (`POST /certificates` → upload CSR to AFIP → `POST /certificates/:id/upload-crt`).
+         */
+        get: operations["CertificatesController_findActive"];
         put?: never;
         post?: never;
         delete?: never;
@@ -915,23 +999,1382 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/finance/bank-accounts/{id}": {
+    "/v1/certificates/expiration-status": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get bank account by id */
-        get: operations["BankAccountsController_findOne"];
+        /**
+         * Check expiration for every certificate
+         * @description Use this to drive an expiration banner or renewal reminder in your UI. For each certificate you get back days remaining, whether it's expired, and whether it's ready to use. Plan renewals ahead of time — AFIP issuance can take a few days.
+         */
+        get: operations["CertificatesController_getExpirationStatus"];
         put?: never;
         post?: never;
-        /** Delete bank account (soft) */
-        delete: operations["BankAccountsController_remove"];
+        delete?: never;
         options?: never;
         head?: never;
-        /** Update bank account */
-        patch: operations["BankAccountsController_update"];
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/certificates/{id}/csr": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Download CSR
+         * @description Download the CSR file for this certificate so you can upload it to AFIP's certificate portal. Once AFIP gives you back a `.crt`, finish setup by posting it via `POST /certificates/:id/upload-crt`.
+         */
+        get: operations["CertificatesController_getCsr"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/certificates/{id}/crt": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Download CRT
+         * @description Download the AFIP-signed `.crt` for this certificate — useful for backups or to inspect when the certificate expires.
+         */
+        get: operations["CertificatesController_getCrt"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/certificates/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get certificate by id
+         * @description Get a certificate's name, status, and expiration date. To download the CSR or CRT file, use the `/csr` and `/crt` sub-paths.
+         */
+        get: operations["CertificatesController_findOne"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete certificate
+         * @description Remove a certificate you no longer need (e.g. an expired one you've already replaced). If you delete the active certificate before uploading a replacement, receipts can still be created but will stay in `PENDIENTE_AFIP` — they won't be authorized by AFIP until a new certificate is active.
+         */
+        delete: operations["CertificatesController_remove"];
+        options?: never;
+        head?: never;
+        /**
+         * Update certificate
+         * @description Rename a certificate or toggle `isActive` to switch which certificate is used for invoicing. Only one should be active at a time.
+         */
+        patch: operations["CertificatesController_update"];
+        trace?: never;
+    };
+    "/v1/certificates/{id}/validate-connection": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Validate certificate against AFIP
+         * @description Run a quick check against AFIP to confirm the certificate works for both domestic invoicing (WSFE) and export invoicing (WSFEX) before you rely on it for real receipts. The response tells you if each service authenticated, and if not, the error message AFIP returned. Run this right after uploading a CRT.
+         */
+        post: operations["CertificatesController_validateConnection"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/certificates/{id}/upload-crt": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Upload AFIP-signed CRT
+         * @description Finish setting up the certificate by uploading the `.crt` AFIP gave you when you submitted the CSR. After this call, the certificate is ready to use — run `POST /certificates/:id/validate-connection` to double-check.
+         */
+        post: operations["CertificatesController_uploadCrt"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/branches": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List branches
+         * @description Get the list of active branches to populate branch pickers and decide which point of sale to use. Deleted branches are not included.
+         */
+        get: operations["BranchesController_findAll"];
+        put?: never;
+        /**
+         * Create branch
+         * @description Create a branch for each physical location your business operates from. Once created, you can reference its id on receipts and assign point-of-sale numbers to it. The name must be different from your other branches.
+         */
+        post: operations["BranchesController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/branches/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get branch by id
+         * @description Get a branch's details — useful when you've stored an id on a receipt and need to display the branch name and address.
+         */
+        get: operations["BranchesController_findOne"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete branch
+         * @description Stop a branch from appearing in pickers and reports when you no longer operate from it. Past receipts that reference the branch keep working.
+         */
+        delete: operations["BranchesController_remove"];
+        options?: never;
+        head?: never;
+        /**
+         * Update branch
+         * @description Edit the branch — for example to fix the address or update the contact phone. Send only the fields you want to change. If you change `name`, it still has to be different from your other branches.
+         */
+        patch: operations["BranchesController_update"];
+        trace?: never;
+    };
+    "/v1/receipt-books": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List receipt books for the current organization */
+        get: operations["ReceiptBooksController_findAll"];
+        put?: never;
+        /** Create receipt book */
+        post: operations["ReceiptBooksController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/receipt-books/by-point-of-sale/{pointOfSale}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get receipt book by point of sale */
+        get: operations["ReceiptBooksController_findByPointOfSale"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/receipt-books/import-from-arca": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Import puntos de venta from ARCA (AFIP) */
+        post: operations["ReceiptBooksController_importFromArca"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/receipt-books/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get receipt book by id */
+        get: operations["ReceiptBooksController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete receipt book */
+        delete: operations["ReceiptBooksController_remove"];
+        options?: never;
+        head?: never;
+        /** Update receipt book */
+        patch: operations["ReceiptBooksController_update"];
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/next-number": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Preview the next receipt number for a receipt book + customer + type */
+        get: operations["SalesReceiptsController_getNextNumber"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/export/columns": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List all available export columns (key + header) */
+        get: operations["SalesReceiptsController_listExportColumns"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export sales receipts as CSV */
+        get: operations["SalesReceiptsController_exportCsv"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List sales receipts (cursor-paginated, optional date filters)
+         * @description Returns a page of sales receipts. Use cursor from nextCursor for the next page. If date_from/date_to are omitted, all dates are included.
+         */
+        get: operations["SalesReceiptsController_findAll"];
+        put?: never;
+        /**
+         * Create sales receipt
+         * @description **Quickest path — no IDs required.** Send `customerTaxId` (CUIT) and a line `description`; the server matches an existing customer by tax id (or creates one from ARCA padrón data) and matches an existing product by description (or creates it). No need to pre-create customers or products via separate endpoints. See the **Minimal** example below.
+         *
+         *     If you already have IDs from previous calls, send `customerId` / `productId` instead — see the **With existing IDs** example.
+         *
+         *     Send the `Idempotency-Key` header to make retries safe: a second request with the same key returns the original receipt with status 200 and an `Idempotent-Replayed: true` response header. The header value is stored as the receipt's `providerId`, so it must be unique per organization. Sending both the header and a body `providerId` is rejected with IDEMPOTENCY_KEY_AND_PROVIDER_ID_CONFLICT.
+         */
+        post: operations["SalesReceiptsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/confirm": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Confirm a draft receipt (Borrador -> Pendiente_Afip)
+         * @description Validates required fields, assigns real receipt number, sets status to Pendiente_Afip, and triggers AFIP authorization.
+         */
+        post: operations["SalesReceiptsController_confirm"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/retry": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Retry AFIP authorization for a pending receipt
+         * @description Clears any previous error and re-triggers AFIP authorization. Only receipts in Pendiente_Afip status can be retried.
+         */
+        post: operations["SalesReceiptsController_retry"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/void": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Void a confirmed receipt (Anulación)
+         * @description Voids a Creada receipt by creating a compensating credit note (NC). For WS receipts: NC must be authorized at AFIP before the original is marked Anulado. For pre-impreso: original is marked Anulado immediately. WS receipts always require a credit note (numbers cannot be reused).
+         */
+        post: operations["SalesReceiptsController_voidReceipt"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/imputations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Apply a credit note against one or more receipts (imputación)
+         * @description Applies a credit note (Creada) against invoices/debit notes of the same customer, in partial amounts. Each target accumulates `totalCollected` and becomes `Cobrada` when fully covered; the credit note becomes `Imputado` when fully used.
+         */
+        post: operations["SalesReceiptsController_createImputations"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/imputations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List imputations for a receipt
+         * @description Returns the imputations where the receipt participates, either as the credit note being applied or as the target invoice/debit note.
+         */
+        get: operations["SalesReceiptsController_listImputations"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/imputations/{imputationId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Delete an imputation (reversal)
+         * @description Reverses an imputation: both the credit note and the target receipt subtract the imputed amount and return to `Creada` (v1 AnularImputacion parity).
+         */
+        delete: operations["SalesReceiptsController_deleteImputation"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/duplicate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Duplicate a receipt as a new draft (BORRADOR)
+         * @description Creates a new BORRADOR draft by copying customer, items, conditions from the source receipt. Dates are reset to today. Any status receipt can be duplicated.
+         */
+        post: operations["SalesReceiptsController_duplicate"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/authorize": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Authorize receipt with AFIP (get CAE)
+         * @description Request AFIP authorization for a receipt that's in `PENDIENTE_AFIP`. The API normally drives this automatically when you call `POST /sales-receipts/:id/confirm` — call this endpoint directly only when you want to retry authorization on a receipt that previously failed.
+         */
+        post: operations["SalesReceiptsController_authorizeAfip"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/pdf/download": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Download invoice PDF via signed URL (public) */
+        get: operations["SalesReceiptsController_downloadPdfPublic"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/pdf": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Download invoice as PDF */
+        get: operations["SalesReceiptsController_downloadPdf"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/send-email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Send invoice by email (background job) */
+        post: operations["SalesReceiptsController_sendEmail"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/resend-email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Resend invoice email via signed link (public) */
+        post: operations["SalesReceiptsController_resendEmailPublic"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}/tracking-events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get email tracking events for a receipt */
+        get: operations["SalesReceiptsController_getTrackingEvents"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/bulk-email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Send emails for multiple receipts (background job) */
+        post: operations["SalesReceiptsController_bulkEmail"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/bulk-pdf": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Generate PDFs for multiple receipts as a ZIP file (background job) */
+        post: operations["SalesReceiptsController_bulkPdf"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/bulk-void": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Void multiple receipts as a background job (creates credit notes where required) */
+        post: operations["SalesReceiptsController_bulkVoid"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/bulk-reconcile": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Mark multiple receipts as fully collected (totalCollected = total) */
+        post: operations["SalesReceiptsController_bulkReconcile"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/bulk-actions/{jobId}/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get bulk action job progress (email, PDF, or void) */
+        get: operations["SalesReceiptsController_bulkActionStatus"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/sales-receipts/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get sales receipt by id */
+        get: operations["SalesReceiptsController_findOne"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete a draft or stuck receipt
+         * @description Hard-deletes a receipt and its details/observations. Borrador receipts can be deleted by any user. Pendiente_Afip receipts can only be deleted by root users. Creada receipts from non-WS (pre-impreso) receipt books can be deleted only if they are the last number in the receipt book. Confirmed WS receipts cannot be deleted — use a credit note instead.
+         */
+        delete: operations["SalesReceiptsController_remove"];
+        options?: never;
+        head?: never;
+        /** Update sales receipt (observation, collectionEmail) */
+        patch: operations["SalesReceiptsController_update"];
+        trace?: never;
+    };
+    "/v1/products/{productId}/stock-changes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get stock movement history for a product */
+        get: operations["StockController_getStockHistory"];
+        put?: never;
+        /** Add a manual stock adjustment */
+        post: operations["StockController_addManualAdjustment"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/journal-accounts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List journal accounts (plan de cuentas) */
+        get: operations["JournalAccountsController_list"];
+        put?: never;
+        /** Create a journal account */
+        post: operations["JournalAccountsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/journal-accounts/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete a journal account */
+        delete: operations["JournalAccountsController_delete"];
+        options?: never;
+        head?: never;
+        /** Update a journal account */
+        patch: operations["JournalAccountsController_update"];
+        trace?: never;
+    };
+    "/v1/accounting/fiscal-years": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List fiscal years */
+        get: operations["FiscalYearsController_list"];
+        put?: never;
+        /** Create a fiscal year */
+        post: operations["FiscalYearsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/fiscal-years/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update a fiscal year */
+        patch: operations["FiscalYearsController_update"];
+        trace?: never;
+    };
+    "/v1/accounting/fiscal-years/{id}/close": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Close a fiscal year */
+        post: operations["FiscalYearsController_close"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/journal-entries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List journal entries with pagination */
+        get: operations["JournalEntriesController_list"];
+        put?: never;
+        /** Create a manual journal entry */
+        post: operations["JournalEntriesController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/journal-entries/reports/profit-loss": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get profit and loss report */
+        get: operations["JournalEntriesController_getProfitAndLoss"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/journal-entries/reports/balance-sheet": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get balance sheet report */
+        get: operations["JournalEntriesController_getBalanceSheet"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/journal-entries/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a journal entry with its items */
+        get: operations["JournalEntriesController_getById"];
+        put?: never;
+        post?: never;
+        /** Delete a manual journal entry */
+        delete: operations["JournalEntriesController_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/accounting-locks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List accounting locks */
+        get: operations["AccountingLocksController_list"];
+        put?: never;
+        /** Create an accounting lock */
+        post: operations["AccountingLocksController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/accounting-locks/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete an accounting lock */
+        delete: operations["AccountingLocksController_delete"];
+        options?: never;
+        head?: never;
+        /** Update an accounting lock */
+        patch: operations["AccountingLocksController_update"];
+        trace?: never;
+    };
+    "/v1/accounting/reports/general-ledger": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** General Ledger (Libro Mayor) — account movements with running balance */
+        get: operations["AccountingReportsController_generalLedger"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/reports/general-ledger/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export General Ledger as CSV */
+        get: operations["AccountingReportsController_generalLedgerExport"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/reports/daily-book": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Daily Book (Libro Diario) — chronological journal entries */
+        get: operations["AccountingReportsController_dailyBook"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/reports/daily-book/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export Daily Book as CSV */
+        get: operations["AccountingReportsController_dailyBookExport"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/reports/trial-balance": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Trial Balance (Balance de Sumas y Saldos) — account totals */
+        get: operations["AccountingReportsController_trialBalance"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/accounting/reports/trial-balance/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export Trial Balance as CSV */
+        get: operations["AccountingReportsController_trialBalanceExport"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/creators": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List distinct users who created sales receipts for the org */
+        get: operations["SalesReportsController_findCreators"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/dashboard-stats": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Dashboard KPIs, charts, and top customers */
+        get: operations["SalesReportsController_getDashboardStats"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/vat-sales-book": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** VAT Sales Book (Libro IVA Ventas) */
+        get: operations["SalesReportsController_getVatSalesBook"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/vat-sales-book/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export VAT Sales Book as CSV */
+        get: operations["SalesReportsController_exportVatSalesBook"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/sales-by-product": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Sales by Product (aggregated by month) */
+        get: operations["SalesReportsController_getSalesByProduct"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/sales-by-product/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export Sales by Product as CSV */
+        get: operations["SalesReportsController_exportSalesByProduct"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/sales-by-customer": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Sales by Customer (accumulated) */
+        get: operations["SalesReportsController_getSalesByCustomer"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/sales-by-customer/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export Sales by Customer as CSV */
+        get: operations["SalesReportsController_exportSalesByCustomer"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/outstanding-receivables": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Outstanding receivables */
+        get: operations["SalesReportsController_getOutstandingReceivables"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/outstanding-receivables/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export outstanding receivables as CSV */
+        get: operations["SalesReportsController_exportOutstandingReceivables"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/iibb": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Gross Income (IIBB) by jurisdiction and month */
+        get: operations["SalesReportsController_getIIBB"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/iibb/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export IIBB report as CSV */
+        get: operations["SalesReportsController_exportIIBB"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/trends": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Revenue trends with MoM/YoY comparisons and 3-month forecast */
+        get: operations["SalesReportsController_getRevenueTrends"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/iva-digital/ventas": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** IVA Digital Ventas Comprobantes (fixed-width text) */
+        get: operations["SalesReportsController_getIvaDigitalVentas"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sales/reports/iva-digital/ventas-alicuotas": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** IVA Digital Ventas Alicuotas (fixed-width text) */
+        get: operations["SalesReportsController_getIvaDigitalVentasAlicuotas"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/purchases/purchase-categories": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List purchase categories for the current organization */
+        get: operations["PurchaseCategoriesController_findAll"];
+        put?: never;
+        /** Create purchase category */
+        post: operations["PurchaseCategoriesController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/purchases/purchase-categories/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get purchase category by id */
+        get: operations["PurchaseCategoriesController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete purchase category (soft delete) */
+        delete: operations["PurchaseCategoriesController_remove"];
+        options?: never;
+        head?: never;
+        /** Update purchase category */
+        patch: operations["PurchaseCategoriesController_update"];
+        trace?: never;
+    };
+    "/v1/finance/payment-methods": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List payment methods (active only) */
+        get: operations["PaymentMethodsController_findAll"];
+        put?: never;
+        /** Create payment method */
+        post: operations["PaymentMethodsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/payment-methods/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get payment method by id */
+        get: operations["PaymentMethodsController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete payment method (soft) */
+        delete: operations["PaymentMethodsController_remove"];
+        options?: never;
+        head?: never;
+        /** Update payment method */
+        patch: operations["PaymentMethodsController_update"];
+        trace?: never;
+    };
+    "/v1/finance/payment-methods/entries/all": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List all payment method entries */
+        get: operations["PaymentMethodsController_findAllEntries"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/payment-methods/entries/{entryId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get payment method entry by id */
+        get: operations["PaymentMethodsController_findEntry"];
+        put?: never;
+        post?: never;
+        /** Delete payment method entry */
+        delete: operations["PaymentMethodsController_removeEntry"];
+        options?: never;
+        head?: never;
+        /** Update payment method entry */
+        patch: operations["PaymentMethodsController_updateEntry"];
+        trace?: never;
+    };
+    "/v1/finance/payment-methods/entries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create payment method entry */
+        post: operations["PaymentMethodsController_createEntry"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/v1/finance/banks": {
@@ -971,52 +2414,52 @@ export interface paths {
         patch: operations["BanksController_update"];
         trace?: never;
     };
-    "/v1/finance/card-payments": {
+    "/v1/finance/bank-accounts": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List card payments */
-        get: operations["CardPaymentsController_findAll"];
+        /** List bank accounts (active only) */
+        get: operations["BankAccountsController_findAll"];
         put?: never;
-        /** Create card payment */
-        post: operations["CardPaymentsController_create"];
+        /** Create bank account */
+        post: operations["BankAccountsController_create"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/finance/card-payments/{id}": {
+    "/v1/finance/bank-accounts/{id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get card payment by id */
-        get: operations["CardPaymentsController_findOne"];
+        /** Get bank account by id */
+        get: operations["BankAccountsController_findOne"];
         put?: never;
         post?: never;
-        /** Delete card payment */
-        delete: operations["CardPaymentsController_remove"];
+        /** Delete bank account (soft) */
+        delete: operations["BankAccountsController_remove"];
         options?: never;
         head?: never;
-        /** Update card payment */
-        patch: operations["CardPaymentsController_update"];
+        /** Update bank account */
+        patch: operations["BankAccountsController_update"];
         trace?: never;
     };
-    "/v1/finance/card-payments/{id}/cancellations": {
+    "/v1/finance/bank-accounts/histories/all": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List card payment cancellations */
-        get: operations["CardPaymentsController_findCancellations"];
+        /** List bank account histories */
+        get: operations["BankAccountsController_findHistories"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1043,23 +2486,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/finance/cash-registers/histories/all": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List cash register histories */
-        get: operations["CashRegistersController_findHistories"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/finance/cash-registers/{id}": {
         parameters: {
             query?: never;
@@ -1079,41 +2505,21 @@ export interface paths {
         patch: operations["CashRegistersController_update"];
         trace?: never;
     };
-    "/v1/finance/checkbooks": {
+    "/v1/finance/cash-registers/histories/all": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List checkbooks */
-        get: operations["CheckbooksController_findAll"];
+        /** List cash register histories */
+        get: operations["CashRegistersController_findHistories"];
         put?: never;
-        /** Create checkbook */
-        post: operations["CheckbooksController_create"];
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/checkbooks/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get checkbook by id */
-        get: operations["CheckbooksController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete checkbook */
-        delete: operations["CheckbooksController_remove"];
-        options?: never;
-        head?: never;
-        /** Update checkbook */
-        patch: operations["CheckbooksController_update"];
         trace?: never;
     };
     "/v1/finance/checks": {
@@ -1153,41 +2559,78 @@ export interface paths {
         patch: operations["ChecksController_update"];
         trace?: never;
     };
-    "/v1/finance/credit-cards": {
+    "/v1/finance/own-checks": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List credit cards */
-        get: operations["CreditCardsController_findAll"];
+        /** List own checks */
+        get: operations["OwnChecksController_findAll"];
         put?: never;
-        /** Create credit card */
-        post: operations["CreditCardsController_create"];
+        /** Create own check */
+        post: operations["OwnChecksController_create"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/finance/credit-cards/{id}": {
+    "/v1/finance/own-checks/{id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get credit card by id */
-        get: operations["CreditCardsController_findOne"];
+        /** Get own check by id */
+        get: operations["OwnChecksController_findOne"];
         put?: never;
         post?: never;
-        /** Delete credit card */
-        delete: operations["CreditCardsController_remove"];
+        /** Delete own check */
+        delete: operations["OwnChecksController_remove"];
         options?: never;
         head?: never;
-        /** Update credit card */
-        patch: operations["CreditCardsController_update"];
+        /** Update own check */
+        patch: operations["OwnChecksController_update"];
+        trace?: never;
+    };
+    "/v1/finance/checkbooks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List checkbooks */
+        get: operations["CheckbooksController_findAll"];
+        put?: never;
+        /** Create checkbook */
+        post: operations["CheckbooksController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/checkbooks/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get checkbook by id */
+        get: operations["CheckbooksController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete checkbook */
+        delete: operations["CheckbooksController_remove"];
+        options?: never;
+        head?: never;
+        /** Update checkbook */
+        patch: operations["CheckbooksController_update"];
         trace?: never;
     };
     "/v1/finance/deposits": {
@@ -1244,6 +2687,43 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/finance/transfers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List transfers */
+        get: operations["TransfersController_findAll"];
+        put?: never;
+        /** Create transfer */
+        post: operations["TransfersController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/finance/transfers/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get transfer by id */
+        get: operations["TransfersController_findOne"];
+        put?: never;
+        post?: never;
+        /** Delete transfer */
+        delete: operations["TransfersController_remove"];
+        options?: never;
+        head?: never;
+        /** Update transfer */
+        patch: operations["TransfersController_update"];
+        trace?: never;
+    };
     "/v1/finance/fund-movements": {
         parameters: {
             query?: never;
@@ -1281,131 +2761,95 @@ export interface paths {
         patch: operations["FundMovementsController_update"];
         trace?: never;
     };
-    "/v1/finance/own-checks": {
+    "/v1/finance/credit-cards": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List own checks */
-        get: operations["OwnChecksController_findAll"];
+        /** List credit cards */
+        get: operations["CreditCardsController_findAll"];
         put?: never;
-        /** Create own check */
-        post: operations["OwnChecksController_create"];
+        /** Create credit card */
+        post: operations["CreditCardsController_create"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/finance/own-checks/{id}": {
+    "/v1/finance/credit-cards/{id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get own check by id */
-        get: operations["OwnChecksController_findOne"];
+        /** Get credit card by id */
+        get: operations["CreditCardsController_findOne"];
         put?: never;
         post?: never;
-        /** Delete own check */
-        delete: operations["OwnChecksController_remove"];
+        /** Delete credit card */
+        delete: operations["CreditCardsController_remove"];
         options?: never;
         head?: never;
-        /** Update own check */
-        patch: operations["OwnChecksController_update"];
+        /** Update credit card */
+        patch: operations["CreditCardsController_update"];
         trace?: never;
     };
-    "/v1/finance/payment-methods": {
+    "/v1/finance/card-payments": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List payment methods (active only) */
-        get: operations["PaymentMethodsController_findAll"];
+        /** List card payments */
+        get: operations["CardPaymentsController_findAll"];
         put?: never;
-        /** Create payment method */
-        post: operations["PaymentMethodsController_create"];
+        /** Create card payment */
+        post: operations["CardPaymentsController_create"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/finance/payment-methods/entries": {
+    "/v1/finance/card-payments/{id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        /** Get card payment by id */
+        get: operations["CardPaymentsController_findOne"];
         put?: never;
-        /** Create payment method entry */
-        post: operations["PaymentMethodsController_createEntry"];
-        delete?: never;
+        post?: never;
+        /** Delete card payment */
+        delete: operations["CardPaymentsController_remove"];
         options?: never;
         head?: never;
-        patch?: never;
+        /** Update card payment */
+        patch: operations["CardPaymentsController_update"];
         trace?: never;
     };
-    "/v1/finance/payment-methods/entries/all": {
+    "/v1/finance/card-payments/{id}/cancellations": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List all payment method entries */
-        get: operations["PaymentMethodsController_findAllEntries"];
+        /** List card payment cancellations */
+        get: operations["CardPaymentsController_findCancellations"];
         put?: never;
         post?: never;
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/payment-methods/entries/{entryId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get payment method entry by id */
-        get: operations["PaymentMethodsController_findEntry"];
-        put?: never;
-        post?: never;
-        /** Delete payment method entry */
-        delete: operations["PaymentMethodsController_removeEntry"];
-        options?: never;
-        head?: never;
-        /** Update payment method entry */
-        patch: operations["PaymentMethodsController_updateEntry"];
-        trace?: never;
-    };
-    "/v1/finance/payment-methods/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get payment method by id */
-        get: operations["PaymentMethodsController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete payment method (soft) */
-        delete: operations["PaymentMethodsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update payment method */
-        patch: operations["PaymentMethodsController_update"];
         trace?: never;
     };
     "/v1/finance/retentions": {
@@ -1477,465 +2921,6 @@ export interface paths {
         head?: never;
         /** Update retention */
         patch: operations["RetentionsController_update"];
-        trace?: never;
-    };
-    "/v1/finance/transfers": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List transfers */
-        get: operations["TransfersController_findAll"];
-        put?: never;
-        /** Create transfer */
-        post: operations["TransfersController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/finance/transfers/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get transfer by id */
-        get: operations["TransfersController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete transfer */
-        delete: operations["TransfersController_remove"];
-        options?: never;
-        head?: never;
-        /** Update transfer */
-        patch: operations["TransfersController_update"];
-        trace?: never;
-    };
-    "/v1/locations": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List locations
-         * @description Get the list of locations to populate the location dropdown when creating a customer, branch, or receipt. Returns Argentine locations by default. Pass `onlyExport=true` when the user is issuing an export invoice and needs to pick a foreign destination. Use `nombre` to narrow the list as the user types.
-         */
-        get: operations["LocationsController_findAll"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/locations/default": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get the default location
-         * @description Get the location to pre-select on new customer/branch forms. Returns 404 when no default has been configured — fall back to letting the user pick from the full list.
-         */
-        get: operations["LocationsController_findDefault"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/locations/default/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /**
-         * Set a location as the default
-         * @description Pick the location that should be pre-selected on new customer/branch forms. Only one location is the default at a time — calling this replaces the previous one.
-         */
-        patch: operations["LocationsController_setDefault"];
-        trace?: never;
-    };
-    "/v1/locations/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get location by id
-         * @description Get a single location's details — useful when you have an id stored on a customer/branch/receipt and need to display its name.
-         */
-        get: operations["LocationsController_findOne"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/mercado-pago-configs": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List Mercado Pago configs for the current organization */
-        get: operations["MercadoPagoConfigsController_findAll"];
-        put?: never;
-        /** Create Mercado Pago config */
-        post: operations["MercadoPagoConfigsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/mercado-pago-configs/by-organization": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get or create the Mercado Pago config for the current organization */
-        get: operations["MercadoPagoConfigsController_getByOrganization"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/mercado-pago-configs/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get Mercado Pago config by id */
-        get: operations["MercadoPagoConfigsController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete Mercado Pago config */
-        delete: operations["MercadoPagoConfigsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update Mercado Pago config */
-        patch: operations["MercadoPagoConfigsController_update"];
-        trace?: never;
-    };
-    "/v1/mercado-pago-configs/{id}/reset-auth": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** Reset auth — clears the stored refresh token so the user must reconnect */
-        patch: operations["MercadoPagoConfigsController_resetAuth"];
-        trace?: never;
-    };
-    "/v1/product-categories": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List product categories for the current organization */
-        get: operations["ProductCategoriesController_findAll"];
-        put?: never;
-        /** Create product category */
-        post: operations["ProductCategoriesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/product-categories/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get product category by id */
-        get: operations["ProductCategoriesController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete product category */
-        delete: operations["ProductCategoriesController_remove"];
-        options?: never;
-        head?: never;
-        /** Update product category */
-        patch: operations["ProductCategoriesController_update"];
-        trace?: never;
-    };
-    "/v1/products": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List products (cursor-paginated)
-         * @description Returns a page of products. Use cursor from nextCursor for the next page.
-         */
-        get: operations["ProductsController_findAll"];
-        put?: never;
-        /** Create product */
-        post: operations["ProductsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/products/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export products as CSV (cursor-based, streaming) */
-        get: operations["ProductsController_exportCsv"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/products/search": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Search products with favorites, recents, and fuzzy matching */
-        get: operations["ProductsController_search"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/products/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get product by id */
-        get: operations["ProductsController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete product */
-        delete: operations["ProductsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update product */
-        patch: operations["ProductsController_update"];
-        trace?: never;
-    };
-    "/v1/products/{id}/favorite": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Toggle product as favorite for the organization */
-        post: operations["ProductsController_toggleFavorite"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/products/{productId}/stock-changes": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get stock movement history for a product */
-        get: operations["StockController_getStockHistory"];
-        put?: never;
-        /** Add a manual stock adjustment */
-        post: operations["StockController_addManualAdjustment"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/provider-configs": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List provider configs for the current organization */
-        get: operations["ProviderConfigsController_findAll"];
-        put?: never;
-        /** Create provider config */
-        post: operations["ProviderConfigsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/provider-configs/by-provider/{provider}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get config by provider */
-        get: operations["ProviderConfigsController_findByProvider"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/provider-configs/oauth": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get OAuth redirect URL for a provider */
-        get: operations["ProviderConfigsController_getOAuthUrl"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/provider-configs/status": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get integration status per provider */
-        get: operations["ProviderConfigsController_getStatus"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/provider-configs/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get provider config by id */
-        get: operations["ProviderConfigsController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete provider config */
-        delete: operations["ProviderConfigsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update provider config */
-        patch: operations["ProviderConfigsController_update"];
-        trace?: never;
-    };
-    "/v1/purchases/purchase-categories": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List purchase categories for the current organization */
-        get: operations["PurchaseCategoriesController_findAll"];
-        put?: never;
-        /** Create purchase category */
-        post: operations["PurchaseCategoriesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/purchases/purchase-categories/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get purchase category by id */
-        get: operations["PurchaseCategoriesController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete purchase category (soft delete) */
-        delete: operations["PurchaseCategoriesController_remove"];
-        options?: never;
-        head?: never;
-        /** Update purchase category */
-        patch: operations["PurchaseCategoriesController_update"];
         trace?: never;
     };
     "/v1/purchases/purchase-receipts": {
@@ -2046,28 +3031,41 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/purchases/suppliers": {
+    "/v1/bulk-actions": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /**
-         * List suppliers (cursor-paginated)
-         * @description Returns a page of suppliers. Use cursor from nextCursor for the next page.
-         */
-        get: operations["SuppliersController_findAll"];
+        /** List bulk-action jobs (cross-domain) for the Procesos screen */
+        get: operations["BulkActionsController_list"];
         put?: never;
-        /** Create supplier */
-        post: operations["SuppliersController_create"];
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/purchases/suppliers/bulk-delete": {
+    "/v1/bulk-actions/{jobId}/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a single bulk-action job's status */
+        get: operations["BulkActionsController_status"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/bulk-actions/{jobId}/cancel": {
         parameters: {
             query?: never;
             header?: never;
@@ -2076,882 +3074,8 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Bulk delete suppliers (soft delete) */
-        post: operations["SuppliersController_removeBulk"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/purchases/suppliers/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export suppliers as CSV (cursor-based, streaming) */
-        get: operations["SuppliersController_exportCsv"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/purchases/suppliers/get-or-create": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Get existing supplier by CUIT or create with AFIP data
-         * @description Looks up supplier by CUIT. If not found, auto-creates using AFIP padron data.
-         */
-        post: operations["SuppliersController_getOrCreate"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/purchases/suppliers/lookup-cuit": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Lookup CUIT for supplier auto-fill
-         * @description Validates CUIT and fetches business data from AFIP via system certificate.
-         */
-        get: operations["SuppliersController_lookupCuit"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/purchases/suppliers/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get supplier by id */
-        get: operations["SuppliersController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete supplier (soft delete) */
-        delete: operations["SuppliersController_remove"];
-        options?: never;
-        head?: never;
-        /** Update supplier */
-        patch: operations["SuppliersController_update"];
-        trace?: never;
-    };
-    "/v1/receipt-books": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List receipt books for the current organization */
-        get: operations["ReceiptBooksController_findAll"];
-        put?: never;
-        /** Create receipt book */
-        post: operations["ReceiptBooksController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/receipt-books/by-point-of-sale/{pointOfSale}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get receipt book by point of sale */
-        get: operations["ReceiptBooksController_findByPointOfSale"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/receipt-books/import-from-arca": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Import puntos de venta from ARCA (AFIP) */
-        post: operations["ReceiptBooksController_importFromArca"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/receipt-books/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get receipt book by id */
-        get: operations["ReceiptBooksController_findOne"];
-        put?: never;
-        post?: never;
-        /** Delete receipt book */
-        delete: operations["ReceiptBooksController_remove"];
-        options?: never;
-        head?: never;
-        /** Update receipt book */
-        patch: operations["ReceiptBooksController_update"];
-        trace?: never;
-    };
-    "/v1/sales/reports/dashboard-stats": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Dashboard KPIs, charts, and top customers */
-        get: operations["SalesReportsController_getDashboardStats"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/iibb": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Gross Income (IIBB) by jurisdiction and month */
-        get: operations["SalesReportsController_getIIBB"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/iibb/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export IIBB report as CSV */
-        get: operations["SalesReportsController_exportIIBB"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/iva-digital/ventas": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** IVA Digital Ventas Comprobantes (fixed-width text) */
-        get: operations["SalesReportsController_getIvaDigitalVentas"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/iva-digital/ventas-alicuotas": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** IVA Digital Ventas Alicuotas (fixed-width text) */
-        get: operations["SalesReportsController_getIvaDigitalVentasAlicuotas"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/outstanding-receivables": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Outstanding receivables */
-        get: operations["SalesReportsController_getOutstandingReceivables"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/outstanding-receivables/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export outstanding receivables as CSV */
-        get: operations["SalesReportsController_exportOutstandingReceivables"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/sales-by-customer": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Sales by Customer (accumulated) */
-        get: operations["SalesReportsController_getSalesByCustomer"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/sales-by-customer/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export Sales by Customer as CSV */
-        get: operations["SalesReportsController_exportSalesByCustomer"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/sales-by-product": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Sales by Product (aggregated by month) */
-        get: operations["SalesReportsController_getSalesByProduct"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/sales-by-product/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export Sales by Product as CSV */
-        get: operations["SalesReportsController_exportSalesByProduct"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/trends": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Revenue trends with MoM/YoY comparisons and 3-month forecast */
-        get: operations["SalesReportsController_getRevenueTrends"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/vat-sales-book": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** VAT Sales Book (Libro IVA Ventas) */
-        get: operations["SalesReportsController_getVatSalesBook"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/reports/vat-sales-book/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export VAT Sales Book as CSV */
-        get: operations["SalesReportsController_exportVatSalesBook"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List sales receipts (cursor-paginated, optional date filters)
-         * @description Returns a page of sales receipts. Use cursor from nextCursor for the next page. If date_from/date_to are omitted, all dates are included.
-         */
-        get: operations["SalesReceiptsController_findAll"];
-        put?: never;
-        /** Create sales receipt */
-        post: operations["SalesReceiptsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/bulk-actions/{jobId}/status": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get bulk action job progress (email, PDF, or void) */
-        get: operations["SalesReceiptsController_bulkActionStatus"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/bulk-email": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Send emails for multiple receipts (background job) */
-        post: operations["SalesReceiptsController_bulkEmail"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/bulk-pdf": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Generate PDFs for multiple receipts as a ZIP file (background job) */
-        post: operations["SalesReceiptsController_bulkPdf"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/bulk-reconcile": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Mark multiple receipts as fully collected (totalCollected = total) */
-        post: operations["SalesReceiptsController_bulkReconcile"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/bulk-void": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Void multiple receipts as a background job (creates credit notes where required) */
-        post: operations["SalesReceiptsController_bulkVoid"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/creators": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List distinct users who created sales receipts for the org */
-        get: operations["SalesReceiptsController_findCreators"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/export": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Export sales receipts as CSV */
-        get: operations["SalesReceiptsController_exportCsv"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/export/columns": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List all available export columns (key + header) */
-        get: operations["SalesReceiptsController_listExportColumns"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/next-number": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Preview the next receipt number for a receipt book + customer + type */
-        get: operations["SalesReceiptsController_getNextNumber"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get sales receipt by id */
-        get: operations["SalesReceiptsController_findOne"];
-        put?: never;
-        post?: never;
-        /**
-         * Delete a draft or stuck receipt
-         * @description Hard-deletes a receipt and its details/observations. Borrador receipts can be deleted by any user. Pendiente_Afip receipts can only be deleted by root users. Creada receipts from non-WS (pre-impreso) receipt books can be deleted only if they are the last number in the receipt book. Confirmed WS receipts cannot be deleted — use a credit note instead.
-         */
-        delete: operations["SalesReceiptsController_remove"];
-        options?: never;
-        head?: never;
-        /** Update sales receipt (observation, collectionEmail) */
-        patch: operations["SalesReceiptsController_update"];
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/{id}/authorize": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Authorize receipt with AFIP (get CAE)
-         * @description Request AFIP authorization for a receipt that's in `PENDIENTE_AFIP`. The API normally drives this automatically when you call `POST /sales-receipts/:id/confirm` — call this endpoint directly only when you want to retry authorization on a receipt that previously failed.
-         */
-        post: operations["SalesReceiptsController_authorizeAfip"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/{id}/confirm": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Confirm a draft receipt (Borrador -> Pendiente_Afip)
-         * @description Validates required fields, assigns real receipt number, sets status to Pendiente_Afip, and triggers AFIP authorization.
-         */
-        post: operations["SalesReceiptsController_confirm"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/{id}/duplicate": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Duplicate a receipt as a new draft (BORRADOR)
-         * @description Creates a new BORRADOR draft by copying customer, items, conditions from the source receipt. Dates are reset to today. Any status receipt can be duplicated.
-         */
-        post: operations["SalesReceiptsController_duplicate"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/{id}/pdf": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Download invoice as PDF */
-        get: operations["SalesReceiptsController_downloadPdf"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/{id}/pdf/download": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Download invoice PDF via signed URL (public) */
-        get: operations["SalesReceiptsController_downloadPdfPublic"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/{id}/resend-email": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Resend invoice email via expired signed link (public) */
-        post: operations["SalesReceiptsController_resendEmailPublic"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/{id}/retry": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Retry AFIP authorization for a pending receipt
-         * @description Clears any previous error and re-triggers AFIP authorization. Only receipts in Pendiente_Afip status can be retried.
-         */
-        post: operations["SalesReceiptsController_retry"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/{id}/send-email": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Send invoice by email (background job) */
-        post: operations["SalesReceiptsController_sendEmail"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/{id}/tracking-events": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get email tracking events for a receipt */
-        get: operations["SalesReceiptsController_getTrackingEvents"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/sales/sales-receipts/{id}/void": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Void a confirmed receipt (Anulación)
-         * @description Voids a Creada receipt by creating a compensating credit note (NC). For WS receipts: NC must be authorized at AFIP before the original is marked Anulado. For pre-impreso: original is marked Anulado immediately. WS receipts always require a credit note (numbers cannot be reused).
-         */
-        post: operations["SalesReceiptsController_voidReceipt"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/tax-categories": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List active tax categories for the current organization */
-        get: operations["TaxCategoriesController_findAllActive"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/tax-categories/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get tax category by id */
-        get: operations["TaxCategoriesController_findOne"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/tax-categories/{id}/exportacion": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Check if tax category is exportación */
-        get: operations["TaxCategoriesController_isExportacion"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/tax-categories/{id}/monotributo": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Check if tax category is monotributo */
-        get: operations["TaxCategoriesController_isMonotributo"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/taxpayer-registries/{taxId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Look up taxpayer by CUIT/CUIL
-         * @description Look up a taxpayer to pre-fill a new customer form (fiscal name, tax category, address) or to verify an existing customer's details before issuing a receipt.
-         */
-        get: operations["TaxpayerRegistriesController_findOne"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/taxpayer-registries/{taxId}/fce-receiver": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Check FCE eligibility for a taxpayer
-         * @description Call this before confirming a receipt to know whether you must issue a Factura de Crédito Electrónica (FCE). Pass the receipt's total and the customer's CUIT — when `isFceReceiver` is `true`, switch the receipt type to an FCE class so AFIP doesn't reject it.
-         */
-        get: operations["TaxpayerRegistriesController_isFceReceiver"];
-        put?: never;
-        post?: never;
+        /** Best-effort cancel a queued/running bulk-action job */
+        post: operations["BulkActionsController_cancel"];
         delete?: never;
         options?: never;
         head?: never;
@@ -2962,999 +3086,27 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        AddManualStockChangeDto: {
-            /** @description Quantity adjustment (positive or negative) */
-            quantity: number;
-            /** @description Reason for the adjustment */
-            text?: string;
-        };
-        BulkEmailDto: {
-            /**
-             * @description Array of sales receipt UUIDs to email (1–200)
-             * @example [
-             *       "uuid-1",
-             *       "uuid-2"
-             *     ]
-             */
-            receiptIds: string[];
-        };
-        BulkPdfDto: {
-            /**
-             * @description Array of sales receipt UUIDs to generate PDFs for (1–100)
-             * @example [
-             *       "uuid-1",
-             *       "uuid-2"
-             *     ]
-             */
-            receiptIds: string[];
-        };
-        BulkReconcileDto: {
-            /**
-             * @description Array of sales receipt UUIDs to mark as fully collected (1–200)
-             * @example [
-             *       "uuid-1",
-             *       "uuid-2"
-             *     ]
-             */
-            receiptIds: string[];
-        };
-        BulkVoidDto: {
-            /**
-             * @description Array of sales receipt UUIDs to void (1–50)
-             * @example [
-             *       "uuid-1",
-             *       "uuid-2"
-             *     ]
-             */
-            receiptIds: string[];
-        };
-        CreateAccountingLockDto: {
-            /** @description End date (ISO string) */
-            endDate: string;
-            /** @description Fiscal year ID */
-            fiscalYearId: number;
-            /** @description Lock name */
-            name: string;
-            /** @description Start date (ISO string) */
-            startDate: string;
-        };
-        CreateBankAccountDto: {
-            /**
-             * @description Accounting account id
-             * @example 1
-             */
-            accountId: number;
-            /**
-             * @description Current balance
-             * @example 100000.5
-             */
-            balance?: number | null;
-            /**
-             * @description Bank id
-             * @example 1
-             */
-            bankId: number;
-            /**
-             * @description Currency id
-             * @example 1
-             */
-            currencyId: number;
-            /**
-             * @description Whether the account is active. Defaults to true on create; toggle via PATCH or DELETE.
-             * @default true
-             * @example true
-             */
-            isActive: boolean;
-            /** @description Whether this account issues checks */
-            issuesChecks?: boolean | null;
-            /**
-             * @description Friendly name
-             * @example Cuenta Corriente Pesos
-             */
-            name: string;
-            /**
-             * @description Bank account number
-             * @example 0001-12345-6
-             */
-            number: string;
-            /** @description Whether the account is enabled for online payments */
-            onlinePayment?: boolean | null;
-        };
-        CreateBankDto: {
-            /**
-             * @description Whether the bank is active. Defaults to true on create; toggle via PATCH or DELETE.
-             * @default true
-             * @example true
-             */
-            isActive: boolean;
-            /**
-             * @description Location id
-             * @example 1
-             */
-            locationId: number;
-            /**
-             * @description Bank name
-             * @example Banco Nacion
-             */
-            name: string;
-        };
-        CreateBranchDto: {
-            /**
-             * @description Street address shown on receipts.
-             * @example Av. Corrientes 1234
-             */
-            address: string;
-            /**
-             * @description City.
-             * @example Buenos Aires
-             */
-            city: string;
-            /** @example sucursal@empresa.com.ar */
-            email?: string | null;
-            /**
-             * @description Province/region id from `GET /locations`.
-             * @example 1
-             */
-            locationId: number;
-            /**
-             * @description Display name for the branch — must not match another branch in your organization.
-             * @example Sucursal Centro
-             */
-            name: string;
-            /** @example +54 11 4444-5555 */
-            phone1?: string | null;
-            /** @example +54 11 4444-6666 */
-            phone2?: string | null;
-            /** @example +54 11 4444-7777 */
-            phone3?: string | null;
-            /**
-             * @description Postal code (CP).
-             * @example C1043AAZ
-             */
-            postalCode: string;
-        };
-        CreateCardPaymentDto: {
-            /**
-             * @description Cancelled date (ISO 8601)
-             * @example 2026-02-15T12:00:00Z
-             */
-            cancelledDate?: string | null;
-            /**
-             * @description Installments already cancelled
-             * @example 0
-             */
-            cancelledInstallments: number;
-            /**
-             * @description Credit card id
-             * @example 1
-             */
-            creditCardId: number;
-            /**
-             * Format: date-time
-             * @description Card payment date (ISO 8601)
-             * @example 2026-01-15T12:00:00Z
-             */
-            date: string;
-            /** @example Visa Crédito 6 cuotas */
-            detail?: string | null;
-            /**
-             * @description Total number of installments
-             * @example 3
-             */
-            installments: number;
-            /**
-             * @description Authorization / payment number
-             * @example AUTH-987654
-             */
-            number?: string | null;
-            /**
-             * @description Payment status
-             * @example PENDING
-             */
-            status: string;
-            /**
-             * @description Total payment amount
-             * @example 18000.5
-             */
-            total: number;
-            /**
-             * @description Total amount already cancelled
-             * @example 0
-             */
-            totalCancelled: number;
-        };
-        CreateCashRegisterDto: {
-            /**
-             * @description Accounting account id
-             * @example 1
-             */
-            accountId: number;
-            /**
-             * @description Current funds (decimal)
-             * @example 50000
-             */
-            funds: number;
-            /**
-             * @description Whether the cash register is active. Defaults to true on create; toggle via PATCH or DELETE.
-             * @default true
-             * @example true
-             */
-            isActive: boolean;
-            /**
-             * @description Cash register name
-             * @example Caja Central
-             */
-            name: string;
-        };
-        CreateCertificateDto: {
-            /**
-             * @description Display name for the certificate. Defaults to `Certificado {currentYear}` when blank.
-             * @example Certificado 2026
-             */
-            name?: string;
-        };
-        CreateCheckDto: {
-            /**
-             * @description Bank account number
-             * @example 0123-4-56789012-3
-             */
-            accountNumber?: string | null;
-            /**
-             * @description Check amount
-             * @example 50000
-             */
-            amount: number;
-            /**
-             * @description Bank id
-             * @example 1
-             */
-            bankId: number;
-            /**
-             * @description Cleared date (ISO 8601)
-             * @example 2026-02-20T12:00:00Z
-             */
-            clearedDate?: string | null;
-            /**
-             * @description Customer id
-             * @example 12
-             */
-            customerId: number;
-            /**
-             * Format: date-time
-             * @description Check date (ISO 8601)
-             * @example 2026-01-15T12:00:00Z
-             */
-            date: string;
-            /**
-             * @description Due date (ISO 8601)
-             * @example 2026-02-15T12:00:00Z
-             */
-            dueDate?: string | null;
-            /**
-             * @description True if it is an own check (issued); false for third-party checks
-             * @example false
-             */
-            isOwn: boolean;
-            /**
-             * @description Check number
-             * @example 00012345
-             */
-            number: string;
-            /**
-             * @description Check status
-             * @example PENDING
-             */
-            status: string;
-        };
-        CreateCheckbookDto: {
-            /**
-             * @description Bank account id this checkbook belongs to
-             * @example 1
-             */
-            bankAccountId: number;
-            /**
-             * @description Checkbook friendly name
-             * @example Chequera 001
-             */
-            name: string;
-            /**
-             * @description First check number in the book
-             * @example 1
-             */
-            numberFrom: number;
-            /**
-             * @description Last check number in the book
-             * @example 50
-             */
-            numberTo: number;
-        };
-        CreateCreditCardDto: {
-            /**
-             * @description Accounting account id
-             * @example 1
-             */
-            accountId: number;
-            /**
-             * @description Bank account id linked to this card
-             * @example 1
-             */
-            bankAccountId: number;
-            /**
-             * @description Credit card number or identifier
-             * @example 4111111111111111
-             */
-            number: string;
-            /**
-             * @description Card status (e.g. active, blocked)
-             * @example active
-             */
-            status: string;
-        };
-        CreateCustomerDto: {
-            /** @example Av. Corrientes 1234 */
-            address?: string | null;
-            /**
-             * @description Customer's legal/business name. Required unless a valid `taxId` (CUIT) is provided — in that case it is auto-filled from ARCA's padrón.
-             * @example Distribuidora Norte SRL
-             */
-            businessName?: string;
-            /** @example Buenos Aires */
-            city?: string | null;
-            /** @example 30 */
-            contractedSaleCondition?: number | null;
-            /**
-             * @description Document type id (combo). Fetch valid ids via `GET /combos/2/items`. When omitted, it is inferred from `taxId`: a valid 11-digit CUIT resolves to CUIT, 7–8 numeric digits resolve to DNI, anything else resolves to "Sin identificar".
-             * @example 180
-             */
-            documentTypeId?: number;
-            /** @example contacto@distribuidoranorte.com.ar */
-            email?: string | null;
-            /** @description When true, IVA is ignored on receipts for this customer */
-            ignoresTaxes?: boolean | null;
-            /**
-             * @default true
-             * @example true
-             */
-            isActive: boolean;
-            /**
-             * @description Location id
-             * @example 1
-             */
-            locationId?: number | null;
-            observations?: string | null;
-            /** @example +54 11 4444-5555 */
-            phone?: string | null;
-            /** @example C1043AAZ */
-            postalCode?: string | null;
-            /**
-             * @description External provider identifier. Unique per organization; acts as an idempotency key.
-             * @example ext-customer-123
-             */
-            providerId?: string | null;
-            /**
-             * @description Default sale condition (combo) for this customer
-             * @example 1
-             */
-            saleConditionId?: number | null;
-            /** @example 30 */
-            statisticalSaleCondition?: number | null;
-            /**
-             * @description Tax category id (combo). Must belong to the organization's regime — fetch valid ids via `GET /tax-categories`. Required unless a valid `taxId` (CUIT) is provided — in that case it is inferred from the customer's IVA condition in ARCA combined with the organization's regime.
-             * @example 8
-             */
-            taxCategoryId?: number;
-            /**
-             * @description Tax ID (CUIT/CUIL/DNI). When 11 digits, validated as CUIT.
-             * @example 30345678901
-             */
-            taxId?: string | null;
-            /**
-             * @description Secondary tax id number, when applicable
-             * @example 30345678901
-             */
-            taxIdNumber?: string | null;
-        };
-        CreateDepositDto: {
-            /**
-             * @description Bank account id receiving the deposit
-             * @example 1
-             */
-            accountId: number;
-            /** @example Depósito mostrador */
-            concept?: string | null;
-            /**
-             * Format: date-time
-             * @description Credit date (ISO 8601)
-             * @example 2026-01-15T12:00:00Z
-             */
-            creditDate: string;
-            /**
-             * Format: date-time
-             * @description Deposit date (ISO 8601)
-             * @example 2026-01-14T12:00:00Z
-             */
-            depositDate: string;
-            /**
-             * @description Linked journal entry id
-             * @example 100
-             */
-            journalEntryId?: number | null;
-            /**
-             * @description Deposit ticket number
-             * @example TKT-00012345
-             */
-            ticketNumber: string;
-            /**
-             * @description Total deposit amount
-             * @example 25000.5
-             */
-            total: number;
-        };
-        CreateFileImportDto: {
-            /** @example customers-2026.xlsx */
-            originalFilename?: string | null;
-            /**
-             * @description Storage path of the file to import (must already exist).
-             * @example 12/imports/customers-2026-04-28.xlsx
-             */
-            path: string;
-            /**
-             * @description Import type. Must match the file's contents.
-             * @example CLIENTES
-             * @enum {string}
-             */
-            type: "COMPROBANTES_VENTA" | "COMPROBANTES_COMPRA" | "CLIENTES" | "PROVEEDORES" | "PRODUCTOS" | "PAYROLL";
-            /**
-             * @description Acting user id
-             * @example 42
-             */
-            userId?: number | null;
-        };
-        CreateFiscalYearDto: {
-            /** @description End date (ISO string) */
-            endDate: string;
-            name: string;
-            /** @description Start date (ISO string) */
-            startDate: string;
-        };
-        CreateFundMovementDto: {
-            /**
-             * @description Movement amount
-             * @example 15000.5
-             */
-            amount: number;
-            /**
-             * @description Bank account id
-             * @example 1
-             */
-            bankAccountId: number;
-            /**
-             * @description Cash register id
-             * @example 3
-             */
-            cashRegisterId?: number | null;
-            /** @example Acreditación cliente */
-            concept?: string | null;
-            /**
-             * @description Credit date (ISO 8601)
-             * @example 2026-01-16T12:00:00Z
-             */
-            creditDate?: string | null;
-            /**
-             * Format: date-time
-             * @description Movement date (ISO 8601)
-             * @example 2026-01-15T12:00:00Z
-             */
-            date: string;
-            /**
-             * @description Destination bank account id (for transfers)
-             * @example 2
-             */
-            destinationAccountId?: number | null;
-            /**
-             * @description Linked journal entry id
-             * @example 100
-             */
-            journalEntryId?: number | null;
-            /**
-             * @description Movement type id (combo item)
-             * @example 12
-             */
-            movementTypeId: number;
-        };
-        CreateJournalAccountDto: {
-            /** @description Category (1=Activo, 2=Pasivo, 3=PN, 4=Resultado+, 5=Resultado-) */
-            category: number;
-            /** @description Account code (e.g. 1.1.01.001) */
-            code: string;
-            current: number;
-            /** @description Account name */
-            name: string;
-            number: number;
-            subcategory: number;
-        };
-        CreateJournalEntryDto: {
-            /** @description Entry date (ISO string) */
-            date: string;
-            /** @description Entry description */
-            description: string;
-            /** @description Fiscal year ID */
-            fiscalYearId: number;
-            /** @description Debit/credit line items */
-            items: components["schemas"]["JournalEntryItemDto"][];
-        };
-        CreateMercadoPagoConfigDto: {
-            /** @description Mercado Pago access token (returned by OAuth). */
-            accessToken?: string | null;
-            /**
-             * @description When true, an invoice is automatically created on successful Mercado Pago payments.
-             * @example true
-             */
-            createInvoice: boolean;
-            /** Format: date-time */
-            expiresAt?: string | null;
-            /**
-             * @description Whether to include a Mercado Pago payment button on emailed receipts (e.g. ALWAYS, NEVER, OPTIONAL).
-             * @example ALWAYS
-             */
-            includePaymentButton: string;
-            /**
-             * @description Mercado Pago user id
-             * @example 1234567890
-             */
-            mpUserId?: string | null;
-            /** @description Public key for the MP integration */
-            publicKey?: string | null;
-            /**
-             * @description Receipt book to use for auto-created invoices.
-             * @example 1
-             */
-            receiptBookId?: number | null;
-            /** @description Mercado Pago refresh token (returned by OAuth). */
-            refreshToken?: string | null;
-        };
-        CreateOwnCheckDto: {
-            /**
-             * @description Check amount
-             * @example 50000
-             */
-            amount: number;
-            /**
-             * @description Bank account id
-             * @example 1
-             */
-            bankAccountId: number;
-            /**
-             * Format: date-time
-             * @description Check date (ISO 8601)
-             * @example 2026-01-15T12:00:00Z
-             */
-            date: string;
-            /**
-             * @description Check number
-             * @example 12345
-             */
-            number: number;
-            /**
-             * @description Payment date (ISO 8601)
-             * @example 2026-02-15T12:00:00Z
-             */
-            paymentDate?: string | null;
-            /**
-             * @description Check status
-             * @example PENDING
-             */
-            status: string;
-            /**
-             * @description Supplier id
-             * @example 5
-             */
-            supplierId?: number | null;
-        };
-        CreatePaymentMethodDto: {
-            /**
-             * @description Currency id
-             * @example 1
-             */
-            currencyId: number;
-            /**
-             * @description Whether the payment method is active. Defaults to true on create; toggle via PATCH or DELETE.
-             * @default true
-             * @example true
-             */
-            isActive: boolean;
-            /**
-             * @description Payment method name
-             * @example Efectivo Pesos
-             */
-            name: string;
-            /**
-             * @description Payment method type combo item id
-             * @example 1
-             */
-            paymentMethodTypeId: number;
-        };
-        CreatePaymentMethodEntryDto: {
-            /**
-             * @description Accounting account id
-             * @example 1
-             */
-            accountId: number;
-            /**
-             * @description Entry amount (decimal)
-             * @example 1500.5
-             */
-            amount: number;
-            /**
-             * Format: date-time
-             * @description Entry date (ISO)
-             * @example 2025-04-28T10:00:00Z
-             */
-            date: string;
-            /**
-             * @description Entry description
-             * @example Pago contado
-             */
-            description: string;
-            /**
-             * @description Entry type (e.g. income, expense)
-             * @example income
-             */
-            entryType: string;
-            /**
-             * @description External entity id (if linked to a receipt or other entity)
-             * @example 42
-             */
-            externalEntityId?: number | null;
-            /**
-             * @description Operation number
-             * @example OP-12345
-             */
-            operationNumber?: string | null;
-            /**
-             * @description Payment method id
-             * @example 1
-             */
-            paymentMethodId: number;
-            /**
-             * @description Reference number
-             * @example 1001
-             */
-            referenceNumber: number;
-        };
-        CreateProductDto: {
-            /** @example 7890123456789 */
-            barcode?: string | null;
-            /**
-             * @description Product category ID; null/0 may resolve to Sin Rubro
-             * @example 3
-             */
-            categoryId?: number | null;
-            /**
-             * @description Product description
-             * @example Widget A
-             */
-            description: string;
-            /**
-             * @default true
-             * @example true
-             */
-            isActive: boolean;
-            /**
-             * @description External provider identifier. Unique per organization; acts as an idempotency key.
-             * @example ext-sku-123
-             */
-            providerId?: Record<string, never> | null;
-            /** @example 1.5 */
-            quantity?: number | null;
-            /** @example Producto */
-            type?: string | null;
-            /**
-             * @description Unit of measure ID
-             * @example 1
-             */
-            unitOfMeasureId: number;
-            /**
-             * @description Default unit price for auto-populating receipt lines
-             * @example 1500.5
-             */
-            unitPrice?: number | null;
-            /**
-             * @description VAT rate (combo) ID
-             * @example 2
-             */
-            vatRateId?: number | null;
-        };
-        CreateProviderConfigDto: {
-            /** @description OAuth/API auth key. */
-            authKey?: string | null;
-            /**
-             * @description Provider identifier (e.g. SPARKPOST, TIENDANUBE, MERCADOPAGO).
-             * @example TIENDANUBE
-             */
-            provider: string;
-            /** @description Generic provider field 1 (provider-specific). */
-            string1?: string | null;
-            /** @description Generic provider field 2 (provider-specific). */
-            string2?: string | null;
-            /** @description Generic provider field 3 (provider-specific). */
-            string3?: string | null;
-        };
-        CreateReceiptBookDto: {
-            /**
-             * @description Branch (Sucursal) id
-             * @example 1
-             */
-            branchId?: number | null;
-            /**
-             * @description Display name for the receipt book.
-             * @example Sucursal Centro - WS
-             */
-            description: string;
-            /**
-             * @description When true, routes to WSFEX (export) instead of WSFE (domestic).
-             * @example false
-             */
-            isExport?: Record<string, never> | null;
-            /**
-             * @description AFIP point of sale (Punto de Venta) number. Unique per organization.
-             * @example 1
-             */
-            pointOfSale: number;
-            /**
-             * @description Prefix used to compose receipt numbers (e.g. `0001-00000123`). Unique per organization.
-             * @example 0001
-             */
-            prefix: string;
-            /**
-             * @description Point of sale type (WS = AFIP web service, WS_MOCK = synthetic, EN_LINEA = online, PRE_IMPRESOS = printed).
-             * @example WS
-             * @enum {string|null}
-             */
-            type?: "WS" | "WS_MOCK" | "EN_LINEA" | "PRE_IMPRESOS" | null;
-        };
-        CreateRetentionDto: {
-            /**
-             * @description Short abbreviation
-             * @example RG-IIBB
-             */
-            abbreviation: string;
-            /**
-             * @description Account id used for the retention
-             * @example 100
-             */
-            accountId: number;
-            /**
-             * @description Deposit account id
-             * @example 200
-             */
-            depositAccountId: number;
-            /**
-             * @description Retention description
-             * @example Retención IIBB CABA
-             */
-            description: string;
-            /**
-             * @description Whether the retention is active. Defaults to true on create; toggle via PATCH or DELETE.
-             * @default true
-             * @example true
-             */
-            isActive: boolean;
-            /**
-             * @description Whether the retention is treated as a value (vs percentage)
-             * @example false
-             */
-            isValue: boolean;
-            /**
-             * @description Jurisdiction (location) id
-             * @example 1
-             */
-            jurisdictionId: number;
-        };
-        CreateSalesReceiptDetailDto: {
-            /**
-             * @description Line description
-             * @example Product description
-             */
-            description: string;
-            /**
-             * @description Discount percent (0–100)
-             * @example 10
-             */
-            discount?: number | null;
-            /**
-             * @description Product ID
-             * @example 1
-             */
-            productId?: number | null;
-            /**
-             * @description Quantity
-             * @example 2
-             */
-            quantity: number;
-            /**
-             * @description Tax type (combo item) ID
-             * @example 1
-             */
-            taxTypeId?: number | null;
-            /**
-             * @description Unit price
-             * @example 100.5
-             */
-            unitPrice: number;
-        };
-        CreateSalesReceiptDto: {
-            /**
-             * @description Semicolon-separated emails for collection
-             * @example customer@example.com
-             */
-            collectionEmail?: string | null;
-            /**
-             * @description Currency ID
-             * @example 1
-             */
-            currencyId?: number | null;
-            /**
-             * @description Customer ID
-             * @example 1
-             */
-            customerId: number;
-            /**
-             * @description Receipt date (default: now)
-             * @example 2026-01-15T12:00:00Z
-             */
-            date?: string;
-            /** @description Receipt detail lines (required for non-draft) */
-            details?: components["schemas"]["CreateSalesReceiptDetailDto"][];
-            /**
-             * @description Due date (default: same as date)
-             * @example 2026-01-30T12:00:00Z
-             */
-            dueDate?: string;
-            /**
-             * @description Exchange rate
-             * @example 1
-             */
-            exchangeRate?: number | null;
-            /**
-             * @description Export-specific data for WSFEX invoices (e.g. incoterms)
-             * @example {
-             *       "incotermsCode": "FOB",
-             *       "incotermsDescription": "Free on Board"
-             *     }
-             */
-            exportData?: Record<string, never>;
-            /**
-             * @description Create as draft (BORRADOR) without triggering AFIP
-             * @example false
-             */
-            isDraft?: boolean;
-            /** @example General observation */
-            observation?: string | null;
-            /** @description Observations */
-            observations?: components["schemas"]["CreateSalesReceiptObservationDto"][];
-            /**
-             * @description External provider identifier. Unique per organization; acts as an idempotency key.
-             * @example ext-receipt-123
-             */
-            providerId?: Record<string, never> | null;
-            /**
-             * @description Receipt book ID
-             * @example 1
-             */
-            receiptBookId: number;
-            /**
-             * @description Receipt type group (default: factura)
-             * @example factura
-             * @enum {string}
-             */
-            receiptType?: "factura" | "nota_credito" | "nota_debito";
-            /**
-             * @description Sale condition (combo item)
-             * @example 1
-             */
-            saleConditionId: number;
-            /**
-             * @description Service period end date (required for service organizations)
-             * @example 2026-01-31T12:00:00Z
-             */
-            serviceEndDate?: string;
-            /**
-             * @description Service period start date (required for service organizations)
-             * @example 2026-01-01T12:00:00Z
-             */
-            serviceStartDate?: string;
-        };
-        CreateSalesReceiptObservationDto: {
-            /**
-             * @description Observation description
-             * @example Optional observation text
-             */
-            description: string;
-        };
-        CreateSupplierDto: {
-            /** @example Banco Galicia */
-            accountBank?: string | null;
-            /** @example 0000123456 */
-            accountCode?: string | null;
-            /** @example CHECKING */
-            accountType?: string | null;
-            /** @example Av. Corrientes 1234 */
-            address?: string | null;
-            /**
-             * @description Supplier's legal/business name. Required unless a valid `taxId` (CUIT) is provided — in that case it is auto-filled from ARCA's padrón.
-             * @example Distribuidora Norte SRL
-             */
-            businessName?: string;
-            /** @example Buenos Aires */
-            city?: string | null;
-            /**
-             * @description Document type id (combo). Fetch valid ids via `GET /combos/2/items`. When omitted, it is inferred from `taxId`: a valid 11-digit CUIT resolves to CUIT, 7–8 numeric digits resolve to DNI, anything else resolves to "Sin identificar".
-             * @example 180
-             */
-            documentTypeId?: number;
-            /** @example contacto@distribuidoranorte.com.ar */
-            email?: string | null;
-            /**
-             * @description Location id
-             * @example 1
-             */
-            locationId?: number | null;
-            observations?: string | null;
-            /** @example +54 11 4444-5555 */
-            phone?: string | null;
-            /** @example C1043AAZ */
-            postalCode?: string | null;
-            /**
-             * @description Purchase condition (combo) id. Fetch valid ids via `GET /combos/CondicionCompraVenta/items`.
-             * @example 1
-             */
-            purchaseConditionId: number;
-            /**
-             * @description Tax category id. Must belong to the organization's regime — fetch valid ids via `GET /tax-categories`. Required unless a valid `taxId` (CUIT) is provided — in that case it is inferred from the supplier's IVA condition in ARCA combined with the organization's regime.
-             * @example 8
-             */
-            taxCategoryId?: number;
-            /**
-             * @description Tax ID (CUIT). When 11 digits, validated as CUIT.
-             * @example 30345678901
-             */
-            taxId?: string | null;
-        };
-        CreateTransferDto: {
-            /**
-             * @description Transfer amount
-             * @example 75000
-             */
-            amount: number;
-            /**
-             * @description Bank account id
-             * @example 1
-             */
-            bankAccountId: number;
-            /**
-             * @description Customer id (for incoming transfers)
-             * @example 12
-             */
-            customerId?: number | null;
-            /**
-             * Format: date-time
-             * @description Transfer date (ISO 8601)
-             * @example 2026-01-15T12:00:00Z
-             */
-            date: string;
-            /**
-             * @description Transfer status
-             * @example PENDING
-             */
-            status: string;
-            /**
-             * @description Supplier id (for outgoing transfers)
-             * @example 7
-             */
-            supplierId?: number | null;
-        };
         ErrorResponseDto: {
+            /**
+             * @description HTTP status code.
+             * @example 404
+             */
+            statusCode: number;
+            /**
+             * @description SCREAMING_SNAKE_CASE enum-style error code. Always machine-mappable. Examples: AFIP_PERSONA_NOT_FOUND, AFIP_WSCI_ERROR, INVALID_CUIT, DB_UNIQUE_VIOLATION, NOT_FOUND, BAD_REQUEST, UNAUTHORIZED.
+             * @example AFIP_PERSONA_NOT_FOUND
+             */
+            error: string;
+            /**
+             * @description Developer-friendly English description of the error. Always present.
+             * @example No AFIP taxpayer found for CUIT 20999999999.
+             */
+            message: string;
+            /**
+             * @description Raw message from the upstream provider (AFIP, etc.) with envelope noise stripped. Present on errors that wrap a third-party failure; kept in the provider's original language.
+             * @example No existe persona con ese Id
+             */
+            providerMessage?: string;
             /**
              * @description Numeric AFIP error code (e.g. 10016 for already-authorized). Only present on AFIP errors that carry a numeric code.
              * @example 10016
@@ -3968,118 +3120,1133 @@ export interface components {
              */
             details?: string[];
             /**
-             * @description SCREAMING_SNAKE_CASE enum-style error code. Always machine-mappable. Examples: AFIP_PERSONA_NOT_FOUND, AFIP_WSCI_ERROR, INVALID_CUIT, DB_UNIQUE_VIOLATION, NOT_FOUND, BAD_REQUEST, UNAUTHORIZED.
-             * @example AFIP_PERSONA_NOT_FOUND
+             * @description ISO-8601 timestamp of when the error occurred.
+             * @example 2026-04-23T14:30:00.000Z
              */
-            error: string;
-            /**
-             * @description Developer-friendly English description of the error. Always present.
-             * @example No AFIP taxpayer found for CUIT 20999999999.
-             */
-            message: string;
+            timestamp: string;
             /**
              * @description Request path that triggered the error.
              * @example /v1/customers/lookup-cuit?cuit=20-99999999-9
              */
             path: string;
             /**
-             * @description Raw message from the upstream provider (AFIP, etc.) with envelope noise stripped. Present on errors that wrap a third-party failure; kept in the provider's original language.
-             * @example No existe persona con ese Id
-             */
-            providerMessage?: string;
-            /**
              * @description pino-http request ID for log correlation.
              * @example req-abc-123
              */
             requestId?: string;
-            /**
-             * @description HTTP status code.
-             * @example 404
-             */
-            statusCode: number;
-            /**
-             * @description ISO-8601 timestamp of when the error occurred.
-             * @example 2026-04-23T14:30:00.000Z
-             */
-            timestamp: string;
         };
-        JournalEntryItemDto: {
-            /** @description Journal account ID */
-            accountId: number;
-            /** @description Credit amount */
-            credit: number;
-            /** @description Debit amount */
-            debit: number;
-            /** @description Own check ID (optional) */
-            ownCheckId?: number;
+        CreateRangeExportDto: {
+            /**
+             * @description Inclusive start date (YYYY-MM-DD).
+             * @example 2026-06-01
+             */
+            dateFrom: string;
+            /**
+             * @description Inclusive end date (YYYY-MM-DD). Must be >= dateFrom.
+             * @example 2026-06-08
+             */
+            dateTo: string;
         };
-        UpdateAccountingLockDto: {
-            endDate?: string;
+        TaxCategoryResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example RI */
+            abbreviation: string;
+            /** @example Responsable Inscripto */
+            name: string;
+            /** @example true */
+            discriminates: boolean;
+            /** @example false */
+            liquidatesInternals: boolean;
+            /** @example false */
+            exemptVat: boolean;
+            /** @example RI */
+            afipResponsibility: string;
+            /** @example true */
+            isActive: boolean;
+            /** @example false */
+            isDefault: boolean;
+            /** @example 1 */
+            salesLetterId: number;
+            /** @example 1 */
+            purchaseLetterId: number;
+            /** @example 1 */
+            organizationCategoryId: number | null;
+        };
+        TaxCategoryExportacionResponseDto: {
+            /** @example false */
+            exportacion: boolean;
+        };
+        TaxCategoryMonotributoResponseDto: {
+            /** @example false */
+            monotributo: boolean;
+        };
+        CurrencyResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Peso Argentino */
+            name: string;
+            /** @example ARS */
+            abbreviation: string;
+            /** @example PES */
+            afipCode: string;
+            /** @example $ */
+            symbol: string;
+            /** @example true */
+            isDefault: boolean;
+            /** @example true */
+            isActive: boolean;
+            /** @example A,B,C */
+            receiptLetters: string | null;
+        };
+        DefaultCurrencyIdResponseDto: {
+            /** @example 1 */
+            id: number;
+        };
+        FavoriteCurrencyIdsResponseDto: {
+            /**
+             * @example [
+             *       1,
+             *       2
+             *     ]
+             */
+            ids: number[];
+        };
+        ComboItemResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Factura A */
+            data: string;
+            /** @example FA */
+            additionalData: string | null;
+            /** @example 1 */
+            afipData: string | null;
+            /** @example true */
+            isActive: boolean;
+            /** @example 5 */
+            comboId: number;
+        };
+        ComboResponseDto: {
+            /** @example 5 */
+            id: number;
+            /** @example Tipo de Comprobante de Venta */
+            name: string;
+            /** @example true */
+            isActive: boolean;
+            comboItems?: components["schemas"]["ComboItemResponseDto"][];
+        };
+        LocationResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Buenos Aires */
+            name: string;
+            /** @example Buenos Aires */
+            province: string;
+            /** @example true */
+            isActive: boolean;
+            /** @example false */
+            isDefault: boolean;
+            /** @example 1 */
+            countryId: number;
+            /** @example 1 */
+            afipData: string | null;
+            /** @example 901 */
+            grossIncomeCode: string | null;
+        };
+        ExchangeRateResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 1050.5 */
+            rate: number;
+            /** @example 2026-05-03T00:00:00.000Z */
+            date: string;
+            /** @example 1 */
+            fromCurrencyId: number;
+            /** @example 2 */
+            toCurrencyId: number;
+        };
+        FceReceiverResponseDto: {
+            /** @example 20123456789 */
+            taxId: string;
+            /** @example 1000000 */
+            total: number;
+            /** @example true */
+            isFceReceiver: boolean;
+        };
+        TaxpayerRegistryResponseDto: {
+            /** @example 20123456789 */
+            taxId: string;
+            /** @example 2024-01-01T00:00:00.000Z */
+            validFrom: string;
+            /** @example 2099-12-31T00:00:00.000Z */
+            validTo: string;
+            /** @example false */
+            multilateralAgreement: boolean;
+            /** @example 2026-05-03T00:00:00.000Z */
+            updatedAt: string;
+            /** @example 3.5 */
+            perceptionRateBsas: number;
+            /** @example 2 */
+            perceptionRateCaba: number;
+            /** @example 1.5 */
+            retentionRateBsas: number;
+            /** @example 1.5 */
+            retentionRateCaba: number;
+            /** @example true */
+            isActive: boolean;
+            /** @example true */
+            isFceReceiver: boolean | null;
+            /** @example 546737 */
+            fceAmountFrom: number | null;
+        };
+        ProductCategoryResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Bebidas */
+            description: string;
+            /** @example true */
+            isActive: boolean;
+        };
+        CreateProductCategoryDto: {
+            description: string;
+            isActive: boolean;
+        };
+        UpdateProductCategoryDto: {
+            description?: string;
             isActive?: boolean;
-            name?: string;
-            startDate?: string;
         };
-        UpdateBankAccountDto: {
+        ProductResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Widget A */
+            description: string;
+            /** @example 7890123456789 */
+            barcode: string | null;
+            /** @example true */
+            isActive: boolean;
+            /** @example null */
+            deletedAt: string | null;
+            /** @example 2 */
+            vatRateId: number | null;
+            /** @example 1 */
+            unitOfMeasureId: number;
+            /** @example 3 */
+            categoryId: number | null;
+            /** @example Producto */
+            type: string | null;
+            /** @example 100 */
+            quantity: number | null;
+            /** @example 1500.5 */
+            unitPrice: number | null;
+            /** @example false */
+            isFavorite: boolean;
+            /** @example 2026-04-12T10:00:00.000Z */
+            lastUsedAt: string | null;
+            /** @example 0 */
+            useCount: number;
+            /** @example ext-sku-123 */
+            providerId: string | null;
+        };
+        ProductPageResponseDto: {
+            data: components["schemas"]["ProductResponseDto"][];
+            /** @example eyJpZCI6MTIzfQ== */
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        ProductSearchResultsResponseDto: {
+            /** @description Products marked as favorites for the organization. */
+            favorites: components["schemas"]["ProductResponseDto"][];
+            /** @description Recently used products, ordered by last-used date. */
+            recents: components["schemas"]["ProductResponseDto"][];
+            /** @description Fuzzy-match results against description and barcode. */
+            results: components["schemas"]["ProductResponseDto"][];
+        };
+        ProductFavoriteResponseDto: {
             /**
-             * @description Accounting account id
-             * @example 1
-             */
-            accountId?: number;
-            /**
-             * @description Current balance
-             * @example 100000.5
-             */
-            balance?: number | null;
-            /**
-             * @description Bank id
-             * @example 1
-             */
-            bankId?: number;
-            /**
-             * @description Currency id
-             * @example 1
-             */
-            currencyId?: number;
-            /**
-             * @description Whether the account is active. Defaults to true on create; toggle via PATCH or DELETE.
-             * @default true
+             * @description New favorite state after the toggle.
              * @example true
              */
-            isActive: boolean;
-            /** @description Whether this account issues checks */
-            issuesChecks?: boolean | null;
-            /**
-             * @description Friendly name
-             * @example Cuenta Corriente Pesos
-             */
-            name?: string;
-            /**
-             * @description Bank account number
-             * @example 0001-12345-6
-             */
-            number?: string;
-            /** @description Whether the account is enabled for online payments */
-            onlinePayment?: boolean | null;
+            isFavorite: boolean;
         };
-        UpdateBankDto: {
+        CreateProductDto: {
             /**
-             * @description Whether the bank is active. Defaults to true on create; toggle via PATCH or DELETE.
-             * @default true
-             * @example true
+             * @description Product description
+             * @example Widget A
              */
+            description: string;
+            /**
+             * @description Unit of measure ID
+             * @example 1
+             */
+            unitOfMeasureId: number;
+            /** @example 7890123456789 */
+            barcode?: string | null;
+            /**
+             * @description VAT rate (combo) ID
+             * @example 2
+             */
+            vatRateId?: number | null;
+            /**
+             * @description Product category ID; null/0 may resolve to Sin Rubro
+             * @example 3
+             */
+            categoryId?: number | null;
+            /** @example Producto */
+            type?: string | null;
+            /** @example 1.5 */
+            quantity?: number | null;
+            /**
+             * @description Default unit price for auto-populating receipt lines
+             * @example 1500.5
+             */
+            unitPrice?: number | null;
+            /**
+             * @description External provider identifier (e.g. your own ID for this product). Unique per organization — a duplicate returns PROVIDER_ID_DUPLICATE. For safe retries, prefer the `Idempotency-Key` header instead.
+             * @example ext-sku-123
+             */
+            providerId?: Record<string, never> | null;
+        };
+        UpdateProductDto: {
+            /**
+             * @description Product description
+             * @example Widget A
+             */
+            description?: string;
+            /**
+             * @description Unit of measure ID
+             * @example 1
+             */
+            unitOfMeasureId?: number;
+            /** @example 7890123456789 */
+            barcode?: string | null;
+            /**
+             * @description VAT rate (combo) ID
+             * @example 2
+             */
+            vatRateId?: number | null;
+            /**
+             * @description Product category ID; null/0 may resolve to Sin Rubro
+             * @example 3
+             */
+            categoryId?: number | null;
+            /** @example Producto */
+            type?: string | null;
+            /** @example 1.5 */
+            quantity?: number | null;
+            /**
+             * @description Default unit price for auto-populating receipt lines
+             * @example 1500.5
+             */
+            unitPrice?: number | null;
+            /**
+             * @description External provider identifier (e.g. your own ID for this product). Unique per organization — a duplicate returns PROVIDER_ID_DUPLICATE. For safe retries, prefer the `Idempotency-Key` header instead.
+             * @example ext-sku-123
+             */
+            providerId?: Record<string, never> | null;
+        };
+        CustomerResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Distribuidora Norte SRL */
+            businessName: string;
+            /** @example 30345678901 */
+            taxId: string | null;
+            /** @example C1043AAZ */
+            postalCode: string | null;
+            /** @example Buenos Aires */
+            city: string | null;
+            /** @example +54 11 4444-5555 */
+            phone: string | null;
+            /** @example contacto@distribuidoranorte.com.ar */
+            email: string | null;
+            /** @example 1 */
+            contractedSaleCondition: number | null;
+            /** @example 1 */
+            statisticalSaleCondition: number | null;
+            /** @example true */
             isActive: boolean;
+            /** @example 1 */
+            taxCategoryId: number;
+            /** @example null */
+            masterId: number | null;
+            /** @example 1 */
+            saleConditionId: number | null;
+            /** @example 1 */
+            locationId: number | null;
+            /** @example Av. Corrientes 1234 */
+            address: string | null;
+            /** @example 80 */
+            documentTypeId: number;
+            /** @example null */
+            observations: string | null;
+            /** @example false */
+            ignoresTaxes: boolean | null;
+            /** @example null */
+            taxIdNumber: string | null;
+            /**
+             * @description External provider identifier — unique per organization.
+             * @example ext-sku-123
+             */
+            providerId: string | null;
+        };
+        CustomerPageResponseDto: {
+            data: components["schemas"]["CustomerResponseDto"][];
+            /** @example eyJpZCI6MTIzfQ== */
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        CuitLookupSuggestionDto: {
+            /** @example Distribuidora Norte SRL */
+            businessName: string;
+            /** @example Av. Corrientes 1234 */
+            address?: string;
+            /** @example C1043AAZ */
+            postalCode?: string;
+            /** @example Buenos Aires */
+            city?: string;
+            /** @example 1 */
+            provinceId?: number;
+            /**
+             * @description IVA condition derived from ARCA padrón.
+             * @example RI
+             * @enum {string}
+             */
+            condicionIva?: "RI" | "MO" | "EX" | "CF";
+            /**
+             * @description Internal tax category id, derived from the seller's regime crossed with the persona's IVA condition.
+             * @example 1
+             */
+            taxCategoryId?: number;
+        };
+        CuitLookupResponseDto: {
+            /** @description Auto-fill suggestion built from ARCA padrón. `null` when the CUIT is not registered. */
+            suggestion: components["schemas"]["CuitLookupSuggestionDto"] | null;
+        };
+        CreateCustomerDto: {
+            /**
+             * @description Customer's legal/business name. Required unless a valid `taxId` (CUIT) is provided — in that case it is auto-filled from ARCA's padrón.
+             * @example Distribuidora Norte SRL
+             */
+            businessName?: string;
+            /**
+             * @description Tax category id (combo). Must belong to the organization's regime — fetch valid ids via `GET /tax-categories`. Required unless a valid `taxId` (CUIT) is provided — in that case it is inferred from the customer's IVA condition in ARCA combined with the organization's regime.
+             * @example 8
+             */
+            taxCategoryId?: number;
+            /**
+             * @description Document type id (combo). Fetch valid ids via `GET /combos/2/items`. When omitted, it is inferred from `taxId`: a valid 11-digit CUIT resolves to CUIT, 7–8 numeric digits resolve to DNI, anything else resolves to "Sin identificar".
+             * @example 180
+             */
+            documentTypeId?: number;
+            /**
+             * @description Tax ID (CUIT/CUIL/DNI). When 11 digits, validated as CUIT.
+             * @example 30345678901
+             */
+            taxId?: string | null;
+            /** @example Av. Corrientes 1234 */
+            address?: string | null;
+            /** @example Buenos Aires */
+            city?: string | null;
+            /** @example C1043AAZ */
+            postalCode?: string | null;
+            /** @example +54 11 4444-5555 */
+            phone?: string | null;
+            /** @example contacto@distribuidoranorte.com.ar */
+            email?: string | null;
+            /**
+             * @description Default sale condition (combo) for this customer
+             * @example 1
+             */
+            saleConditionId?: number | null;
             /**
              * @description Location id
              * @example 1
              */
-            locationId?: number;
+            locationId?: number | null;
+            /** @example 30 */
+            contractedSaleCondition?: number | null;
+            /** @example 30 */
+            statisticalSaleCondition?: number | null;
             /**
-             * @description Bank name
-             * @example Banco Nacion
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            observations?: string | null;
+            /** @description When true, IVA is ignored on receipts for this customer */
+            ignoresTaxes?: boolean | null;
+            /**
+             * @description Secondary tax id number, when applicable
+             * @example 30345678901
+             */
+            taxIdNumber?: string | null;
+            /**
+             * @description External provider identifier (e.g. your own ID for this customer). Unique per organization — a duplicate returns PROVIDER_ID_DUPLICATE. For safe retries, prefer the `Idempotency-Key` header instead.
+             * @example ext-customer-123
+             */
+            providerId?: string | null;
+        };
+        UpdateCustomerDto: {
+            /**
+             * @description Customer's legal/business name. Required unless a valid `taxId` (CUIT) is provided — in that case it is auto-filled from ARCA's padrón.
+             * @example Distribuidora Norte SRL
+             */
+            businessName?: string;
+            /**
+             * @description Tax category id (combo). Must belong to the organization's regime — fetch valid ids via `GET /tax-categories`. Required unless a valid `taxId` (CUIT) is provided — in that case it is inferred from the customer's IVA condition in ARCA combined with the organization's regime.
+             * @example 8
+             */
+            taxCategoryId?: number;
+            /**
+             * @description Document type id (combo). Fetch valid ids via `GET /combos/2/items`. When omitted, it is inferred from `taxId`: a valid 11-digit CUIT resolves to CUIT, 7–8 numeric digits resolve to DNI, anything else resolves to "Sin identificar".
+             * @example 180
+             */
+            documentTypeId?: number;
+            /**
+             * @description Tax ID (CUIT/CUIL/DNI). When 11 digits, validated as CUIT.
+             * @example 30345678901
+             */
+            taxId?: string | null;
+            /** @example Av. Corrientes 1234 */
+            address?: string | null;
+            /** @example Buenos Aires */
+            city?: string | null;
+            /** @example C1043AAZ */
+            postalCode?: string | null;
+            /** @example +54 11 4444-5555 */
+            phone?: string | null;
+            /** @example contacto@distribuidoranorte.com.ar */
+            email?: string | null;
+            /**
+             * @description Default sale condition (combo) for this customer
+             * @example 1
+             */
+            saleConditionId?: number | null;
+            /**
+             * @description Location id
+             * @example 1
+             */
+            locationId?: number | null;
+            /** @example 30 */
+            contractedSaleCondition?: number | null;
+            /** @example 30 */
+            statisticalSaleCondition?: number | null;
+            /**
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            observations?: string | null;
+            /** @description When true, IVA is ignored on receipts for this customer */
+            ignoresTaxes?: boolean | null;
+            /**
+             * @description Secondary tax id number, when applicable
+             * @example 30345678901
+             */
+            taxIdNumber?: string | null;
+            /**
+             * @description External provider identifier (e.g. your own ID for this customer). Unique per organization — a duplicate returns PROVIDER_ID_DUPLICATE. For safe retries, prefer the `Idempotency-Key` header instead.
+             * @example ext-customer-123
+             */
+            providerId?: string | null;
+        };
+        SupplierResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Distribuidora Norte SRL */
+            businessName: string;
+            /** @example 30345678901 */
+            taxId: string | null;
+            /** @example C1043AAZ */
+            postalCode: string | null;
+            /** @example Buenos Aires */
+            city: string | null;
+            /** @example +54 11 4444-5555 */
+            phone: string | null;
+            /** @example compras@distribuidoranorte.com.ar */
+            email: string | null;
+            /** @example 1 */
+            taxCategoryId: number;
+            /** @example 1 */
+            locationId: number | null;
+            /** @example 1 */
+            purchaseConditionId: number;
+            /** @example Av. Corrientes 1234 */
+            address: string | null;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string | null;
+            /** @example null */
+            deletedAt: string | null;
+            /** @example 2026-02-15T12:00:00.000Z */
+            updatedAt: string | null;
+            /** @example null */
+            observations: string | null;
+            /** @example auth0|abc */
+            lastUpdatedUserId: string | null;
+            /** @example auth0|abc */
+            userId: string | null;
+            /** @example CHECKING */
+            accountType: string | null;
+            /** @example 0000123456 */
+            accountCode: string | null;
+            /** @example Banco Galicia */
+            accountBank: string | null;
+            /** @example 80 */
+            documentTypeId: number;
+        };
+        SupplierPageResponseDto: {
+            data: components["schemas"]["SupplierResponseDto"][];
+            /** @example eyJpZCI6MTIzfQ== */
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        CreateSupplierDto: {
+            /**
+             * @description Supplier's legal/business name. Required unless a valid `taxId` (CUIT) is provided — in that case it is auto-filled from ARCA's padrón.
+             * @example Distribuidora Norte SRL
+             */
+            businessName?: string;
+            /**
+             * @description Tax category id. Must belong to the organization's regime — fetch valid ids via `GET /tax-categories`. Required unless a valid `taxId` (CUIT) is provided — in that case it is inferred from the supplier's IVA condition in ARCA combined with the organization's regime.
+             * @example 8
+             */
+            taxCategoryId?: number;
+            /**
+             * @description Purchase condition (combo) id. Fetch valid ids via `GET /combos/CondicionCompraVenta/items`.
+             * @example 1
+             */
+            purchaseConditionId: number;
+            /**
+             * @description Document type id (combo). Fetch valid ids via `GET /combos/2/items`. When omitted, it is inferred from `taxId`: a valid 11-digit CUIT resolves to CUIT, 7–8 numeric digits resolve to DNI, anything else resolves to "Sin identificar".
+             * @example 180
+             */
+            documentTypeId?: number;
+            /**
+             * @description Tax ID (CUIT). When 11 digits, validated as CUIT.
+             * @example 30345678901
+             */
+            taxId?: string | null;
+            /** @example Av. Corrientes 1234 */
+            address?: string | null;
+            /** @example Buenos Aires */
+            city?: string | null;
+            /** @example C1043AAZ */
+            postalCode?: string | null;
+            /** @example +54 11 4444-5555 */
+            phone?: string | null;
+            /** @example contacto@distribuidoranorte.com.ar */
+            email?: string | null;
+            /**
+             * @description Location id
+             * @example 1
+             */
+            locationId?: number | null;
+            observations?: string | null;
+            /** @example CHECKING */
+            accountType?: string | null;
+            /** @example 0000123456 */
+            accountCode?: string | null;
+            /** @example Banco Galicia */
+            accountBank?: string | null;
+        };
+        GetOrCreateSupplierDto: {
+            /**
+             * @description CUIT of the supplier to look up or create.
+             * @example 30345678901
+             */
+            taxId: string;
+            businessName?: string;
+            address?: string;
+            taxCategoryId?: number;
+            purchaseConditionId?: number;
+            documentTypeId?: number;
+            locationId?: number;
+            userId?: string;
+        };
+        BulkDeleteSuppliersDto: {
+            ids: number[];
+        };
+        BulkDeleteSuppliersResponseDto: {
+            /**
+             * @description Number of suppliers that were soft-deleted.
+             * @example 3
+             */
+            deleted: number;
+        };
+        UpdateSupplierDto: {
+            /**
+             * @description Supplier's legal/business name. Required unless a valid `taxId` (CUIT) is provided — in that case it is auto-filled from ARCA's padrón.
+             * @example Distribuidora Norte SRL
+             */
+            businessName?: string;
+            /**
+             * @description Tax category id. Must belong to the organization's regime — fetch valid ids via `GET /tax-categories`. Required unless a valid `taxId` (CUIT) is provided — in that case it is inferred from the supplier's IVA condition in ARCA combined with the organization's regime.
+             * @example 8
+             */
+            taxCategoryId?: number;
+            /**
+             * @description Purchase condition (combo) id. Fetch valid ids via `GET /combos/CondicionCompraVenta/items`.
+             * @example 1
+             */
+            purchaseConditionId?: number;
+            /**
+             * @description Document type id (combo). Fetch valid ids via `GET /combos/2/items`. When omitted, it is inferred from `taxId`: a valid 11-digit CUIT resolves to CUIT, 7–8 numeric digits resolve to DNI, anything else resolves to "Sin identificar".
+             * @example 180
+             */
+            documentTypeId?: number;
+            /**
+             * @description Tax ID (CUIT). When 11 digits, validated as CUIT.
+             * @example 30345678901
+             */
+            taxId?: string | null;
+            /** @example Av. Corrientes 1234 */
+            address?: string | null;
+            /** @example Buenos Aires */
+            city?: string | null;
+            /** @example C1043AAZ */
+            postalCode?: string | null;
+            /** @example +54 11 4444-5555 */
+            phone?: string | null;
+            /** @example contacto@distribuidoranorte.com.ar */
+            email?: string | null;
+            /**
+             * @description Location id
+             * @example 1
+             */
+            locationId?: number | null;
+            observations?: string | null;
+            /** @example CHECKING */
+            accountType?: string | null;
+            /** @example 0000123456 */
+            accountCode?: string | null;
+            /** @example Banco Galicia */
+            accountBank?: string | null;
+        };
+        ProviderConfigResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string;
+            /** @example null */
+            deletedAt: string | null;
+            /** @example 2026-02-15T12:00:00.000Z */
+            updatedAt: string | null;
+            /** @example auth-key-*** */
+            authKey: string | null;
+            /** @example null */
+            string1: string | null;
+            /** @example null */
+            string2: string | null;
+            /** @example null */
+            string3: string | null;
+            /** @example TIENDANUBE */
+            provider: string;
+            /** @example 7 */
+            lastUpdatedUserId: number | null;
+            /** @example 1 */
+            userId: number | null;
+        };
+        IntegrationStatusResponseDto: {
+            /** @example true */
+            sparkpost: boolean;
+            /** @example false */
+            tiendanube: boolean;
+        };
+        OAuthUrlResponseDto: {
+            /**
+             * @description Redirect the user here to complete the OAuth flow.
+             * @example https://auth.mercadopago.com/authorization?client_id=123&...
+             */
+            url: string;
+        };
+        CreateProviderConfigDto: {
+            /**
+             * @description Provider identifier (e.g. SPARKPOST, TIENDANUBE, MERCADOPAGO).
+             * @example TIENDANUBE
+             */
+            provider: string;
+            /** @description OAuth/API auth key. */
+            authKey?: string | null;
+            /** @description Generic provider field 1 (provider-specific). */
+            string1?: string | null;
+            /** @description Generic provider field 2 (provider-specific). */
+            string2?: string | null;
+            /** @description Generic provider field 3 (provider-specific). */
+            string3?: string | null;
+        };
+        UpdateProviderConfigDto: {
+            /**
+             * @description Provider identifier (e.g. SPARKPOST, TIENDANUBE, MERCADOPAGO).
+             * @example TIENDANUBE
+             */
+            provider?: string;
+            /** @description OAuth/API auth key. */
+            authKey?: string | null;
+            /** @description Generic provider field 1 (provider-specific). */
+            string1?: string | null;
+            /** @description Generic provider field 2 (provider-specific). */
+            string2?: string | null;
+            /** @description Generic provider field 3 (provider-specific). */
+            string3?: string | null;
+        };
+        ReceiptBookResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Sucursal Centro - WS */
+            description: string;
+            /** @example 0001 */
+            prefix: string;
+            /** @example 1 */
+            pointOfSale: number;
+            /** @example false */
+            isExport: boolean | null;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string | null;
+            /** @example null */
+            deletedAt: string | null;
+            /** @example 2026-02-15T12:00:00.000Z */
+            updatedAt: string | null;
+            /** @example WS */
+            type: string | null;
+            /** @example 7 */
+            lastUpdatedUserId: number | null;
+            /** @example 1 */
+            userId: number | null;
+            /** @example 1 */
+            branchId: number | null;
+            /** @example 100 */
+            lastInvoiceA: number | null;
+            /** @example 100 */
+            lastInvoiceB: number | null;
+            /** @example 100 */
+            lastInvoiceC: number | null;
+            /** @example 10 */
+            lastCreditNoteA: number | null;
+            /** @example 10 */
+            lastCreditNoteB: number | null;
+            /** @example 10 */
+            lastCreditNoteC: number | null;
+            /** @example 5 */
+            lastDebitNoteA: number | null;
+            /** @example 5 */
+            lastDebitNoteB: number | null;
+            /** @example 5 */
+            lastDebitNoteC: number | null;
+            /** @example null */
+            backofficeIds: string | null;
+        };
+        MercadoPagoConfigResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string;
+            /** @example null */
+            deletedAt: string | null;
+            /** @example 2026-02-15T12:00:00.000Z */
+            updatedAt: string | null;
+            /** @example true */
+            createInvoice: boolean;
+            /** @example ALWAYS */
+            includePaymentButton: string;
+            /** @example 7 */
+            lastUpdatedUserId: number | null;
+            /** @example 1 */
+            userId: number | null;
+            /** @example 1 */
+            receiptBookId: number | null;
+            /** @description Eagerly-loaded receipt book used for auto-created MP invoices. `null` when `receiptBookId` is unset. */
+            receiptBook: components["schemas"]["ReceiptBookResponseDto"] | null;
+            /** @example 1234567890 */
+            mpUserId: string | null;
+            /** @example APP_USR-pub-*** */
+            publicKey: string | null;
+            /**
+             * @description Whether this organization has completed the Mercado Pago OAuth flow. Use this to gate the payment button UI without exposing the underlying credentials.
+             * @example true
+             */
+            isConfigured: boolean;
+            /**
+             * @description True when the access token is past its expiration. Prompt the user to reconnect when this is `true`.
+             * @example false
+             */
+            hasExpired: boolean;
+        };
+        CreateMercadoPagoConfigDto: {
+            /**
+             * @description When true, an invoice is automatically created on successful Mercado Pago payments.
+             * @example true
+             */
+            createInvoice: boolean;
+            /**
+             * @description Whether to include a Mercado Pago payment button on emailed receipts (e.g. ALWAYS, NEVER, OPTIONAL).
+             * @example ALWAYS
+             */
+            includePaymentButton: string;
+            /**
+             * @description Receipt book to use for auto-created invoices.
+             * @example 1
+             */
+            receiptBookId?: number | null;
+            /** @description Mercado Pago access token (returned by OAuth). */
+            accessToken?: string | null;
+            /** @description Mercado Pago refresh token (returned by OAuth). */
+            refreshToken?: string | null;
+            /** Format: date-time */
+            expiresAt?: string | null;
+            /**
+             * @description Mercado Pago user id
+             * @example 1234567890
+             */
+            mpUserId?: string | null;
+            /** @description Public key for the MP integration */
+            publicKey?: string | null;
+        };
+        UpdateMercadoPagoConfigDto: {
+            /**
+             * @description When true, an invoice is automatically created on successful Mercado Pago payments.
+             * @example true
+             */
+            createInvoice?: boolean;
+            /**
+             * @description Whether to include a Mercado Pago payment button on emailed receipts (e.g. ALWAYS, NEVER, OPTIONAL).
+             * @example ALWAYS
+             */
+            includePaymentButton?: string;
+            /**
+             * @description Receipt book to use for auto-created invoices.
+             * @example 1
+             */
+            receiptBookId?: number | null;
+            /** @description Mercado Pago access token (returned by OAuth). */
+            accessToken?: string | null;
+            /** @description Mercado Pago refresh token (returned by OAuth). */
+            refreshToken?: string | null;
+            /** Format: date-time */
+            expiresAt?: string | null;
+            /**
+             * @description Mercado Pago user id
+             * @example 1234567890
+             */
+            mpUserId?: string | null;
+            /** @description Public key for the MP integration */
+            publicKey?: string | null;
+        };
+        CreateFileImportDto: {
+            /**
+             * @description Storage path of the file to import (must already exist).
+             * @example 12/imports/customers-2026-04-28.xlsx
+             */
+            path: string;
+            /**
+             * @description Import type. Must match the file's contents.
+             * @example CLIENTES
+             * @enum {string}
+             */
+            type: "COMPROBANTES_VENTA" | "COMPROBANTES_COMPRA" | "CLIENTES" | "PROVEEDORES" | "PRODUCTOS" | "PAYROLL";
+            /** @example customers-2026.xlsx */
+            originalFilename?: string | null;
+            /**
+             * @description Acting user id
+             * @example 42
+             */
+            userId?: number | null;
+        };
+        UpdateFileImportDto: {
+            /**
+             * @description Storage path of the file to import (must already exist).
+             * @example 12/imports/customers-2026-04-28.xlsx
+             */
+            path?: string;
+            /**
+             * @description Import type. Must match the file's contents.
+             * @example CLIENTES
+             * @enum {string}
+             */
+            type?: "COMPROBANTES_VENTA" | "COMPROBANTES_COMPRA" | "CLIENTES" | "PROVEEDORES" | "PRODUCTOS" | "PAYROLL";
+            /** @example customers-2026.xlsx */
+            originalFilename?: string | null;
+            /**
+             * @description Acting user id
+             * @example 42
+             */
+            userId?: number | null;
+            /**
+             * @description Import status (PENDING, PROCESSED, FAILED, etc.).
+             * @example PROCESSED
+             */
+            status?: string;
+            /**
+             * @description Storage path for the result file produced by the import job.
+             * @example 12/imports/results/customers-2026-04-28.xlsx
+             */
+            resultPath?: string | null;
+            /** @example 100 */
+            totalCount?: number | null;
+            /** @example 95 */
+            importedCount?: number | null;
+            /** @example 5 */
+            errorCount?: number | null;
+            /** Format: date-time */
+            readDate?: string | null;
+            /** Format: date-time */
+            processedDate?: string | null;
+        };
+        CertificateResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 550e8400-e29b-41d4-a716-446655440000 */
+            internalKey: string;
+            /** @example Certificado 2026 */
+            name: string;
+            /** @example 2026-01-01T12:00:00.000Z */
+            requestDate: string;
+            /** @example 2027-01-01T12:00:00.000Z */
+            renewalDate: string | null;
+            /** @example null */
+            disabledDate: string | null;
+            /** @example true */
+            isActive: boolean;
+            /** @example 1 */
+            userId: number;
+            /**
+             * @description True when a CSR has been generated. Download via `GET /certificates/:id/csr`.
+             * @example true
+             */
+            hasCsr: boolean;
+            /**
+             * @description True when AFIP's signed CRT has been uploaded. Download via `GET /certificates/:id/crt`.
+             * @example true
+             */
+            hasCrt: boolean;
+            /**
+             * @description True when the P12 has been assembled — the certificate is ready to authorize receipts.
+             * @example true
+             */
+            hasP12: boolean;
+        };
+        CertificateExpirationStatusDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Certificado 2026 */
+            name: string;
+            /** @example 2027-01-01T12:00:00.000Z */
+            renewalDate: string | null;
+            /** @example 240 */
+            daysUntilExpiry: number | null;
+            /** @example false */
+            isExpired: boolean | null;
+            /** @example true */
+            hasP12: boolean;
+        };
+        CertificateServiceCheckDto: {
+            /** @example true */
+            success: boolean;
+            /** @example AFIP rejected the certificate */
+            error?: string;
+        };
+        CertificateValidateConnectionServicesDto: {
+            wsfe: components["schemas"]["CertificateServiceCheckDto"];
+            wsfex: components["schemas"]["CertificateServiceCheckDto"];
+        };
+        CertificateValidateConnectionResponseDto: {
+            /** @example true */
+            success: boolean;
+            /** @example production */
+            environment: string;
+            services: components["schemas"]["CertificateValidateConnectionServicesDto"];
+        };
+        CreateCertificateDto: {
+            /**
+             * @description Display name for the certificate. Defaults to `Certificado {currentYear}` when blank.
+             * @example Certificado 2026
              */
             name?: string;
         };
+        UpdateCertificateDto: {
+            /** @example Certificado 2026 */
+            name?: string;
+            /**
+             * @description Toggle which certificate is used for invoicing. Only one should be active at a time.
+             * @example true
+             */
+            isActive?: boolean;
+        };
+        BranchResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Sucursal Centro */
+            name: string;
+            /** @example Av. Corrientes 1234 */
+            address: string;
+            /** @example sucursal@empresa.com.ar */
+            email: string | null;
+            /** @example +54 11 4444-5555 */
+            phone1: string | null;
+            /** @example null */
+            phone2: string | null;
+            /** @example null */
+            phone3: string | null;
+            /** @example Buenos Aires */
+            city: string;
+            /** @example C1043AAZ */
+            postalCode: string;
+            /** @example 1 */
+            locationId: number;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string | null;
+            /** @example null */
+            deletedAt: string | null;
+            /** @example 2026-02-15T12:00:00.000Z */
+            updatedAt: string | null;
+            /** @example 7 */
+            lastUpdatedUserId: number | null;
+            /** @example 1 */
+            userId: number | null;
+        };
+        CreateBranchDto: {
+            /**
+             * @description Display name for the branch — must not match another branch in your organization.
+             * @example Sucursal Centro
+             */
+            name: string;
+            /**
+             * @description Street address shown on receipts.
+             * @example Av. Corrientes 1234
+             */
+            address: string;
+            /**
+             * @description City.
+             * @example Buenos Aires
+             */
+            city: string;
+            /**
+             * @description Postal code (CP).
+             * @example C1043AAZ
+             */
+            postalCode: string;
+            /**
+             * @description Province/region id from `GET /locations`.
+             * @example 1
+             */
+            locationId: number;
+            /** @example sucursal@empresa.com.ar */
+            email?: string | null;
+            /** @example +54 11 4444-5555 */
+            phone1?: string | null;
+            /** @example +54 11 4444-6666 */
+            phone2?: string | null;
+            /** @example +54 11 4444-7777 */
+            phone3?: string | null;
+        };
         UpdateBranchDto: {
+            /**
+             * @description Display name for the branch — must not match another branch in your organization.
+             * @example Sucursal Centro
+             */
+            name?: string;
             /**
              * @description Street address shown on receipts.
              * @example Av. Corrientes 1234
@@ -4090,623 +4257,119 @@ export interface components {
              * @example Buenos Aires
              */
             city?: string;
-            /** @example sucursal@empresa.com.ar */
-            email?: string | null;
+            /**
+             * @description Postal code (CP).
+             * @example C1043AAZ
+             */
+            postalCode?: string;
             /**
              * @description Province/region id from `GET /locations`.
              * @example 1
              */
             locationId?: number;
-            /**
-             * @description Display name for the branch — must not match another branch in your organization.
-             * @example Sucursal Centro
-             */
-            name?: string;
+            /** @example sucursal@empresa.com.ar */
+            email?: string | null;
             /** @example +54 11 4444-5555 */
             phone1?: string | null;
             /** @example +54 11 4444-6666 */
             phone2?: string | null;
             /** @example +54 11 4444-7777 */
             phone3?: string | null;
-            /**
-             * @description Postal code (CP).
-             * @example C1043AAZ
-             */
-            postalCode?: string;
         };
-        UpdateCardPaymentDto: {
+        ImportFromArcaResponseDto: {
             /**
-             * @description Cancelled date (ISO 8601)
-             * @example 2026-02-15T12:00:00Z
-             */
-            cancelledDate?: string | null;
-            /**
-             * @description Installments already cancelled
-             * @example 0
-             */
-            cancelledInstallments?: number;
-            /**
-             * @description Credit card id
-             * @example 1
-             */
-            creditCardId?: number;
-            /**
-             * Format: date-time
-             * @description Card payment date (ISO 8601)
-             * @example 2026-01-15T12:00:00Z
-             */
-            date?: string;
-            /** @example Visa Crédito 6 cuotas */
-            detail?: string | null;
-            /**
-             * @description Total number of installments
+             * @description Number of newly created receipt books
              * @example 3
              */
-            installments?: number;
+            created: number;
             /**
-             * @description Authorization / payment number
-             * @example AUTH-987654
-             */
-            number?: string | null;
-            /**
-             * @description Payment status
-             * @example PENDING
-             */
-            status?: string;
-            /**
-             * @description Total payment amount
-             * @example 18000.5
-             */
-            total?: number;
-            /**
-             * @description Total amount already cancelled
-             * @example 0
-             */
-            totalCancelled?: number;
-        };
-        UpdateCashRegisterDto: {
-            /**
-             * @description Accounting account id
+             * @description Number of receipt books that already existed and were skipped
              * @example 1
              */
-            accountId?: number;
-            /**
-             * @description Current funds (decimal)
-             * @example 50000
-             */
-            funds?: number;
-            /**
-             * @description Whether the cash register is active. Defaults to true on create; toggle via PATCH or DELETE.
-             * @default true
-             * @example true
-             */
-            isActive: boolean;
-            /**
-             * @description Cash register name
-             * @example Caja Central
-             */
-            name?: string;
+            skipped: number;
+            /** @description Final state of all receipt books after the import */
+            receiptBooks: components["schemas"]["ReceiptBookResponseDto"][];
         };
-        UpdateCertificateDto: {
+        CreateReceiptBookDto: {
             /**
-             * @description Toggle which certificate is used for invoicing. Only one should be active at a time.
-             * @example true
+             * @description Display name for the receipt book.
+             * @example Sucursal Centro - WS
              */
-            isActive?: boolean;
-            /** @example Certificado 2026 */
-            name?: string;
-        };
-        UpdateCheckDto: {
+            description: string;
             /**
-             * @description Bank account number
-             * @example 0123-4-56789012-3
+             * @description Prefix used to compose receipt numbers (e.g. `0001-00000123`). Unique per organization.
+             * @example 0001
              */
-            accountNumber?: string | null;
+            prefix: string;
             /**
-             * @description Check amount
-             * @example 50000
-             */
-            amount?: number;
-            /**
-             * @description Bank id
+             * @description AFIP point of sale (Punto de Venta) number. Unique per organization.
              * @example 1
              */
-            bankId?: number;
+            pointOfSale: number;
             /**
-             * @description Cleared date (ISO 8601)
-             * @example 2026-02-20T12:00:00Z
+             * @description Point of sale type (WS = AFIP web service, WS_MOCK = synthetic, EN_LINEA = online, PRE_IMPRESOS = printed).
+             * @example WS
+             * @enum {string|null}
              */
-            clearedDate?: string | null;
+            type?: "WS" | "WS_MOCK" | "EN_LINEA" | "PRE_IMPRESOS" | null;
             /**
-             * @description Customer id
-             * @example 12
-             */
-            customerId?: number;
-            /**
-             * Format: date-time
-             * @description Check date (ISO 8601)
-             * @example 2026-01-15T12:00:00Z
-             */
-            date?: string;
-            /**
-             * @description Due date (ISO 8601)
-             * @example 2026-02-15T12:00:00Z
-             */
-            dueDate?: string | null;
-            /**
-             * @description True if it is an own check (issued); false for third-party checks
+             * @description When true, routes to WSFEX (export) instead of WSFE (domestic).
              * @example false
              */
-            isOwn?: boolean;
-            /**
-             * @description Check number
-             * @example 00012345
-             */
-            number?: string;
-            /**
-             * @description Check status
-             * @example PENDING
-             */
-            status?: string;
-        };
-        UpdateCheckbookDto: {
-            /**
-             * @description Bank account id this checkbook belongs to
-             * @example 1
-             */
-            bankAccountId?: number;
-            /**
-             * @description Checkbook friendly name
-             * @example Chequera 001
-             */
-            name?: string;
-            /**
-             * @description First check number in the book
-             * @example 1
-             */
-            numberFrom?: number;
-            /**
-             * @description Last check number in the book
-             * @example 50
-             */
-            numberTo?: number;
-        };
-        UpdateCreditCardDto: {
-            /**
-             * @description Accounting account id
-             * @example 1
-             */
-            accountId?: number;
-            /**
-             * @description Bank account id linked to this card
-             * @example 1
-             */
-            bankAccountId?: number;
-            /**
-             * @description Credit card number or identifier
-             * @example 4111111111111111
-             */
-            number?: string;
-            /**
-             * @description Card status (e.g. active, blocked)
-             * @example active
-             */
-            status?: string;
-        };
-        UpdateCustomerDto: {
-            /** @example Av. Corrientes 1234 */
-            address?: string | null;
-            /**
-             * @description Customer's legal/business name. Required unless a valid `taxId` (CUIT) is provided — in that case it is auto-filled from ARCA's padrón.
-             * @example Distribuidora Norte SRL
-             */
-            businessName?: string;
-            /** @example Buenos Aires */
-            city?: string | null;
-            /** @example 30 */
-            contractedSaleCondition?: number | null;
-            /**
-             * @description Document type id (combo). Fetch valid ids via `GET /combos/2/items`. When omitted, it is inferred from `taxId`: a valid 11-digit CUIT resolves to CUIT, 7–8 numeric digits resolve to DNI, anything else resolves to "Sin identificar".
-             * @example 180
-             */
-            documentTypeId?: number;
-            /** @example contacto@distribuidoranorte.com.ar */
-            email?: string | null;
-            /** @description When true, IVA is ignored on receipts for this customer */
-            ignoresTaxes?: boolean | null;
-            /**
-             * @default true
-             * @example true
-             */
-            isActive: boolean;
-            /**
-             * @description Location id
-             * @example 1
-             */
-            locationId?: number | null;
-            observations?: string | null;
-            /** @example +54 11 4444-5555 */
-            phone?: string | null;
-            /** @example C1043AAZ */
-            postalCode?: string | null;
-            /**
-             * @description External provider identifier. Unique per organization; acts as an idempotency key.
-             * @example ext-customer-123
-             */
-            providerId?: string | null;
-            /**
-             * @description Default sale condition (combo) for this customer
-             * @example 1
-             */
-            saleConditionId?: number | null;
-            /** @example 30 */
-            statisticalSaleCondition?: number | null;
-            /**
-             * @description Tax category id (combo). Must belong to the organization's regime — fetch valid ids via `GET /tax-categories`. Required unless a valid `taxId` (CUIT) is provided — in that case it is inferred from the customer's IVA condition in ARCA combined with the organization's regime.
-             * @example 8
-             */
-            taxCategoryId?: number;
-            /**
-             * @description Tax ID (CUIT/CUIL/DNI). When 11 digits, validated as CUIT.
-             * @example 30345678901
-             */
-            taxId?: string | null;
-            /**
-             * @description Secondary tax id number, when applicable
-             * @example 30345678901
-             */
-            taxIdNumber?: string | null;
-        };
-        UpdateDepositDto: {
-            /**
-             * @description Bank account id receiving the deposit
-             * @example 1
-             */
-            accountId?: number;
-            /** @example Depósito mostrador */
-            concept?: string | null;
-            /**
-             * Format: date-time
-             * @description Credit date (ISO 8601)
-             * @example 2026-01-15T12:00:00Z
-             */
-            creditDate?: string;
-            /**
-             * Format: date-time
-             * @description Deposit date (ISO 8601)
-             * @example 2026-01-14T12:00:00Z
-             */
-            depositDate?: string;
-            /**
-             * @description Linked journal entry id
-             * @example 100
-             */
-            journalEntryId?: number | null;
-            /**
-             * @description Deposit ticket number
-             * @example TKT-00012345
-             */
-            ticketNumber?: string;
-            /**
-             * @description Total deposit amount
-             * @example 25000.5
-             */
-            total?: number;
-        };
-        UpdateFileImportDto: {
-            /** @example 5 */
-            errorCount?: number | null;
-            /** @example 95 */
-            importedCount?: number | null;
-            /** @example customers-2026.xlsx */
-            originalFilename?: string | null;
-            /**
-             * @description Storage path of the file to import (must already exist).
-             * @example 12/imports/customers-2026-04-28.xlsx
-             */
-            path?: string;
-            /** Format: date-time */
-            processedDate?: string | null;
-            /** Format: date-time */
-            readDate?: string | null;
-            /**
-             * @description Storage path for the result file produced by the import job.
-             * @example 12/imports/results/customers-2026-04-28.xlsx
-             */
-            resultPath?: string | null;
-            /**
-             * @description Import status (PENDING, PROCESSED, FAILED, etc.).
-             * @example PROCESSED
-             */
-            status?: string;
-            /** @example 100 */
-            totalCount?: number | null;
-            /**
-             * @description Import type. Must match the file's contents.
-             * @example CLIENTES
-             * @enum {string}
-             */
-            type?: "COMPROBANTES_VENTA" | "COMPROBANTES_COMPRA" | "CLIENTES" | "PROVEEDORES" | "PRODUCTOS" | "PAYROLL";
-            /**
-             * @description Acting user id
-             * @example 42
-             */
-            userId?: number | null;
-        };
-        UpdateFiscalYearDto: {
-            endDate?: string;
-            isActive?: boolean;
-            name?: string;
-            startDate?: string;
-        };
-        UpdateFundMovementDto: {
-            /**
-             * @description Movement amount
-             * @example 15000.5
-             */
-            amount?: number;
-            /**
-             * @description Bank account id
-             * @example 1
-             */
-            bankAccountId?: number;
-            /**
-             * @description Cash register id
-             * @example 3
-             */
-            cashRegisterId?: number | null;
-            /** @example Acreditación cliente */
-            concept?: string | null;
-            /**
-             * @description Credit date (ISO 8601)
-             * @example 2026-01-16T12:00:00Z
-             */
-            creditDate?: string | null;
-            /**
-             * Format: date-time
-             * @description Movement date (ISO 8601)
-             * @example 2026-01-15T12:00:00Z
-             */
-            date?: string;
-            /**
-             * @description Destination bank account id (for transfers)
-             * @example 2
-             */
-            destinationAccountId?: number | null;
-            /**
-             * @description Linked journal entry id
-             * @example 100
-             */
-            journalEntryId?: number | null;
-            /**
-             * @description Movement type id (combo item)
-             * @example 12
-             */
-            movementTypeId?: number;
-        };
-        UpdateJournalAccountDto: {
-            category?: number;
-            code?: string;
-            current?: number;
-            name?: string;
-            number?: number;
-            subcategory?: number;
-        };
-        UpdateMercadoPagoConfigDto: {
-            /** @description Mercado Pago access token (returned by OAuth). */
-            accessToken?: string | null;
-            /**
-             * @description When true, an invoice is automatically created on successful Mercado Pago payments.
-             * @example true
-             */
-            createInvoice?: boolean;
-            /** Format: date-time */
-            expiresAt?: string | null;
-            /**
-             * @description Whether to include a Mercado Pago payment button on emailed receipts (e.g. ALWAYS, NEVER, OPTIONAL).
-             * @example ALWAYS
-             */
-            includePaymentButton?: string;
-            /**
-             * @description Mercado Pago user id
-             * @example 1234567890
-             */
-            mpUserId?: string | null;
-            /** @description Public key for the MP integration */
-            publicKey?: string | null;
-            /**
-             * @description Receipt book to use for auto-created invoices.
-             * @example 1
-             */
-            receiptBookId?: number | null;
-            /** @description Mercado Pago refresh token (returned by OAuth). */
-            refreshToken?: string | null;
-        };
-        UpdateOwnCheckDto: {
-            /**
-             * @description Check amount
-             * @example 50000
-             */
-            amount?: number;
-            /**
-             * @description Bank account id
-             * @example 1
-             */
-            bankAccountId?: number;
-            /**
-             * Format: date-time
-             * @description Check date (ISO 8601)
-             * @example 2026-01-15T12:00:00Z
-             */
-            date?: string;
-            /**
-             * @description Check number
-             * @example 12345
-             */
-            number?: number;
-            /**
-             * @description Payment date (ISO 8601)
-             * @example 2026-02-15T12:00:00Z
-             */
-            paymentDate?: string | null;
-            /**
-             * @description Check status
-             * @example PENDING
-             */
-            status?: string;
-            /**
-             * @description Supplier id
-             * @example 5
-             */
-            supplierId?: number | null;
-        };
-        UpdatePaymentMethodDto: {
-            /**
-             * @description Currency id
-             * @example 1
-             */
-            currencyId?: number;
-            /**
-             * @description Whether the payment method is active. Defaults to true on create; toggle via PATCH or DELETE.
-             * @default true
-             * @example true
-             */
-            isActive: boolean;
-            /**
-             * @description Payment method name
-             * @example Efectivo Pesos
-             */
-            name?: string;
-            /**
-             * @description Payment method type combo item id
-             * @example 1
-             */
-            paymentMethodTypeId?: number;
-        };
-        UpdatePaymentMethodEntryDto: {
-            /**
-             * @description Accounting account id
-             * @example 1
-             */
-            accountId?: number;
-            /**
-             * @description Entry amount (decimal)
-             * @example 1500.5
-             */
-            amount?: number;
-            /**
-             * Format: date-time
-             * @description Entry date (ISO)
-             * @example 2025-04-28T10:00:00Z
-             */
-            date?: string;
-            /**
-             * @description Entry description
-             * @example Pago contado
-             */
-            description?: string;
-            /**
-             * @description Entry type (e.g. income, expense)
-             * @example income
-             */
-            entryType?: string;
-            /**
-             * @description External entity id (if linked to a receipt or other entity)
-             * @example 42
-             */
-            externalEntityId?: number | null;
-            /**
-             * @description Operation number
-             * @example OP-12345
-             */
-            operationNumber?: string | null;
-            /**
-             * @description Payment method id
-             * @example 1
-             */
-            paymentMethodId?: number;
-            /**
-             * @description Reference number
-             * @example 1001
-             */
-            referenceNumber?: number;
-        };
-        UpdateProductDto: {
-            /** @example 7890123456789 */
-            barcode?: string | null;
-            /**
-             * @description Product category ID; null/0 may resolve to Sin Rubro
-             * @example 3
-             */
-            categoryId?: number | null;
-            /**
-             * @description Product description
-             * @example Widget A
-             */
-            description?: string;
-            /**
-             * @default true
-             * @example true
-             */
-            isActive: boolean;
-            /**
-             * @description External provider identifier. Unique per organization; acts as an idempotency key.
-             * @example ext-sku-123
-             */
-            providerId?: Record<string, never> | null;
-            /** @example 1.5 */
-            quantity?: number | null;
-            /** @example Producto */
-            type?: string | null;
-            /**
-             * @description Unit of measure ID
-             * @example 1
-             */
-            unitOfMeasureId?: number;
-            /**
-             * @description Default unit price for auto-populating receipt lines
-             * @example 1500.5
-             */
-            unitPrice?: number | null;
-            /**
-             * @description VAT rate (combo) ID
-             * @example 2
-             */
-            vatRateId?: number | null;
-        };
-        UpdateProviderConfigDto: {
-            /** @description OAuth/API auth key. */
-            authKey?: string | null;
-            /**
-             * @description Provider identifier (e.g. SPARKPOST, TIENDANUBE, MERCADOPAGO).
-             * @example TIENDANUBE
-             */
-            provider?: string;
-            /** @description Generic provider field 1 (provider-specific). */
-            string1?: string | null;
-            /** @description Generic provider field 2 (provider-specific). */
-            string2?: string | null;
-            /** @description Generic provider field 3 (provider-specific). */
-            string3?: string | null;
-        };
-        UpdateReceiptBookDto: {
-            /** @description Comma-separated backoffice ids for cross-system reconciliation */
-            backofficeIds?: string | null;
+            isExport?: Record<string, never> | null;
             /**
              * @description Branch (Sucursal) id
              * @example 1
              */
             branchId?: number | null;
+        };
+        UpdateReceiptBookDto: {
             /**
              * @description Display name for the receipt book.
              * @example Sucursal Centro - WS
              */
             description?: string;
             /**
+             * @description Prefix used to compose receipt numbers (e.g. `0001-00000123`). Unique per organization.
+             * @example 0001
+             */
+            prefix?: string;
+            /**
+             * @description AFIP point of sale (Punto de Venta) number. Unique per organization.
+             * @example 1
+             */
+            pointOfSale?: number;
+            /**
+             * @description Point of sale type (WS = AFIP web service, WS_MOCK = synthetic, EN_LINEA = online, PRE_IMPRESOS = printed).
+             * @example WS
+             * @enum {string|null}
+             */
+            type?: "WS" | "WS_MOCK" | "EN_LINEA" | "PRE_IMPRESOS" | null;
+            /**
              * @description When true, routes to WSFEX (export) instead of WSFE (domestic).
              * @example false
              */
             isExport?: Record<string, never> | null;
+            /**
+             * @description Branch (Sucursal) id
+             * @example 1
+             */
+            branchId?: number | null;
+            /**
+             * @description Last issued Factura A number
+             * @example 100
+             */
+            lastInvoiceA?: number | null;
+            /**
+             * @description Last issued Factura B number
+             * @example 100
+             */
+            lastInvoiceB?: number | null;
+            /**
+             * @description Last issued Factura C number
+             * @example 100
+             */
+            lastInvoiceC?: number | null;
             /**
              * @description Last issued Nota de Crédito A number
              * @example 10
@@ -4725,101 +4388,847 @@ export interface components {
             lastDebitNoteB?: number | null;
             /** @example 5 */
             lastDebitNoteC?: number | null;
+            /** @description Comma-separated backoffice ids for cross-system reconciliation */
+            backofficeIds?: string | null;
+        };
+        NextReceiptNumberResponseDto: {
             /**
-             * @description Last issued Factura A number
-             * @example 100
+             * @description Receipt letter (A, B, C, M, E)
+             * @example A
              */
-            lastInvoiceA?: number | null;
+            letter: string;
             /**
-             * @description Last issued Factura B number
-             * @example 100
+             * @description Formatted receipt number for preview
+             * @example 00001-00000124
              */
-            lastInvoiceB?: number | null;
+            number: string;
             /**
-             * @description Last issued Factura C number
-             * @example 100
+             * @description Next sequential number to assign
+             * @example 124
              */
-            lastInvoiceC?: number | null;
+            nextSequential: number;
+        };
+        ExportColumnResponseDto: {
             /**
-             * @description AFIP point of sale (Punto de Venta) number. Unique per organization.
+             * @description Column key
+             * @example date
+             */
+            key: string;
+            /**
+             * @description Human-readable column header
+             * @example Fecha
+             */
+            header: string;
+        };
+        AsyncExportAcceptedResponseDto: {
+            /** @example Exportación en progreso */
+            message: string;
+            /** @description Bulk-action job id. Poll GET /bulk-actions/:jobId/status for progress. */
+            jobId?: string;
+            /** @description Total rows queued for export. */
+            totalCount?: number;
+        };
+        SalesReceiptCustomerResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Cliente S.A. */
+            businessName: string;
+            /** @example 20123456789 */
+            taxId: string | null;
+            /** @example 1414 */
+            postalCode: string | null;
+            /** @example Buenos Aires */
+            city: string | null;
+            /** @example +541112345678 */
+            phone: string | null;
+            /** @example cliente@example.com */
+            email: string | null;
+            /** @example Av. Corrientes 1234 */
+            address: string | null;
+            /** @example 1 */
+            taxCategoryId: number;
+            /** @example 1 */
+            documentTypeId: number;
+            /** @example true */
+            isActive: boolean;
+        };
+        SalesReceiptUserResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example John Doe */
+            fullName: string | null;
+            /** @example user@example.com */
+            email: string | null;
+        };
+        SalesReceiptCurrencyResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Pesos Argentinos */
+            name: string;
+            /** @example ARS */
+            abbreviation: string;
+            /** @example $ */
+            symbol: string;
+        };
+        SalesReceiptDetailResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 2 */
+            quantity: number;
+            /** @example Product description */
+            description: string;
+            /** @example 100.5 */
+            unitPrice: number;
+            /** @example 201 */
+            total: number;
+            /** @example 1 */
+            productId: number | null;
+            /** @example 2 */
+            taxTypeId: number | null;
+            /** @example 243.21 */
+            totalWithVat: number | null;
+            /** @example 10 */
+            discount: number | null;
+            /** @example 20.1 */
+            discountAmount: number | null;
+        };
+        SalesReceiptObservationResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Free-form observation text */
+            description: string;
+        };
+        SalesReceiptResponseDto: {
+            /** @example 550e8400-e29b-41d4-a716-446655440000 */
+            id: string;
+            /** @example null */
+            peaklyOldId: number | null;
+            /** @example 2026-01-15T12:00:00.000Z */
+            date: string;
+            /** @example 2026-01-30T12:00:00.000Z */
+            dueDate: string;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string;
+            /** @example 00001-00000123 */
+            number: string;
+            /** @example A */
+            letter: string;
+            /**
+             * @description Receipt status: Borrador | Pendiente_Afip | Creada | Anulado
+             * @example Creada
+             */
+            status: string;
+            /**
+             * @description Currency exchange rate
              * @example 1
              */
-            pointOfSale?: number;
+            exchangeRate: number | null;
+            /** @example customer@example.com */
+            collectionEmail: string | null;
+            /** @example 1000 */
+            subtotal: number;
+            /** @example 210 */
+            vat: number;
+            /** @example 0 */
+            vat105: number;
+            /** @example 210 */
+            vat21: number;
+            /** @example 0 */
+            vat27: number;
+            /** @example 0 */
+            exemptAmount: number;
+            /** @example 0 */
+            nonTaxableAmount: number;
+            /** @example 1210 */
+            total: number;
             /**
-             * @description Prefix used to compose receipt numbers (e.g. `0001-00000123`). Unique per organization.
-             * @example 0001
+             * @description Amount already collected against this receipt
+             * @example 0
              */
-            prefix?: string;
+            totalCollected: number;
+            /** @example null */
+            observation: string | null;
             /**
-             * @description Point of sale type (WS = AFIP web service, WS_MOCK = synthetic, EN_LINEA = online, PRE_IMPRESOS = printed).
-             * @example WS
-             * @enum {string|null}
+             * @description AFIP CAE number
+             * @example 75123456789012
              */
-            type?: "WS" | "WS_MOCK" | "EN_LINEA" | "PRE_IMPRESOS" | null;
+            cae: string | null;
+            /** @example 2026-01-25T00:00:00.000Z */
+            caeExpiration: string | null;
+            /** @example 1 */
+            customerId: number;
+            /**
+             * @description Receipt type combo item ID
+             * @example 1
+             */
+            typeId: number;
+            /** @example 1 */
+            saleConditionId: number;
+            /** @example null */
+            journalEntryId: number | null;
+            /** @example 1 */
+            currencyId: number | null;
+            /** @example 1 */
+            userId: number;
+            /** @example 1 */
+            receiptBookId: number;
+            /** @example null */
+            emailSentAt: string | null;
+            /** @example 0 */
+            discount: number | null;
+            /** @example null */
+            preSendEmailAt: string | null;
+            /** @example null */
+            errorMessage: string | null;
+            /** @example null */
+            serviceStartDate: string | null;
+            /** @example null */
+            serviceEndDate: string | null;
+            /** @example 2026-01-15T12:00:00.000Z */
+            updatedAt: string | null;
+            /**
+             * @description External provider identifier (unique per organization).
+             * @example ext-receipt-123
+             */
+            providerId: string | null;
+            /** @example null */
+            tracking: string | null;
+            /** @example 0 */
+            vatPerceptions: number | null;
+            /** @example 0 */
+            grossIncomePerceptions: number | null;
+            /** @example 0 */
+            totalDiscount: number | null;
+            /** @example 0 */
+            discountAmount: number | null;
+            /** @example 0 */
+            taxableAmount105: number | null;
+            /** @example 1000 */
+            taxableAmount21: number | null;
+            /** @example 0 */
+            taxableAmount27: number | null;
+            /** @example 1000 */
+            subtotalWithoutDiscount: number | null;
+            /** @example 210 */
+            vatWithoutDiscount: number | null;
+            /**
+             * @description Original receipt UUID for credit/debit notes
+             * @example null
+             */
+            associatedReceiptId: string | null;
+            /** @example null */
+            realTotal: number | null;
+            /** @example 0 */
+            grossIncomePerceptionsBsas: number | null;
+            /** @example 0 */
+            grossIncomePerceptionsCaba: number | null;
+            /**
+             * @description WSFEX export-specific data
+             * @example {
+             *       "incotermsCode": "FOB",
+             *       "incotermsDescription": "Free on Board"
+             *     }
+             */
+            exportData: {
+                [key: string]: unknown;
+            } | null;
+            customer: components["schemas"]["SalesReceiptCustomerResponseDto"] | null;
+            type: components["schemas"]["ComboItemResponseDto"] | null;
+            saleCondition: components["schemas"]["ComboItemResponseDto"] | null;
+            user: components["schemas"]["SalesReceiptUserResponseDto"] | null;
+            currency: components["schemas"]["SalesReceiptCurrencyResponseDto"] | null;
+            details: components["schemas"]["SalesReceiptDetailResponseDto"][];
+            observations: components["schemas"]["SalesReceiptObservationResponseDto"][];
         };
-        UpdateRetentionDto: {
+        SalesReceiptPageResponseDto: {
+            data: components["schemas"]["SalesReceiptResponseDto"][];
             /**
-             * @description Short abbreviation
-             * @example RG-IIBB
+             * @description Opaque cursor for the next page (null if no more pages)
+             * @example eyJpZCI6MTIzfQ==
              */
-            abbreviation?: string;
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        VoidSalesReceiptDto: {
             /**
-             * @description Account id used for the retention
-             * @example 100
+             * @description Auto-create a compensating credit note for the full amount (default: true)
+             * @default true
              */
-            accountId?: number;
+            createCreditNote: boolean;
+        };
+        VoidSalesReceiptResponseDto: {
+            /** @example 550e8400-e29b-41d4-a716-446655440000 */
+            id: string;
+            /** @example null */
+            peaklyOldId: number | null;
+            /** @example 2026-01-15T12:00:00.000Z */
+            date: string;
+            /** @example 2026-01-30T12:00:00.000Z */
+            dueDate: string;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string;
+            /** @example 00001-00000123 */
+            number: string;
+            /** @example A */
+            letter: string;
             /**
-             * @description Deposit account id
-             * @example 200
+             * @description Receipt status: Borrador | Pendiente_Afip | Creada | Anulado
+             * @example Creada
              */
-            depositAccountId?: number;
+            status: string;
             /**
-             * @description Retention description
-             * @example Retención IIBB CABA
+             * @description Currency exchange rate
+             * @example 1
+             */
+            exchangeRate: number | null;
+            /** @example customer@example.com */
+            collectionEmail: string | null;
+            /** @example 1000 */
+            subtotal: number;
+            /** @example 210 */
+            vat: number;
+            /** @example 0 */
+            vat105: number;
+            /** @example 210 */
+            vat21: number;
+            /** @example 0 */
+            vat27: number;
+            /** @example 0 */
+            exemptAmount: number;
+            /** @example 0 */
+            nonTaxableAmount: number;
+            /** @example 1210 */
+            total: number;
+            /**
+             * @description Amount already collected against this receipt
+             * @example 0
+             */
+            totalCollected: number;
+            /** @example null */
+            observation: string | null;
+            /**
+             * @description AFIP CAE number
+             * @example 75123456789012
+             */
+            cae: string | null;
+            /** @example 2026-01-25T00:00:00.000Z */
+            caeExpiration: string | null;
+            /** @example 1 */
+            customerId: number;
+            /**
+             * @description Receipt type combo item ID
+             * @example 1
+             */
+            typeId: number;
+            /** @example 1 */
+            saleConditionId: number;
+            /** @example null */
+            journalEntryId: number | null;
+            /** @example 1 */
+            currencyId: number | null;
+            /** @example 1 */
+            userId: number;
+            /** @example 1 */
+            receiptBookId: number;
+            /** @example null */
+            emailSentAt: string | null;
+            /** @example 0 */
+            discount: number | null;
+            /** @example null */
+            preSendEmailAt: string | null;
+            /** @example null */
+            errorMessage: string | null;
+            /** @example null */
+            serviceStartDate: string | null;
+            /** @example null */
+            serviceEndDate: string | null;
+            /** @example 2026-01-15T12:00:00.000Z */
+            updatedAt: string | null;
+            /**
+             * @description External provider identifier (unique per organization).
+             * @example ext-receipt-123
+             */
+            providerId: string | null;
+            /** @example null */
+            tracking: string | null;
+            /** @example 0 */
+            vatPerceptions: number | null;
+            /** @example 0 */
+            grossIncomePerceptions: number | null;
+            /** @example 0 */
+            totalDiscount: number | null;
+            /** @example 0 */
+            discountAmount: number | null;
+            /** @example 0 */
+            taxableAmount105: number | null;
+            /** @example 1000 */
+            taxableAmount21: number | null;
+            /** @example 0 */
+            taxableAmount27: number | null;
+            /** @example 1000 */
+            subtotalWithoutDiscount: number | null;
+            /** @example 210 */
+            vatWithoutDiscount: number | null;
+            /**
+             * @description Original receipt UUID for credit/debit notes
+             * @example null
+             */
+            associatedReceiptId: string | null;
+            /** @example null */
+            realTotal: number | null;
+            /** @example 0 */
+            grossIncomePerceptionsBsas: number | null;
+            /** @example 0 */
+            grossIncomePerceptionsCaba: number | null;
+            /**
+             * @description WSFEX export-specific data
+             * @example {
+             *       "incotermsCode": "FOB",
+             *       "incotermsDescription": "Free on Board"
+             *     }
+             */
+            exportData: {
+                [key: string]: unknown;
+            } | null;
+            customer: components["schemas"]["SalesReceiptCustomerResponseDto"] | null;
+            type: components["schemas"]["ComboItemResponseDto"] | null;
+            saleCondition: components["schemas"]["ComboItemResponseDto"] | null;
+            user: components["schemas"]["SalesReceiptUserResponseDto"] | null;
+            currency: components["schemas"]["SalesReceiptCurrencyResponseDto"] | null;
+            details: components["schemas"]["SalesReceiptDetailResponseDto"][];
+            observations: components["schemas"]["SalesReceiptObservationResponseDto"][];
+            /**
+             * @description ID of the auto-generated credit note (null if pre-impreso receipt was voided directly)
+             * @example 550e8400-e29b-41d4-a716-446655440000
+             */
+            creditNoteId: string | null;
+        };
+        ImputationItemDto: {
+            /**
+             * @description UUID of the invoice/debit note to apply the credit note against
+             * @example 550e8400-e29b-41d4-a716-446655440000
+             */
+            targetReceiptId: string;
+            /**
+             * @description Amount of the credit note to apply against this receipt
+             * @example 1500.5
+             */
+            amount: number;
+        };
+        CreateImputationsDto: {
+            /**
+             * @description UUID of the credit note being applied
+             * @example 550e8400-e29b-41d4-a716-446655440000
+             */
+            creditNoteId: string;
+            items: components["schemas"]["ImputationItemDto"][];
+        };
+        ImputationReceiptRefDto: {
+            /** @example 550e8400-e29b-41d4-a716-446655440000 */
+            id: string;
+            /** @example 0001-00001234 */
+            number: string;
+            /** @example A */
+            letter: string;
+            /** @example Creada */
+            status: string;
+            /** @example 12100.5 */
+            total: number;
+        };
+        ImputationResponseDto: {
+            /** @example 550e8400-e29b-41d4-a716-446655440000 */
+            id: string;
+            /** @example 2026-07-02T12:00:00.000Z */
+            date: string;
+            /** @example 1500.5 */
+            amount: number;
+            creditNote: components["schemas"]["ImputationReceiptRefDto"] | null;
+            targetReceipt: components["schemas"]["ImputationReceiptRefDto"] | null;
+        };
+        CreateImputationsResponseDto: {
+            imputations: components["schemas"]["ImputationResponseDto"][];
+        };
+        AuthorizeAfipResponseDto: {
+            /**
+             * @description Whether AFIP returned a valid CAE
+             * @example true
+             */
+            success: boolean;
+            /** @example 75123456789012 */
+            cae?: string;
+            /** @example 2026-01-25T00:00:00.000Z */
+            caeExpiration?: string;
+            /**
+             * @description AFIP error message when success is false
+             * @example Comprobante rechazado por AFIP
+             */
+            error?: string;
+        };
+        SendEmailDto: {
+            /** @description Override recipient email address */
+            email?: string;
+            /** @description Override email subject */
+            subject?: string;
+        };
+        SendEmailResponseDto: {
+            /** @example Email sending triggered */
+            message: string;
+            /** @example 550e8400-e29b-41d4-a716-446655440000 */
+            receiptId: string;
+            /**
+             * @description Trigger.dev run identifier
+             * @example run_abc123
+             */
+            triggerId: string;
+        };
+        ResendEmailResponseDto: {
+            /** @example Email reenviado */
+            message: string;
+            /** @example 550e8400-e29b-41d4-a716-446655440000 */
+            receiptId: string;
+        };
+        TrackingEventResponseDto: {
+            /** @example 2026-01-15T12:00:00.000Z */
+            viewedAt: string;
+            /** @example 200.123.45.67 */
+            ipAddress: string | null;
+            /** @example Mozilla/5.0 (...) */
+            userAgent: string | null;
+        };
+        TrackingEventsResponseDto: {
+            /**
+             * @description Whether email tracking is enabled for this organization
+             * @example true
+             */
+            trackingEnabled: boolean;
+            events: components["schemas"]["TrackingEventResponseDto"][];
+        };
+        BulkEmailDto: {
+            /**
+             * @description Array of sales receipt UUIDs to email (1–200)
+             * @example [
+             *       "uuid-1",
+             *       "uuid-2"
+             *     ]
+             */
+            receiptIds: string[];
+        };
+        BulkActionJobCreatedResponseDto: {
+            /**
+             * @description Bulk action job UUID
+             * @example 550e8400-e29b-41d4-a716-446655440000
+             */
+            jobId: string;
+            /**
+             * @description Number of receipts queued in the job
+             * @example 25
+             */
+            totalCount: number;
+        };
+        BulkPdfDto: {
+            /**
+             * @description Array of sales receipt UUIDs to generate PDFs for (1–100)
+             * @example [
+             *       "uuid-1",
+             *       "uuid-2"
+             *     ]
+             */
+            receiptIds: string[];
+        };
+        BulkVoidDto: {
+            /**
+             * @description Array of sales receipt UUIDs to void (1–50)
+             * @example [
+             *       "uuid-1",
+             *       "uuid-2"
+             *     ]
+             */
+            receiptIds: string[];
+        };
+        BulkReconcileDto: {
+            /**
+             * @description Array of sales receipt UUIDs to mark as fully collected (1–200)
+             * @example [
+             *       "uuid-1",
+             *       "uuid-2"
+             *     ]
+             */
+            receiptIds: string[];
+        };
+        BulkReconcileResponseDto: {
+            /**
+             * @description Number of receipts marked as fully collected
+             * @example 12
+             */
+            updatedCount: number;
+        };
+        BulkActionStatusResponseDto: {
+            /** @example 550e8400-e29b-41d4-a716-446655440000 */
+            jobId: string;
+            /**
+             * @description bulk_email | bulk_pdf | bulk_void
+             * @example bulk_email
+             */
+            type: string;
+            /**
+             * @description pending | in_progress | completed | failed
+             * @example in_progress
+             */
+            status: string;
+            /** @example 25 */
+            totalCount: number;
+            /** @example 10 */
+            doneCount: number;
+            /** @example 0 */
+            skippedCount: number;
+            /** @example 0 */
+            failedCount: number;
+            /**
+             * @description Per-receipt status keyed by receipt UUID
+             * @example {
+             *       "uuid-1": {
+             *         "status": "done"
+             *       },
+             *       "uuid-2": {
+             *         "status": "pending"
+             *       }
+             *     }
+             */
+            receiptStatuses: {
+                [key: string]: components["schemas"]["BulkActionReceiptStatusResponseDto"];
+            };
+            /**
+             * @description Download URL for bulk PDF jobs (null until completed)
+             * @example null
+             */
+            downloadUrl: string | null;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string;
+            /** @example null */
+            completedAt: string | null;
+        };
+        CreateSalesReceiptDetailDto: {
+            /**
+             * @description Quantity
+             * @example 2
+             */
+            quantity: number;
+            /**
+             * @description Line description. Optional when productId is provided (the product's description is used). When productId is omitted, this is required: the server matches an existing product by exact (case-insensitive) description, or creates a new one.
+             * @example Product description
              */
             description?: string;
             /**
-             * @description Whether the retention is active. Defaults to true on create; toggle via PATCH or DELETE.
-             * @default true
-             * @example true
+             * @description Unit price
+             * @example 100.5
              */
-            isActive: boolean;
+            unitPrice: number;
             /**
-             * @description Whether the retention is treated as a value (vs percentage)
-             * @example false
-             */
-            isValue?: boolean;
-            /**
-             * @description Jurisdiction (location) id
+             * @description Product ID. Optional — when omitted and a description is provided, the server matches by description or creates the product on the fly.
              * @example 1
              */
-            jurisdictionId?: number;
+            productId?: number | null;
+            /**
+             * @description Tax type (combo item) ID
+             * @example 1
+             */
+            taxTypeId?: number | null;
+            /**
+             * @description Line discount percent (integer, 0–100). Mutually exclusive with `discountAmount` on the same line. Persisted as INT, so fractional values would round and produce different totals on confirm — pass `discountAmount` for fractional precision.
+             * @example 10
+             */
+            discount?: number | null;
+            /**
+             * @description Line discount absolute amount (ARS). Mutually exclusive with `discount` (%) on the same line.
+             * @example 50
+             */
+            discountAmount?: number | null;
         };
-        UpdateSalesReceiptDto: {
-            /** @example customer@example.com */
+        CreateSalesReceiptObservationDto: {
+            /**
+             * @description Observation description
+             * @example Optional observation text
+             */
+            description: string;
+        };
+        CreateSalesReceiptDto: {
+            /**
+             * @description Customer ID. Optional — when omitted and `customerTaxId` is provided, the server matches an existing customer by tax id in this organization, or creates one on the fly using ARCA padrón data.
+             * @example 1
+             */
+            customerId?: number;
+            /**
+             * @description Customer tax id (CUIT, with or without dashes). Optional when `customerId` is provided. When `customerId` is omitted, the server matches an existing active customer in this organization by `taxId`, or creates a new one using ARCA padrón data for businessName, taxCategoryId, and address. Currently CUIT-only (11 digits + AFIP check digit); future doc types (DNI, etc.) will be accepted on the same field.
+             * @example 30712345670
+             */
+            customerTaxId?: string;
+            /**
+             * @description Receipt book ID
+             * @example 1
+             */
+            receiptBookId: number;
+            /**
+             * @description Sale condition (combo item). Optional — defaults to the 'Contado' (cash) condition. Fetch valid ids via `GET /combos/CondicionCompraVenta/items`.
+             * @example 1
+             */
+            saleConditionId?: number;
+            /**
+             * @description Receipt date (default: now)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date?: string;
+            /**
+             * @description Due date. Optional — defaults to the receipt date plus the sale condition's payment days (Contado → same day, 30 días → date + 30, etc.).
+             * @example 2026-01-30T12:00:00Z
+             */
+            dueDate?: string;
+            /**
+             * @description Service period start date (required for service organizations)
+             * @example 2026-01-01T12:00:00Z
+             */
+            serviceStartDate?: string;
+            /**
+             * @description Service period end date (required for service organizations)
+             * @example 2026-01-31T12:00:00Z
+             */
+            serviceEndDate?: string;
+            /** @example General observation */
+            observation?: string | null;
+            /**
+             * @description Semicolon-separated emails for collection
+             * @example customer@example.com
+             */
             collectionEmail?: string | null;
             /**
-             * @description Currency ID (draft only)
+             * @description Currency ID
              * @example 1
              */
             currencyId?: number | null;
+            /**
+             * @description Exchange rate
+             * @example 1
+             */
+            exchangeRate?: number | null;
+            /**
+             * @description Receipt type group (default: factura)
+             * @example factura
+             * @enum {string}
+             */
+            receiptType?: "factura" | "nota_credito" | "nota_debito";
+            /**
+             * @description Create as draft (BORRADOR) without triggering AFIP
+             * @example false
+             */
+            isDraft?: boolean;
+            /**
+             * @description External provider identifier (e.g. your own ID for this receipt). Unique per organization — a duplicate returns PROVIDER_ID_DUPLICATE. For safe retries, prefer the `Idempotency-Key` header instead.
+             * @example ext-receipt-123
+             */
+            providerId?: Record<string, never> | null;
+            /**
+             * @description For credit/debit notes: UUID of the original sales receipt this NC/ND is applied against. Required for FCE NC/ND. The associated receipt must belong to the same customer.
+             * @example null
+             */
+            associatedReceiptId?: string | null;
+            /**
+             * @description Export-specific data for WSFEX invoices (e.g. incoterms)
+             * @example {
+             *       "incotermsCode": "FOB",
+             *       "incotermsDescription": "Free on Board"
+             *     }
+             */
+            exportData?: Record<string, never>;
+            /**
+             * @description Header-level discount percent (0–100). Mutually exclusive with `discountAmount`.
+             * @example 10
+             */
+            discount?: number | null;
+            /**
+             * @description Header-level discount absolute amount (ARS). Mutually exclusive with `discount` (%).
+             * @example 250
+             */
+            discountAmount?: number | null;
+            /**
+             * @description VAT perception amount (ARS). Added to the receipt total. When omitted on receipts where the org is `agente de recaudación` and the customer has a CUIT, the server attempts to auto-populate from the taxpayer registry.
+             * @example 105
+             */
+            vatPerceptions?: number | null;
+            /**
+             * @description Total IIBB (gross income) perception amount (ARS). Sum of jurisdictional buckets — Bsas + Caba — but stored separately as well. Added to the receipt total.
+             * @example 75
+             */
+            grossIncomePerceptions?: number | null;
+            /**
+             * @description IIBB Buenos Aires perception amount (ARS).
+             * @example 50
+             */
+            grossIncomePerceptionsBsas?: number | null;
+            /**
+             * @description IIBB CABA perception amount (ARS).
+             * @example 25
+             */
+            grossIncomePerceptionsCaba?: number | null;
+            /** @description Receipt detail lines (required for non-draft) */
+            details?: components["schemas"]["CreateSalesReceiptDetailDto"][];
+            /** @description Observations */
+            observations?: components["schemas"]["CreateSalesReceiptObservationDto"][];
+        };
+        UpdateSalesReceiptDto: {
+            /** @example General observation */
+            observation?: string | null;
+            /** @example customer@example.com */
+            collectionEmail?: string | null;
+            /**
+             * @description External provider identifier (e.g. your own ID for this receipt). Unique per organization — a duplicate returns PROVIDER_ID_DUPLICATE. For safe retries, prefer the `Idempotency-Key` header instead.
+             * @example ext-receipt-123
+             */
+            providerId?: Record<string, never> | null;
             /**
              * @description Customer ID (draft only)
              * @example 1
              */
             customerId?: number;
             /**
+             * @description Customer tax id (CUIT, with or without dashes). Optional alternative to `customerId` (draft only). When provided without `customerId`, the server matches an existing active customer in this organization by `taxId`, or creates one using ARCA padrón data. Currently CUIT-only.
+             * @example 30712345670
+             */
+            customerTaxId?: string;
+            /**
+             * @description Receipt book ID (draft only)
+             * @example 1
+             */
+            receiptBookId?: number;
+            /**
+             * @description Sale condition ID (draft only)
+             * @example 1
+             */
+            saleConditionId?: number;
+            /**
              * @description Receipt date (draft only)
              * @example 2026-01-15T12:00:00Z
              */
             date?: string;
-            /** @description Replace all detail lines atomically (draft only) */
-            details?: components["schemas"]["CreateSalesReceiptDetailDto"][];
             /**
              * @description Due date (draft only)
              * @example 2026-01-30T12:00:00Z
              */
             dueDate?: string;
+            /**
+             * @description Service period start date (draft only)
+             * @example 2026-01-01T12:00:00Z
+             */
+            serviceStartDate?: string;
+            /**
+             * @description Service period end date (draft only)
+             * @example 2026-01-31T12:00:00Z
+             */
+            serviceEndDate?: string;
+            /**
+             * @description Currency ID (draft only)
+             * @example 1
+             */
+            currencyId?: number | null;
             /**
              * @description Exchange rate (draft only)
              * @example 1
@@ -4833,91 +5242,1622 @@ export interface components {
              *     }
              */
             exportData?: Record<string, never>;
-            /** @example General observation */
-            observation?: string | null;
+            /**
+             * @description Receipt type group — recomputes typeId based on current letter (draft only)
+             * @example factura
+             * @enum {string}
+             */
+            receiptType?: "factura" | "nota_credito" | "nota_debito";
+            /**
+             * @description For credit/debit notes only: UUID of the original sales receipt this NC/ND is applied against. Pass null to clear. Validated on confirm.
+             * @example null
+             */
+            associatedReceiptId?: string | null;
+            /**
+             * @description Header-level discount percent (0–100). Draft only. Mutually exclusive with `discountAmount`.
+             * @example 10
+             */
+            discount?: number | null;
+            /**
+             * @description Header-level discount absolute amount (ARS). Draft only. Mutually exclusive with `discount` (%).
+             * @example 250
+             */
+            discountAmount?: number | null;
+            /**
+             * @description VAT perception amount (ARS). Draft only.
+             * @example 105
+             */
+            vatPerceptions?: number | null;
+            /**
+             * @description Total IIBB perception amount (ARS). Draft only.
+             * @example 75
+             */
+            grossIncomePerceptions?: number | null;
+            /**
+             * @description IIBB Buenos Aires perception amount (ARS). Draft only.
+             * @example 50
+             */
+            grossIncomePerceptionsBsas?: number | null;
+            /**
+             * @description IIBB CABA perception amount (ARS). Draft only.
+             * @example 25
+             */
+            grossIncomePerceptionsCaba?: number | null;
+            /** @description Replace all detail lines atomically (draft only) */
+            details?: components["schemas"]["CreateSalesReceiptDetailDto"][];
             /** @description Replace all observations atomically (draft only) */
             observations?: components["schemas"]["CreateSalesReceiptObservationDto"][];
-            /**
-             * @description External provider identifier. Unique per organization; acts as an idempotency key.
-             * @example ext-receipt-123
-             */
-            providerId?: Record<string, never> | null;
-            /**
-             * @description Receipt book ID (draft only)
-             * @example 1
-             */
-            receiptBookId?: number;
-            /**
-             * @description Sale condition ID (draft only)
-             * @example 1
-             */
-            saleConditionId?: number;
-            /**
-             * @description Service period end date (draft only)
-             * @example 2026-01-31T12:00:00Z
-             */
-            serviceEndDate?: string;
-            /**
-             * @description Service period start date (draft only)
-             * @example 2026-01-01T12:00:00Z
-             */
-            serviceStartDate?: string;
         };
-        UpdateSupplierDto: {
-            /** @example Banco Galicia */
-            accountBank?: string | null;
-            /** @example 0000123456 */
-            accountCode?: string | null;
-            /** @example CHECKING */
-            accountType?: string | null;
-            /** @example Av. Corrientes 1234 */
-            address?: string | null;
+        AddManualStockChangeDto: {
+            /** @description Quantity adjustment (positive or negative) */
+            quantity: number;
+            /** @description Reason for the adjustment */
+            text?: string;
+        };
+        StockChangeResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string;
             /**
-             * @description Supplier's legal/business name. Required unless a valid `taxId` (CUIT) is provided — in that case it is auto-filled from ARCA's padrón.
-             * @example Distribuidora Norte SRL
+             * @description Quantity adjustment (positive for additions, negative for removals)
+             * @example -2
              */
-            businessName?: string;
+            quantity: number;
+            /**
+             * @description Stock level after this change
+             * @example 48
+             */
+            newBalance: number;
+            /**
+             * @description Source of the change: SALE | PURCHASE | MANUAL
+             * @example MANUAL
+             */
+            type: string;
+            /** @example Manual adjustment after stocktake */
+            text: string | null;
+            /** @example 1 */
+            productId: number;
+            /**
+             * @description Product description (joined from product table)
+             * @example Camiseta talle M
+             */
+            productDescription: string | null;
+            /**
+             * @description User UUID who triggered the change (null for system changes)
+             * @example auth0|abc123
+             */
+            userId: string | null;
+        };
+        StockHistoryPageResponseDto: {
+            items: components["schemas"]["StockChangeResponseDto"][];
+            /**
+             * @description Total number of stock changes for this product
+             * @example 145
+             */
+            total: number;
+        };
+        JournalAccountResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 1.1.01.001 */
+            code: string;
+            /** @example Caja Pesos */
+            name: string;
+            /**
+             * @description 1=Activo, 2=Pasivo, 3=PN, 4=Resultado+, 5=Resultado-
+             * @example 1
+             */
+            category: number;
+            /** @example 1 */
+            current: number;
+            /** @example 1 */
+            subcategory: number;
+            /** @example 1 */
+            number: number;
+        };
+        CreateJournalAccountDto: {
+            /** @description Account code (e.g. 1.1.01.001) */
+            code: string;
+            /** @description Account name */
+            name: string;
+            /** @description Category (1=Activo, 2=Pasivo, 3=PN, 4=Resultado+, 5=Resultado-) */
+            category: number;
+            current: number;
+            subcategory: number;
+            number: number;
+        };
+        UpdateJournalAccountDto: {
+            code?: string;
+            name?: string;
+            category?: number;
+            current?: number;
+            subcategory?: number;
+            number?: number;
+        };
+        JournalAccountDeletedResponseDto: {
+            /** @example true */
+            deleted: boolean;
+        };
+        FiscalYearResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 2026-01-01T00:00:00.000Z */
+            startDate: string;
+            /** @example 2026-12-31T23:59:59.000Z */
+            endDate: string;
+            /** @example Ejercicio 2026 */
+            name: string;
+            /** @example true */
+            isActive: boolean;
+            /** @example false */
+            isClosed: boolean;
+        };
+        CreateFiscalYearDto: {
+            /** @description Start date (ISO string) */
+            startDate: string;
+            /** @description End date (ISO string) */
+            endDate: string;
+            name: string;
+        };
+        UpdateFiscalYearDto: {
+            startDate?: string;
+            endDate?: string;
+            name?: string;
+            isActive?: boolean;
+        };
+        JournalEntryItemResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 1000 */
+            debit: number;
+            /** @example 0 */
+            credit: number;
+            /** @example null */
+            ownCheckId: number | null;
+            /** @example 1 */
+            journalEntryId: number;
+            /** @example 1 */
+            accountId: number;
+        };
+        JournalEntryResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string;
+            /** @example 2026-01-15T00:00:00.000Z */
+            date: string;
+            /** @example Cobranza factura 00001 */
+            description: string;
+            /**
+             * @description ventas | compras | tesoreria | manual
+             * @example ventas
+             */
+            module: string;
+            /** @example false */
+            isManual: boolean | null;
+            /** @example INVOICE */
+            operationType: string | null;
+            /** @example 123 */
+            associatedReceipt: number | null;
+            /** @example 1 */
+            userId: number;
+            /** @example 1 */
+            fiscalYearId: number;
+            items?: components["schemas"]["JournalEntryItemResponseDto"][];
+        };
+        JournalEntryListResponseDto: {
+            items: components["schemas"]["JournalEntryResponseDto"][];
+            /** @example 145 */
+            total: number;
+        };
+        ProfitAndLossRowResponseDto: {
+            /** @example 1 */
+            accountId: number;
+            /** @example 4.1.01.001 */
+            code: string;
+            /** @example Ventas */
+            name: string;
+            /** @example 100000 */
+            amount: number;
+        };
+        ProfitAndLossResponseDto: {
+            income: components["schemas"]["ProfitAndLossRowResponseDto"][];
+            expenses: components["schemas"]["ProfitAndLossRowResponseDto"][];
+            /** @example 100000 */
+            totalIncome: number;
+            /** @example 60000 */
+            totalExpenses: number;
+            /** @example 40000 */
+            netResult: number;
+        };
+        BalanceSheetRowResponseDto: {
+            /** @example 1 */
+            accountId: number;
+            /** @example 1.1.01.001 */
+            code: string;
+            /** @example Caja Pesos */
+            name: string;
+            /** @example 50000 */
+            balance: number;
+        };
+        BalanceSheetResponseDto: {
+            assets: components["schemas"]["BalanceSheetRowResponseDto"][];
+            liabilities: components["schemas"]["BalanceSheetRowResponseDto"][];
+            equity: components["schemas"]["BalanceSheetRowResponseDto"][];
+            /** @example 250000 */
+            totalAssets: number;
+            /** @example 150000 */
+            totalLiabilities: number;
+            /** @example 100000 */
+            totalEquity: number;
+        };
+        JournalEntryItemDto: {
+            /** @description Journal account ID */
+            accountId: number;
+            /** @description Debit amount */
+            debit: number;
+            /** @description Credit amount */
+            credit: number;
+            /** @description Own check ID (optional) */
+            ownCheckId?: number;
+        };
+        CreateJournalEntryDto: {
+            /** @description Entry date (ISO string) */
+            date: string;
+            /** @description Entry description */
+            description: string;
+            /** @description Fiscal year ID */
+            fiscalYearId: number;
+            /** @description Debit/credit line items */
+            items: components["schemas"]["JournalEntryItemDto"][];
+        };
+        JournalEntryDeletedResponseDto: {
+            /** @example true */
+            deleted: boolean;
+        };
+        AccountingLockResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 2026-01-01T00:00:00.000Z */
+            startDate: string;
+            /** @example 2026-03-31T23:59:59.000Z */
+            endDate: string;
+            /** @example Q1 2026 Cierre */
+            name: string;
+            /** @example true */
+            isActive: boolean;
+            /** @example 1 */
+            fiscalYearId: number;
+        };
+        CreateAccountingLockDto: {
+            /** @description Start date (ISO string) */
+            startDate: string;
+            /** @description End date (ISO string) */
+            endDate: string;
+            /** @description Lock name */
+            name: string;
+            /** @description Fiscal year ID */
+            fiscalYearId: number;
+        };
+        UpdateAccountingLockDto: {
+            startDate?: string;
+            endDate?: string;
+            name?: string;
+            isActive?: boolean;
+        };
+        AccountingLockDeletedResponseDto: {
+            /** @example true */
+            deleted: boolean;
+        };
+        GeneralLedgerRowResponseDto: {
+            /** @example 1.1.01.001 */
+            accountCode: string;
+            /** @example Caja Pesos */
+            accountName: string;
+            /** @example 2026-01-15 */
+            date: string;
+            /** @example Cobranza factura 00001 */
+            description: string;
+            /** @example 1000 */
+            debit: number;
+            /** @example 0 */
+            credit: number;
+            /**
+             * @description Running balance after this movement
+             * @example 50000
+             */
+            balance: number;
+        };
+        GeneralLedgerPageResponseDto: {
+            data: components["schemas"]["GeneralLedgerRowResponseDto"][];
+            /** @example 145 */
+            total: number;
+            /** @example 1 */
+            page: number;
+            /** @example 50 */
+            pageSize: number;
+        };
+        DailyBookRowResponseDto: {
+            /** @example 1 */
+            entryId: number;
+            /** @example 2026-01-15 */
+            date: string;
+            /** @example Cobranza factura 00001 */
+            description: string;
+            /** @example 1.1.01.001 */
+            accountCode: string;
+            /** @example Caja Pesos */
+            accountName: string;
+            /** @example 1000 */
+            debit: number;
+            /** @example 0 */
+            credit: number;
+        };
+        DailyBookPageResponseDto: {
+            data: components["schemas"]["DailyBookRowResponseDto"][];
+            /** @example 145 */
+            total: number;
+            /** @example 1 */
+            page: number;
+            /** @example 50 */
+            pageSize: number;
+        };
+        TrialBalanceRowResponseDto: {
+            /** @example 1.1.01.001 */
+            accountCode: string;
+            /** @example Caja Pesos */
+            accountName: string;
+            /**
+             * @description Activo | Pasivo | Patrimonio Neto | Resultado Positivo | Resultado Negativo
+             * @example Activo
+             */
+            category: string;
+            /** @example 100000 */
+            totalDebit: number;
+            /** @example 50000 */
+            totalCredit: number;
+            /** @example 50000 */
+            balance: number;
+        };
+        TrialBalancePageResponseDto: {
+            data: components["schemas"]["TrialBalanceRowResponseDto"][];
+            /** @example 145 */
+            total: number;
+            /** @example 1 */
+            page: number;
+            /** @example 50 */
+            pageSize: number;
+        };
+        SalesReceiptCreatorResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example John Doe */
+            fullName: string | null;
+        };
+        DashboardKpisResponseDto: {
+            /**
+             * @description Total invoiced amount in the date range
+             * @example 1500000
+             */
+            totalInvoiced: number;
+            /**
+             * @description Receipt count in the date range
+             * @example 145
+             */
+            receiptCount: number;
+            /**
+             * @description Pending collection amount
+             * @example 250000
+             */
+            pendingCollection: number;
+            /**
+             * @description Total invoiced in previous comparable period
+             * @example 1200000
+             */
+            previousPeriodTotal: number;
+            /**
+             * @description Receipt count in previous period (only present in summary_only mode)
+             * @example 130
+             */
+            previousPeriodCount?: number;
+        };
+        StatusBreakdownRowResponseDto: {
+            /** @example Creada */
+            status: string;
+            /** @example 130 */
+            count: number;
+            /** @example 1450000 */
+            total: number;
+        };
+        TimeSeriesRowResponseDto: {
+            /**
+             * @description Period start (YYYY-MM-DD or YYYY-MM)
+             * @example 2026-01-15
+             */
+            period: string;
+            /** @example 12 */
+            count: number;
+            /** @example 145000 */
+            total: number;
+        };
+        TopCustomerRowResponseDto: {
+            /** @example 1 */
+            customerId: number;
+            /** @example Cliente S.A. */
+            customerName: string;
+            /** @example 25 */
+            receiptCount: number;
+            /** @example 350000 */
+            total: number;
+        };
+        RecentReceiptRowResponseDto: {
+            /** @example 550e8400-e29b-41d4-a716-446655440000 */
+            id: string;
+            /** @example 2026-01-15 */
+            date: string;
+            /** @example 00001-00000123 */
+            number: string;
+            /** @example Cliente S.A. */
+            customerName: string;
+            /** @example 1210 */
+            total: number;
+            /** @example Creada */
+            status: string;
+            /** @example A */
+            letter: string;
+        };
+        ReceiptBookCountRowResponseDto: {
+            /** @example 1 */
+            receiptBookId: number;
+            /** @example Talonario A */
+            receiptBookName: string;
+            /** @example 145 */
+            count: number;
+        };
+        DashboardStatsResponseDto: {
+            kpis: components["schemas"]["DashboardKpisResponseDto"];
+            statusBreakdown: components["schemas"]["StatusBreakdownRowResponseDto"][];
+            /** @description Aggregated by group_by parameter (day | week | month) */
+            timeSeries: components["schemas"]["TimeSeriesRowResponseDto"][];
+            /** @description Always aggregated by month */
+            monthlySeries: components["schemas"]["TimeSeriesRowResponseDto"][];
+            topCustomers: components["schemas"]["TopCustomerRowResponseDto"][];
+            /** @example 14500000 */
+            trailing12MonthsTotal: number;
+            recentReceipts: components["schemas"]["RecentReceiptRowResponseDto"][];
+            /** @example 1100000 */
+            sameMonthLastYearTotal: number;
+            countByReceiptBook: components["schemas"]["ReceiptBookCountRowResponseDto"][];
+        };
+        VatSalesBookRowResponseDto: {
+            /** @example 2026-01-15 */
+            fecha: string;
+            /** @example Cliente S.A. */
+            razonSocial: string;
+            /** @example 20123456789 */
+            cuit: string;
+            /** @example Factura A */
+            comprobante: string;
+            /** @example A 00001-00000123 */
+            letraNumero: string;
+            /** @example 0 */
+            importeExento: number;
+            /** @example 0 */
+            importeNoGravado: number;
+            /** @example 1000 */
+            importeGravado: number;
+            /** @example 0 */
+            importeIVA105: number;
+            /** @example 210 */
+            importeIVA21: number;
+            /** @example 0 */
+            importeIVA27: number;
+            /** @example 0 */
+            percepcionIIBB: number;
+            /** @example 0 */
+            percepcionIVA: number;
+            /** @example 210 */
+            iva: number;
+            /** @example 1210 */
+            total: number;
+            /** @example 1000 */
+            subTotal: number;
+            /** @example null */
+            observacion: string | null;
+            /** @example Creada */
+            estado: string;
+        };
+        VatSalesBookPageResponseDto: {
+            data: components["schemas"]["VatSalesBookRowResponseDto"][];
+            /** @example eyJpZCI6MTIzfQ== */
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        SalesByProductRowResponseDto: {
+            /** @example 1 */
+            idArticulo: number;
+            /** @example Camiseta Talle M */
+            descripcion: string;
+            /** @example 25 */
+            cantidad: number;
+            /** @example 12500 */
+            total: number;
+            /**
+             * @description Month number (1–12)
+             * @example 1
+             */
+            mes: number;
+            /** @example 2026 */
+            year: number;
+        };
+        SalesByProductPageResponseDto: {
+            data: components["schemas"]["SalesByProductRowResponseDto"][];
+            /** @example eyJtb250aCI6MX0= */
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        SalesByCustomerRowResponseDto: {
+            /** @example 1 */
+            clienteId: number;
+            /** @example Cliente S.A. */
+            cliente: string;
+            /**
+             * @description Number of receipts
+             * @example 12
+             */
+            cantidad: number;
+            /** @example 100000 */
+            subtotal: number;
+            /** @example 121000 */
+            total: number;
+        };
+        SalesByCustomerPageResponseDto: {
+            data: components["schemas"]["SalesByCustomerRowResponseDto"][];
+            /** @example eyJ0b3RhbCI6MTAwfQ== */
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        OutstandingReceivableRowResponseDto: {
+            /** @example Cliente S.A. */
+            cliente: string;
+            /** @example 2026-01-15 */
+            fecha: string;
+            /** @example 2026-01-30 */
+            fechaVencimiento: string;
+            /** @example 00001-00000123 */
+            comprobante: string;
+            /** @example Factura A */
+            tipoComprobante: string;
+            /** @example 1210 */
+            importe: number;
+            /** @example cobranzas@cliente.com */
+            contactoCobro: string | null;
+            /** @example null */
+            observacion: string | null;
+        };
+        OutstandingReceivablePageResponseDto: {
+            data: components["schemas"]["OutstandingReceivableRowResponseDto"][];
+            /** @example eyJpZCI6IjAwMDFhIn0= */
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        IIBBRowResponseDto: {
+            /**
+             * @description Jurisdiction code
+             * @example BSAS
+             */
+            codigo: string;
             /** @example Buenos Aires */
-            city?: string | null;
+            descripcion: string;
+            /** @example 12 */
+            cantidad: number;
+            /** @example 50000 */
+            total: number;
             /**
-             * @description Document type id (combo). Fetch valid ids via `GET /combos/2/items`. When omitted, it is inferred from `taxId`: a valid 11-digit CUIT resolves to CUIT, 7–8 numeric digits resolve to DNI, anything else resolves to "Sin identificar".
-             * @example 180
+             * @description Month number (1–12)
+             * @example 1
              */
-            documentTypeId?: number;
-            /** @example contacto@distribuidoranorte.com.ar */
-            email?: string | null;
+            mes: number;
+            /** @example 2026 */
+            year: number;
+        };
+        IIBBPageResponseDto: {
+            data: components["schemas"]["IIBBRowResponseDto"][];
+            /** @example eyJtb250aCI6MX0= */
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        RevenueTrendRowResponseDto: {
+            /**
+             * @description YYYY-MM period
+             * @example 2026-01
+             */
+            period: string;
+            /** @example 125000 */
+            total: number;
+            /**
+             * @description Number of receipts in this period
+             * @example 12
+             */
+            count: number;
+            /**
+             * @description Whether this point is a forecast (last 3 entries)
+             * @example false
+             */
+            isForecast: boolean;
+        };
+        RevenueTrendsResponseDto: {
+            trends: components["schemas"]["RevenueTrendRowResponseDto"][];
+            /**
+             * @description Month-over-month percentage change (null if no comparison available)
+             * @example 12.5
+             */
+            momChange: number | null;
+            /**
+             * @description Year-over-year percentage change (null if no comparison available)
+             * @example 30.2
+             */
+            yoyChange: number | null;
+            /** @example 125000 */
+            currentMonthTotal: number;
+            /** @example 111000 */
+            previousMonthTotal: number;
+            /** @example 96000 */
+            sameMonthLastYearTotal: number;
+        };
+        PurchaseCategoryResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Insumos de oficina */
+            description: string;
+            /**
+             * @description Linked journal account id
+             * @example 42
+             */
+            accountId: number;
+            /**
+             * Format: date-time
+             * @example 2026-01-15T12:00:00.000Z
+             */
+            createdAt: string | null;
+            /**
+             * Format: date-time
+             * @example null
+             */
+            updatedAt: string | null;
+            /**
+             * Format: date-time
+             * @example null
+             */
+            deletedAt: string | null;
+        };
+        CreatePurchaseCategoryDto: {
+            description: string;
+            accountId: number;
+        };
+        UpdatePurchaseCategoryDto: {
+            description?: string;
+            accountId?: number;
+        };
+        PaymentMethodResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Efectivo Pesos */
+            name: string;
+            /** @example true */
+            isActive: boolean;
+            /** @example 1 */
+            currencyId: number;
+            /**
+             * @description Combo item id (payment method type)
+             * @example 1
+             */
+            paymentMethodTypeId: number;
+        };
+        CreatePaymentMethodDto: {
+            /**
+             * @description Payment method name
+             * @example Efectivo Pesos
+             */
+            name: string;
+            /**
+             * @description Currency id
+             * @example 1
+             */
+            currencyId: number;
+            /**
+             * @description Payment method type combo item id
+             * @example 1
+             */
+            paymentMethodTypeId: number;
+            /**
+             * @description Whether the payment method is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+        };
+        UpdatePaymentMethodDto: {
+            /**
+             * @description Payment method name
+             * @example Efectivo Pesos
+             */
+            name?: string;
+            /**
+             * @description Currency id
+             * @example 1
+             */
+            currencyId?: number;
+            /**
+             * @description Payment method type combo item id
+             * @example 1
+             */
+            paymentMethodTypeId?: number;
+            /**
+             * @description Whether the payment method is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+        };
+        PaymentMethodEntryResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Pago contado */
+            description: string;
+            /** @example OP-12345 */
+            operationNumber: string | null;
+            /** @example 1001 */
+            referenceNumber: number;
+            /** @example 1500.5 */
+            amount: number;
+            /** @example 2026-01-15T10:00:00.000Z */
+            date: string;
+            /** @example 2026-01-15T10:00:00.000Z */
+            createdAt: string;
+            /** @example income */
+            entryType: string;
+            /** @example 1 */
+            accountId: number;
+            /** @example 1 */
+            paymentMethodId: number;
+            /** @example 42 */
+            externalEntityId: number | null;
+        };
+        CreatePaymentMethodEntryDto: {
+            /**
+             * @description Entry description
+             * @example Pago contado
+             */
+            description: string;
+            /**
+             * @description Reference number
+             * @example 1001
+             */
+            referenceNumber: number;
+            /**
+             * @description Entry amount (decimal)
+             * @example 1500.5
+             */
+            amount: number;
+            /**
+             * Format: date-time
+             * @description Entry date (ISO)
+             * @example 2025-04-28T10:00:00Z
+             */
+            date: string;
+            /**
+             * @description Entry type (e.g. income, expense)
+             * @example income
+             */
+            entryType: string;
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId: number;
+            /**
+             * @description Payment method id
+             * @example 1
+             */
+            paymentMethodId: number;
+            /**
+             * @description Operation number
+             * @example OP-12345
+             */
+            operationNumber?: string | null;
+            /**
+             * @description External entity id (if linked to a receipt or other entity)
+             * @example 42
+             */
+            externalEntityId?: number | null;
+        };
+        UpdatePaymentMethodEntryDto: {
+            /**
+             * @description Entry description
+             * @example Pago contado
+             */
+            description?: string;
+            /**
+             * @description Reference number
+             * @example 1001
+             */
+            referenceNumber?: number;
+            /**
+             * @description Entry amount (decimal)
+             * @example 1500.5
+             */
+            amount?: number;
+            /**
+             * Format: date-time
+             * @description Entry date (ISO)
+             * @example 2025-04-28T10:00:00Z
+             */
+            date?: string;
+            /**
+             * @description Entry type (e.g. income, expense)
+             * @example income
+             */
+            entryType?: string;
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId?: number;
+            /**
+             * @description Payment method id
+             * @example 1
+             */
+            paymentMethodId?: number;
+            /**
+             * @description Operation number
+             * @example OP-12345
+             */
+            operationNumber?: string | null;
+            /**
+             * @description External entity id (if linked to a receipt or other entity)
+             * @example 42
+             */
+            externalEntityId?: number | null;
+        };
+        BankResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Banco Nacion */
+            name: string;
+            /** @example true */
+            isActive: boolean;
+            /** @example 1 */
+            locationId: number;
+        };
+        CreateBankDto: {
+            /**
+             * @description Bank name
+             * @example Banco Nacion
+             */
+            name: string;
             /**
              * @description Location id
              * @example 1
              */
-            locationId?: number | null;
-            observations?: string | null;
-            /** @example +54 11 4444-5555 */
-            phone?: string | null;
-            /** @example C1043AAZ */
-            postalCode?: string | null;
+            locationId: number;
             /**
-             * @description Purchase condition (combo) id. Fetch valid ids via `GET /combos/CondicionCompraVenta/items`.
+             * @description Whether the bank is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+        };
+        UpdateBankDto: {
+            /**
+             * @description Bank name
+             * @example Banco Nacion
+             */
+            name?: string;
+            /**
+             * @description Location id
              * @example 1
              */
-            purchaseConditionId?: number;
+            locationId?: number;
             /**
-             * @description Tax category id. Must belong to the organization's regime — fetch valid ids via `GET /tax-categories`. Required unless a valid `taxId` (CUIT) is provided — in that case it is inferred from the supplier's IVA condition in ARCA combined with the organization's regime.
-             * @example 8
+             * @description Whether the bank is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
              */
-            taxCategoryId?: number;
+            isActive: boolean;
+        };
+        BankAccountResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 0001-12345-6 */
+            number: string;
+            /** @example Cuenta Corriente Pesos */
+            name: string;
+            /** @example 100000.5 */
+            balance: number | null;
+            /** @example true */
+            issuesChecks: boolean | null;
+            /** @example true */
+            isActive: boolean;
+            /** @example 1 */
+            bankId: number;
+            /** @example 1 */
+            currencyId: number;
+            /** @example 1 */
+            accountId: number;
+            /** @example false */
+            onlinePayment: boolean | null;
+        };
+        CreateBankAccountDto: {
             /**
-             * @description Tax ID (CUIT). When 11 digits, validated as CUIT.
-             * @example 30345678901
+             * @description Bank account number
+             * @example 0001-12345-6
              */
-            taxId?: string | null;
+            number: string;
+            /**
+             * @description Friendly name
+             * @example Cuenta Corriente Pesos
+             */
+            name: string;
+            /**
+             * @description Bank id
+             * @example 1
+             */
+            bankId: number;
+            /**
+             * @description Currency id
+             * @example 1
+             */
+            currencyId: number;
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId: number;
+            /**
+             * @description Whether the account is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            /**
+             * @description Current balance
+             * @example 100000.5
+             */
+            balance?: number | null;
+            /** @description Whether this account issues checks */
+            issuesChecks?: boolean | null;
+            /** @description Whether the account is enabled for online payments */
+            onlinePayment?: boolean | null;
+        };
+        UpdateBankAccountDto: {
+            /**
+             * @description Bank account number
+             * @example 0001-12345-6
+             */
+            number?: string;
+            /**
+             * @description Friendly name
+             * @example Cuenta Corriente Pesos
+             */
+            name?: string;
+            /**
+             * @description Bank id
+             * @example 1
+             */
+            bankId?: number;
+            /**
+             * @description Currency id
+             * @example 1
+             */
+            currencyId?: number;
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId?: number;
+            /**
+             * @description Whether the account is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+            /**
+             * @description Current balance
+             * @example 100000.5
+             */
+            balance?: number | null;
+            /** @description Whether this account issues checks */
+            issuesChecks?: boolean | null;
+            /** @description Whether the account is enabled for online payments */
+            onlinePayment?: boolean | null;
+        };
+        BankAccountHistoryResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Depósito en efectivo */
+            concept: string;
+            /** @example 2026-01-15T12:00:00.000Z */
+            date: string;
+            /** @example 50000 */
+            amount: number;
+            /** @example 150000 */
+            balance: number;
+            /** @example 1 */
+            bankAccountId: number;
+        };
+        CashRegisterResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Caja Central */
+            name: string;
+            /** @example 50000 */
+            funds: number;
+            /** @example true */
+            isActive: boolean;
+            /** @example 1 */
+            accountId: number;
+        };
+        CreateCashRegisterDto: {
+            /**
+             * @description Cash register name
+             * @example Caja Central
+             */
+            name: string;
+            /**
+             * @description Current funds (decimal)
+             * @example 50000
+             */
+            funds: number;
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId: number;
+            /**
+             * @description Whether the cash register is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+        };
+        UpdateCashRegisterDto: {
+            /**
+             * @description Cash register name
+             * @example Caja Central
+             */
+            name?: string;
+            /**
+             * @description Current funds (decimal)
+             * @example 50000
+             */
+            funds?: number;
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId?: number;
+            /**
+             * @description Whether the cash register is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+        };
+        CashRegisterHistoryResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Cierre de caja */
+            concept: string;
+            /** @example 2026-01-15T18:00:00.000Z */
+            date: string;
+            /** @example 12500 */
+            amount: number;
+            /** @example 62500 */
+            balance: number;
+            /** @example 1 */
+            cashRegisterId: number;
+        };
+        CheckResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string;
+            /** @example 2026-01-15T00:00:00.000Z */
+            date: string;
+            /** @example 2026-02-15T00:00:00.000Z */
+            dueDate: string | null;
+            /** @example null */
+            clearedDate: string | null;
+            /** @example 50000 */
+            amount: number;
+            /** @example 00012345 */
+            number: string;
+            /** @example PENDING */
+            status: string;
+            /** @example 0123-4-56789012-3 */
+            accountNumber: string | null;
+            /**
+             * @description True = own check; false = third-party
+             * @example false
+             */
+            isOwn: boolean;
+            /** @example 1 */
+            bankId: number;
+            /** @example 12 */
+            customerId: number;
+            /** @example auth0|abc */
+            userId: string;
+        };
+        CheckPageResponseDto: {
+            data: components["schemas"]["CheckResponseDto"][];
+            /** @example eyJpZCI6MTIzfQ== */
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        CreateCheckDto: {
+            /**
+             * Format: date-time
+             * @description Check date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date: string;
+            /**
+             * @description Check amount
+             * @example 50000
+             */
+            amount: number;
+            /**
+             * @description Check number
+             * @example 00012345
+             */
+            number: string;
+            /**
+             * @description Check status
+             * @example PENDING
+             */
+            status: string;
+            /**
+             * @description True if it is an own check (issued); false for third-party checks
+             * @example false
+             */
+            isOwn: boolean;
+            /**
+             * @description Bank id
+             * @example 1
+             */
+            bankId: number;
+            /**
+             * @description Customer id
+             * @example 12
+             */
+            customerId: number;
+            /**
+             * @description Due date (ISO 8601)
+             * @example 2026-02-15T12:00:00Z
+             */
+            dueDate?: string | null;
+            /**
+             * @description Cleared date (ISO 8601)
+             * @example 2026-02-20T12:00:00Z
+             */
+            clearedDate?: string | null;
+            /**
+             * @description Bank account number
+             * @example 0123-4-56789012-3
+             */
+            accountNumber?: string | null;
+        };
+        UpdateCheckDto: {
+            /**
+             * Format: date-time
+             * @description Check date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date?: string;
+            /**
+             * @description Check amount
+             * @example 50000
+             */
+            amount?: number;
+            /**
+             * @description Check number
+             * @example 00012345
+             */
+            number?: string;
+            /**
+             * @description Check status
+             * @example PENDING
+             */
+            status?: string;
+            /**
+             * @description True if it is an own check (issued); false for third-party checks
+             * @example false
+             */
+            isOwn?: boolean;
+            /**
+             * @description Bank id
+             * @example 1
+             */
+            bankId?: number;
+            /**
+             * @description Customer id
+             * @example 12
+             */
+            customerId?: number;
+            /**
+             * @description Due date (ISO 8601)
+             * @example 2026-02-15T12:00:00Z
+             */
+            dueDate?: string | null;
+            /**
+             * @description Cleared date (ISO 8601)
+             * @example 2026-02-20T12:00:00Z
+             */
+            clearedDate?: string | null;
+            /**
+             * @description Bank account number
+             * @example 0123-4-56789012-3
+             */
+            accountNumber?: string | null;
+        };
+        OwnCheckResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string;
+            /** @example 2026-01-15T00:00:00.000Z */
+            date: string;
+            /** @example 50000 */
+            amount: number;
+            /** @example 12345 */
+            number: number;
+            /** @example PENDING */
+            status: string;
+            /** @example 2026-02-15T00:00:00.000Z */
+            paymentDate: string | null;
+            /** @example 5 */
+            supplierId: number | null;
+            /** @example auth0|abc */
+            userId: string;
+            /** @example 1 */
+            bankAccountId: number;
+        };
+        OwnCheckPageResponseDto: {
+            data: components["schemas"]["OwnCheckResponseDto"][];
+            /** @example eyJpZCI6MTIzfQ== */
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        CreateOwnCheckDto: {
+            /**
+             * Format: date-time
+             * @description Check date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date: string;
+            /**
+             * @description Check amount
+             * @example 50000
+             */
+            amount: number;
+            /**
+             * @description Check number
+             * @example 12345
+             */
+            number: number;
+            /**
+             * @description Check status
+             * @example PENDING
+             */
+            status: string;
+            /**
+             * @description Bank account id
+             * @example 1
+             */
+            bankAccountId: number;
+            /**
+             * @description Payment date (ISO 8601)
+             * @example 2026-02-15T12:00:00Z
+             */
+            paymentDate?: string | null;
+            /**
+             * @description Supplier id
+             * @example 5
+             */
+            supplierId?: number | null;
+        };
+        UpdateOwnCheckDto: {
+            /**
+             * Format: date-time
+             * @description Check date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date?: string;
+            /**
+             * @description Check amount
+             * @example 50000
+             */
+            amount?: number;
+            /**
+             * @description Check number
+             * @example 12345
+             */
+            number?: number;
+            /**
+             * @description Check status
+             * @example PENDING
+             */
+            status?: string;
+            /**
+             * @description Bank account id
+             * @example 1
+             */
+            bankAccountId?: number;
+            /**
+             * @description Payment date (ISO 8601)
+             * @example 2026-02-15T12:00:00Z
+             */
+            paymentDate?: string | null;
+            /**
+             * @description Supplier id
+             * @example 5
+             */
+            supplierId?: number | null;
+        };
+        CheckbookResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 1 */
+            numberFrom: number;
+            /** @example 50 */
+            numberTo: number;
+            /** @example Chequera 001 */
+            name: string;
+            /** @example 1 */
+            bankAccountId: number;
+        };
+        CreateCheckbookDto: {
+            /**
+             * @description Checkbook friendly name
+             * @example Chequera 001
+             */
+            name: string;
+            /**
+             * @description First check number in the book
+             * @example 1
+             */
+            numberFrom: number;
+            /**
+             * @description Last check number in the book
+             * @example 50
+             */
+            numberTo: number;
+            /**
+             * @description Bank account id this checkbook belongs to
+             * @example 1
+             */
+            bankAccountId: number;
+        };
+        UpdateCheckbookDto: {
+            /**
+             * @description Checkbook friendly name
+             * @example Chequera 001
+             */
+            name?: string;
+            /**
+             * @description First check number in the book
+             * @example 1
+             */
+            numberFrom?: number;
+            /**
+             * @description Last check number in the book
+             * @example 50
+             */
+            numberTo?: number;
+            /**
+             * @description Bank account id this checkbook belongs to
+             * @example 1
+             */
+            bankAccountId?: number;
+        };
+        DepositResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Depósito mostrador */
+            concept: string | null;
+            /** @example 2026-01-15T12:00:00.000Z */
+            creditDate: string;
+            /** @example 2026-01-15T10:00:00.000Z */
+            createdAt: string;
+            /** @example 2026-01-14T12:00:00.000Z */
+            depositDate: string;
+            /** @example TKT-00012345 */
+            ticketNumber: string;
+            /** @example 25000.5 */
+            total: number;
+            /**
+             * @description Bank account id receiving the deposit
+             * @example 1
+             */
+            accountId: number;
+            /** @example 100 */
+            journalEntryId: number | null;
+            /** @example auth0|abc */
+            userId: string;
+        };
+        DepositPageResponseDto: {
+            data: components["schemas"]["DepositResponseDto"][];
+            /** @example eyJpZCI6MTIzfQ== */
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        DepositItemResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 12 */
+            checkId: number;
+            /** @example 1 */
+            depositId: number | null;
+        };
+        CreateDepositDto: {
+            /**
+             * Format: date-time
+             * @description Credit date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            creditDate: string;
+            /**
+             * Format: date-time
+             * @description Deposit date (ISO 8601)
+             * @example 2026-01-14T12:00:00Z
+             */
+            depositDate: string;
+            /**
+             * @description Deposit ticket number
+             * @example TKT-00012345
+             */
+            ticketNumber: string;
+            /**
+             * @description Total deposit amount
+             * @example 25000.5
+             */
+            total: number;
+            /**
+             * @description Bank account id receiving the deposit
+             * @example 1
+             */
+            accountId: number;
+            /** @example Depósito mostrador */
+            concept?: string | null;
+            /**
+             * @description Linked journal entry id
+             * @example 100
+             */
+            journalEntryId?: number | null;
+        };
+        UpdateDepositDto: {
+            /**
+             * Format: date-time
+             * @description Credit date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            creditDate?: string;
+            /**
+             * Format: date-time
+             * @description Deposit date (ISO 8601)
+             * @example 2026-01-14T12:00:00Z
+             */
+            depositDate?: string;
+            /**
+             * @description Deposit ticket number
+             * @example TKT-00012345
+             */
+            ticketNumber?: string;
+            /**
+             * @description Total deposit amount
+             * @example 25000.5
+             */
+            total?: number;
+            /**
+             * @description Bank account id receiving the deposit
+             * @example 1
+             */
+            accountId?: number;
+            /** @example Depósito mostrador */
+            concept?: string | null;
+            /**
+             * @description Linked journal entry id
+             * @example 100
+             */
+            journalEntryId?: number | null;
+        };
+        TransferResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string;
+            /** @example 2026-01-15T00:00:00.000Z */
+            date: string;
+            /** @example 75000 */
+            amount: number;
+            /** @example PENDING */
+            status: string;
+            /** @example 1 */
+            bankAccountId: number;
+            /** @example 12 */
+            customerId: number | null;
+            /** @example null */
+            supplierId: number | null;
+            /** @example auth0|abc */
+            userId: string;
+        };
+        TransferPageResponseDto: {
+            data: components["schemas"]["TransferResponseDto"][];
+            /** @example eyJpZCI6MTIzfQ== */
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        CreateTransferDto: {
+            /**
+             * Format: date-time
+             * @description Transfer date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date: string;
+            /**
+             * @description Transfer amount
+             * @example 75000
+             */
+            amount: number;
+            /**
+             * @description Transfer status
+             * @example PENDING
+             */
+            status: string;
+            /**
+             * @description Bank account id
+             * @example 1
+             */
+            bankAccountId: number;
+            /**
+             * @description Customer id (for incoming transfers)
+             * @example 12
+             */
+            customerId?: number | null;
+            /**
+             * @description Supplier id (for outgoing transfers)
+             * @example 7
+             */
+            supplierId?: number | null;
         };
         UpdateTransferDto: {
+            /**
+             * Format: date-time
+             * @description Transfer date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date?: string;
             /**
              * @description Transfer amount
              * @example 75000
              */
             amount?: number;
+            /**
+             * @description Transfer status
+             * @example PENDING
+             */
+            status?: string;
             /**
              * @description Bank account id
              * @example 1
@@ -4929,28 +6869,649 @@ export interface components {
              */
             customerId?: number | null;
             /**
-             * Format: date-time
-             * @description Transfer date (ISO 8601)
-             * @example 2026-01-15T12:00:00Z
-             */
-            date?: string;
-            /**
-             * @description Transfer status
-             * @example PENDING
-             */
-            status?: string;
-            /**
              * @description Supplier id (for outgoing transfers)
              * @example 7
              */
             supplierId?: number | null;
         };
-        VoidSalesReceiptDto: {
+        FundMovementResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 2026-01-15T12:00:00.000Z */
+            date: string;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string;
+            /** @example 2026-01-16T12:00:00.000Z */
+            creditDate: string | null;
+            /** @example Acreditación cliente */
+            concept: string | null;
+            /** @example 15000.5 */
+            amount: number;
+            /** @example 1 */
+            bankAccountId: number;
+            /** @example 2 */
+            destinationAccountId: number | null;
             /**
-             * @description Auto-create a compensating credit note for the full amount (default: true)
-             * @default true
+             * @description Combo item id (movement type)
+             * @example 12
              */
-            createCreditNote: boolean;
+            movementTypeId: number;
+            /** @example null */
+            cashRegisterId: number | null;
+            /** @example null */
+            journalEntryId: number | null;
+            /** @example auth0|abc */
+            userId: string;
+        };
+        FundMovementPageResponseDto: {
+            data: components["schemas"]["FundMovementResponseDto"][];
+            /** @example eyJpZCI6MTIzfQ== */
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        CreateFundMovementDto: {
+            /**
+             * Format: date-time
+             * @description Movement date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date: string;
+            /**
+             * @description Movement amount
+             * @example 15000.5
+             */
+            amount: number;
+            /**
+             * @description Bank account id
+             * @example 1
+             */
+            bankAccountId: number;
+            /**
+             * @description Movement type id (combo item)
+             * @example 12
+             */
+            movementTypeId: number;
+            /**
+             * @description Credit date (ISO 8601)
+             * @example 2026-01-16T12:00:00Z
+             */
+            creditDate?: string | null;
+            /** @example Acreditación cliente */
+            concept?: string | null;
+            /**
+             * @description Destination bank account id (for transfers)
+             * @example 2
+             */
+            destinationAccountId?: number | null;
+            /**
+             * @description Cash register id
+             * @example 3
+             */
+            cashRegisterId?: number | null;
+            /**
+             * @description Linked journal entry id
+             * @example 100
+             */
+            journalEntryId?: number | null;
+        };
+        UpdateFundMovementDto: {
+            /**
+             * Format: date-time
+             * @description Movement date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date?: string;
+            /**
+             * @description Movement amount
+             * @example 15000.5
+             */
+            amount?: number;
+            /**
+             * @description Bank account id
+             * @example 1
+             */
+            bankAccountId?: number;
+            /**
+             * @description Movement type id (combo item)
+             * @example 12
+             */
+            movementTypeId?: number;
+            /**
+             * @description Credit date (ISO 8601)
+             * @example 2026-01-16T12:00:00Z
+             */
+            creditDate?: string | null;
+            /** @example Acreditación cliente */
+            concept?: string | null;
+            /**
+             * @description Destination bank account id (for transfers)
+             * @example 2
+             */
+            destinationAccountId?: number | null;
+            /**
+             * @description Cash register id
+             * @example 3
+             */
+            cashRegisterId?: number | null;
+            /**
+             * @description Linked journal entry id
+             * @example 100
+             */
+            journalEntryId?: number | null;
+        };
+        CreditCardResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Visa Black */
+            number: string;
+            /** @example active */
+            status: string;
+            /** @example 1 */
+            bankAccountId: number;
+            /** @example 1 */
+            accountId: number;
+        };
+        CreateCreditCardDto: {
+            /**
+             * @description Credit card number or identifier
+             * @example 4111111111111111
+             */
+            number: string;
+            /**
+             * @description Card status (e.g. active, blocked)
+             * @example active
+             */
+            status: string;
+            /**
+             * @description Bank account id linked to this card
+             * @example 1
+             */
+            bankAccountId: number;
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId: number;
+        };
+        UpdateCreditCardDto: {
+            /**
+             * @description Credit card number or identifier
+             * @example 4111111111111111
+             */
+            number?: string;
+            /**
+             * @description Card status (e.g. active, blocked)
+             * @example active
+             */
+            status?: string;
+            /**
+             * @description Bank account id linked to this card
+             * @example 1
+             */
+            bankAccountId?: number;
+            /**
+             * @description Accounting account id
+             * @example 1
+             */
+            accountId?: number;
+        };
+        CardPaymentResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string;
+            /** @example 2026-01-15T12:00:00.000Z */
+            date: string;
+            /** @example null */
+            cancelledDate: string | null;
+            /** @example 18000.5 */
+            total: number;
+            /** @example AUTH-987654 */
+            number: string | null;
+            /** @example 0 */
+            totalCancelled: number;
+            /** @example PENDING */
+            status: string;
+            /** @example 3 */
+            installments: number;
+            /** @example 0 */
+            cancelledInstallments: number;
+            /** @example Visa Crédito 6 cuotas */
+            detail: string | null;
+            /** @example 1 */
+            creditCardId: number;
+            /** @example auth0|abc */
+            userId: string;
+        };
+        CardPaymentPageResponseDto: {
+            data: components["schemas"]["CardPaymentResponseDto"][];
+            /** @example eyJpZCI6MTIzfQ== */
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        CardCancellationResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 2026-02-15T12:00:00.000Z */
+            createdAt: string;
+            /** @example 2026-02-15T12:00:00.000Z */
+            date: string;
+            /** @example 6000 */
+            amount: number;
+            /** @example 1 */
+            installments: number;
+            /** @example 1 */
+            cardPaymentId: number;
+            /** @example 1 */
+            paymentMethodEntryId: number;
+            /** @example null */
+            journalEntryId: number | null;
+            /** @example auth0|abc */
+            userId: string;
+        };
+        CreateCardPaymentDto: {
+            /**
+             * Format: date-time
+             * @description Card payment date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date: string;
+            /**
+             * @description Total payment amount
+             * @example 18000.5
+             */
+            total: number;
+            /**
+             * @description Total amount already cancelled
+             * @example 0
+             */
+            totalCancelled: number;
+            /**
+             * @description Payment status
+             * @example PENDING
+             */
+            status: string;
+            /**
+             * @description Total number of installments
+             * @example 3
+             */
+            installments: number;
+            /**
+             * @description Installments already cancelled
+             * @example 0
+             */
+            cancelledInstallments: number;
+            /**
+             * @description Credit card id
+             * @example 1
+             */
+            creditCardId: number;
+            /**
+             * @description Cancelled date (ISO 8601)
+             * @example 2026-02-15T12:00:00Z
+             */
+            cancelledDate?: string | null;
+            /**
+             * @description Authorization / payment number
+             * @example AUTH-987654
+             */
+            number?: string | null;
+            /** @example Visa Crédito 6 cuotas */
+            detail?: string | null;
+        };
+        UpdateCardPaymentDto: {
+            /**
+             * Format: date-time
+             * @description Card payment date (ISO 8601)
+             * @example 2026-01-15T12:00:00Z
+             */
+            date?: string;
+            /**
+             * @description Total payment amount
+             * @example 18000.5
+             */
+            total?: number;
+            /**
+             * @description Total amount already cancelled
+             * @example 0
+             */
+            totalCancelled?: number;
+            /**
+             * @description Payment status
+             * @example PENDING
+             */
+            status?: string;
+            /**
+             * @description Total number of installments
+             * @example 3
+             */
+            installments?: number;
+            /**
+             * @description Installments already cancelled
+             * @example 0
+             */
+            cancelledInstallments?: number;
+            /**
+             * @description Credit card id
+             * @example 1
+             */
+            creditCardId?: number;
+            /**
+             * @description Cancelled date (ISO 8601)
+             * @example 2026-02-15T12:00:00Z
+             */
+            cancelledDate?: string | null;
+            /**
+             * @description Authorization / payment number
+             * @example AUTH-987654
+             */
+            number?: string | null;
+            /** @example Visa Crédito 6 cuotas */
+            detail?: string | null;
+        };
+        RetentionResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example RG-IIBB */
+            abbreviation: string;
+            /** @example Retención IIBB CABA */
+            description: string;
+            /** @example true */
+            isActive: boolean;
+            /**
+             * @description True = fixed value; false = percentage
+             * @example false
+             */
+            isValue: boolean;
+            /** @example 100 */
+            accountId: number;
+            /** @example 1 */
+            jurisdictionId: number;
+            /** @example 200 */
+            depositAccountId: number;
+        };
+        RetentionReceiptResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 2026-01-15T12:00:00.000Z */
+            createdAt: string;
+            /** @example 2026-01-15T00:00:00.000Z */
+            date: string;
+            /** @example 1500 */
+            total: number;
+            /** @example 00001-00000123 */
+            number: string | null;
+            /** @example EMITIDO */
+            status: string;
+            /** @example 00001-00000456 */
+            retentionNumber: string | null;
+            /** @example auth0|abc */
+            userId: string | null;
+            /** @example 1 */
+            retentionId: number;
+            /** @example 1 */
+            customerId: number | null;
+            /** @example null */
+            supplierId: number | null;
+        };
+        CreateRetentionDto: {
+            /**
+             * @description Short abbreviation
+             * @example RG-IIBB
+             */
+            abbreviation: string;
+            /**
+             * @description Retention description
+             * @example Retención IIBB CABA
+             */
+            description: string;
+            /**
+             * @description Whether the retention is treated as a value (vs percentage)
+             * @example false
+             */
+            isValue: boolean;
+            /**
+             * @description Account id used for the retention
+             * @example 100
+             */
+            accountId: number;
+            /**
+             * @description Jurisdiction (location) id
+             * @example 1
+             */
+            jurisdictionId: number;
+            /**
+             * @description Deposit account id
+             * @example 200
+             */
+            depositAccountId: number;
+            /**
+             * @description Whether the retention is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+        };
+        UpdateRetentionDto: {
+            /**
+             * @description Short abbreviation
+             * @example RG-IIBB
+             */
+            abbreviation?: string;
+            /**
+             * @description Retention description
+             * @example Retención IIBB CABA
+             */
+            description?: string;
+            /**
+             * @description Whether the retention is treated as a value (vs percentage)
+             * @example false
+             */
+            isValue?: boolean;
+            /**
+             * @description Account id used for the retention
+             * @example 100
+             */
+            accountId?: number;
+            /**
+             * @description Jurisdiction (location) id
+             * @example 1
+             */
+            jurisdictionId?: number;
+            /**
+             * @description Deposit account id
+             * @example 200
+             */
+            depositAccountId?: number;
+            /**
+             * @description Whether the retention is active. Defaults to true on create; toggle via PATCH or DELETE.
+             * @default true
+             * @example true
+             */
+            isActive: boolean;
+        };
+        PurchaseReceiptSupplierResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Proveedor S.A. */
+            businessName: string;
+            /** @example 30123456789 */
+            taxId: string | null;
+            /** @example 1 */
+            taxCategoryId: number;
+        };
+        PurchaseReceiptComboItemResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Factura A */
+            data: string;
+            /** @example 1 */
+            afipData: string | null;
+            /** @example null */
+            additionalData: string | null;
+            /** @example 5 */
+            comboId: number;
+            /** @example true */
+            isActive: boolean;
+        };
+        PurchaseReceiptCategoryResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Insumos de oficina */
+            description: string;
+            /** @example 42 */
+            accountId: number;
+        };
+        PurchaseReceiptProductResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 7791234567890 */
+            barcode: string | null;
+            /** @example Camiseta Talle M */
+            description: string;
+        };
+        PurchaseReceiptDetailResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example Servicio de hosting */
+            description: string;
+            /** @example 1210 */
+            total: number;
+            /** @example 1000 */
+            unitPrice: number | null;
+            /** @example 1 */
+            quantity: number | null;
+            /** @example 210 */
+            vat: number;
+            /** @example 1 */
+            purchaseReceiptId: number;
+            /**
+             * @description Combo item id (TipoIva)
+             * @example 1
+             */
+            taxTypeId: number;
+            /** @example 1 */
+            purchaseCategoryId: number | null;
+            /** @example null */
+            productId: number | null;
+            taxType: components["schemas"]["PurchaseReceiptComboItemResponseDto"];
+            purchaseCategory: components["schemas"]["PurchaseReceiptCategoryResponseDto"] | null;
+            product: components["schemas"]["PurchaseReceiptProductResponseDto"] | null;
+        };
+        PurchaseReceiptResponseDto: {
+            /** @example 1 */
+            id: number;
+            /** @example 2026-01-15T00:00:00.000Z */
+            date: string;
+            /** @example 2026-01-15T00:00:00.000Z */
+            accountingDate: string;
+            /** @example 2026-02-14T00:00:00.000Z */
+            dueDate: string;
+            /** @example A */
+            letter: string;
+            /** @example 00001-00000123 */
+            number: string;
+            /**
+             * @description EMITIDO | ANULADO
+             * @example EMITIDO
+             */
+            status: string;
+            /** @example 1000 */
+            subtotal: number;
+            /** @example 210 */
+            vat: number;
+            /** @example 0 */
+            vat105: number;
+            /** @example 210 */
+            vat21: number;
+            /** @example 0 */
+            vat27: number;
+            /** @example 0 */
+            exemptAmount: number;
+            /** @example 0 */
+            nonTaxableAmount: number;
+            /** @example 1210 */
+            total: number;
+            /**
+             * @description Amount paid against this receipt
+             * @example 0
+             */
+            totalPaid: number;
+            /** @example 0 */
+            grossIncomePerceptions: number;
+            /** @example 0 */
+            vatPerceptions: number;
+            /** @example null */
+            profitPerceptions: number | null;
+            /** @example null */
+            observation: string | null;
+            /** @example 1 */
+            supplierId: number;
+            /**
+             * @description Combo item id (TipoComprobanteCompra)
+             * @example 1
+             */
+            typeId: number;
+            /**
+             * @description Combo item id (CondicionCompraVenta)
+             * @example 1
+             */
+            purchaseConditionId: number;
+            /** @example null */
+            journalEntryId: number | null;
+            supplier: components["schemas"]["PurchaseReceiptSupplierResponseDto"];
+            type: components["schemas"]["PurchaseReceiptComboItemResponseDto"];
+            purchaseCondition: components["schemas"]["PurchaseReceiptComboItemResponseDto"];
+            details: components["schemas"]["PurchaseReceiptDetailResponseDto"][];
+        };
+        PurchaseReceiptPageResponseDto: {
+            data: components["schemas"]["PurchaseReceiptResponseDto"][];
+            /** @example eyJpZCI6MTIzfQ== */
+            nextCursor: string | null;
+            /** @example false */
+            hasMore: boolean;
+        };
+        BulkActionDto: {
+            /** @description Bulk action job UUID */
+            jobId: string;
+            /** @enum {string} */
+            type: "sales-receipts-bulk-email" | "sales-receipts-bulk-pdf" | "sales-receipts-bulk-void" | "sales-receipts-csv-export";
+            /** @enum {string} */
+            status: "queued" | "running" | "completed" | "failed" | "cancelled";
+            totalCount: number;
+            doneCount: number;
+            skippedCount: number;
+            failedCount: number;
+            /** @description Per-receipt status map. Populated for bulk-email/pdf/void; null for csv-export. */
+            receiptStatuses?: Record<string, never> | null;
+            downloadUrl?: Record<string, never> | null;
+            errorMessage?: Record<string, never> | null;
+            /** @description Free-form context useful for rendering the row in the UI. */
+            resourceContext?: Record<string, never> | null;
+            createdBy?: Record<string, never> | null;
+            createdAt: string;
+            completedAt?: Record<string, never> | null;
+        };
+        BulkActionListResponseDto: {
+            items: components["schemas"]["BulkActionDto"][];
+            nextCursor?: Record<string, never> | null;
+            /** @description Count of non-terminal jobs (queued + running) within the same scope. Drives the sidebar badge — intentionally NOT affected by the `type` filter so the badge reflects all active jobs even when the list is filtered to one type. */
+            activeCount: number;
+        };
+        BulkActionReceiptStatusResponseDto: {
+            /**
+             * @description pending | done | skipped | failed
+             * @example done
+             */
+            status: string;
+            /** @example null */
+            error?: string | null;
+            /** @example Cliente S.A. */
+            customerName?: string | null;
+            /** @example 00001-00000123 */
+            receiptNumber?: string | null;
         };
     };
     responses: never;
@@ -4961,299 +7522,11 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    AccountingLocksController_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingLocksController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateAccountingLockDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingLocksController_delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingLocksController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateAccountingLockDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FiscalYearsController_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FiscalYearsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateFiscalYearDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FiscalYearsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateFiscalYearDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FiscalYearsController_close: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalAccountsController_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalAccountsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateJournalAccountDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalAccountsController_delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalAccountsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateJournalAccountDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalEntriesController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                limit?: number;
-                /** @description Filter by module (ventas, compras, tesoreria, manual) */
-                module?: string;
-                /** @description Filter from date (ISO string) */
-                date_from?: string;
-                /** @description Filter to date (ISO string) */
-                date_to?: string;
-                /** @description Filter manual entries only */
-                is_manual?: boolean;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalEntriesController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateJournalEntryDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalEntriesController_getBalanceSheet: {
+    ExportsController_getDownloadUrl: {
         parameters: {
             query: {
-                as_of_date: string;
+                /** @description The export key returned by whichever endpoint generated the file. */
+                key: string;
             };
             header?: never;
             path?: never;
@@ -5261,627 +7534,65 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
+            /** @description `{ url }` — fetch this within 48 hours to download the file */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-        };
-    };
-    JournalEntriesController_getProfitAndLoss: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalEntriesController_getById: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    JournalEntriesController_delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingReportsController_dailyBook: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                page?: number;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingReportsController_dailyBookExport: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingReportsController_generalLedger: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                account_id?: number;
-                page?: number;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingReportsController_generalLedgerExport: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                account_id?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingReportsController_trialBalance: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                page?: number;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    AccountingReportsController_trialBalanceExport: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BranchesController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of branches */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BranchesController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateBranchDto"];
-            };
-        };
-        responses: {
-            /** @description Created branch */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BranchesController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Branch */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BranchesController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BranchesController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateBranchDto"];
-            };
-        };
-        responses: {
-            /** @description Updated branch */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of certificates */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateCertificateDto"];
-            };
-        };
-        responses: {
-            /** @description Certificate created — download the CSR next */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_findActive: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Active certificate */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description No active certificate */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_getExpirationStatus: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Per-certificate expiration info */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Certificate */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateCertificateDto"];
-            };
-        };
-        responses: {
-            /** @description Updated certificate */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_getCrt: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CRT file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Certificate or CRT file not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_getCsr: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSR file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Certificate or CSR file not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CertificatesController_uploadCrt: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Certificate id */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "multipart/form-data": {
-                    /**
-                     * Format: binary
-                     * @description The `.crt` file you downloaded from AFIP.
-                     */
-                    crt: string;
-                };
-            };
-        };
-        responses: {
-            /** @description Certificate is now ready to use */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description No file provided, or the file isn't a valid certificate */
+            /** @description Validation failed. Codes: MISSING_EXPORT_KEY, INVALID_EXPORT_KEY, STORAGE_NOT_CONFIGURED, EXPORT_FILE_NOT_FOUND. */
             400: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
-            };
-            /** @description Certificate not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
                 };
-                content?: never;
             };
         };
     };
-    CertificatesController_validateConnection: {
+    ExportsController_createRangeExport: {
         parameters: {
             query?: never;
             header?: never;
-            path: {
-                id: number;
-            };
+            path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateRangeExportDto"];
+            };
+        };
         responses: {
-            /** @description `{ success, environment, services: { wsfe, wsfex } }`. `success` is `true` only when both services pass. */
-            200: {
+            /** @description `{ exports: [{ runId, jobId, fileName, dateFrom, dateTo }], count }` — one entry per weekly file; each CSV will appear in your Google Drive folder under its `fileName` when it completes. */
+            201: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description You need to upload the CRT first */
+            /** @description Validation failed. Code: INVALID_DATE_RANGE. */
             400: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
-            /** @description Certificate not found */
-            404: {
+            /** @description Your organization can't use this export. Code: RANGE_EXPORT_NOT_ALLOWED. */
+            403: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
-    CombosController_findAll: {
+    TaxCategoriesController_findAllActive: {
         parameters: {
             query?: never;
             header?: never;
@@ -5890,68 +7601,92 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Empty list */
+            /** @description List of active tax categories */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["TaxCategoryResponseDto"][];
+                };
             };
         };
     };
-    CombosController_findOne: {
+    TaxCategoriesController_findOne: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description Combo id */
+                /** @description Tax category id */
                 id: number;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Combo */
+            /** @description Tax category */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["TaxCategoryResponseDto"];
+                };
             };
-            /** @description Combo not found */
+            /** @description TAX_CATEGORY_NOT_FOUND — tax category does not exist. */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
-    CombosController_getItems: {
+    TaxCategoriesController_isExportacion: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description Combo id (e.g. 5 = receipt types, 6 = sale conditions) */
+                /** @description Tax category id */
                 id: number;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description List of combo items */
+            /** @description Object with exportacion boolean */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["TaxCategoryExportacionResponseDto"];
+                };
             };
-            /** @description Combo not found */
-            404: {
+        };
+    };
+    TaxCategoriesController_isMonotributo: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Tax category id */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Object with monotributo boolean */
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["TaxCategoryMonotributoResponseDto"];
+                };
             };
         };
     };
@@ -5969,7 +7704,9 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["CurrencyResponseDto"][];
+                };
             };
         };
     };
@@ -5987,14 +7724,18 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["CurrencyResponseDto"];
+                };
             };
-            /** @description Default currency not found */
+            /** @description DEFAULT_CURRENCY_NOT_FOUND — no default currency configured. */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
@@ -6012,7 +7753,9 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["DefaultCurrencyIdResponseDto"];
+                };
             };
         };
     };
@@ -6030,7 +7773,9 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["FavoriteCurrencyIdsResponseDto"];
+                };
             };
         };
     };
@@ -6051,14 +7796,700 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
+                content: {
+                    "application/json": components["schemas"]["CurrencyResponseDto"];
+                };
+            };
+            /** @description CURRENCY_NOT_FOUND — currency does not exist. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CombosController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Empty list */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ComboResponseDto"][];
+                };
+            };
+        };
+    };
+    CombosController_getItems: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Combo id (e.g. 5 = receipt types, 6 = sale conditions) */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of combo items */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ComboItemResponseDto"][];
+                };
+            };
+            /** @description COMBO_NOT_FOUND — combo does not exist. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CombosController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Combo id */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Combo */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ComboResponseDto"];
+                };
+            };
+            /** @description COMBO_NOT_FOUND — combo does not exist. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    LocationsController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Filter by name (case-insensitive partial match) — pair with the user's search input */
+                nombre?: string;
+                /** @description Pass `true` to get foreign destinations for export invoicing. Omit (or `false`) for Argentine locations. */
+                onlyExport?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of locations */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LocationResponseDto"][];
+                };
+            };
+        };
+    };
+    LocationsController_findDefault: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Default location */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LocationResponseDto"];
+                };
+            };
+            /** @description DEFAULT_LOCATION_NOT_FOUND — no default location configured. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    LocationsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Location id */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Location */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LocationResponseDto"];
+                };
+            };
+            /** @description LOCATION_NOT_FOUND — location does not exist. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    ExchangeRatesController_getRate: {
+        parameters: {
+            query: {
+                /** @description Source currency id. Omit to use your organization's default currency. */
+                from?: string;
+                /** @description Target currency id. */
+                to: string;
+                /** @description ISO date — defaults to today. Use the date the receipt is issued on. */
+                date?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Exchange rate, or `null` when none is available */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExchangeRateResponseDto"] | null;
+                };
+            };
+            /** @description Validation failed. Codes: INVALID_FROM_CURRENCY, TO_CURRENCY_REQUIRED, INVALID_TO_CURRENCY, INVALID_DATE. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description EXCHANGE_RATE_UNAVAILABLE — AFIP rate service unavailable. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    TaxpayerRegistriesController_isFceReceiver: {
+        parameters: {
+            query?: {
+                /** @description The receipt's total in ARS. Omit (or `0`) to check whether the taxpayer can ever receive FCE, ignoring the amount. */
+                total?: string;
+            };
+            header?: never;
+            path: {
+                /** @description Customer's CUIT (companies) or CUIL (individuals) — 11 digits, no dashes */
+                taxId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description `{ taxId, total, isFceReceiver }` — use `isFceReceiver` to decide the receipt type */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FceReceiverResponseDto"];
+                };
+            };
+            /** @description TAXPAYER_REGISTRY_NOT_FOUND — no registry entry for this CUIT/CUIL. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    TaxpayerRegistriesController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description CUIT (companies) or CUIL (individuals) — 11 digits, no dashes */
+                taxId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Taxpayer details */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TaxpayerRegistryResponseDto"];
+                };
+            };
+            /** @description TAXPAYER_REGISTRY_NOT_FOUND — no taxpayer registered for this CUIT/CUIL. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    ProductCategoriesController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Filter by category name (description, partial match) */
+                name?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of product categories */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCategoryResponseDto"][];
+                };
+            };
+        };
+    };
+    ProductCategoriesController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateProductCategoryDto"];
+            };
+        };
+        responses: {
+            /** @description Created product category */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCategoryResponseDto"];
+                };
+            };
+        };
+    };
+    ProductCategoriesController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Product category id */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Product category */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCategoryResponseDto"];
+                };
+            };
+            /** @description PRODUCT_CATEGORY_NOT_FOUND — product category does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    ProductCategoriesController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
                 content?: never;
             };
-            /** @description Currency not found */
+            /** @description PRODUCT_CATEGORY_NOT_FOUND — product category does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    ProductCategoriesController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateProductCategoryDto"];
+            };
+        };
+        responses: {
+            /** @description Updated product category */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCategoryResponseDto"];
+                };
+            };
+            /** @description PRODUCT_CATEGORY_NOT_FOUND — product category does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    ProductsController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Opaque cursor for next page */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+                /** @description Filter by product name (description, partial match) */
+                name?: string;
+                /** @description Exact match on the external provider identifier */
+                provider_id?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated products (data, nextCursor, hasMore) */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductPageResponseDto"];
+                };
+            };
+        };
+    };
+    ProductsController_create: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Idempotency key (max 255 chars). On replay, returns the original product with status 200 and `Idempotent-Replayed: true`. */
+                "Idempotency-Key"?: string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateProductDto"];
+            };
+        };
+        responses: {
+            /** @description Idempotent replay — original product returned */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductResponseDto"];
+                };
+            };
+            /** @description Created product */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: PROVIDER_ID_DUPLICATE, IDEMPOTENCY_KEY_AND_PROVIDER_ID_CONFLICT, IDEMPOTENCY_KEY_TOO_LONG. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    ProductsController_search: {
+        parameters: {
+            query?: {
+                /** @description Search query (fuzzy match on description/barcode) */
+                q?: string;
+                /** @description Filter by category ID */
+                category_id?: number;
+                /** @description Max results (default 20) */
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Search results with favorites, recents, and matches */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductSearchResultsResponseDto"];
+                };
+            };
+        };
+    };
+    ProductsController_toggleFavorite: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Favorite toggled */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductFavoriteResponseDto"];
+                };
+            };
+            /** @description PRODUCT_NOT_FOUND — product does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    ProductsController_exportCsv: {
+        parameters: {
+            query?: {
+                /** @description Filter by description or barcode (partial match) */
+                search?: string;
+                /** @description When false, include soft-deleted products. Default true (only current products). */
+                is_active?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ProductsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Product */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductResponseDto"];
+                };
+            };
+            /** @description Not found */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+        };
+    };
+    ProductsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description PRODUCT_NOT_FOUND — product does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    ProductsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateProductDto"];
+            };
+        };
+        responses: {
+            /** @description Updated product */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: PROVIDER_ID_DUPLICATE. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description PRODUCT_NOT_FOUND — product does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
@@ -6085,14 +8516,19 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["CustomerPageResponseDto"];
+                };
             };
         };
     };
     CustomersController_create: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /** @description Idempotency key (max 255 chars). On replay, returns the original customer with status 200 and `Idempotent-Replayed: true`. */
+                "Idempotency-Key"?: string;
+            };
             path?: never;
             cookie?: never;
         };
@@ -6102,37 +8538,32 @@ export interface operations {
             };
         };
         responses: {
+            /** @description Idempotent replay — original customer returned */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CustomerResponseDto"];
+                };
+            };
             /** @description Created customer */
             201: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["CustomerResponseDto"];
+                };
             };
-        };
-    };
-    CustomersController_exportCsv: {
-        parameters: {
-            query?: {
-                /** @description Filter by business name, tax ID, or email (partial match) */
-                search?: string;
-                /** @description Include only active customers (default true) */
-                is_active?: boolean;
-                /** @description Exact match on the external provider identifier */
-                provider_id?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
+            /** @description Validation failed. Codes: INVALID_CUIT, BUSINESS_NAME_REQUIRED, TAX_CATEGORY_REQUIRED, TAX_CATEGORY_NOT_FOUND, TAX_CATEGORY_NOT_IN_ORG_REGIME, DOCUMENT_TYPE_COMBO_EMPTY, TAX_ID_DUPLICATE, PROVIDER_ID_DUPLICATE, IDEMPOTENCY_KEY_AND_PROVIDER_ID_CONFLICT, IDEMPOTENCY_KEY_TOO_LONG, ORGANIZATION_NOT_FOUND. */
+            400: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
@@ -6153,7 +8584,9 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["CuitLookupResponseDto"];
+                };
             };
             /** @description INVALID_CUIT — malformed or bad check digit. */
             400: {
@@ -6184,6 +8617,31 @@ export interface operations {
             };
         };
     };
+    CustomersController_exportCsv: {
+        parameters: {
+            query?: {
+                /** @description Filter by business name, tax ID, or email (partial match) */
+                search?: string;
+                /** @description Include only active customers (default true) */
+                is_active?: boolean;
+                /** @description Exact match on the external provider identifier */
+                provider_id?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     CustomersController_findOne: {
         parameters: {
             query?: never;
@@ -6200,7 +8658,9 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["CustomerResponseDto"];
+                };
             };
             /** @description Not found */
             404: {
@@ -6229,12 +8689,14 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Not found */
+            /** @description CUSTOMER_NOT_FOUND — customer does not exist or belongs to another organization. */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
@@ -6258,7 +8720,182 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
+                content: {
+                    "application/json": components["schemas"]["CustomerResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: INVALID_CUIT, TAX_CATEGORY_NOT_FOUND, TAX_CATEGORY_NOT_IN_ORG_REGIME, TAX_ID_DUPLICATE, PROVIDER_ID_DUPLICATE, ORGANIZATION_NOT_FOUND. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description CUSTOMER_NOT_FOUND — customer does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SuppliersController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Opaque cursor for next page */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+                /** @description Filter by business name, tax ID, or email (partial match) */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated suppliers (data, nextCursor, hasMore) */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SupplierPageResponseDto"];
+                };
+            };
+        };
+    };
+    SuppliersController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateSupplierDto"];
+            };
+        };
+        responses: {
+            /** @description Created supplier */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SupplierResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: INVALID_CUIT, BUSINESS_NAME_REQUIRED, TAX_CATEGORY_REQUIRED, TAX_CATEGORY_NOT_FOUND, TAX_CATEGORY_NOT_IN_ORG_REGIME, TAX_ID_DUPLICATE, ORGANIZATION_NOT_FOUND. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SuppliersController_lookupCuit: {
+        parameters: {
+            query: {
+                /** @description CUIT to look up (11 digits, with or without dashes) */
+                cuit: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CUIT lookup result */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CuitLookupResponseDto"];
+                };
+            };
+            /** @description INVALID_CUIT — malformed or bad check digit. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description AFIP_PERSONA_NOT_FOUND — no taxpayer registered in AFIP for this CUIT. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description AFIP_WSCI_ERROR — upstream AFIP (WSCI) failure. See providerMessage. */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SuppliersController_exportCsv: {
+        parameters: {
+            query?: {
+                /** @description Filter by business name, tax ID, or email (partial match) */
+                search?: string;
+                /** @description Include only active suppliers (default true) */
+                active_only?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
                 content?: never;
+            };
+        };
+    };
+    SuppliersController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Supplier */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SupplierResponseDto"];
+                };
             };
             /** @description Not found */
             404: {
@@ -6269,88 +8906,80 @@ export interface operations {
             };
         };
     };
-    ExchangeRatesController_getRate: {
+    SuppliersController_remove: {
         parameters: {
-            query: {
-                /** @description Source currency id. Omit to use your organization's default currency. */
-                from?: string;
-                /** @description Target currency id. */
-                to: string;
-                /** @description ISO date — defaults to today. Use the date the receipt is issued on. */
-                date?: string;
-            };
+            query?: never;
             header?: never;
-            path?: never;
+            path: {
+                id: number;
+            };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Exchange rate, or `null` when none is available */
-            200: {
+            /** @description Deleted */
+            204: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Missing `to`, or `to`/`from`/`date` is invalid */
+            /** @description SUPPLIER_NOT_FOUND — supplier does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SuppliersController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateSupplierDto"];
+            };
+        };
+        responses: {
+            /** @description Updated supplier */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SupplierResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: INVALID_CUIT, TAX_CATEGORY_NOT_FOUND, TAX_CATEGORY_NOT_IN_ORG_REGIME, TAX_ID_DUPLICATE, ORGANIZATION_NOT_FOUND. */
             400: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
-        };
-    };
-    ExportsController_getDownloadUrl: {
-        parameters: {
-            query: {
-                /** @description The export key returned by whichever endpoint generated the file. */
-                key: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description `{ url }` — fetch this within 1 hour to download the file */
-            200: {
+            /** @description SUPPLIER_NOT_FOUND — supplier does not exist or belongs to another organization. */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
-            };
-            /** @description Missing or invalid key, or the file has expired */
-            400: {
-                headers: {
-                    [name: string]: unknown;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
                 };
-                content?: never;
             };
         };
     };
-    FileImportsController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Filter by import type */
-                type?: "COMPROBANTES_VENTA" | "COMPROBANTES_COMPRA" | "CLIENTES" | "PROVEEDORES" | "PRODUCTOS" | "PAYROLL";
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of file imports */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FileImportsController_create: {
+    SuppliersController_getOrCreate: {
         parameters: {
             query?: never;
             header?: never;
@@ -6359,16 +8988,529 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["CreateFileImportDto"];
+                "application/json": components["schemas"]["GetOrCreateSupplierDto"];
             };
         };
         responses: {
-            /** @description Created file import */
+            /** @description Existing or newly created supplier */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SupplierResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: TAX_ID_REQUIRED, INVALID_CUIT, ORGANIZATION_NOT_FOUND. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SuppliersController_removeBulk: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BulkDeleteSuppliersDto"];
+            };
+        };
+        responses: {
+            /** @description Number of deleted suppliers */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BulkDeleteSuppliersResponseDto"];
+                };
+            };
+        };
+    };
+    ProviderConfigsController_getStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Integration status */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["IntegrationStatusResponseDto"];
+                };
+            };
+        };
+    };
+    ProviderConfigsController_getOAuthUrl: {
+        parameters: {
+            query: {
+                provider: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OAuth URL for redirect */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OAuthUrlResponseDto"];
+                };
+            };
+            /** @description Organization has no secret_key or provider invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description OAuth not implemented for this provider */
+            501: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ProviderConfigsController_findByProvider: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                provider: "SPARKPOST" | "TIENDANUBE";
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Provider config, or `null` when none exists for the given provider */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProviderConfigResponseDto"] | null;
+                };
+            };
+        };
+    };
+    ProviderConfigsController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of provider configs */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProviderConfigResponseDto"][];
+                };
+            };
+        };
+    };
+    ProviderConfigsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateProviderConfigDto"];
+            };
+        };
+        responses: {
+            /** @description Created provider config */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProviderConfigResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: INVALID_PROVIDER. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    ProviderConfigsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Provider config */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProviderConfigResponseDto"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ProviderConfigsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description PROVIDER_CONFIG_NOT_FOUND — provider config does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    ProviderConfigsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateProviderConfigDto"];
+            };
+        };
+        responses: {
+            /** @description Updated provider config */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProviderConfigResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: INVALID_PROVIDER. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description PROVIDER_CONFIG_NOT_FOUND — provider config does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    MercadoPagoConfigsController_getByOrganization: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Mercado Pago config */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MercadoPagoConfigResponseDto"];
+                };
+            };
+        };
+    };
+    MercadoPagoConfigsController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of Mercado Pago configs */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MercadoPagoConfigResponseDto"][];
+                };
+            };
+        };
+    };
+    MercadoPagoConfigsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateMercadoPagoConfigDto"];
+            };
+        };
+        responses: {
+            /** @description Created Mercado Pago config */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MercadoPagoConfigResponseDto"];
+                };
+            };
+            /** @description INVALID_INCLUDE_PAYMENT_BUTTON — invalid includePaymentButton value. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    MercadoPagoConfigsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Mercado Pago config */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MercadoPagoConfigResponseDto"];
+                };
+            };
+            /** @description MERCADO_PAGO_CONFIG_NOT_FOUND — config does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    MercadoPagoConfigsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description MERCADO_PAGO_CONFIG_NOT_FOUND — config does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    MercadoPagoConfigsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateMercadoPagoConfigDto"];
+            };
+        };
+        responses: {
+            /** @description Updated Mercado Pago config */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MercadoPagoConfigResponseDto"];
+                };
+            };
+            /** @description INVALID_INCLUDE_PAYMENT_BUTTON — invalid includePaymentButton value. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description MERCADO_PAGO_CONFIG_NOT_FOUND — config does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    MercadoPagoConfigsController_resetAuth: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Auth reset */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description MERCADO_PAGO_CONFIG_NOT_FOUND — config does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    FileImportsController_upload: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": {
+                    /** Format: binary */
+                    file: string;
+                    /**
+                     * @description Import type
+                     * @enum {string}
+                     */
+                    type: "COMPROBANTES_VENTA" | "COMPROBANTES_COMPRA" | "CLIENTES" | "PROVEEDORES" | "PRODUCTOS" | "PAYROLL";
+                };
+            };
+        };
+        responses: {
+            /** @description File uploaded and import record created */
             201: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Validation failed. Codes: NO_FILE_PROVIDED, INVALID_IMPORT_TYPE, INVALID_FILE_EXTENSION, FILE_TOO_LARGE. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
@@ -6426,7 +9568,28 @@ export interface operations {
             };
         };
     };
-    FileImportsController_upload: {
+    FileImportsController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Filter by import type */
+                type?: "COMPROBANTES_VENTA" | "COMPROBANTES_COMPRA" | "CLIENTES" | "PROVEEDORES" | "PRODUCTOS" | "PAYROLL";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of file imports */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    FileImportsController_create: {
         parameters: {
             query?: never;
             header?: never;
@@ -6435,31 +9598,25 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "multipart/form-data": {
-                    /** Format: binary */
-                    file: string;
-                    /**
-                     * @description Import type
-                     * @enum {string}
-                     */
-                    type: "COMPROBANTES_VENTA" | "COMPROBANTES_COMPRA" | "CLIENTES" | "PROVEEDORES" | "PRODUCTOS" | "PAYROLL";
-                };
+                "application/json": components["schemas"]["CreateFileImportDto"];
             };
         };
         responses: {
-            /** @description File uploaded and import record created */
+            /** @description Created file import */
             201: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Invalid file or type */
+            /** @description Validation failed. Codes: INVALID_IMPORT_TYPE. */
             400: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
@@ -6508,12 +9665,14 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Not found */
+            /** @description FILE_IMPORT_NOT_FOUND — file import does not exist or belongs to another organization. */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
@@ -6539,3292 +9698,7 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BankAccountsController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of bank accounts */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BankAccountsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateBankAccountDto"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BankAccountsController_findHistories: {
-        parameters: {
-            query?: {
-                /** @description Filter by bank account */
-                bank_account_id?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of bank account histories */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BankAccountsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Bank account */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BankAccountsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BankAccountsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateBankAccountDto"];
-            };
-        };
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BanksController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of banks */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BanksController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateBankDto"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BanksController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Bank */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BanksController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    BanksController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateBankDto"];
-            };
-        };
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CardPaymentsController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Pagination cursor */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated list of card payments */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CardPaymentsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateCardPaymentDto"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CardPaymentsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Card payment */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CardPaymentsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CardPaymentsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateCardPaymentDto"];
-            };
-        };
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CardPaymentsController_findCancellations: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of cancellations */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CashRegistersController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of cash registers */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CashRegistersController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateCashRegisterDto"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CashRegistersController_findHistories: {
-        parameters: {
-            query?: {
-                /** @description Filter by cash register */
-                cash_register_id?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of cash register histories */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CashRegistersController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Cash register */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CashRegistersController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CashRegistersController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateCashRegisterDto"];
-            };
-        };
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CheckbooksController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of checkbooks */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CheckbooksController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateCheckbookDto"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CheckbooksController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Checkbook */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CheckbooksController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CheckbooksController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateCheckbookDto"];
-            };
-        };
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ChecksController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Pagination cursor */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated list of checks */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ChecksController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateCheckDto"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ChecksController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Check */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ChecksController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ChecksController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateCheckDto"];
-            };
-        };
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CreditCardsController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of credit cards */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CreditCardsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateCreditCardDto"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CreditCardsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Credit card */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CreditCardsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    CreditCardsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateCreditCardDto"];
-            };
-        };
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    DepositsController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Pagination cursor */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated list of deposits */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    DepositsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateDepositDto"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    DepositsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deposit */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    DepositsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    DepositsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateDepositDto"];
-            };
-        };
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    DepositsController_findItems: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of deposit items */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FundMovementsController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Pagination cursor */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated list of fund movements */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FundMovementsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateFundMovementDto"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FundMovementsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Fund movement */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FundMovementsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    FundMovementsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateFundMovementDto"];
-            };
-        };
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    OwnChecksController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Pagination cursor */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated list of own checks */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    OwnChecksController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateOwnCheckDto"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    OwnChecksController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Own check */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    OwnChecksController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    OwnChecksController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateOwnCheckDto"];
-            };
-        };
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of payment methods */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreatePaymentMethodDto"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_createEntry: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreatePaymentMethodEntryDto"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_findAllEntries: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of payment method entries */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_findEntry: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                entryId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Payment method entry */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_removeEntry: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                entryId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_updateEntry: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                entryId: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdatePaymentMethodEntryDto"];
-            };
-        };
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Payment method */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PaymentMethodsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdatePaymentMethodDto"];
-            };
-        };
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    RetentionsController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of retentions */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    RetentionsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateRetentionDto"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    RetentionsController_findReceipts: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of retention receipts */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    RetentionsController_findReceipt: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                receiptId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Retention receipt */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    RetentionsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Retention */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    RetentionsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    RetentionsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateRetentionDto"];
-            };
-        };
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    TransfersController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Pagination cursor */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated list of transfers */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    TransfersController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateTransferDto"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    TransfersController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Transfer */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    TransfersController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    TransfersController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateTransferDto"];
-            };
-        };
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    LocationsController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Filter by name (case-insensitive partial match) — pair with the user's search input */
-                nombre?: string;
-                /** @description Pass `true` to get foreign destinations for export invoicing. Omit (or `false`) for Argentine locations. */
-                onlyExport?: boolean;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of locations */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    LocationsController_findDefault: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Default location */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description No default location */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    LocationsController_setDefault: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Location id to set as default */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated default location */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Location not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    LocationsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Location id */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Location */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Location not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    MercadoPagoConfigsController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of Mercado Pago configs */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    MercadoPagoConfigsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateMercadoPagoConfigDto"];
-            };
-        };
-        responses: {
-            /** @description Created Mercado Pago config */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    MercadoPagoConfigsController_getByOrganization: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Mercado Pago config */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    MercadoPagoConfigsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Mercado Pago config */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    MercadoPagoConfigsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    MercadoPagoConfigsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateMercadoPagoConfigDto"];
-            };
-        };
-        responses: {
-            /** @description Updated Mercado Pago config */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    MercadoPagoConfigsController_resetAuth: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Auth reset */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProductCategoriesController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Filter by category name (description, partial match) */
-                name?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of product categories */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProductCategoriesController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    description: string;
-                    isActive: boolean;
-                };
-            };
-        };
-        responses: {
-            /** @description Created product category */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProductCategoriesController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Product category id */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Product category */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProductCategoriesController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProductCategoriesController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    description?: string;
-                    isActive?: boolean;
-                };
-            };
-        };
-        responses: {
-            /** @description Updated product category */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProductsController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Opaque cursor for next page */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-                /** @description Filter by product name (description, partial match) */
-                name?: string;
-                /** @description Exact match on the external provider identifier */
-                provider_id?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated products (data, nextCursor, hasMore) */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProductsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateProductDto"];
-            };
-        };
-        responses: {
-            /** @description Created product */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProductsController_exportCsv: {
-        parameters: {
-            query?: {
-                /** @description Filter by description or barcode (partial match) */
-                search?: string;
-                /** @description Include only active products (default true) */
-                is_active?: boolean;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProductsController_search: {
-        parameters: {
-            query?: {
-                /** @description Search query (fuzzy match on description/barcode) */
-                q?: string;
-                /** @description Filter by category ID */
-                category_id?: number;
-                /** @description Max results (default 20) */
-                limit?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Search results with favorites, recents, and matches */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProductsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Product */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProductsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProductsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateProductDto"];
-            };
-        };
-        responses: {
-            /** @description Updated product */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProductsController_toggleFavorite: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Favorite toggled */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    StockController_getStockHistory: {
-        parameters: {
-            query?: {
-                /** @description Page number (1-based) */
-                page?: number;
-                /** @description Items per page */
-                limit?: number;
-                /** @description Filter by stock change type (SALE, PURCHASE, MANUAL) */
-                type?: string;
-            };
-            header?: never;
-            path: {
-                productId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    StockController_addManualAdjustment: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                productId: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["AddManualStockChangeDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProviderConfigsController_findAll: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of provider configs */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProviderConfigsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateProviderConfigDto"];
-            };
-        };
-        responses: {
-            /** @description Created provider config */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProviderConfigsController_findByProvider: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                provider: "SPARKPOST" | "TIENDANUBE";
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Provider config or null */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProviderConfigsController_getOAuthUrl: {
-        parameters: {
-            query: {
-                provider: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OAuth URL for redirect */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Organization has no secret_key or provider invalid */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description OAuth not implemented for this provider */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProviderConfigsController_getStatus: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Integration status */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProviderConfigsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Provider config */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProviderConfigsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    ProviderConfigsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateProviderConfigDto"];
-            };
-        };
-        responses: {
-            /** @description Updated provider config */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PurchaseCategoriesController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Filter by description (partial match) */
-                search?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of purchase categories */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PurchaseCategoriesController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    accountId: number;
-                    description: string;
-                };
-            };
-        };
-        responses: {
-            /** @description Created purchase category */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PurchaseCategoriesController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Purchase category id */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Purchase category */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PurchaseCategoriesController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PurchaseCategoriesController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    accountId?: number;
-                    description?: string;
-                };
-            };
-        };
-        responses: {
-            /** @description Updated purchase category */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PurchaseReceiptsController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Opaque cursor for next page */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-                /** @description Filter by number or observation */
-                search?: string;
-                /** @description Filter by supplier */
-                supplier_id?: number;
-                /** @description Filter by status */
-                status?: string;
-                /** @description Filter by letter (A/B/C) */
-                letter?: string;
-                /** @description Filter by type */
-                type_id?: number;
-                /** @description Filter by date from (YYYY-MM-DD) */
-                date_from?: string;
-                /** @description Filter by date to (YYYY-MM-DD) */
-                date_to?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated purchase receipts (data, nextCursor, hasMore) */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PurchaseReceiptsController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Created purchase receipt */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PurchaseReceiptsController_exportCsv: {
-        parameters: {
-            query?: {
-                supplier_id?: number;
-                status?: string;
-                date_from?: string;
-                date_to?: string;
-                active_only?: boolean;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PurchaseReceiptsController_findUnpaidBySupplier: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                supplierId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description List of unpaid purchase receipts */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PurchaseReceiptsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Purchase receipt with details */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PurchaseReceiptsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PurchaseReceiptsController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Updated purchase receipt */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PurchaseReceiptsController_anular: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Voided purchase receipt */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    PurchaseReceiptsController_replaceDetails: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": unknown[];
-            };
-        };
-        responses: {
-            /** @description Replaced details */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SuppliersController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Opaque cursor for next page */
-                cursor?: string;
-                /** @description Page size (default 50, max 100) */
-                page_size?: number;
-                /** @description Filter by business name, tax ID, or email (partial match) */
-                search?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated suppliers (data, nextCursor, hasMore) */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SuppliersController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateSupplierDto"];
-            };
-        };
-        responses: {
-            /** @description Created supplier */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SuppliersController_removeBulk: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    ids?: number[];
-                };
-            };
-        };
-        responses: {
-            /** @description Number of deleted suppliers */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SuppliersController_exportCsv: {
-        parameters: {
-            query?: {
-                /** @description Filter by business name, tax ID, or email (partial match) */
-                search?: string;
-                /** @description Include only active suppliers (default true) */
-                active_only?: boolean;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SuppliersController_getOrCreate: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            /** @description Existing or newly created supplier */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SuppliersController_lookupCuit: {
-        parameters: {
-            query: {
-                /** @description CUIT to look up (11 digits, with or without dashes) */
-                cuit: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CUIT lookup result */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description INVALID_CUIT — malformed or bad check digit. */
+            /** @description Validation failed. Codes: INVALID_IMPORT_TYPE. */
             400: {
                 headers: {
                     [name: string]: unknown;
@@ -9833,17 +9707,8 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorResponseDto"];
                 };
             };
-            /** @description AFIP_PERSONA_NOT_FOUND — no taxpayer registered in AFIP for this CUIT. */
+            /** @description FILE_IMPORT_NOT_FOUND — file import does not exist or belongs to another organization. */
             404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description AFIP_WSCI_ERROR — upstream AFIP (WSCI) failure. See providerMessage. */
-            502: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -9853,7 +9718,107 @@ export interface operations {
             };
         };
     };
-    SuppliersController_findOne: {
+    CertificatesController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of certificates */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CertificateResponseDto"][];
+                };
+            };
+        };
+    };
+    CertificatesController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateCertificateDto"];
+            };
+        };
+        responses: {
+            /** @description Certificate created — download the CSR next */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CertificateResponseDto"];
+                };
+            };
+            /** @description ORGANIZATION_NOT_FOUND — caller's organization no longer exists. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CertificatesController_findActive: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Active certificate */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CertificateResponseDto"];
+                };
+            };
+            /** @description No active certificate */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CertificatesController_getExpirationStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Per-certificate expiration info */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CertificateExpirationStatusDto"][];
+                };
+            };
+        };
+    };
+    CertificatesController_getCsr: {
         parameters: {
             query?: never;
             header?: never;
@@ -9864,12 +9829,68 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Supplier */
+            /** @description CSR file download */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Certificate or CSR file not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CertificatesController_getCrt: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CRT file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Certificate or CRT file not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CertificatesController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Certificate */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CertificateResponseDto"];
+                };
             };
             /** @description Not found */
             404: {
@@ -9880,7 +9901,7 @@ export interface operations {
             };
         };
     };
-    SuppliersController_remove: {
+    CertificatesController_remove: {
         parameters: {
             query?: never;
             header?: never;
@@ -9898,16 +9919,18 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Not found */
+            /** @description CERTIFICATE_NOT_FOUND — certificate does not exist or belongs to another organization. */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
-    SuppliersController_update: {
+    CertificatesController_update: {
         parameters: {
             query?: never;
             header?: never;
@@ -9918,23 +9941,275 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["UpdateSupplierDto"];
+                "application/json": components["schemas"]["UpdateCertificateDto"];
             };
         };
         responses: {
-            /** @description Updated supplier */
+            /** @description Updated certificate */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["CertificateResponseDto"];
+                };
             };
-            /** @description Not found */
+            /** @description CERTIFICATE_NOT_FOUND — certificate does not exist or belongs to another organization. */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CertificatesController_validateConnection: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description `{ success, environment, services: { wsfe, wsfex } }`. `success` is `true` only when both services pass. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CertificateValidateConnectionResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: CRT_OR_P12_MISSING. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description CERTIFICATE_NOT_FOUND — certificate does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CertificatesController_uploadCrt: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Certificate id */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": {
+                    /**
+                     * Format: binary
+                     * @description The `.crt` file you downloaded from AFIP.
+                     */
+                    crt: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Certificate is now ready to use */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CertificateResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: NO_FILE_PROVIDED, PRIVATE_KEY_NOT_IN_STORAGE. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description CERTIFICATE_NOT_FOUND — certificate does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    BranchesController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of branches */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BranchResponseDto"][];
+                };
+            };
+        };
+    };
+    BranchesController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateBranchDto"];
+            };
+        };
+        responses: {
+            /** @description Created branch */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BranchResponseDto"];
+                };
+            };
+            /** @description Codes: BRANCH_NAME_REQUIRED, BRANCH_NAME_DUPLICATE. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    BranchesController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Branch */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BranchResponseDto"];
+                };
+            };
+            /** @description BRANCH_NOT_FOUND — branch does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    BranchesController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
                 content?: never;
+            };
+            /** @description BRANCH_NOT_FOUND — branch does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    BranchesController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateBranchDto"];
+            };
+        };
+        responses: {
+            /** @description Updated branch */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BranchResponseDto"];
+                };
+            };
+            /** @description BRANCH_NOT_FOUND — branch does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description BRANCH_NAME_DUPLICATE — another branch already uses this name. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
@@ -9952,7 +10227,9 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ReceiptBookResponseDto"][];
+                };
             };
         };
     };
@@ -9974,7 +10251,27 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ReceiptBookResponseDto"];
+                };
+            };
+            /** @description INVALID_RECEIPT_BOOK_TYPE — invalid point-of-sale type. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description POINT_OF_SALE_DUPLICATE — another receipt book uses this point of sale. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
@@ -9994,14 +10291,18 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ReceiptBookResponseDto"];
+                };
             };
-            /** @description Not found */
+            /** @description RECEIPT_BOOK_NOT_FOUND — receipt book does not exist or belongs to another organization. */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
@@ -10019,7 +10320,9 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ImportFromArcaResponseDto"];
+                };
             };
         };
     };
@@ -10039,14 +10342,18 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ReceiptBookResponseDto"];
+                };
             };
-            /** @description Not found */
+            /** @description RECEIPT_BOOK_NOT_FOUND — receipt book does not exist or belongs to another organization. */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
@@ -10068,12 +10375,14 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Not found */
+            /** @description RECEIPT_BOOK_NOT_FOUND — receipt book does not exist or belongs to another organization. */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
@@ -10097,6 +10406,579 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
+                content: {
+                    "application/json": components["schemas"]["ReceiptBookResponseDto"];
+                };
+            };
+            /** @description INVALID_RECEIPT_BOOK_TYPE — invalid point-of-sale type. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description RECEIPT_BOOK_NOT_FOUND — receipt book does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description POINT_OF_SALE_DUPLICATE — another receipt book uses this point of sale. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_getNextNumber: {
+        parameters: {
+            query: {
+                receipt_book_id: number;
+                customer_id: number;
+                receipt_type?: "factura" | "nota_credito" | "nota_debito";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Preview of the next receipt number that would be assigned */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NextReceiptNumberResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: MISSING_SALES_LETTER. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_listExportColumns: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Available export column keys and their headers */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExportColumnResponseDto"][];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_exportCsv: {
+        parameters: {
+            query?: {
+                date_from?: string;
+                date_to?: string;
+                status?: string;
+                search?: string;
+                customer_id?: number;
+                receipt_type?: "factura" | "nota_credito" | "nota_debito";
+                user_id?: number;
+                receipt_book_id?: number;
+                preset?: "default" | "detailed";
+                /** @description Comma-separated column keys (overrides preset and saved config) */
+                columns?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Async export triggered (large result set or high-volume org) */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "text/csv": components["schemas"]["AsyncExportAcceptedResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Filter receipts on or after this date (ISO). Omit to include all dates. */
+                date_from?: string;
+                /** @description Filter receipts on or before this date (ISO). Omit to include all dates. */
+                date_to?: string;
+                /** @description Filter by receipt status */
+                status?: string;
+                /** @description Search by customer name, receipt number, or CAE. Supports prefixes: cae:<value>, cuit:<value>, nro:<value>, id:<value> */
+                search?: string;
+                /** @description Filter by customer ID */
+                customer_id?: number;
+                /** @description Filter by receipt type group */
+                receipt_type?: "factura" | "nota_credito" | "nota_debito";
+                /** @description Filter by creator user ID */
+                user_id?: number;
+                /** @description Filter by receipt book ID */
+                receipt_book_id?: number;
+                /** @description Exact match on the external provider identifier */
+                provider_id?: string;
+                /** @description Opaque cursor for next page (from previous response nextCursor) */
+                cursor?: string;
+                /** @description Page size (default 20, max 100) */
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated sales receipts (data, nextCursor, hasMore) */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SalesReceiptPageResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_create: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Idempotency key (max 255 chars). On replay, returns the original receipt with status 200 and `Idempotent-Replayed: true`. */
+                "Idempotency-Key"?: string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateSalesReceiptDto"];
+            };
+        };
+        responses: {
+            /** @description Idempotent replay — original sales receipt returned */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SalesReceiptResponseDto"];
+                };
+            };
+            /** @description Created sales receipt */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SalesReceiptResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, DETAILS_REQUIRED, MISSING_SALES_LETTER, PROVIDER_ID_DUPLICATE, IDEMPOTENCY_KEY_AND_PROVIDER_ID_CONFLICT, IDEMPOTENCY_KEY_TOO_LONG, SELF_SALE_NOT_ALLOWED, UNSUPPORTED_VAT_RATE, VAT_NOT_ALLOWED_FOR_LETTER, NEGATIVE_TOTAL, SERVICE_DATES_REQUIRED, RECEIPT_DATE_BEFORE_LAST, CONSUMER_AMOUNT_LIMIT_EXCEEDED, ASSOCIATED_RECEIPT_NOT_FOUND, ASSOCIATED_RECEIPT_CUSTOMER_MISMATCH, CREDIT_NOTE_AMOUNT_EXCEEDS_BALANCE, FCE_ASSOCIATED_RECEIPT_INVALID, FCE_ASSOCIATED_RECEIPT_REQUIRED. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description Customer or receipt book not found. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_confirm: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Confirmed receipt */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SalesReceiptResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_CONFIRM, CUSTOMER_REQUIRED, DETAILS_REQUIRED, RECEIPT_BOOK_REQUIRED, SALE_CONDITION_REQUIRED, RECEIPT_DATE_TOO_OLD, RECEIPT_BOOK_NOT_FOUND, SELF_SALE_NOT_ALLOWED, VAT_NOT_ALLOWED_FOR_LETTER, NEGATIVE_TOTAL, SERVICE_DATES_REQUIRED, RECEIPT_DATE_BEFORE_LAST, CONSUMER_AMOUNT_LIMIT_EXCEEDED, ASSOCIATED_RECEIPT_NOT_FOUND, ASSOCIATED_RECEIPT_CUSTOMER_MISMATCH, CREDIT_NOTE_AMOUNT_EXCEEDS_BALANCE, FCE_ASSOCIATED_RECEIPT_INVALID, FCE_ASSOCIATED_RECEIPT_REQUIRED. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description SALES_RECEIPT_NOT_FOUND — receipt does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_retry: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Retry triggered, receipt returned */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SalesReceiptResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: INVALID_RECEIPT_STATUS_FOR_RETRY. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description SALES_RECEIPT_NOT_FOUND — receipt does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_voidReceipt: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["VoidSalesReceiptDto"];
+            };
+        };
+        responses: {
+            /** @description Voided receipt with optional credit note ID */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VoidSalesReceiptResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, RECEIPT_ALREADY_VOIDED, INVALID_RECEIPT_STATUS_FOR_VOID, RECEIPT_BOOK_NOT_FOUND, WS_VOID_REQUIRES_CREDIT_NOTE, RECEIPT_ALREADY_CREDITED, PARTIAL_CREDIT_EXISTS, HAS_COLLECTIONS_CANNOT_VOID. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description SALES_RECEIPT_NOT_FOUND — receipt does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_createImputations: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateImputationsDto"];
+            };
+        };
+        responses: {
+            /** @description Created imputations */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CreateImputationsResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, IMPUTATION_NOT_A_CREDIT_NOTE, IMPUTATION_TARGET_IS_CREDIT_NOTE, IMPUTATION_INVALID_STATUS, IMPUTATION_CUSTOMER_MISMATCH, IMPUTATION_EXCEEDS_CREDIT_NOTE, IMPUTATION_EXCEEDS_TARGET_PENDING. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description SALES_RECEIPT_NOT_FOUND — credit note or a target receipt does not exist in this organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_listImputations: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Imputations for the receipt */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ImputationResponseDto"][];
+                };
+            };
+            /** @description SALES_RECEIPT_NOT_FOUND — receipt does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_deleteImputation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Imputation UUID */
+                imputationId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Imputation deleted and reversed */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description ORGANIZATION_ARCHIVED — organization is archived (read-only). */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description IMPUTATION_NOT_FOUND — imputation does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_duplicate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Source sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description New draft receipt */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SalesReceiptResponseDto"];
+                };
+            };
+            /** @description Validation failed when re-creating the draft. Codes: ORGANIZATION_ARCHIVED, DETAILS_REQUIRED, MISSING_SALES_LETTER, PROVIDER_ID_DUPLICATE. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description SALES_RECEIPT_NOT_FOUND — source receipt does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_authorizeAfip: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Authorization result */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AuthorizeAfipResponseDto"];
+                };
+            };
+            /** @description Validation failed (or AFIP error). Codes: INVALID_RECEIPT_STATUS_FOR_AUTHORIZE. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description SALES_RECEIPT_NOT_FOUND — receipt does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_downloadPdfPublic: {
+        parameters: {
+            query: {
+                /** @description Signed download token */
+                token: string;
+                /** @description Token expiration (unix seconds) */
+                expires: string;
+            };
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Invoice PDF file */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid or expired token */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
                 content?: never;
             };
             /** @description Not found */
@@ -10105,6 +10987,1263 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_downloadPdf: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Invoice PDF file */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_sendEmail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SendEmailDto"];
+            };
+        };
+        responses: {
+            /** @description Email send triggered */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SendEmailResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: RECEIPT_NOT_AUTHORIZED_FOR_EMAIL. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description Codes: SALES_RECEIPT_NOT_FOUND, EMAIL_NOT_AVAILABLE. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_resendEmailPublic: {
+        parameters: {
+            query: {
+                token: string;
+                expires: string;
+            };
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Email resent */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ResendEmailResponseDto"];
+                };
+            };
+            /** @description Invalid or expired token */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not found or no email */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Rate limited */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_getTrackingEvents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Tracking events with tracking enabled flag */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TrackingEventsResponseDto"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_bulkEmail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BulkEmailDto"];
+            };
+        };
+        responses: {
+            /** @description Bulk email job created */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BulkActionJobCreatedResponseDto"];
+                };
+            };
+            /** @description Invalid receipt IDs */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_bulkPdf: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BulkPdfDto"];
+            };
+        };
+        responses: {
+            /** @description Bulk PDF job created */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BulkActionJobCreatedResponseDto"];
+                };
+            };
+            /** @description Invalid receipt IDs */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_bulkVoid: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BulkVoidDto"];
+            };
+        };
+        responses: {
+            /** @description Bulk void job created */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BulkActionJobCreatedResponseDto"];
+                };
+            };
+            /** @description Invalid receipt IDs */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_bulkReconcile: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BulkReconcileDto"];
+            };
+        };
+        responses: {
+            /** @description Receipts marked as collected */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BulkReconcileResponseDto"];
+                };
+            };
+            /** @description Invalid receipt IDs */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_bulkActionStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Bulk action job UUID */
+                jobId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Job status and progress */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BulkActionStatusResponseDto"];
+                };
+            };
+            /** @description Job not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Sales receipt */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SalesReceiptResponseDto"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReceiptsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DELETE, NOT_LAST_RECEIPT_NUMBER, INVOICE_HAS_ASSOCIATED_CREDIT_NOTES, HAS_COLLECTIONS_CANNOT_DELETE. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description SALES_RECEIPT_NOT_FOUND — receipt does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReceiptsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Sales receipt UUID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateSalesReceiptDto"];
+            };
+        };
+        responses: {
+            /** @description Updated sales receipt */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SalesReceiptResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, RECEIPT_DATE_TOO_OLD, MISSING_SALES_LETTER, UNSUPPORTED_VAT_RATE. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description SALES_RECEIPT_NOT_FOUND — receipt does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    StockController_getStockHistory: {
+        parameters: {
+            query?: {
+                /** @description Page number (1-based) */
+                page?: number;
+                /** @description Items per page */
+                limit?: number;
+                /** @description Filter by stock change type (SALE, PURCHASE, MANUAL) */
+                type?: string;
+            };
+            header?: never;
+            path: {
+                productId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated stock movements with total count */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StockHistoryPageResponseDto"];
+                };
+            };
+            /** @description STOCK_TRACKING_DISABLED — stock tracking is not enabled for this organization. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    StockController_addManualAdjustment: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                productId: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AddManualStockChangeDto"];
+            };
+        };
+        responses: {
+            /** @description Created stock movement */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StockChangeResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: STOCK_TRACKING_DISABLED, STOCK_NOT_APPLICABLE_TO_SERVICE, INSUFFICIENT_STOCK. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description PRODUCT_NOT_FOUND — product does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    JournalAccountsController_list: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of journal accounts */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JournalAccountResponseDto"][];
+                };
+            };
+        };
+    };
+    JournalAccountsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateJournalAccountDto"];
+            };
+        };
+        responses: {
+            /** @description Created journal account */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JournalAccountResponseDto"];
+                };
+            };
+        };
+    };
+    JournalAccountsController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deletion confirmation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JournalAccountDeletedResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: ACCOUNTING_DISABLED, JOURNAL_ACCOUNT_IN_USE. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description JOURNAL_ACCOUNT_NOT_FOUND — account does not exist. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    JournalAccountsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateJournalAccountDto"];
+            };
+        };
+        responses: {
+            /** @description Updated journal account */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JournalAccountResponseDto"];
+                };
+            };
+            /** @description ACCOUNTING_DISABLED — accounting is not enabled. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description JOURNAL_ACCOUNT_NOT_FOUND — account does not exist. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    FiscalYearsController_list: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of fiscal years */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FiscalYearResponseDto"][];
+                };
+            };
+        };
+    };
+    FiscalYearsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateFiscalYearDto"];
+            };
+        };
+        responses: {
+            /** @description Created fiscal year */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FiscalYearResponseDto"];
+                };
+            };
+        };
+    };
+    FiscalYearsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateFiscalYearDto"];
+            };
+        };
+        responses: {
+            /** @description Updated fiscal year */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FiscalYearResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: ACCOUNTING_DISABLED, FISCAL_YEAR_CLOSED. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description FISCAL_YEAR_NOT_FOUND — fiscal year does not exist. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    FiscalYearsController_close: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Closed fiscal year (isClosed = true) */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FiscalYearResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: ACCOUNTING_DISABLED, FISCAL_YEAR_ALREADY_CLOSED. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description FISCAL_YEAR_NOT_FOUND — fiscal year does not exist. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    JournalEntriesController_list: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                /** @description Filter by module (ventas, compras, tesoreria, manual) */
+                module?: string;
+                /** @description Filter from date (ISO string) */
+                date_from?: string;
+                /** @description Filter to date (ISO string) */
+                date_to?: string;
+                /** @description Filter manual entries only */
+                is_manual?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated journal entries (items, total) */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JournalEntryListResponseDto"];
+                };
+            };
+        };
+    };
+    JournalEntriesController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateJournalEntryDto"];
+            };
+        };
+        responses: {
+            /** @description Created journal entry */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JournalEntryResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: ACCOUNTING_DISABLED, JOURNAL_ENTRY_ITEMS_REQUIRED, JOURNAL_ENTRY_NOT_BALANCED, FISCAL_YEAR_CLOSED, DATE_LOCKED, INVALID_JOURNAL_ACCOUNT_IDS. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description FISCAL_YEAR_NOT_FOUND — fiscal year does not exist. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    JournalEntriesController_getProfitAndLoss: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Profit and loss report grouped by account */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfitAndLossResponseDto"];
+                };
+            };
+        };
+    };
+    JournalEntriesController_getBalanceSheet: {
+        parameters: {
+            query: {
+                as_of_date: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Balance sheet grouped by account category */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BalanceSheetResponseDto"];
+                };
+            };
+        };
+    };
+    JournalEntriesController_getById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Journal entry with line items */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JournalEntryResponseDto"];
+                };
+            };
+            /** @description ACCOUNTING_DISABLED — accounting is not enabled for this organization. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description JOURNAL_ENTRY_NOT_FOUND — journal entry does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    JournalEntriesController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deletion confirmation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JournalEntryDeletedResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: ACCOUNTING_DISABLED, CANNOT_DELETE_AUTO_ENTRY. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description JOURNAL_ENTRY_NOT_FOUND — journal entry does not exist. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    AccountingLocksController_list: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of accounting locks */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountingLockResponseDto"][];
+                };
+            };
+        };
+    };
+    AccountingLocksController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateAccountingLockDto"];
+            };
+        };
+        responses: {
+            /** @description Created lock */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountingLockResponseDto"];
+                };
+            };
+            /** @description ACCOUNTING_DISABLED — accounting is not enabled. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description FISCAL_YEAR_NOT_FOUND — fiscal year does not exist. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    AccountingLocksController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deletion confirmation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountingLockDeletedResponseDto"];
+                };
+            };
+            /** @description ACCOUNTING_DISABLED — accounting is not enabled. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description ACCOUNTING_LOCK_NOT_FOUND — lock does not exist. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    AccountingLocksController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateAccountingLockDto"];
+            };
+        };
+        responses: {
+            /** @description Updated lock */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountingLockResponseDto"];
+                };
+            };
+            /** @description ACCOUNTING_DISABLED — accounting is not enabled. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description ACCOUNTING_LOCK_NOT_FOUND — lock does not exist. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    AccountingReportsController_generalLedger: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                account_id?: number;
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated general ledger movements with running balance */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GeneralLedgerPageResponseDto"];
+                };
+            };
+        };
+    };
+    AccountingReportsController_generalLedgerExport: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                account_id?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AccountingReportsController_dailyBook: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated chronological journal entries (one row per item) */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DailyBookPageResponseDto"];
+                };
+            };
+        };
+    };
+    AccountingReportsController_dailyBookExport: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AccountingReportsController_trialBalance: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated trial balance with totals per account */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TrialBalancePageResponseDto"];
+                };
+            };
+        };
+    };
+    AccountingReportsController_trialBalanceExport: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReportsController_findCreators: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Array of distinct user creators (id + fullName) */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SalesReceiptCreatorResponseDto"][];
+                };
             };
         };
     };
@@ -10124,6 +12263,198 @@ export interface operations {
         requestBody?: never;
         responses: {
             /** @description Dashboard statistics */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DashboardStatsResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: DATE_RANGE_REQUIRED, INVALID_DATE_FORMAT, INVALID_DATE_RANGE. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReportsController_getVatSalesBook: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                cursor?: string;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated VAT book rows */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VatSalesBookPageResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReportsController_exportVatSalesBook: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReportsController_getSalesByProduct: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                customer_id?: number;
+                cursor?: string;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated sales by product rows */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SalesByProductPageResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReportsController_exportSalesByProduct: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                customer_id?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReportsController_getSalesByCustomer: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+                cursor?: string;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated sales by customer rows */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SalesByCustomerPageResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReportsController_exportSalesByCustomer: {
+        parameters: {
+            query: {
+                date_from: string;
+                date_to: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SalesReportsController_getOutstandingReceivables: {
+        parameters: {
+            query?: {
+                cursor?: string;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated outstanding receivable rows */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OutstandingReceivablePageResponseDto"];
+                };
+            };
+        };
+    };
+    SalesReportsController_exportOutstandingReceivables: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -10151,7 +12482,9 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["IIBBPageResponseDto"];
+                };
             };
         };
     };
@@ -10173,6 +12506,29 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+        };
+    };
+    SalesReportsController_getRevenueTrends: {
+        parameters: {
+            query?: {
+                /** @description Number of past months to include (default 24) */
+                months?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Revenue trend data with forecasting */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RevenueTrendsResponseDto"];
+                };
             };
         };
     };
@@ -10218,225 +12574,11 @@ export interface operations {
             };
         };
     };
-    SalesReportsController_getOutstandingReceivables: {
+    PurchaseCategoriesController_findAll: {
         parameters: {
             query?: {
-                cursor?: string;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated outstanding receivable rows */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReportsController_exportOutstandingReceivables: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReportsController_getSalesByCustomer: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                cursor?: string;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated sales by customer rows */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReportsController_exportSalesByCustomer: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReportsController_getSalesByProduct: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                customer_id?: number;
-                cursor?: string;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated sales by product rows */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReportsController_exportSalesByProduct: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                customer_id?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReportsController_getRevenueTrends: {
-        parameters: {
-            query?: {
-                /** @description Number of past months to include (default 24) */
-                months?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Revenue trend data with forecasting */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReportsController_getVatSalesBook: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-                cursor?: string;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Paginated VAT book rows */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReportsController_exportVatSalesBook: {
-        parameters: {
-            query: {
-                date_from: string;
-                date_to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findAll: {
-        parameters: {
-            query?: {
-                /** @description Opaque cursor for next page */
-                cursor?: string;
-                /** @description Page size (default 20, max 100) */
-                page_size?: number;
-                /** @description Filter receipts on or after this date (ISO). Omit for all dates. */
-                date_from?: string;
-                /** @description Filter receipts on or before this date (ISO). Omit for all dates. */
-                date_to?: string;
-                /** @description Filter by receipt status */
-                status?: string;
-                /** @description Search by customer name, receipt number, or CAE. Supports prefixes: cae:<value>, cuit:<value>, nro:<value>, id:<value> */
+                /** @description Filter by description (partial match) */
                 search?: string;
-                /** @description Filter by customer ID */
-                customer_id?: number;
-                /** @description Filter by receipt type group */
-                receipt_type?: "factura" | "nota_credito" | "nota_debito";
-                /** @description Filter by creator user ID */
-                user_id?: number;
-                /** @description Filter by receipt book ID */
-                receipt_book_id?: number;
-                /** @description Exact match on the external provider identifier */
-                provider_id?: string;
             };
             header?: never;
             path?: never;
@@ -10444,16 +12586,18 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Paginated sales receipts (data, nextCursor, hasMore) */
+            /** @description List of purchase categories */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["PurchaseCategoryResponseDto"][];
+                };
             };
         };
     };
-    SalesReceiptsController_create: {
+    PurchaseCategoriesController_create: {
         parameters: {
             query?: never;
             header?: never;
@@ -10462,19 +12606,44 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["CreateSalesReceiptDto"];
+                "application/json": components["schemas"]["CreatePurchaseCategoryDto"];
             };
         };
         responses: {
-            /** @description Created sales receipt */
+            /** @description Created purchase category */
             201: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["PurchaseCategoryResponseDto"];
+                };
             };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, DETAILS_REQUIRED, MISSING_SALES_LETTER. */
-            400: {
+        };
+    };
+    PurchaseCategoriesController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Purchase category id */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Purchase category */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PurchaseCategoryResponseDto"];
+                };
+            };
+            /** @description PURCHASE_CATEGORY_NOT_FOUND — purchase category does not exist or belongs to another organization. */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -10484,289 +12653,12 @@ export interface operations {
             };
         };
     };
-    SalesReceiptsController_bulkActionStatus: {
+    PurchaseCategoriesController_remove: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description Bulk action job UUID */
-                jobId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Job status and progress */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Job not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_bulkEmail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["BulkEmailDto"];
-            };
-        };
-        responses: {
-            /** @description Bulk email job created */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid receipt IDs */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_bulkPdf: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["BulkPdfDto"];
-            };
-        };
-        responses: {
-            /** @description Bulk PDF job created */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid receipt IDs */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_bulkReconcile: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["BulkReconcileDto"];
-            };
-        };
-        responses: {
-            /** @description Receipts marked as collected */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid receipt IDs */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_bulkVoid: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["BulkVoidDto"];
-            };
-        };
-        responses: {
-            /** @description Bulk void job created */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid receipt IDs */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_findCreators: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Array of { id, fullName } */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_exportCsv: {
-        parameters: {
-            query?: {
-                date_from?: string;
-                date_to?: string;
-                status?: string;
-                search?: string;
-                customer_id?: number;
-                receipt_type?: "factura" | "nota_credito" | "nota_debito";
-                user_id?: number;
-                receipt_book_id?: number;
-                preset?: "default" | "detailed";
-                /** @description Comma-separated column keys (overrides preset and saved config) */
-                columns?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description CSV file download */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Async export triggered (high-volume orgs) */
-            202: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_listExportColumns: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Array of { key, header } */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_getNextNumber: {
-        parameters: {
-            query: {
-                receipt_book_id: number;
-                customer_id: number;
-                receipt_type?: "factura" | "nota_credito" | "nota_debito";
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description { letter, number, nextSequential } */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: MISSING_SALES_LETTER. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-        };
-    };
-    SalesReceiptsController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Sales receipt */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
+                id: number;
             };
             cookie?: never;
         };
@@ -10779,8 +12671,8 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_DELETE, NOT_LAST_RECEIPT_NUMBER. */
-            400: {
+            /** @description PURCHASE_CATEGORY_NOT_FOUND — purchase category does not exist or belongs to another organization. */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -10788,40 +12680,34 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorResponseDto"];
                 };
             };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
         };
     };
-    SalesReceiptsController_update: {
+    PurchaseCategoriesController_update: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description Sales receipt UUID */
-                id: string;
+                id: number;
             };
             cookie?: never;
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["UpdateSalesReceiptDto"];
+                "application/json": components["schemas"]["UpdatePurchaseCategoryDto"];
             };
         };
         responses: {
-            /** @description Updated sales receipt */
+            /** @description Updated purchase category */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["PurchaseCategoryResponseDto"];
+                };
             };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, RECEIPT_DATE_TOO_OLD, MISSING_SALES_LETTER. */
-            400: {
+            /** @description PURCHASE_CATEGORY_NOT_FOUND — purchase category does not exist or belongs to another organization. */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -10829,365 +12715,9 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorResponseDto"];
                 };
             };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
         };
     };
-    SalesReceiptsController_authorizeAfip: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Authorization result */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed (or AFIP error). Codes: INVALID_RECEIPT_STATUS_FOR_AUTHORIZE. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_confirm: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Confirmed receipt */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, INVALID_RECEIPT_STATUS_FOR_CONFIRM, CUSTOMER_REQUIRED, DETAILS_REQUIRED, RECEIPT_BOOK_REQUIRED, SALE_CONDITION_REQUIRED, RECEIPT_DATE_TOO_OLD, RECEIPT_BOOK_NOT_FOUND. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_duplicate: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Source sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description New draft receipt */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Source receipt not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_downloadPdf: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Invoice PDF file */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_downloadPdfPublic: {
-        parameters: {
-            query: {
-                /** @description Signed download token */
-                token: string;
-                /** @description Token expiration (unix seconds) */
-                expires: string;
-            };
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Invoice PDF file */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid or expired token */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_resendEmailPublic: {
-        parameters: {
-            query: {
-                token: string;
-                expires: string;
-            };
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Email resent */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Invalid token signature */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found or no email */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Rate limited */
-            429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_retry: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Retry triggered, receipt returned */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: INVALID_RECEIPT_STATUS_FOR_RETRY. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_sendEmail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Email send triggered */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_getTrackingEvents: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Tracking events with tracking enabled flag */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    SalesReceiptsController_voidReceipt: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Sales receipt UUID */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["VoidSalesReceiptDto"];
-            };
-        };
-        responses: {
-            /** @description Voided receipt with optional credit note ID */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation failed. Codes: ORGANIZATION_ARCHIVED, RECEIPT_ALREADY_VOIDED, INVALID_RECEIPT_STATUS_FOR_VOID, RECEIPT_BOOK_NOT_FOUND, WS_VOID_REQUIRES_CREDIT_NOTE, RECEIPT_ALREADY_CREDITED, PARTIAL_CREDIT_EXISTS. */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponseDto"];
-                };
-            };
-            /** @description Not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    TaxCategoriesController_findAllActive: {
+    PaymentMethodsController_findAll: {
         parameters: {
             query?: never;
             header?: never;
@@ -11196,137 +12726,2526 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description List of active tax categories */
+            /** @description List of payment methods */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["PaymentMethodResponseDto"][];
+                };
             };
         };
     };
-    TaxCategoriesController_findOne: {
+    PaymentMethodsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreatePaymentMethodDto"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaymentMethodResponseDto"];
+                };
+            };
+        };
+    };
+    PaymentMethodsController_findOne: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description Tax category id */
                 id: number;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Tax category */
+            /** @description Payment method */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["PaymentMethodResponseDto"];
+                };
             };
-            /** @description Tax category not found */
+            /** @description PAYMENT_METHOD_NOT_FOUND — payment method does not exist or belongs to another organization. */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
-    TaxCategoriesController_isExportacion: {
+    PaymentMethodsController_remove: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description Tax category id */
                 id: number;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Object with exportacion boolean */
-            200: {
+            /** @description Deleted */
+            204: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-        };
-    };
-    TaxCategoriesController_isMonotributo: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description Tax category id */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Object with monotributo boolean */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    TaxpayerRegistriesController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description CUIT (companies) or CUIL (individuals) — 11 digits, no dashes */
-                taxId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Taxpayer details */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description No taxpayer registered for this CUIT/CUIL */
+            /** @description PAYMENT_METHOD_NOT_FOUND — payment method does not exist or belongs to another organization. */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
-    TaxpayerRegistriesController_isFceReceiver: {
+    PaymentMethodsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdatePaymentMethodDto"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaymentMethodResponseDto"];
+                };
+            };
+            /** @description PAYMENT_METHOD_NOT_FOUND — payment method does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    PaymentMethodsController_findAllEntries: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of payment method entries */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaymentMethodEntryResponseDto"][];
+                };
+            };
+        };
+    };
+    PaymentMethodsController_findEntry: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                entryId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Payment method entry */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaymentMethodEntryResponseDto"];
+                };
+            };
+            /** @description PAYMENT_METHOD_ENTRY_NOT_FOUND — payment method entry does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    PaymentMethodsController_removeEntry: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                entryId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description PAYMENT_METHOD_ENTRY_NOT_FOUND — payment method entry does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    PaymentMethodsController_updateEntry: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                entryId: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdatePaymentMethodEntryDto"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaymentMethodEntryResponseDto"];
+                };
+            };
+            /** @description PAYMENT_METHOD_ENTRY_NOT_FOUND — payment method entry does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    PaymentMethodsController_createEntry: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreatePaymentMethodEntryDto"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaymentMethodEntryResponseDto"];
+                };
+            };
+        };
+    };
+    BanksController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of banks */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BankResponseDto"][];
+                };
+            };
+        };
+    };
+    BanksController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateBankDto"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BankResponseDto"];
+                };
+            };
+        };
+    };
+    BanksController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Bank */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BankResponseDto"];
+                };
+            };
+            /** @description BANK_NOT_FOUND — bank does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    BanksController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description BANK_NOT_FOUND — bank does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    BanksController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateBankDto"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BankResponseDto"];
+                };
+            };
+            /** @description BANK_NOT_FOUND — bank does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    BankAccountsController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of bank accounts */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BankAccountResponseDto"][];
+                };
+            };
+        };
+    };
+    BankAccountsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateBankAccountDto"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BankAccountResponseDto"];
+                };
+            };
+        };
+    };
+    BankAccountsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Bank account */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BankAccountResponseDto"];
+                };
+            };
+            /** @description BANK_ACCOUNT_NOT_FOUND — bank account does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    BankAccountsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description BANK_ACCOUNT_NOT_FOUND — bank account does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    BankAccountsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateBankAccountDto"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BankAccountResponseDto"];
+                };
+            };
+            /** @description BANK_ACCOUNT_NOT_FOUND — bank account does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    BankAccountsController_findHistories: {
         parameters: {
             query?: {
-                /** @description The receipt's total in ARS. Omit (or `0`) to check whether the taxpayer can ever receive FCE, ignoring the amount. */
-                total?: string;
+                /** @description Filter by bank account */
+                bank_account_id?: number;
             };
             header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of bank account histories */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BankAccountHistoryResponseDto"][];
+                };
+            };
+        };
+    };
+    CashRegistersController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of cash registers */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CashRegisterResponseDto"][];
+                };
+            };
+        };
+    };
+    CashRegistersController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateCashRegisterDto"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CashRegisterResponseDto"];
+                };
+            };
+        };
+    };
+    CashRegistersController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
             path: {
-                /** @description Customer's CUIT (companies) or CUIL (individuals) — 11 digits, no dashes */
-                taxId: string;
+                id: number;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description `{ taxId, total, isFceReceiver }` — use `isFceReceiver` to decide the receipt type */
+            /** @description Cash register */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CashRegisterResponseDto"];
+                };
+            };
+            /** @description CASH_REGISTER_NOT_FOUND — cash register does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CashRegistersController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description CASH_REGISTER_NOT_FOUND — cash register does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CashRegistersController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateCashRegisterDto"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CashRegisterResponseDto"];
+                };
+            };
+            /** @description CASH_REGISTER_NOT_FOUND — cash register does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CashRegistersController_findHistories: {
+        parameters: {
+            query?: {
+                /** @description Filter by cash register */
+                cash_register_id?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of cash register histories */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CashRegisterHistoryResponseDto"][];
+                };
+            };
+        };
+    };
+    ChecksController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Pagination cursor */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated list of checks */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CheckPageResponseDto"];
+                };
+            };
+        };
+    };
+    ChecksController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateCheckDto"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CheckResponseDto"];
+                };
+            };
+        };
+    };
+    ChecksController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Check */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CheckResponseDto"];
+                };
+            };
+            /** @description CHECK_NOT_FOUND — check does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    ChecksController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description CHECK_NOT_FOUND — check does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    ChecksController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateCheckDto"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CheckResponseDto"];
+                };
+            };
+            /** @description CHECK_NOT_FOUND — check does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    OwnChecksController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Pagination cursor */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated list of own checks */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OwnCheckPageResponseDto"];
+                };
+            };
+        };
+    };
+    OwnChecksController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateOwnCheckDto"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OwnCheckResponseDto"];
+                };
+            };
+        };
+    };
+    OwnChecksController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Own check */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OwnCheckResponseDto"];
+                };
+            };
+            /** @description OWN_CHECK_NOT_FOUND — own check does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    OwnChecksController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description OWN_CHECK_NOT_FOUND — own check does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    OwnChecksController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateOwnCheckDto"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OwnCheckResponseDto"];
+                };
+            };
+            /** @description OWN_CHECK_NOT_FOUND — own check does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CheckbooksController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of checkbooks */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CheckbookResponseDto"][];
+                };
+            };
+        };
+    };
+    CheckbooksController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateCheckbookDto"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CheckbookResponseDto"];
+                };
+            };
+        };
+    };
+    CheckbooksController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Checkbook */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CheckbookResponseDto"];
+                };
+            };
+            /** @description CHECKBOOK_NOT_FOUND — checkbook does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CheckbooksController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description CHECKBOOK_NOT_FOUND — checkbook does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CheckbooksController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateCheckbookDto"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CheckbookResponseDto"];
+                };
+            };
+            /** @description CHECKBOOK_NOT_FOUND — checkbook does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    DepositsController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Pagination cursor */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated list of deposits */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DepositPageResponseDto"];
+                };
+            };
+        };
+    };
+    DepositsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateDepositDto"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DepositResponseDto"];
+                };
+            };
+        };
+    };
+    DepositsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deposit */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DepositResponseDto"];
+                };
+            };
+            /** @description DEPOSIT_NOT_FOUND — deposit does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    DepositsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description DEPOSIT_NOT_FOUND — deposit does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    DepositsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateDepositDto"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DepositResponseDto"];
+                };
+            };
+            /** @description DEPOSIT_NOT_FOUND — deposit does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    DepositsController_findItems: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of deposit items */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DepositItemResponseDto"][];
+                };
+            };
+            /** @description DEPOSIT_NOT_FOUND — deposit does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    TransfersController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Pagination cursor */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated list of transfers */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransferPageResponseDto"];
+                };
+            };
+        };
+    };
+    TransfersController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateTransferDto"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransferResponseDto"];
+                };
+            };
+        };
+    };
+    TransfersController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Transfer */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransferResponseDto"];
+                };
+            };
+            /** @description TRANSFER_NOT_FOUND — transfer does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    TransfersController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description TRANSFER_NOT_FOUND — transfer does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    TransfersController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateTransferDto"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransferResponseDto"];
+                };
+            };
+            /** @description TRANSFER_NOT_FOUND — transfer does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    FundMovementsController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Pagination cursor */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated list of fund movements */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FundMovementPageResponseDto"];
+                };
+            };
+        };
+    };
+    FundMovementsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateFundMovementDto"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FundMovementResponseDto"];
+                };
+            };
+        };
+    };
+    FundMovementsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Fund movement */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FundMovementResponseDto"];
+                };
+            };
+            /** @description FUND_MOVEMENT_NOT_FOUND — fund movement does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    FundMovementsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description FUND_MOVEMENT_NOT_FOUND — fund movement does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    FundMovementsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateFundMovementDto"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FundMovementResponseDto"];
+                };
+            };
+            /** @description FUND_MOVEMENT_NOT_FOUND — fund movement does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CreditCardsController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of credit cards */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CreditCardResponseDto"][];
+                };
+            };
+        };
+    };
+    CreditCardsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateCreditCardDto"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CreditCardResponseDto"];
+                };
+            };
+        };
+    };
+    CreditCardsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Credit card */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CreditCardResponseDto"];
+                };
+            };
+            /** @description CREDIT_CARD_NOT_FOUND — credit card does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CreditCardsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description CREDIT_CARD_NOT_FOUND — credit card does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CreditCardsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateCreditCardDto"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CreditCardResponseDto"];
+                };
+            };
+            /** @description CREDIT_CARD_NOT_FOUND — credit card does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CardPaymentsController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Pagination cursor */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated list of card payments */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CardPaymentPageResponseDto"];
+                };
+            };
+        };
+    };
+    CardPaymentsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateCardPaymentDto"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CardPaymentResponseDto"];
+                };
+            };
+        };
+    };
+    CardPaymentsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Card payment */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CardPaymentResponseDto"];
+                };
+            };
+            /** @description CARD_PAYMENT_NOT_FOUND — card payment does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CardPaymentsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description CARD_PAYMENT_NOT_FOUND — card payment does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CardPaymentsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateCardPaymentDto"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CardPaymentResponseDto"];
+                };
+            };
+            /** @description CARD_PAYMENT_NOT_FOUND — card payment does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CardPaymentsController_findCancellations: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of cancellations */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CardCancellationResponseDto"][];
+                };
+            };
+            /** @description CARD_PAYMENT_NOT_FOUND — card payment does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    RetentionsController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of retentions */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RetentionResponseDto"][];
+                };
+            };
+        };
+    };
+    RetentionsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateRetentionDto"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RetentionResponseDto"];
+                };
+            };
+        };
+    };
+    RetentionsController_findReceipts: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of retention receipts */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RetentionReceiptResponseDto"][];
+                };
+            };
+        };
+    };
+    RetentionsController_findReceipt: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                receiptId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Retention receipt */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RetentionReceiptResponseDto"];
+                };
+            };
+            /** @description RETENTION_RECEIPT_NOT_FOUND — retention receipt does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    RetentionsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Retention */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RetentionResponseDto"];
+                };
+            };
+            /** @description RETENTION_NOT_FOUND — retention does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    RetentionsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description RETENTION_NOT_FOUND — retention does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    RetentionsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateRetentionDto"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RetentionResponseDto"];
+                };
+            };
+            /** @description RETENTION_NOT_FOUND — retention does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    PurchaseReceiptsController_findAll: {
+        parameters: {
+            query?: {
+                /** @description Opaque cursor for next page */
+                cursor?: string;
+                /** @description Page size (default 50, max 100) */
+                page_size?: number;
+                /** @description Filter by number or observation */
+                search?: string;
+                /** @description Filter by supplier */
+                supplier_id?: number;
+                /** @description Filter by status */
+                status?: string;
+                /** @description Filter by letter (A/B/C) */
+                letter?: string;
+                /** @description Filter by type */
+                type_id?: number;
+                /** @description Filter by date from (YYYY-MM-DD) */
+                date_from?: string;
+                /** @description Filter by date to (YYYY-MM-DD) */
+                date_to?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Paginated purchase receipts (data, nextCursor, hasMore) */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PurchaseReceiptPageResponseDto"];
+                };
+            };
+        };
+    };
+    PurchaseReceiptsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description Created purchase receipt */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PurchaseReceiptResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: SUPPLIER_ID_REQUIRED, TYPE_ID_REQUIRED, LETTER_DOES_NOT_DISCRIMINATE_VAT, PURCHASE_RECEIPT_DUPLICATE. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    PurchaseReceiptsController_exportCsv: {
+        parameters: {
+            query?: {
+                supplier_id?: number;
+                status?: string;
+                date_from?: string;
+                date_to?: string;
+                active_only?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CSV file download */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description No registry entry for this CUIT/CUIL */
+        };
+    };
+    PurchaseReceiptsController_findUnpaidBySupplier: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                supplierId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of unpaid purchase receipts */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PurchaseReceiptResponseDto"][];
+                };
+            };
+        };
+    };
+    PurchaseReceiptsController_findOne: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Purchase receipt with details */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PurchaseReceiptResponseDto"];
+                };
+            };
+            /** @description PURCHASE_RECEIPT_NOT_FOUND — receipt does not exist or belongs to another organization. */
             404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    PurchaseReceiptsController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation failed. Codes: RECEIPT_PARTIALLY_PAID, RECEIPT_PAID. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description PURCHASE_RECEIPT_NOT_FOUND — receipt does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    PurchaseReceiptsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Updated purchase receipt */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PurchaseReceiptResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: RECEIPT_VOIDED, RECEIPT_PAID, LETTER_DOES_NOT_DISCRIMINATE_VAT, PURCHASE_RECEIPT_DUPLICATE. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description PURCHASE_RECEIPT_NOT_FOUND — receipt does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    PurchaseReceiptsController_anular: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Voided purchase receipt */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PurchaseReceiptResponseDto"];
+                };
+            };
+            /** @description Validation failed. Codes: RECEIPT_PARTIALLY_PAID, RECEIPT_ALREADY_VOIDED, RECEIPT_PAID. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description PURCHASE_RECEIPT_NOT_FOUND — receipt does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    PurchaseReceiptsController_replaceDetails: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": unknown[];
+            };
+        };
+        responses: {
+            /** @description Replaced details */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PurchaseReceiptDetailResponseDto"][];
+                };
+            };
+            /** @description Validation failed. Codes: RECEIPT_VOIDED, RECEIPT_PAID. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+            /** @description PURCHASE_RECEIPT_NOT_FOUND — receipt does not exist or belongs to another organization. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    BulkActionsController_list: {
+        parameters: {
+            query?: {
+                status?: "active" | "terminal" | "all";
+                type?: string;
+                page_size?: number;
+                cursor?: string;
+                scope?: "mine" | "org";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BulkActionListResponseDto"];
+                };
+            };
+        };
+    };
+    BulkActionsController_status: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Bulk action job UUID */
+                jobId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BulkActionDto"];
+                };
+            };
+            /** @description Job not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    BulkActionsController_cancel: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Bulk action job UUID */
+                jobId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BulkActionDto"];
+                };
+            };
+            /** @description Job not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Job already terminated */
+            409: {
                 headers: {
                     [name: string]: unknown;
                 };
