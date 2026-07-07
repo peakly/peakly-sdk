@@ -1,5 +1,5 @@
 {
-  "name": "@peakly/sdk",
+  "name": "peakly",
   "version": "1.0.0",
   "description": "Auto-generated TypeScript SDK for the Peakly API",
   "type": "module",

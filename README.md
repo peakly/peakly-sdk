@@ -1,13 +1,13 @@
-# @peakly/sdk
+# peakly
 
 Auto-generated TypeScript SDK for the [Peakly API](https://peakly.io). Full type safety with zero hand-written types — all types are generated from the OpenAPI spec.
 
 ## Install
 
 ```bash
-npm install @peakly/sdk
+npm install peakly
 # or
-pnpm add @peakly/sdk
+pnpm add peakly
 ```
 
 Node 18+ required (uses native fetch).
@@ -15,7 +15,7 @@ Node 18+ required (uses native fetch).
 ## Quick start
 
 ```typescript
-import { PeaklyClient } from "@peakly/sdk";
+import { PeaklyClient } from "peakly";
 
 const client = new PeaklyClient({
   apiKey: process.env.PEAKLY_API_KEY!,
