@@ -137,6 +137,10 @@ pnpm test       # run vitest suite (62 tests)
 pnpm generate   # regenerate src/schema.d.ts from live API spec
 ```
 
+## Release
+
+Releases run from GitHub Actions with `semantic-release` and npm Trusted Publishing. Do not configure long-lived `NPM_TOKEN`/`NODE_AUTH_TOKEN` secrets for publishing. The npm package must trust `peakly/peakly-sdk` and `.github/workflows/release.yml`.
+
 ## API spec gaps
 
 - `POST /v1/purchases/purchase-receipts` currently declares an empty request body schema — `purchases.receipts.create()` accepts `Record<string, unknown>` until the API spec exposes the concrete DTO.
