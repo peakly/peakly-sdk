@@ -3,7 +3,6 @@ import type { paths } from "./schema.js";
 
 export interface PeaklyClientOptions {
   apiKey: string;
-  organizationId?: string;
   baseUrl?: string;
 }
 
@@ -20,16 +19,12 @@ export class PeaklyClient {
   constructor(options: PeaklyClientOptions) {
     const {
       apiKey,
-      organizationId,
       baseUrl = "https://api.peakly.ar",
     } = options;
 
     const headers: Record<string, string> = {
       "X-API-Key": apiKey,
     };
-    if (organizationId) {
-      headers["X-Organization-Id"] = organizationId;
-    }
 
     this.#fetch = createClient<paths>({ baseUrl, headers });
 

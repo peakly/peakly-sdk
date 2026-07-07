@@ -71,16 +71,12 @@ describe("PeaklyClient — auth headers", () => {
     expect(req.headers.get("x-api-key")).toBe("my-secret");
   });
 
-  it("sends X-Organization-Id when organizationId is provided", async () => {
+  it("does not send an organization override header", async () => {
     const spy = vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(mockOk({ data: [] }));
-    const client = new PeaklyClient({
-      apiKey: "key",
-      organizationId: "org-123",
-      baseUrl: "https://api.peakly.ar",
-    });
+    const client = new PeaklyClient({ apiKey: "key", baseUrl: "https://api.peakly.ar" });
     await client.sales.receipts.list();
     const req = lastRequest(spy);
-    expect(req.headers.get("x-organization-id")).toBe("org-123");
+    expect(req.headers.get("x-organization-id")).toBeNull();
   });
 });
 

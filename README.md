@@ -1,6 +1,11 @@
 # peakly
 
-Auto-generated TypeScript SDK for the [Peakly API](https://peakly.io). Full type safety with zero hand-written types — all types are generated from the OpenAPI spec.
+[![Release](https://github.com/peakly/peakly-sdk/actions/workflows/release.yml/badge.svg)](https://github.com/peakly/peakly-sdk/actions/workflows/release.yml)
+[![Sync OpenAPI schema](https://github.com/peakly/peakly-sdk/actions/workflows/sync-schema.yml/badge.svg)](https://github.com/peakly/peakly-sdk/actions/workflows/sync-schema.yml)
+[![npm version](https://img.shields.io/npm/v/peakly.svg)](https://www.npmjs.com/package/peakly)
+[![npm downloads](https://img.shields.io/npm/dm/peakly.svg)](https://www.npmjs.com/package/peakly)
+
+Official TypeScript SDK for the [Peakly API](https://peakly.io), published as [`peakly`](https://www.npmjs.com/package/peakly). Full type safety with zero hand-written types — all endpoint types are generated from the public OpenAPI spec.
 
 ## Install
 
@@ -19,7 +24,6 @@ import { PeaklyClient } from "peakly";
 
 const client = new PeaklyClient({
   apiKey: process.env.PEAKLY_API_KEY!,
-  organizationId: process.env.PEAKLY_ORG_ID, // optional
 });
 
 // Sales receipts
@@ -50,6 +54,10 @@ const { data: accounts } = await client.accounting.accounts.list();
 const { data: purchaseReceipts } = await client.purchases.receipts.list();
 const { data: suppliers } = await client.purchases.suppliers.list();
 ```
+
+## Authentication
+
+Peakly API keys are scoped to a single organization. The SDK sends only the `X-API-Key` header; no organization id is required or accepted by the client.
 
 ## Namespace structure
 
@@ -125,13 +133,13 @@ pnpm generate ./openapi.json
 ```bash
 pnpm install
 pnpm build      # compile TypeScript
-pnpm test       # run vitest suite (60 tests)
+pnpm test       # run vitest suite (62 tests)
 pnpm generate   # regenerate src/schema.d.ts from live API spec
 ```
 
-## Known gaps
+## API spec gaps
 
-- `PATCH /v1/purchase-receipts/{id}` is missing `requestBody` in the spec — `purchases.receipts.update()` accepts `Record<string, unknown>` until the spec is fleshed out.
+- `POST /v1/purchases/purchase-receipts` currently declares an empty request body schema — `purchases.receipts.create()` accepts `Record<string, unknown>` until the API spec exposes the concrete DTO.
 
 ## License
 
